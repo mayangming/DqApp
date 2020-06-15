@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.meetqs.qingchat.imagepicker">
+
+    <application android:theme="@style/AppTheme">
+
+        <provider
+            android:name="com.meetqs.qingchat.imagepicker.PictureFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.meetqs.qingchat.imagepicker.PictureSelectorActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.meetqs.qingchat.imagepicker.PicturePreviewActivity" />
+        <activity
+            android:name="com.meetqs.qingchat.imagepicker.PictureVideoPlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensor" />
+        <activity android:name="com.meetqs.qingchat.imagepicker.PictureExternalPreviewActivity" />
+        <activity android:name="com.meetqs.qingchat.imagepicker.PicturePlayAudioActivity" />
+
+    </application>
+</manifest>

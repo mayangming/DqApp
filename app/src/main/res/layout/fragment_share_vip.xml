@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/vip_share_dialog_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/vip_share_content"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/dialog_bg_conner"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:orientation="vertical"
+            android:layout_below="@+id/vip_share_icon"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:paddingTop="@dimen/dd_dp50">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold"
+                android:text="斗圈"/>
+            <ImageView
+                android:id="@+id/vip_share_qr_code"
+                android:layout_width="@dimen/dd_dp100"
+                android:layout_height="@dimen/dd_dp100"
+                android:layout_margin="@dimen/dd_dp20"
+                android:src="@mipmap/qr_code"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:textSize="@dimen/sp16"
+                android:text="扫描下载APP"/>
+
+            <TextView
+                android:id="@+id/vip_share_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保存二维码图片"
+                android:background="@mipmap/pay_btn_bg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp17"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_marginBottom="@dimen/dd_dp20"
+                android:gravity="center"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/vip_share_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dq_logo"
+            android:layout_marginBottom="-50dp"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/vip_share_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vip_share_dialog_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dd_dp100"
+        android:src="@mipmap/dialog_close"/>
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+package com.wd.daquan.chat.bean;
+
+import java.io.Serializable;
+
+/**
+ * @author: dukangkang
+ * @date: 2018/9/13 11:05.
+ * @description: todo ...
+ */
+public class AlipayBindingEntity implements Serializable {
+
+    /**
+     * pid : 2088921558152273
+     * appId : 2018010901730693
+     * rsa_private_key : MIIEpQIBAAKCAQEAy+ha6ebmlFSXGRDek5B60nToRrtEPN+uyzdXZ+r74tksaFoAnnuP179k2WYiEqwPqmLSCKhoLJq/b6k0y7tyo2LSMKMcSQBefva6wd9NyKgLYiehcsaH8Jdl2JOdp8B6SzjFBlN9cqmIwIeppPvXKE33hbVCrbyVXtZtPRFjq57gs4iyoMUOARzRZ2BF2VjAoO4xieTyWi2JqRhzohaS6PNZIYVUOcp4zWDTdrDt9PsA9dP6OjcNK3MGHUVvRaaxdgCSnWxskc6VIcHFM6h9QzlwKyJ0SgBwznAwg6uZWeUbWejapKVL6FX3cFm86j4dBzmIfNdtCx23JPb4FhghwQIDAQABAoIBAQCgirWhuVFL8fnxG04S4stBDhifL+v+/aIyj8T6pZFiPtju5AXewaw0EpYFcJtdFilTXnC9rlIu5DvbX16ZFWGh8DlLX/DyLR85WWsbH4SveldUFZ3QryzyqVDfnwGexTXEKdM+MtfvQjnQVD+mDT6OlixPErKH9ZWpUKw7S4is4oYmjM+Tx0dysG/RLK4fMJH1lebJenvwTY6gXJU3aJMuvAvUhXDFUE9FYwMx/oTmr/tBZaFTaZ/QMjptPzBvaAxZhvZ74yFREp09kBiIytv2K6PGKUYwKUw1rAUk/RGektEPVC4xn9wriiDrlrpSp/TKjAA4pF/I2NmtRooiNP1tAoGBAPlEgtYxB22NHHKFzSRSNsCyaShse2ttiNkA9RwqhdA9y69oaGUh53seJeIZvkW7U+oueDMQHRQ3NYO6bwEC9xgLppu24u0OJq+GfdMrp8lYJ/BcLFNJIZ0qcx1uhliwl/trXn835TXiXuVRYguPhlP+mgrpWaPnqn8NpKSkCG/DAoGBANFqNy5cMFYybE6Ug0Xnr9k7hnezgZUerQpUETH4JP4HiKyVPcBystaZwE+CZcAv+88dhcl4pQXR19apdY1hR7SEMEJoaXOqZPEuMFKnYjvl/WvGirRO63TZdKxl1KcUeVEyeEpRr5xGa9u9vK2aCHloHWkQEpBrXIsPFGlSQ3QrAoGAJkkhl2h8bZUo82YdtiByjHJauHzBECUIydvdye+2EeAL8uskbbQha8Wbp/iwQuGc5/EvQRiOftZj/9GYzxz3etf/RRd4D1UHGBqeJNslsEU8DSz7Gee3o/4rJDAfrmuhTFqXbw7Uw8v7K1mup3vp8+i9HEPvIr+obk9YJHmVWiUCgYEAgxzFP7loag9X0DsblYDhkFi8b+VrlDmIjZbkzSxXvNRqteMaroshfUr2JNG3cwSX26zYPrPSXjprsHKYrtPhWRwKOwm0PD7KxFXu21EBKA9vAzNjVFC1Cou7iNSYt6MR8cxvk9hg4q8UiJfasbZm59xPzZ/Kf7E4V7gxR1/B69ECgYEAn8XxEDQvu/8A1NoYS3KoTCvfRowdkQUwe0nQGwQEzRrWZR0zd1uob0qLnJD3lvT4ZuOI8ue8c8CNRq1VBugXF5JoZ/ef+qbJzVPPTrRhLqxlSDiwjg37Yb1HSIgEKSq/02VE9tR4JtVu/Mjtp/HNHz4k1HJRHtd4P8AI84h7Dfg=
+     */
+
+    public String pid;
+    public String appid;
+    public String rsa_private_key;
+    public String alipay_rsa_public_key;
+    public String gat_way_url;
+}

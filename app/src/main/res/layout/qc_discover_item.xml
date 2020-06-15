@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/discoverFragmentLayout"
+        style="@style/discover_fragment_ll">
+
+        <ImageView
+            android:id="@+id/discoverFragmentImg"
+            style="@style/discover_fragment_img"
+            android:src="@mipmap/qc_icon_discover_video" />
+
+        <TextView
+            android:id="@+id/discoverFragmentTxt"
+            style="@style/discover_fragment_txt"
+            android:text="@string/discover_video" />
+
+        <ImageView
+            style="@style/discover_fragment_img1" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dd_dp1"
+        android:layout_marginLeft="@dimen/dd_dp10"/>
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/vip_head_outline_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp">
+        <FrameLayout
+            android:id="@+id/head_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10">
+            <ImageView
+                android:id="@+id/group_detail_item_portrait"
+                android:layout_width="@dimen/dd_dp48"
+                android:layout_height="@dimen/dd_dp48"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_avatar" />
+        </FrameLayout>
+        <ImageView
+            android:id="@+id/vip_head_outline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/head_container"
+            android:layout_alignBottom="@+id/head_container"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            android:src="@mipmap/icon_vip"/>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/group_detail_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/vip_head_outline_rl"
+        android:layout_alignTop="@id/vip_head_outline_rl"
+        android:src="@drawable/appitem_del_btn"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/group_detail_item_master"
+        android:layout_width="@dimen/dd_dp35"
+        android:layout_height="@dimen/dd_dp12"
+        android:layout_alignRight="@id/vip_head_outline_rl"
+        android:layout_alignTop="@id/vip_head_outline_rl"
+        android:src="@mipmap/team_master"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/group_detail_item_name"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vip_head_outline_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dd_dp5"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxEms="5"
+        android:maxLines="1"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
+</RelativeLayout>

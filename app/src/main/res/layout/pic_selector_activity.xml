@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp48"
+        android:background="@color/rc_picsel_toolbar">
+
+        <ImageButton
+            android:id="@+id/cnPicBack"
+            android:layout_width="@dimen/dd_dp48"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/rc_sel_picsel_toolbar_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dd_dp1"
+            android:layout_marginLeft="@dimen/dd_dp12"
+            android:layout_toRightOf="@id/cnPicBack"
+            android:gravity="center_vertical"
+            android:text="@string/pics"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dd_dp18"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dd_dp1">
+
+        <GridView
+            android:id="@+id/cnPicGridList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/dd_dp2"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/dd_dp2"/>
+
+        <RelativeLayout
+            android:id="@+id/cnPicCatalogWindow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dd_dp48"
+            android:background="@color/color_C0000000"
+            android:visibility="invisible">
+
+            <ListView
+                android:id="@+id/cnPicCatalogListview"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/dd_dp48"
+                android:background="@android:color/white"
+                android:paddingBottom="@dimen/dd_dp6"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:paddingTop="@dimen/dd_dp6"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp48"
+            android:layout_gravity="bottom"
+            android:background="@color/rc_picsel_toolbar_transparent"
+            android:clickable="true">
+
+            <view
+                android:id="@+id/cnPicPicType"
+                class="com.wd.daquan.chat.emotion.PicSelectorActivity$PicTypeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dd_dp16">
+
+                <TextView
+                    android:id="@+id/type_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/pics"
+                    android:textColor="@color/rc_picsel_toolbar_send_text_disable"
+                    android:textSize="@dimen/dd_dp16"/>
+
+                <ImageView
+                    android:id="@+id/type_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dd_dp4"
+                    android:paddingTop="@dimen/dd_dp8"
+                    android:src="@drawable/rc_picsel_pictype_normal"/>
+            </view>
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

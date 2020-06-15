@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_new_friends"
+        style="@style/comm_item_larget_layout">
+
+        <ImageView
+            android:id="@+id/iv_avatarF"
+            style="@style/comm_item_icon"
+            android:padding="@dimen/dd_dp2"
+            android:contentDescription="@string/new_friends"
+            android:src="@mipmap/contacts_new_friend" />
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_avatarF"
+            android:text="@string/new_friends"
+            tools:ignore="RtlHardcoded" />
+
+        <com.da.library.widget.DragPointView
+            android:id="@+id/new_friend_notify"
+            android:layout_width="@dimen/dd_dp15"
+            android:layout_height="@dimen/dd_dp15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dd_dp25"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dd_dp12"
+            android:visibility="invisible"
+            tools:ignore="RtlHardcoded,SpUsage" />
+    </RelativeLayout>
+
+    <View style="@style/item_line_marin_left_right_10dp" />
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rl_add_friends"-->
+<!--        style="@style/comm_item_larget_layout">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_avatar"-->
+<!--            style="@style/comm_item_icon"-->
+<!--            android:padding="@dimen/dd_dp2"-->
+<!--            android:contentDescription="@string/add_friend"-->
+<!--            android:src="@mipmap/add_friend" />-->
+
+<!--        <TextView-->
+<!--            style="@style/comm_sub_title"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_toRightOf="@id/iv_avatar"-->
+<!--            android:text="@string/add_friend"-->
+<!--            tools:ignore="RtlHardcoded" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_unread"-->
+<!--            android:layout_width="@dimen/dd_dp20"-->
+<!--            android:layout_height="@dimen/dd_dp20"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="@dimen/dd_dp12"-->
+<!--            android:visibility="gone"-->
+<!--            tools:ignore="RtlHardcoded,SpUsage" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <View style="@style/comm_item_line_left_right_9dp" />-->
+
+
+    <RelativeLayout
+        android:id="@+id/rl_save_group"
+        style="@style/comm_item_larget_layout">
+
+        <ImageView
+            android:id="@+id/contact_me_img"
+            style="@style/comm_item_icon"
+            android:padding="@dimen/dd_dp2"
+            android:contentDescription="@string/saved_group_chat"
+            android:src="@mipmap/contacts_saved_group" />
+
+
+        <TextView
+            android:id="@+id/contact_me_name"
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/contact_me_img"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="32"
+            android:text="@string/saved_group_chat"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+<!--    <View style="@style/item_line_marin_left_right_10dp" />-->
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_invite_wei_xin_contact"
+        style="@style/comm_item_larget_layout"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            style="@style/comm_item_icon"
+            android:padding="@dimen/dd_dp2"
+            android:contentDescription="@string/invite_wechat_contacts"
+            android:src="@mipmap/contacts_wechat" />
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:text="@string/invite_wechat_contacts" />
+    </LinearLayout>
+
+<!--    <View style="@style/item_line_marin_left_right_10dp" />-->
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_mobile_contact"
+        style="@style/comm_item_larget_layout">
+
+        <ImageView
+            android:id="@+id/iv_avatar2"
+            style="@style/comm_item_icon"
+            android:padding="@dimen/dd_dp2"
+            android:contentDescription="@string/mobile_contact_matching"
+            android:src="@mipmap/contacts_mobile_address_list" />
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_avatar2"
+            android:text="@string/mobile_contact_matching"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+
+    <View style="@style/item_line_marin_left_right_10dp" />
+</LinearLayout>

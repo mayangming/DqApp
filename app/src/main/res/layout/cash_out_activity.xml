@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/cash_out_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/cash_out"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/cash_out_bank_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemIconVisible="false"
+                app:itemText="@string/account_of_bank_card"
+                app:itemLineVisible="false"/>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/cash_out_area_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp10"
+                app:itemIconVisible="false"
+                app:itemLineVisible="false"
+                app:itemTipsVisible="true"
+                app:itemText="@string/account_of_city"/>
+
+            <!--金额-->
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp10"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/cash_out_amount" />
+
+                <EditText
+                    android:id="@+id/cash_out_amount_et"
+                    style="@style/comm_sub_item_right_et"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/please_input_cash_out_amount"
+                    android:layout_marginRight="@dimen/dd_dp5"
+                    android:maxLength="5"
+                    tools:ignore="RtlHardcoded,TextFields"/>
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:layout_width="wrap_content"
+                    android:text="@string/rd_comm_yuan" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_height="wrap_content"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    android:id="@+id/cash_out_current_amount_tv"
+                    android:textSize="@dimen/dd_dp14"
+                    style="@style/comm_sub_item_right_tv"
+                    android:text="@string/current_balance_amount"
+                    android:paddingTop="@dimen/dd_dp5"
+                    android:paddingBottom="@dimen/dd_dp5"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/cash_out_all_amount_tv"
+                    android:textSize="@dimen/dd_dp14"
+                    style="@style/comm_sub_item_right_tv"
+                    android:text="@string/all_cash_out"
+                    android:padding="@dimen/dd_dp5"
+                    android:textColor="@color/text_color_selector"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/cash_out_today_balance_tv"
+                android:textSize="@dimen/dd_dp14"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                style="@style/comm_sub_item_left_tv"
+                android:layout_width="match_parent"
+                android:text="@string/today_can_be_cash_out"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/cash_out_confirm_tv"
+                style="@style/comm_corner_btn"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:text="@string/confirm_cash_out"/>
+
+            <TextView
+                android:textSize="@dimen/dd_dp14"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                style="@style/comm_sub_item_right_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cash_out_instructions"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/cash_out_instructions_tv"
+                android:textSize="@dimen/dd_dp14"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:layout_marginBottom="@dimen/dd_dp15"
+                style="@style/comm_sub_item_right_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

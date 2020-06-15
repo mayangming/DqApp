@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="@dimen/dd_dp15"
+    android:layout_marginRight="@dimen/dd_dp15"
+    android:background="@drawable/nim_bg_message_tip"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/dd_dp2"
+    android:paddingLeft="@dimen/dd_dp5"
+    android:paddingRight="@dimen/dd_dp5"
+    android:paddingTop="@dimen/dd_dp2">
+
+    <ImageView
+        android:id="@+id/rp_notice_item_rpicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/qc_rp_small_icon"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/rp_notice_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dd_dp5"
+        android:layout_marginStart="@dimen/dd_dp5"
+        android:layout_toEndOf="@+id/rp_notice_item_rpicon"
+        android:layout_toRightOf="@+id/rp_notice_item_rpicon"
+        android:textSize="@dimen/dd_dp14"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/rp_notice_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rp_notice_item_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dd_dp2"
+        android:layout_marginStart="@dimen/dd_dp2"
+        android:layout_toEndOf="@+id/rp_notice_item_content"
+        android:layout_toRightOf="@+id/rp_notice_item_content"
+        android:text="@string/alipay_rp"
+        android:textColor="@color/color_ff9933"
+        android:textSize="@dimen/dd_dp14"
+        android:visibility="gone"/>
+
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".contacts.activity.SearchFriendActivity">
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:layout_constraintTop_toTopOf="parent"
+        app:stvSearchStyle="HasBackSearch"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/search_hint_tv"
+        android:text="@string/please_input_search_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/search_recycler_view"
+        android:layout_marginTop="@dimen/dd_dp100"
+        style="@style/not_to_search_data_style"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:text="@string/search_contact_no_result"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/not_to_search_data_style"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>

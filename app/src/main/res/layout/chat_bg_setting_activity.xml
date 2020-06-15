@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/chatBGsettingActivityCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dd_dp20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/chatBGsettingActivityLayoutSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/comm_item_selector"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dd_dp10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/dd_dp16"
+                    android:textColor="@color/text_title_black"
+                    android:text="@string/dialog_bottom_from_pics" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_right_step" />
+            </LinearLayout>
+            <View
+                style="@style/item_line_marin_left_right_10dp"/>
+            <LinearLayout
+                android:id="@+id/chatBGsettingDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/comm_item_selector"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dd_dp10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/dd_dp16"
+                    android:textColor="@color/text_title_black"
+                    android:text="使用默认背景" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_right_step" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_marginBottom="@dimen/dd_dp20"
+                android:padding="@dimen/dd_dp20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/chatBGsettingActivityImgOne"
+                    style="@style/chat_bg_img"
+                    android:background="@color/app_page_bg" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

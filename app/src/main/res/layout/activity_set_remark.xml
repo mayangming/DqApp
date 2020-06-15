@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ebebeb"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dqtRightTv="@string/save"
+        app:dqtTitle="@string/set_remark" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dd_dp10"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:padding="@dimen/dd_dp5"
+                android:text="@string/remark_name"
+                android:textSize="@dimen/dd_dp14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/remark_name_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:ellipsize="end"
+                    android:hint="@string/please_input_remark"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dd_dp15"
+                    android:paddingLeft="@dimen/dd_dp15"
+                    android:paddingTop="@dimen/dd_dp10"
+                    android:paddingBottom="@dimen/dd_dp10"
+                    android:singleLine="true"
+                    android:textColorHint="@color/color_e1e1e1"
+                    android:textSize="@dimen/dd_dp16" />
+
+                <ImageView
+                    android:id="@+id/remark_name_clear_iv"
+                    android:layout_width="@dimen/dd_dp40"
+                    android:layout_height="@dimen/dd_dp40"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dd_dp9"
+                    android:layout_marginRight="@dimen/dd_dp9"
+                    android:contentDescription="@string/guanbi"
+                    android:padding="@dimen/dd_dp12"
+                    android:src="@mipmap/icon_guanbi"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/dd_dp10"-->
+<!--                android:layout_marginLeft="@dimen/dd_dp10"-->
+<!--                android:padding="@dimen/dd_dp5"-->
+<!--                android:text="@string/mobile_phone_number"-->
+<!--                android:textSize="@dimen/dd_dp14" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/remark_phone_et"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:ellipsize="end"-->
+<!--                    android:hint="@string/please_input_mobile_phone_number"-->
+<!--                    android:inputType="number"-->
+<!--                    android:maxLength="11"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingLeft="@dimen/dd_dp15"-->
+<!--                    android:paddingTop="@dimen/dd_dp10"-->
+<!--                    android:paddingBottom="@dimen/dd_dp10"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:textColorHint="@color/color_e1e1e1"-->
+<!--                    android:textSize="@dimen/dd_dp16"-->
+<!--                    tools:ignore="TextFields" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/remark_phone_clear_iv"-->
+<!--                    android:layout_width="@dimen/dd_dp40"-->
+<!--                    android:layout_height="@dimen/dd_dp40"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginEnd="@dimen/dd_dp9"-->
+<!--                    android:layout_marginRight="@dimen/dd_dp9"-->
+<!--                    android:contentDescription="@string/guanbi"-->
+<!--                    android:padding="@dimen/dd_dp12"-->
+<!--                    android:src="@mipmap/icon_guanbi"-->
+<!--                    android:visibility="gone" />-->
+<!--            </LinearLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/dd_dp10"-->
+<!--                    android:layout_marginLeft="@dimen/dd_dp10"-->
+<!--                    android:padding="@dimen/dd_dp5"-->
+<!--                    android:text="@string/more_description"-->
+<!--                    android:textSize="@dimen/dd_dp14" />-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/remark_desc_text_count_tv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_marginRight="@dimen/dd_dp10"-->
+<!--                    android:padding="@dimen/dd_dp5"-->
+<!--                    android:textSize="@dimen/dd_dp12" />-->
+
+<!--            </RelativeLayout>-->
+
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/white">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/remark_desc_et"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:gravity="start"-->
+<!--                    android:hint="@string/please_add_description"-->
+<!--                    android:inputType="textMultiLine"-->
+<!--                    android:maxLength="400"-->
+<!--                    android:minHeight="@dimen/dd_dp24"-->
+<!--                    android:minLines="1"-->
+<!--                    android:paddingLeft="@dimen/dd_dp15"-->
+<!--                    android:paddingTop="@dimen/dd_dp10"-->
+<!--                    android:paddingRight="@dimen/dd_dp15"-->
+<!--                    android:paddingBottom="@dimen/dd_dp10"-->
+<!--                    android:textColorHint="@color/color_e1e1e1"-->
+<!--                    android:textSize="@dimen/dd_dp16" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/remark_desc_clear_iv"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginEnd="@dimen/dd_dp9"-->
+<!--                    android:layout_marginRight="@dimen/dd_dp9"-->
+<!--                    android:contentDescription="@string/guanbi"-->
+<!--                    android:padding="@dimen/dd_dp10"-->
+<!--                    android:src="@mipmap/icon_guanbi"-->
+<!--                    android:visibility="gone" />-->
+<!--            </RelativeLayout>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/dd_dp10"-->
+<!--                android:layout_marginLeft="@dimen/dd_dp10"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:padding="@dimen/dd_dp5"-->
+<!--                android:text="@string/userdetails_remarks_img"-->
+<!--                android:textSize="@dimen/dd_dp14"-->
+<!--                tools:ignore="SpUsage" />-->
+
+<!--            <com.da.library.view.custom.CustomFrameLayout-->
+<!--                android:id="@+id/set_remark_frame"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dd_dp8"-->
+<!--                android:layout_marginRight="@dimen/dd_dp8"-->
+<!--                android:layout_marginBottom="@dimen/dd_dp30">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/set_remark_lin"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@mipmap/remark_img"-->
+<!--                    android:gravity="center">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:text="添加图片" />-->
+<!--                </LinearLayout>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/set_remark_img"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:maxHeight="500dp"-->
+<!--                    android:minHeight="100dp"-->
+<!--                    android:scaleType="center" />-->
+<!--            </com.da.library.view.custom.CustomFrameLayout>-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

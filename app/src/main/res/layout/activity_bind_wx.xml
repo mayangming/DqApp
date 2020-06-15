@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:dqtTitle="@string/wallet_bind_wx"/>
+
+    <ImageView
+        android:id="@+id/we_chat_icon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp100"
+        android:src="@mipmap/wechat_big_logo"/>
+
+    <TextView
+        android:id="@+id/wx_bind_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="绑定微信用于斗圈零钱提现"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:textColor="@color/color_000000"/>
+
+    <TextView
+        android:id="@+id/wx_bind_status"
+        android:layout_width="@dimen/dd_dp150"
+        android:layout_height="@dimen/dd_dp42"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/white"
+        android:background="@mipmap/btn_normal_1"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="绑定"/>
+    <TextView
+        android:id="@+id/wx_unbind_status"
+        android:layout_width="@dimen/dd_dp150"
+        android:layout_height="@dimen/dd_dp42"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/color_333333"
+        android:background="@drawable/btn_white_bg"
+        android:gravity="center"
+        android:text="解除绑定"/>
+</LinearLayout>

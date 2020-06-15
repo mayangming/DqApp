@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:titleTextAppearance="@style/Dq_Toolbar_TitleText"
+    android:background="@color/white"
+    android:layout_height="@dimen/dd_dp44">
+
+    <ImageView
+        android:id="@+id/toolbar_back_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:layout_gravity="start"
+        android:background="@drawable/toolbar_btn_pressed_20dp_selector"
+        android:src="@drawable/back_vector_black"
+        android:visibility="visible" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/toolbar_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dd_dp15"
+        android:paddingRight="@dimen/dd_dp15"
+        android:maxEms="10"
+        android:maxLines="1"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/title_text_size" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_gravity="end"
+        android:id="@+id/toolbar_right_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar_btn_pressed_20dp_selector"
+        android:maxLines="1"
+        android:maxEms="6"
+        android:layout_marginEnd="@dimen/dd_dp10"
+        android:textColor="@color/text_blue"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_gravity="end"
+        android:id="@+id/toolbar_right_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/dd_dp15"
+        android:background="@drawable/toolbar_btn_pressed_20dp_selector"
+        android:gravity="center"/>
+
+</android.support.v7.widget.Toolbar>

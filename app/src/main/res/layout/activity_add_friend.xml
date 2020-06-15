@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".contacts.activity.AddFriendActivity">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:background="@color/white"
+        app:dqtTitle="@string/add_friend"/>
+
+    <TextView
+        android:id="@+id/add_friend_search_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dd_dp40"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/dd_dp40"
+        android:background="@drawable/round_item_selector"
+        android:drawableLeft="@mipmap/search"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dd_dp14"
+        android:text="@string/please_input_phone_number_or_dq_number"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="RtlHardcoded,RtlSymmetry,SpUsage" />
+
+    <TextView
+        android:id="@+id/add_friend_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dd_dp25"
+        android:drawablePadding="@dimen/dd_dp5"
+        android:drawableRight="@mipmap/main_title_left_qrcode"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/mine_qr"
+        android:textColor="@color/text_title_black"
+        tools:ignore="RtlHardcoded" />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:orientation="vertical"
+        android:background="@drawable/shape_white_bg_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/add_friend_phone_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/comm_item_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dd_dp5"
+            android:layout_margin="@dimen/dd_dp8"
+            android:paddingTop="@dimen/dd_dp5">
+
+            <ImageView
+                style="@style/comm_item_icon"
+                android:contentDescription="@string/inviter_contact"
+                android:src="@mipmap/add_friend_phone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inviter_contact"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/dd_dp15"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp3"
+                    android:text="@string/inviter_contact"
+                    android:textSize="@dimen/dd_dp12"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/add_friend_contacts_ll"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/comm_item_selector"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingBottom="@dimen/dd_dp5"-->
+<!--            android:layout_margin="@dimen/dd_dp8"-->
+<!--            android:paddingTop="@dimen/dd_dp5">-->
+
+<!--            <ImageView-->
+<!--                style="@style/comm_item_icon"-->
+<!--                android:contentDescription="@string/mobile_contact_matching"-->
+<!--                android:src="@mipmap/add_friend_mobile_contacts_list" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                tools:ignore="RtlHardcoded">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/mobile_contact_matching"-->
+<!--                    android:textColor="@color/text_title_black"-->
+<!--                    android:textSize="@dimen/dd_dp15"-->
+<!--                    tools:ignore="SpUsage" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/dd_dp3"-->
+<!--                    android:text="@string/matchContact"-->
+<!--                    android:textSize="@dimen/dd_dp12"-->
+<!--                    android:textColor="@color/text_blue_pressed"-->
+<!--                    tools:ignore="SpUsage" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+
+        <View android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            style="@style/item_line"/>
+
+        <LinearLayout
+            android:id="@+id/add_friend_scan_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/comm_item_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dd_dp5"
+            android:layout_margin="@dimen/dd_dp8"
+            android:paddingTop="@dimen/dd_dp5">
+
+            <ImageView
+                style="@style/comm_item_icon"
+                android:contentDescription="@string/mine_scan"
+                android:src="@mipmap/add_friend_scan"
+                tools:ignore="RtlHardcoded" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_scan"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/dd_dp15"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp3"
+                    android:text="@string/saoFriend"
+                    android:textSize="@dimen/dd_dp12"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_marginLeft="@dimen/dd_dp15"-->
+<!--        android:layout_marginRight="@dimen/dd_dp15"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginTop="@dimen/dd_dp20"-->
+<!--        android:background="@drawable/shape_white_bg_8dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/add_friend_wx_ll"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/comm_item_selector"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingBottom="@dimen/dd_dp5"-->
+<!--            android:layout_margin="@dimen/dd_dp8"-->
+<!--            android:paddingTop="@dimen/dd_dp5">-->
+
+<!--            <ImageView-->
+<!--                style="@style/comm_item_icon"-->
+<!--                android:contentDescription="@string/invite_wechat_contacts"-->
+<!--                android:src="@mipmap/add_friend_wechat" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/invite_wechat_contacts"-->
+<!--                    android:textColor="@color/text_title_black"-->
+<!--                    android:textSize="@dimen/dd_dp15"-->
+<!--                    tools:ignore="SpUsage" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/dd_dp3"-->
+<!--                    android:text="@string/inviter_wechat"-->
+<!--                    android:textSize="@dimen/dd_dp12"-->
+<!--                    tools:ignore="SpUsage" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        <View android:layout_marginLeft="@dimen/dd_dp10"-->
+<!--            android:layout_marginRight="@dimen/dd_dp10"-->
+<!--            style="@style/item_line"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/add_friend_phone_ll"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/comm_item_selector"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingBottom="@dimen/dd_dp5"-->
+<!--            android:layout_margin="@dimen/dd_dp8"-->
+<!--            android:paddingTop="@dimen/dd_dp5">-->
+
+<!--            <ImageView-->
+<!--                style="@style/comm_item_icon"-->
+<!--                android:contentDescription="@string/inviter_contact"-->
+<!--                android:src="@mipmap/add_friend_phone" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/inviter_contact"-->
+<!--                    android:textColor="@color/text_title_black"-->
+<!--                    android:textSize="@dimen/dd_dp15"-->
+<!--                    tools:ignore="SpUsage" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/dd_dp3"-->
+<!--                    android:text="@string/inviter_contact"-->
+<!--                    android:textSize="@dimen/dd_dp12"-->
+<!--                    tools:ignore="SpUsage" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+
+</LinearLayout>

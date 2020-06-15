@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/item_left_img_iv"
+        android:layout_width="@dimen/dd_dp100"
+        android:layout_height="@dimen/dd_dp150"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_launcher"
+        android:gravity="start"/>
+</RelativeLayout>

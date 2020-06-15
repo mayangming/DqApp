@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/write_bank_card_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/write_bank_card_info"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/bank_name" />
+
+                <TextView
+                    android:id="@+id/write_bank_card_bank_name_tv"
+                    style="@style/comm_sub_item_right_tv"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/feeedback_name" />
+
+                <TextView
+                    android:id="@+id/write_bank_card_user_name_tv"
+                    style="@style/comm_sub_item_right_tv"/>
+            </LinearLayout>
+
+            <View style="@style/item_line"/>
+
+            <LinearLayout style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/id_card_number" />
+
+                <TextView
+                    android:id="@+id/write_bank_card_id_number_tv"
+                    style="@style/comm_sub_item_right_tv"/>
+            </LinearLayout>
+
+            <!--&lt;!&ndash;职业&ndash;&gt;-->
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="@dimen/dd_dp20"-->
+                <!--style="@style/comm_sub_item_layout">-->
+
+                <!--<TextView-->
+                    <!--style="@style/comm_sub_item_left_tv"-->
+                    <!--android:text="@string/professional" />-->
+
+                <!--<TextView-->
+                    <!--android:hint="@string/please_choice_professional"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:id="@+id/write_bank_card_professional_tv"-->
+                    <!--style="@style/comm_sub_item_right_tv"/>-->
+            <!--</LinearLayout>-->
+
+            <!--<View style="@style/item_line"/>-->
+            <!--&lt;!&ndash;地区&ndash;&gt;-->
+            <!--<LinearLayout style="@style/comm_sub_item_layout">-->
+
+                <!--<TextView-->
+                    <!--style="@style/comm_sub_item_left_tv"-->
+                    <!--android:text="@string/area" />-->
+
+                <!--<TextView-->
+                    <!--android:hint="@string/please_choice_area"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:id="@+id/write_bank_card_area_tv"-->
+                    <!--style="@style/comm_sub_item_right_tv"/>-->
+            <!--</LinearLayout>-->
+
+            <View style="@style/item_line"/>
+            <!--手机号-->
+            <LinearLayout
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/phone" />
+
+                <EditText
+                    android:id="@+id/write_bank_card_phone_et"
+                    style="@style/comm_sub_item_right_et"
+                    android:hint="@string/phone"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    tools:ignore="TextFields" />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/write_bank_card_clear_phone_iv"
+                    style="@style/clear_input_style_no_margin"/>
+            </LinearLayout>
+
+            <View style="@style/item_line"/>
+
+            <!--&lt;!&ndash;验证码&ndash;&gt;-->
+            <!--<LinearLayout-->
+                <!--style="@style/comm_sub_item_layout">-->
+
+                <!--<TextView-->
+                    <!--style="@style/comm_sub_item_left_tv"-->
+                    <!--android:text="@string/codes" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/write_bank_card_get_code_et"-->
+                    <!--style="@style/comm_sub_item_right_et"-->
+                    <!--android:hint="@string/code"-->
+                    <!--android:maxLength="6"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/write_bank_card_get_code_tv"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:minEms="5"-->
+                    <!--android:text="@string/getCode"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textColor="@color/text_color_selector"-->
+                    <!--android:textSize="@dimen/dd_dp13"-->
+                    <!--tools:ignore="RtlHardcoded,SpUsage" />-->
+            <!--</LinearLayout>-->
+
+            <!--用户协议-->
+            <LinearLayout
+                android:background="@android:color/transparent"
+                style="@style/comm_sub_item_layout">
+
+                <CheckBox
+                    android:id="@+id/write_bank_card_check"
+                    style="@style/MyCheckBox"
+                    android:layout_width="@dimen/dd_dp25"
+                    android:layout_height="@dimen/dd_dp25" />
+
+                <TextView
+                    android:textSize="@dimen/dd_dp14"
+                    android:padding="@dimen/dd_dp8"
+                    style="@style/comm_sub_item_right_tv"
+                    android:text="@string/agrees"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/write_bank_card_agreement_tv"
+                    android:textSize="@dimen/dd_dp14"
+                    android:textColor="@color/text_color_selector"
+                    style="@style/comm_sub_item_right_tv"
+                    android:text="@string/user_agreement_bracket"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/write_bank_card_confirm_tv"
+                style="@style/comm_corner_btn"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:text="@string/agreement_and_determine"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

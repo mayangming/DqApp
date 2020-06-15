@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:switchview="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_ebebeb"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/newMsgNotifyActivityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:text="@string/setting_newmsg_close_ins"
+        android:textSize="@dimen/dd_dp12"/>
+
+    <com.wd.daquan.common.view.CommSwitchButton
+        android:id="@+id/newMsgNotifyActivitySwitchNotify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp45"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:background="@color/white"
+        switchview:swBtnDescVisible="false"
+        switchview:swBtnTitle="@string/setting_newmsg_notify"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dd_dp5"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:text="@string/setting_newmsg_voice_ins"
+        android:textSize="@dimen/dd_dp12"/>
+
+    <com.wd.daquan.common.view.CommSwitchButton
+        android:id="@+id/newMsgNotifySwitchVoice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp45"
+        android:background="@color/white"
+        switchview:swBtnDescVisible="false"
+        switchview:swBtnTitle="@string/setting_newmsg_voice"/>
+
+    <View style="@style/OnePxDivider"/>
+
+    <com.wd.daquan.common.view.CommSwitchButton
+        android:id="@+id/newMsgNotifySwitchVibration"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp45"
+        android:background="@color/white"
+        switchview:swBtnDescVisible="false"
+        switchview:swBtnTitle="@string/setting_newmsg_vibration"/>
+
+
+    <com.wd.daquan.common.view.CommSwitchButton
+        android:visibility="gone"
+        android:id="@+id/newmsg_notify_poke_switchbtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp45"
+        android:background="@color/white"
+        switchview:swBtnDescVisible="false"
+        switchview:swBtnTitle="@string/setting_newmsg_poke"/>
+
+<!--    <View style="@style/OnePxDivider"/>-->
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/newMsgNotifyLayoutStart"
+        style="@style/mine_item_layout"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/mine_item_text"
+            android:layout_weight="1"
+            android:text="@string/setting_since_the_launch_of_applications"/>
+
+        <ImageView style="@style/comm_arrow_right"/>
+    </LinearLayout>
+
+<!--    <View style="@style/OnePxDivider"/>-->
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/newMsgNotifyLayoutActive"
+        style="@style/mine_item_layout"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/mine_item_text"
+            android:layout_weight="1"
+            android:text="@string/setting_allow_application_background_is_active"/>
+
+        <ImageView style="@style/comm_arrow_right"/>
+    </LinearLayout>
+</LinearLayout>

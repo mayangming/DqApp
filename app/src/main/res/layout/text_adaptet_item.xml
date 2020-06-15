@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/comm_sub_item_layout">
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_weight="1"
+            style="@style/comm_sub_title"/>
+
+        <ImageView
+            style="@style/comm_arrow_right"/>
+    </LinearLayout>
+
+    <View style="@style/item_line_margin_left12"/>
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_ebebeb"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/personalInfoSettingTxtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginStart="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:text="@string/personal_info_setting_input_name"
+        android:textSize="@dimen/dd_dp11" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/personalInfoSettingEtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ellipsize="end"
+            android:hint="@string/personal_info_setting_name"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/dd_dp10"
+            android:paddingLeft="@dimen/dd_dp15"
+            android:paddingTop="@dimen/dd_dp10"
+            android:singleLine="true"
+            android:textColorHint="@color/color_e1e1e1"
+            android:textSize="@dimen/dd_dp14" />
+
+        <ImageView
+            android:id="@+id/personalInfoSettingImgName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9"
+            android:contentDescription="@string/personal_info_setting_close_name"
+            android:padding="@dimen/dd_dp10"
+            android:src="@mipmap/clear"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

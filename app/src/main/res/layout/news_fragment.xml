@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/news_title_head"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"
+            android:gravity="center"
+            android:text="@string/head_news"
+            android:textSize="@dimen/title_text_size"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/news_title_video"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"
+            android:text="@string/video"
+            android:textSize="@dimen/title_text_size"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:text="我是资讯页面"
+        android:gravity="center"
+        android:textSize="@dimen/dd_dp40"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

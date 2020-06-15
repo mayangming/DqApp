@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="251dp"
+        android:background="@mipmap/open_red_package"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/gift_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:textColor="#ff9933"
+            android:textSize="30sp"
+            android:text="1.17" />
+
+        <TextView
+            android:id="@+id/gift_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:text="已存入斗圈零钱红包" />
+
+        <TextView
+            android:id="@+id/gift_next"
+            android:layout_width="105dp"
+            android:layout_height="28dp"
+            android:text="继续"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:paddingBottom="4dp"
+            android:textColor="@android:color/white"
+            android:background="@mipmap/yellow_btn_bg"/>
+    </LinearLayout>
+</RelativeLayout>

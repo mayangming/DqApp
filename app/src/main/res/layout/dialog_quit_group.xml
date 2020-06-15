@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:textColor="@color/color_a7a7a7"
+        android:textSize="@dimen/dd_dp10"
+        style="@style/dialog_bottom_item_style" />
+
+    <View
+        style="@style/item_line" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:textColor="@color/color_ff0000"
+        style="@style/dialog_bottom_item_style" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp7"
+        android:background="@color/color_e5e5e5" />
+
+    <TextView
+        android:id="@+id/tv_cancle"
+        android:text="@string/cancel"
+        style="@style/dialog_bottom_item_style" />
+
+</LinearLayout>

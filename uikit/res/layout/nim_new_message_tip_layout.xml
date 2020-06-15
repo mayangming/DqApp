@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/new_message_tip_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_marginBottom="4dp"
+    android:layout_marginRight="10dp"
+    android:visibility="gone">
+
+    <ImageButton
+        android:id="@+id/rc_new_message_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/qc_conversation_newmsg"
+        android:gravity="center"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/new_message_tip_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/rc_new_message_count"
+        android:layout_alignLeft="@id/rc_new_message_count"
+        android:layout_alignRight="@id/rc_new_message_count"
+        android:layout_alignTop="@id/rc_new_message_count"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:textColor="#fff"
+        android:textSize="12dp"/>
+</RelativeLayout>

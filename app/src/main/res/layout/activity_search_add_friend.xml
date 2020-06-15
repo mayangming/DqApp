@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".contacts.activity.SearchAddFriendActivity">
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/search_add_friend_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:stvSearchHint="@string/please_input_phone_number_or_dq_number"
+        app:stvSearchStyle="HasSearchBtn"/>
+
+    <RelativeLayout
+        android:id="@+id/mail_list_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dd_dp50"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@drawable/comm_item_selector"
+        android:paddingLeft="@dimen/dd_dp15"
+        android:paddingRight="@dimen/dd_dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:drawableLeft="@mipmap/add_friend_mobile_contacts_list"
+            android:drawablePadding="14dp"
+            android:gravity="center_vertical"
+            android:text="@string/choice_from_phone_list"
+            android:textColor="@color/text_title_black"
+            android:textSize="16dp"
+            tools:ignore="RtlHardcoded,SpUsage" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_right_step"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</LinearLayout>

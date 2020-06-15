@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bank_card_rl"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dd_dp10"
+    android:layout_height="@dimen/dd_dp60"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:background="@color/text_blue_pressed"
+        android:layout_width="@dimen/dd_dp30"
+        android:layout_height="@dimen/dd_dp30" />
+
+    <TextView
+        android:textSize="@dimen/dd_dp16"
+        android:padding="@dimen/dd_dp10"
+        android:text="@string/add_bank_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

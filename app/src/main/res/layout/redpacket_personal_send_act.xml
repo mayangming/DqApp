@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp36"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginTop="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:background="@drawable/shape_input"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dd_dp9"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:gravity="center_vertical"
+            android:text="@string/redpacket_send_amount"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp12" />
+
+        <EditText
+            android:id="@+id/redpacket_personal_send_in_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dd_dp9"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginEnd="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:layout_weight="1"
+            android:background="@null"
+            android:digits="0123456789"
+            android:gravity="center_vertical|right"
+            android:hint="@string/redpacket_send_in_amount"
+            android:inputType="numberDecimal"
+            android:maxLength="16"
+            android:textColor="@color/color_252525"
+            android:textColorHint="@color/color_8e8e8e"
+            android:textColorLink="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9"
+            android:gravity="center_vertical"
+            android:text="@string/redpacket_send_yuan"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp12" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/redpacket_personal_send_greet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp72"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:background="@drawable/shape_input"
+        android:gravity="top"
+        android:hint="@string/redpacket_send_greetings"
+        android:inputType="textMultiLine"
+        android:maxEms="20"
+        android:maxLength="20"
+        android:paddingLeft="@dimen/dd_dp6"
+        android:paddingTop="@dimen/dd_dp5"
+        android:paddingRight="@dimen/dd_dp6"
+        android:paddingBottom="@dimen/dd_dp5"
+        android:textColor="@color/color_252525"
+        android:textColorHint="@color/color_8e8e8e"
+        android:textColorLink="@color/color_8e8e8e"
+        android:textSize="@dimen/sp13" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="@dimen/dd_dp12"
+            android:text="@string/redpacket_send_money"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/redpacket_personal_send_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/redpacket_send_zero"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp36" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/redpacket_personal_send_determine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp36"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:background="@drawable/determine_red_bg"
+        android:gravity="center"
+        android:text="@string/determine"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dd_dp50"
+        android:layout_marginRight="@dimen/dd_dp50"
+        android:layout_marginBottom="@dimen/dd_dp18"
+        android:gravity="center_horizontal|bottom"
+        android:text="@string/redpacket_send_prompt"
+        android:textColor="@color/color_8e8e8e" />
+</LinearLayout>

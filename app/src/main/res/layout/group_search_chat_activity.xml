@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/comm_search_edittext_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:stvSearchStyle="HasBackSearch"/>
+
+    <ListView
+        android:id="@+id/groupSearchChatlistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:divider="@null"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/groupSearchChatQuickLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp50">
+
+        <TextView
+            android:id="@+id/groupSearchChatQuick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/group_search_chat_quick"
+            android:textColor="@color/color_ababad"
+            android:textSize="@dimen/dd_dp12"/>
+
+        <TextView
+            android:id="@+id/groupSearchChatTrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/groupSearchChatQuick"
+            android:layout_marginLeft="@dimen/dd_dp50"
+            android:background="@drawable/comm_item_selector"
+            android:text="@string/group_search_chat_trade"
+            android:padding="4dp"
+            android:textColor="@color/text_blue"
+            android:textSize="@dimen/dd_dp15"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/groupSearchChatNoContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:text="@string/group_search_chat_quick"
+        android:textColor="@color/color_ababad"
+        android:textSize="@dimen/dd_dp12"
+        android:visibility="gone"/>
+</LinearLayout>

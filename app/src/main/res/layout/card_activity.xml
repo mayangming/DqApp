@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/card_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/card_search_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:stvSearchStyle="DefaultSearch"/>
+
+    <FrameLayout
+        android:id="@+id/card_member_flyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/card_refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlEnableAutoLoadMore="false"
+            app:srlEnableLoadMore="true">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlClassicsSpinnerStyle="Scale"
+                app:srlDrawableProgress="@drawable/ic_progress_puzzle"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/card_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <TextView
+            android:id="@+id/card_center_tv"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/rc_bg_toast"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30.0dip"
+            android:visibility="invisible"/>
+
+        <com.da.library.widget.SideBar
+            android:id="@+id/card_sidebar"
+            android:layout_width="20.0dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right|center"/>
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contacts.activity.SavedTeamsActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/saved_team_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/saved_team_search_layout"
+        app:layout_constraintTop_toBottomOf="@+id/saved_team_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:stvSearchStyle="DefaultSearch"/>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saved_team_search_layout"
+        app:layout_constraintVertical_weight="1">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="Scale"
+            app:srlDrawableProgress="@drawable/ic_progress_puzzle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dd_dp5"
+                android:paddingLeft="@dimen/dd_dp9"
+                android:paddingRight="@dimen/dd_dp9"
+                android:paddingTop="@dimen/dd_dp5"
+                android:text="@string/team"
+                android:textColor="@color/text_blue_pressed"
+                android:background="@color/app_page_bg"
+                android:textSize="@dimen/dd_dp15"
+                tools:ignore="SpUsage" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/saved_team_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        style="@style/not_to_search_data_style"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:text="@string/no_data_for_team_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saved_team_title_layout"
+        app:layout_constraintVertical_weight="1" />
+
+</android.support.constraint.ConstraintLayout>

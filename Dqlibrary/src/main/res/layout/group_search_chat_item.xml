@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemGroupSearchChatLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/dd_dp8">
+
+    <ImageView
+        android:id="@+id/itemGroupSearchChatAvatar"
+        android:layout_width="@dimen/dd_dp34"
+        android:layout_height="@dimen/dd_dp34"
+        android:layout_marginLeft="@dimen/dd_dp9"
+        android:layout_marginRight="@dimen/dd_dp9"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_avatar" />
+
+    <TextView
+        android:id="@+id/itemGroupSearchChatNickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/itemGroupSearchChatAvatar"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dd_dp12" />
+
+    <TextView
+        android:id="@+id/itemGroupSearchChatContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemGroupSearchChatNickName"
+        android:layout_toRightOf="@id/itemGroupSearchChatAvatar"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/app_line"
+        android:textSize="@dimen/dd_dp12" />
+
+    <TextView
+        android:id="@+id/itemGroupSearchChatTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dd_dp12"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp12" />
+
+    <View
+        style="@style/OnePxDivider"
+        android:layout_below="@id/itemGroupSearchChatAvatar"
+        android:layout_marginTop="@dimen/dd_dp8" />
+</RelativeLayout>

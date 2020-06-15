@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp30">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_input_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/ll_dn_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/phone_dn3"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="使用短信验证码登录"
+                    android:textColor="@color/color_565864"
+                    android:textSize="@dimen/sp20" />
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/dd_dp25"
+                    android:id="@+id/ll_validate_code2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dd_dp49"
+                    android:orientation="horizontal">
+                    <View
+                        style="@style/OnePxDivider"
+                        android:layout_below="@+id/phone_dn2"/>
+
+                    <TextView
+                        android:id="@+id/phone_dn2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dd_dp50"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:maxLength="15"
+                        android:singleLine="true"
+                        android:text="中国(China)(+86)"
+                        android:textColor="@color/color_565864"
+                        android:textSize="@dimen/sp15" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/ll_validate_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dd_dp50">
+
+                    <EditText
+                        android:id="@+id/phone_code_dn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dd_dp49"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@null"
+                        android:hint="手机号码"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:singleLine="true"
+                        android:textColorHint="@color/color_e1e1e1"
+                        android:textSize="@dimen/sp14" />
+                </RelativeLayout>
+                <View
+                    style="@style/OnePxDivider"
+                    android:layout_below="@id/phone_dn"
+                    android:background="@color/color_e1e1e1"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_verify_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dd_dp49"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/password_code_dn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dd_dp49"
+                        android:background="@null"
+                        android:hint="短信验证码"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/color_e1e1e1"
+                        android:textSize="@dimen/sp14" />
+
+                    <TextView
+                        android:id="@+id/sdk_tv_get_validate_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dd_dp35"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:minEms="5"
+                        android:paddingLeft="@dimen/dd_dp10"
+                        android:paddingRight="@dimen/dd_dp10"
+                        android:text="获取验证码"
+                        android:textColor="@color/text_color_selector"
+                        android:textSize="@dimen/sp13" />
+                </RelativeLayout>
+                <View
+                    style="@style/OnePxDivider"
+                    android:layout_below="@id/phone_dn"
+                    android:background="@color/color_e1e1e1"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

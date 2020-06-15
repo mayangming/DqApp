@@ -1,0 +1,463 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+<!--    &lt;!&ndash;启动时，会出现黑屏或白屏的现象，因为当布局文件尚未加载时，会先显示Window的窗口背景，黑屏或白屏即Window的窗口背景&ndash;&gt;-->
+<!--    <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--    </style>-->
+    <!--启动时，会出现黑屏或白屏的现象，因为当布局文件尚未加载时，会先显示Window的窗口背景，黑屏或白屏即Window的窗口背景-->
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--应用启动快，界面会先显示背景图，然后再刷新其他控件，刷新不同步-->
+    <style name="AppTheme.LauncherBg" parent="AppTheme.Launcher">
+        <!-- windowBackground可以设置为一张图片，也可以是能解析出图片的XML文件-->
+        <item name="android:windowBackground">@drawable/layer_launcher</item>
+    </style>
+
+    <style name="LoginRegisterTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:background">@color/white</item>
+
+    </style>
+
+    <!--联系人界面ITEM-->
+    <style name="comm_item_larget_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp50</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--联系人界面Item icon-->
+    <style name="comm_item_icon">
+        <!--<item name="android:layout_width">wrap_content</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <item name="android:layout_width">@dimen/dd_dp34</item>
+        <item name="android:layout_height">@dimen/dd_dp34</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">9dp</item>
+        <item name="android:layout_marginLeft">9dp</item>
+    </style>
+
+    <!--子标题下内容样式-->
+    <style name="comm_sub_small_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dd_dp14</item>
+        <item name="android:textColor">@color/text_blue_pressed</item>
+    </style>
+
+
+
+    <!--item间分界线-->
+    <style name="item_line_marin_left_right_10dp" parent="item_line">
+        <item name="android:layout_marginRight">@dimen/dd_dp10</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp10</item>
+    </style>
+
+    <!--item间分界线-->
+    <style name="item_line_margin_left12" parent="item_line">
+        <item name="android:layout_marginLeft">@dimen/dd_dp12</item>
+    </style>
+
+    <style name="comm_item_line_20" parent="item_line">
+        <item name="android:layout_height">@dimen/dd_dp20</item>
+    </style>
+
+
+    <!--子标题样式-->
+    <style name="comm_sub_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp16</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingTop">@dimen/dd_dp10</item>
+        <item name="android:paddingBottom">@dimen/dd_dp10</item>
+        <item name="android:textColor">@color/text_title_black</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+
+    <!--子Item父布局-->
+    <style name="comm_sub_item_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp46</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/dd_dp12</item>
+        <item name="android:paddingRight">@dimen/dd_dp12</item>
+    </style>
+
+    <!--子Item父布局-->
+    <style name="comm_sub_item_left_tv">
+        <item name="android:layout_width">@dimen/dd_dp80</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_title_black</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+
+    <style name="comm_sub_item_right_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_blue_pressed</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+
+    <style name="comm_sub_item_right_et">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/app_txt_333333</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+        <item name="android:textColorHint">@color/app_txt_999999</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <!--登录注册输入框-->
+    <style name="LoginRegisterEditTextStyle" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp50</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp10</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/text_title_black</item>
+        <item name="android:textColorHint">@color/text_blue_pressed</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!--登录注册输入框图片-->
+    <style name="LoginRegisterEditTextIconStyle" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <!--清空输入框-->
+    <style name="Clear_Et_Style" parent="AppTheme">
+        <item name="android:layout_width">@dimen/dd_dp15</item>
+        <item name="android:layout_height">@dimen/dd_dp15</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:src">@mipmap/clear</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <!--登录注册button-->
+    <style name="LoginRegisterButtonStyle" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp40</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp40</item>
+        <item name="android:background">@drawable/login_btn_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColor">@color/btn_selector</item>
+        <item name="android:textSize">@dimen/sp18</item>
+    </style>
+
+    <!--子Item父布局-->
+    <style name="mine_item_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp50</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/dd_dp12</item>
+        <item name="android:paddingRight">@dimen/dd_dp12</item>
+    </style>
+    <!--子标题样式-->
+    <style name="mine_item_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp16</item>
+        <item name="android:textColor">@color/text_title_black</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+    <style name="mine_item_icon">
+        <item name="android:layout_width">@dimen/dd_dp24</item>
+        <item name="android:layout_height">@dimen/dd_dp24</item>
+    </style>
+    <style name="feedback_et">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp37</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:maxLength">11</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingLeft">@dimen/dd_dp15</item>
+        <item name="android:layout_marginTop">@dimen/dd_dp5</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp10</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp10</item>
+        <item name="android:textColorHint">@color/color_e1e1e1</item>
+        <item name="android:textSize">@dimen/dd_dp14</item>
+        <item name="android:background">@drawable/feedback_first_bg</item>
+    </style>
+    <!--dialog从底部进入每个item的样式-->
+    <style name="dialog_bottom_item_style" parent="android:Animation">
+        <item name="android:layout_height">@dimen/dd_dp50</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dd_dp18</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+    </style>
+    <style name="kangzai_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <!--dialog从底部进出动画-->
+    <style name="dialog_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <!--按钮统一样式-->
+    <style name="comm_corner_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp46</item>
+        <item name="android:background">@drawable/comm_btn_4dp_corner_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="chat_bg_layout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/dd_dp200</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="chat_bg_img">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="chat_bg_img_select">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/checkbox_selected</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginBottom">@dimen/dd_dp10</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp10</item>
+    </style>
+
+    <style name="dialog_un_fullscreen">
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <!--页面无数据样式-->
+    <style name="not_to_search_data_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/text_blue_pressed</item>
+        <item name="android:textSize" tools:ignore="SpUsage">13dp</item>
+        <item name="android:text">@string/no_data</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--群组详情item父布局样式-->
+    <style name="cn_group_detail_item_container_style">
+        <item name="android:layout_height">@dimen/dd_dp48</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="comm_sub_item_switch_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp55</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/dd_dp14</item>
+        <item name="android:paddingRight">@dimen/dd_dp14</item>
+    </style>
+
+    <!--退出按钮样式-->
+    <style name="comm_quit_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp48</item>
+        <item name="android:background">@drawable/comm_quit_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+
+    <!--下载app进度条-->
+    <style name="progressBarHorizontal_indeter" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@drawable/progressbar_style</item>
+        <item name="android:progressDrawable">@drawable/progressbar_style</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">50dip</item>
+    </style>
+    <style name="TranslucentTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <!--群组详情个人信息上传提示text样式-->
+    <style name="group_personal_info_text_style" parent="android:Animation">
+        <item name="android:layout_height">@dimen/dd_dp48</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dd_dp14</item>
+        <item name="android:paddingRight">@dimen/dd_dp14</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_title_black</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--清空输入样式-->
+    <style name="clear_input_style" parent="android:Animation">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp14</item>
+        <item name="android:background">@drawable/rc_item_list_selector</item>
+        <item name="android:padding">@dimen/dd_dp10</item>
+        <item name="android:src">@mipmap/icon_guanbi</item>
+    </style>
+
+    <!--清空输入样式-->
+    <style name="clear_input_style_no_margin" parent="android:Animation">
+        <item name="android:layout_height">@dimen/dd_dp25</item>
+        <item name="android:layout_width">@dimen/dd_dp25</item>
+        <item name="android:padding">@dimen/dd_dp5</item>
+        <item name="android:src">@mipmap/clear</item>
+    </style>
+
+    <!--群管理相关-->
+    <style name="group_manager_linear">
+        <item name="android:layout_height">@dimen/dd_dp48</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--群管理item标题文字样式-->
+    <style name="group_manager_text_ins">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp14</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+
+    <!--群管理item文字样式-->
+    <style name="group_manager_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp14</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp16</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">right</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/text_blue_pressed</item>
+        <item name="android:textSize">@dimen/dd_dp14</item>
+    </style>
+
+    <!--群管理item图片样式-->
+    <style name="group_manager_img">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp14</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:src">@mipmap/ic_rightjian</item>
+    </style>
+
+    <style name="discover_fragment_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dd_dp45</item>
+        <item name="android:background">@drawable/comm_item_selector</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="discover_fragment_img">
+        <item name="android:layout_width">@dimen/dd_dp20</item>
+        <item name="android:layout_height">@dimen/dd_dp20</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp10</item>
+    </style>
+    <style name="discover_fragment_txt">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dd_dp15</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/dd_dp14</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+    </style>
+    <style name="discover_fragment_img1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dd_dp15</item>
+        <item name="android:src">@mipmap/ic_rightjian</item>
+    </style>
+
+    <style name="CustomActivityDialogStyle" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否有标题栏-->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="comm_jiantou">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/ic_rightjian</item>
+    </style>
+
+    <style name="comm_sub_item_right_et_wallet">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/app_txt_333333</item>
+        <item name="android:textSize">@dimen/dd_dp16</item>
+        <item name="android:textColorHint">@color/app_txt_999999</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:background">@null</item>
+    </style>
+</resources>

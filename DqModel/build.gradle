@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SERVER", rootProject.ext.third.server)
+        buildConfigField("String", "SERVER_OPEN", rootProject.ext.third.server_open)
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    greendao{
+        schemaVersion 2 //数据库版本号，升级数据库需要修改版本号
+
+//        daoPackage'com.xiaopao.greendao.gen' //设置生成数据库相关文件的包名，一般为app包名+生成文件的文件夹名，默认是在build中
+//
+//        targetGenDir 'src/main/java' //自动生成的greendao代码存放路径，默认为entity所在的包名
+
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.dependencies.appcompat_v7
+    api rootProject.ext.dependencies.recyclerview_v7
+    api rootProject.ext.dependencies.baseRecyclerView
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+    //日志打印库:[https://github.com/elvishew/XLog]
+    //    api rootProject.ext.dependencies.xlog
+    //    api rootProject.ext.dependencies.sqlbrite
+    //    api rootProject.ext.dependencies.db_framework
+    //    api rootProject.ext.dependencies.okhttp
+    api rootProject.ext.dependencies.gson
+    //
+    api rootProject.ext.dependencies.converter_gson
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies.adapter_rxjava
+    api 'org.greenrobot:greendao:3.2.2'
+    // add library
+    //git地址：https://github.com/yuweiguocn/GreenDaoUpgradeHelper
+    api 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
+    //greenDao数据库升级
+    api 'net.zetetic:android-database-sqlcipher:4.2.0@aar'
+    implementation(rootProject.ext.dependencies.logging_intercept) {//网络日志库
+        exclude group: 'org.json', module: 'json'
+    }
+    testImplementation 'junit:junit:4.12'
+}

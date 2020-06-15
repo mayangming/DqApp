@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    tools:context=".mine.wallet.activity.WalletActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/wallet_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_d84e43"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/wallet_title_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp120"
+                android:background="@color/color_d84e43"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp10"
+                    android:text="@string/my_money_yuan"
+                    android:textSize="@dimen/dd_dp14"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/wallet_money_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp10"
+                    android:text="0.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dd_dp45" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp40"
+                android:background="@color/color_ffa289"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/wallet_recharge_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/recharge_btn_selector"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/recharge_btn_selector"
+                        android:textColor="@color/text_title_black"
+                        android:text="@string/recharge"
+                        android:gravity="center"
+                        android:drawableLeft="@mipmap/recharge_icon"
+                        android:drawablePadding="@dimen/dd_dp5"
+                        android:textSize="@dimen/dd_dp14"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="@dimen/dd_dp1"
+                    android:layout_height="@dimen/dd_dp25"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/color_d84e43" />
+
+                <LinearLayout
+                    android:id="@+id/wallet_cash_out_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/recharge_btn_selector"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/recharge_btn_selector"
+                        android:textColor="@color/text_title_black"
+                        android:text="@string/cash_out"
+                        android:gravity="center"
+                        android:drawableLeft="@mipmap/cash_out_icon"
+                        android:drawablePadding="@dimen/dd_dp5"
+                        android:textSize="@dimen/dd_dp14"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/wallet_money_details_item"
+                android:layout_marginTop="@dimen/dd_dp20"
+                app:itemText="@string/money_details"
+                app:itemSrc="@mipmap/money_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/wallet_rdp_details_item"
+                app:itemText="@string/rdp_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemSrc="@mipmap/rdp_details"
+                app:itemLineVisible="false"/>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/wallet_modify_payment_pwd_item"
+                app:itemText="@string/modify_payment_password"
+                android:layout_marginTop="@dimen/dd_dp20"
+                app:itemSrc="@mipmap/modify_payment_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/wallet_forgot_payment_pwd_item"
+                app:itemText="@string/forgot_payment_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemSrc="@mipmap/forgot_payment_pwd"
+                app:itemLineVisible="false"/>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:id="@+id/wallet_my_bank_card_item"
+                app:itemText="@string/my_bank_card"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemSrc="@mipmap/my_bank_card"
+                app:itemLineVisible="false"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

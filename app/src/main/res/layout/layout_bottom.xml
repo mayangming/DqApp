@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部导航 -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dd_dp55"
+    android:background="#f9f9f9"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/seal_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/toolbar_btn_pressed_40dp_selector"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tab_text_chats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dd_dp2"
+            android:drawableTop="@drawable/main_tab_daquan_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/main_tab_text_selector"
+            android:textSize="12sp"/>
+
+        <com.da.library.widget.DragPointView
+            android:id="@+id/tab_text_chats_unread"
+            android:layout_width="@dimen/dd_dp22"
+            android:layout_height="@dimen/dd_dp20"
+            android:layout_alignRight="@+id/tab_text_chats"
+            android:layout_marginRight="-13dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp11"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seal_contact_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/toolbar_btn_pressed_40dp_selector"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tab_text_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dd_dp2"
+            android:drawableTop="@drawable/main_tab_contacts_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/main_tab_contacts"
+            android:textColor="@color/main_tab_text_selector"
+            android:textSize="12sp"/>
+
+        <com.da.library.widget.DragPointView
+            android:id="@+id/tab_text_contact_unread"
+            android:layout_width="@dimen/dd_dp22"
+            android:layout_height="@dimen/dd_dp20"
+            android:layout_alignRight="@+id/tab_text_contact"
+            android:layout_marginRight="-15dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp11"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/seal_discover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/toolbar_btn_pressed_40dp_selector"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tab_text_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dd_dp2"
+            android:drawableTop="@drawable/main_tab_news_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/main_tab_news"
+            android:textColor="@color/main_tab_text_selector"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/discover_red"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignRight="@+id/tab_text_news"
+            android:layout_alignTop="@+id/tab_text_news"
+            android:layout_marginRight="-5dp"
+            android:layout_marginTop="-5dp"
+            android:background="@mipmap/qc_tab_dot"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/seal_me"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/toolbar_btn_pressed_40dp_selector"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tab_text_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dd_dp2"
+            android:drawableTop="@drawable/main_tab_me_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/main_tab_mine"
+            android:textColor="@color/main_tab_text_selector"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/mine_red"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignRight="@+id/tab_text_me"
+            android:layout_alignTop="@+id/tab_text_me"
+            android:layout_marginRight="-5dp"
+            android:layout_marginTop="-5dp"
+            android:background="@mipmap/qc_tab_dot"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+</LinearLayout>

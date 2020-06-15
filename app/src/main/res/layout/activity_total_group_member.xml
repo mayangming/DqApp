@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.da.library.widget.CommSearchView
+        android:id="@+id/comm_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/base_title"/>
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_marginTop="@dimen/dd_dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@+id/comm_search_view"
+        android:gravity="start"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="5"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" />
+
+    <com.wd.daquan.chat.group.view.SearchMemberView
+        android:id="@+id/total_group_searchmember_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

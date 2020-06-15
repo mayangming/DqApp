@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:layout_margin="@dimen/dd_dp16"
+    android:background="@drawable/msg_round_bg">
+
+    <TextView
+        android:id="@+id/rp_refund_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/px1"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp16"/>
+
+    <TextView
+        android:id="@+id/rp_refund_item_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rp_refund_item_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dd_dp34"
+        android:ellipsize="end"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp34"/>
+
+    <View
+        android:id="@+id/rp_refund_item_line"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px1"
+        android:layout_below="@id/rp_refund_item_amount"
+        android:layout_marginTop="@dimen/dd_dp34"
+        android:background="@mipmap/rp_refund_line"/>
+
+    <TextView
+        android:id="@+id/rp_refund_item_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rp_refund_item_line"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:ellipsize="end"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp13"/>
+
+    <TextView
+        android:id="@+id/rp_refund_item_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rp_refund_item_end_time"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:ellipsize="end"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dd_dp13"/>
+
+    <TextView
+        android:id="@+id/rp_refund_item_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rp_refund_item_start_time"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:ellipsize="end"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp13"/>
+</RelativeLayout>

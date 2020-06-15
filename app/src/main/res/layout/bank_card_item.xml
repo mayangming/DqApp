@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bank_card_rl"
+    android:layout_width="match_parent"
+    android:background="@color/app_txt_999999"
+    android:layout_height="@dimen/dd_dp125">
+
+    <ImageView
+        android:id="@+id/bank_card_bg_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/bank_card_logo_iv"
+        android:layout_width="@dimen/dd_dp60"
+        android:layout_height="@dimen/dd_dp60"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/dd_dp15" />
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/bank_card_logo_iv"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toEndOf="@+id/bank_card_logo_iv">
+
+        <TextView
+            android:id="@+id/bank_card_name_tv"
+            tools:ignore="SpUsage"
+            android:textColor="@color/text_blue_pressed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dd_dp20" />
+
+        <TextView
+            android:id="@+id/bank_card_num_tv"
+            tools:ignore="SpUsage"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dd_dp20" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bank_card_unbind_tv"
+        android:text="@string/unbind"
+        android:textSize="@dimen/dd_dp16"
+        android:padding="@dimen/dd_dp5"
+        android:textColor="@color/app_theme_color"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="SpUsage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dd_dp15" />
+
+    <View
+        style="@style/OnePxDivider"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

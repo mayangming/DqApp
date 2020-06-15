@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemEmotionsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="@dimen/dd_dp1"
+    android:paddingBottom="@dimen/dd_dp1"
+    android:background="@color/color_eeeeee">
+
+    <ImageView
+        android:id="@+id/itemEmotionsImg"
+        android:layout_width="@dimen/dd_dp90"
+        android:layout_height="@dimen/dd_dp90"
+        android:paddingTop="@dimen/dd_dp5"
+        android:paddingBottom="@dimen/dd_dp5"
+        android:src="@drawable/loading_small"
+        android:background="@color/white"/>
+    <CheckBox
+        android:id="@+id/itemEmotionsCheckbox"
+        style="@style/MyCheckBox"
+        android:layout_width="@dimen/dd_dp22"
+        android:layout_height="@dimen/dd_dp22"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_alignRight="@+id/itemEmotionsImg"
+        android:layout_alignEnd="@+id/itemEmotionsImg" />
+</RelativeLayout>

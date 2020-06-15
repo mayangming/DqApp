@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/alipay_pamentcode_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+        <!--app:title="@string/ali_paymentcode"/>-->
+
+    <ImageView
+        android:id="@+id/alipay_pamentcode_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dd_dp40"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/alipay_pamentcode_commtitle"
+        android:src="@mipmap/alipay_pamentcode_guide"/>
+
+    <TextView
+        android:id="@+id/alipay_pamentcode_add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp42"
+        android:layout_marginLeft="@dimen/dd_dp20"
+        android:layout_above="@+id/alipay_pamentcode_tip"
+        android:layout_marginRight="@dimen/dd_dp20"
+        android:layout_marginTop="@dimen/dd_dp66"
+        android:background="@drawable/comm_btn_4dp_corner_selector"
+        android:gravity="center"
+        android:text="立即添加"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp16"/>
+
+    <TextView
+        android:id="@+id/alipay_pamentcode_tip"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp42"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dd_dp60"
+        android:layout_marginLeft="@dimen/dd_dp20"
+        android:layout_marginRight="@dimen/dd_dp20"
+        android:gravity="center"
+        android:text="您还没有添加支付宝收款码"
+        android:textColor="@color/app_txt_999999"
+        android:textSize="@dimen/dd_dp12"/>
+
+</RelativeLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="stl_SmartTabLayout">
+        <attr name="stl_indicatorAlwaysInCenter" format="boolean" />
+        <attr name="stl_indicatorWithoutPadding" format="boolean" />
+        <attr name="stl_indicatorInFront" format="boolean" />
+        <attr name="stl_indicatorInterpolation" format="enum">
+            <enum name="smart" value="0" />
+            <enum name="linear" value="1" />
+        </attr>
+        <attr name="stl_indicatorGravity" format="enum">
+            <enum name="bottom" value="0" />
+            <enum name="top" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+        <attr name="stl_indicatorColor" format="color" />
+        <attr name="stl_indicatorColors" format="reference" />
+        <attr name="stl_indicatorThickness" format="dimension" />
+        <attr name="stl_indicatorWidth" format="dimension">
+            <enum name="auto" value="-1" />
+        </attr>
+        <attr name="stl_indicatorCornerRadius" format="dimension" />
+        <attr name="stl_overlineColor" format="color" />
+        <attr name="stl_overlineThickness" format="dimension" />
+        <attr name="stl_underlineColor" format="color" />
+        <attr name="stl_underlineThickness" format="dimension" />
+        <attr name="stl_dividerColor" format="color" />
+        <attr name="stl_dividerColors" format="reference" />
+        <attr name="stl_dividerThickness" format="dimension" />
+        <attr name="stl_defaultTabBackground" format="reference" />
+        <attr name="stl_defaultTabTextAllCaps" format="boolean" />
+        <attr name="stl_defaultTabTextColor" format="color|reference" />
+        <attr name="stl_defaultTabTextSize" format="dimension" />
+        <attr name="stl_defaultTabTextHorizontalPadding" format="dimension" />
+        <attr name="stl_defaultTabTextMinWidth" format="dimension" />
+        <attr name="stl_customTabTextLayoutId" format="reference" />
+        <attr name="stl_customTabTextViewId" format="reference" />
+        <attr name="stl_distributeEvenly" format="boolean" />
+        <attr name="stl_clickable" format="boolean" />
+        <attr name="stl_titleOffset" format="dimension">
+            <enum name="auto_center" value="-1" />
+        </attr>
+        <attr name="stl_drawDecorationAfterTab" format="boolean" />
+    </declare-styleable>
+
+<!--    <declare-styleable name="SlidingTabLayout">-->
+<!--        &lt;!&ndash; indicator &ndash;&gt;-->
+<!--        <attr name="tl_indicator_color"/>-->
+<!--        <attr name="tl_indicator_height"/>-->
+<!--        <attr name="tl_indicator_width"/>-->
+<!--        <attr name="tl_indicator_margin_left"/>-->
+<!--        <attr name="tl_indicator_margin_top"/>-->
+<!--        <attr name="tl_indicator_margin_right"/>-->
+<!--        <attr name="tl_indicator_margin_bottom"/>-->
+<!--        <attr name="tl_indicator_corner_radius"/>-->
+<!--        <attr name="tl_indicator_gravity"/>-->
+<!--        <attr name="tl_indicator_style"/>-->
+<!--        <attr name="tl_indicator_width_equal_title"/>-->
+
+<!--        &lt;!&ndash; underline &ndash;&gt;-->
+<!--        <attr name="tl_underline_color"/>-->
+<!--        <attr name="tl_underline_height"/>-->
+<!--        <attr name="tl_underline_gravity"/>-->
+
+<!--        &lt;!&ndash; divider &ndash;&gt;-->
+<!--        <attr name="tl_divider_color"/>-->
+<!--        <attr name="tl_divider_width"/>-->
+<!--        <attr name="tl_divider_padding"/>-->
+
+<!--        &lt;!&ndash; tab &ndash;&gt;-->
+<!--        <attr name="tl_tab_padding"/>-->
+<!--        <attr name="tl_tab_space_equal"/>-->
+<!--        <attr name="tl_tab_width"/>-->
+
+<!--        &lt;!&ndash; title &ndash;&gt;-->
+<!--        <attr name="tl_textsize"/>-->
+<!--        <attr name="tl_textSelectColor"/>-->
+<!--        <attr name="tl_textUnselectColor"/>-->
+<!--        <attr name="tl_textBold"/>-->
+<!--        <attr name="tl_textAllCaps"/>-->
+
+<!--    </declare-styleable>-->
+
+    <!--SideBar的自定义属性-->
+    <declare-styleable name="App_SideBar">
+        <attr name="sbTextDefaultColor" format="color" />
+        <attr name="sbTextSelectColor" format="color" />
+        <attr name="sbTextSize" format="dimension" />
+        <attr name="sbRectSelectColor" format="color" />
+    </declare-styleable>
+
+    <!--标题栏-->
+    <declare-styleable name="CommTitle">
+        <attr name="title" format="string"/>
+        <attr name="leftDesc" format="string"/>
+        <attr name="leftSrc" format="reference"/>
+        <attr name="leftVisible" format="boolean"/>
+        <attr name="rightDesc" format="string"/>
+        <attr name="rightSrc" format="reference"/>
+        <attr name="rightVisible" format="boolean"/>
+    </declare-styleable>
+
+    <!--boolbar标题栏-->
+    <declare-styleable name="Dq_Toolbar">
+        <attr name="dqtTitle" format="string"/>
+        <!--右边文字-->
+        <attr name="dqtRightTv" format="string"/>
+        <attr name="dqtShowRightTv" format="boolean"/>
+        <attr name="dqtShowBack" format="boolean"/>
+    </declare-styleable>
+
+    <!--搜索标题栏的自定义属性-->
+    <declare-styleable name="SearchTitleView">
+
+        <!--搜索提示-->
+        <attr name="stvSearchHint" format="string" />
+        <!--搜索按钮文字-->
+        <attr name="stvSearchTvText" format="string" />
+        <!--搜索标题栏背景-->
+        <attr name="stvSearchTitleBg" format="color" />
+        <!--搜索标题栏返回键背景-->
+        <attr name="stvSearchBackBg" format="reference" />
+        <!--搜索标题栏返回键图片-->
+        <attr name="stvSearchBackIcon" format="reference" />
+        <!--搜索控件背景-->
+        <attr name="stvSearchEtBg" format="reference" />
+        <!--搜索标题栏搜索键背景-->
+        <attr name="stvSearchConfirmTvBg" format="reference" />
+        <!--是否显示返回键-->
+        <attr name="stvShowBack" format="boolean" />
+        <!--是否显示线-->
+        <attr name="stvShowLine" format="boolean" />
+        <!--是否显示搜索按钮-->
+        <attr name="stvShowSearchTv" format="boolean" />
+        <!--是否显示搜索按钮-->
+        <attr name="stvShowSearchIconTv" format="boolean" />
+        <!-- 设置搜索按钮字体大小 -->
+        <attr name="stvSearchTextSize" format="dimension"/>
+        <!-- 设置搜索按钮字体颜色 -->
+        <attr name="stvSearchTextColor" format="color"/>
+        <attr name="stvSearchStyle" format="enum">
+            <enum name="DefaultSearch" value="0"/><!--默认，无返回键自动搜索-->
+            <enum name="HasBackSearch" value="1"/><!--有返回键自动搜索-->
+            <enum name="HasSearchBtn" value="2"/><!--有返回键，有搜索按钮的搜索-->
+        </attr>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="PwdInputView">
+        <attr name="pivMaxCount" format="integer" />
+        <attr name="pivCircleColor" format="color" />
+        <attr name="pivBottomLineColor" format="color" />
+        <attr name="pivRadius" format="dimension" />
+        <attr name="pivDivideLineWidth" format="dimension" />
+        <attr name="pivDivideLineColor" format="color" />
+        <attr name="pivRectAngle" format="dimension" />
+        <attr name="pivFocusedColor" format="color" />
+        <attr name="pivType" format="enum">
+            <enum name="weChat" value="0" />
+            <enum name="bottomLine" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="cpv_progressNormalColor" format="color"/>
+        <attr name="cpv_progressReachColor" format="color"/>
+        <attr name="cpv_progressTextColor" format="color"/>
+        <attr name="cpv_progressTextSize" format="dimension"/>
+        <attr name="cpv_progressTextOffset" format="dimension"/>
+        <attr name="cpv_progressNormalSize" format="dimension"/>
+        <attr name="cpv_progressReachSize" format="dimension"/>
+        <attr name="cpv_radius" format="dimension"/>
+        <attr name="cpv_progressTextVisible" format="boolean"/>
+        <attr name="cpv_progressStartArc" format="integer"/>
+        <attr name="cpv_progressTextSkewX" format="dimension"/>
+        <attr name="cpv_progressTextPrefix" format="string"/>
+        <attr name="cpv_progressTextSuffix" format="string"/>
+        <attr name="cpv_innerBackgroundColor" format="color"/>
+        <attr name="cpv_progressStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="FillInner" value="1"/>
+            <enum name="FillInnerArc" value="2"/>
+        </attr>
+        <attr name="cpv_innerProgressColor" format="color"/>
+        <attr name="cpv_innerPadding" format="dimension"/>
+        <attr name="cpv_outerColor" format="color"/>
+        <attr name="cpv_outerSize" format="dimension"/>
+        <attr name="cpv_reachCapRound" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="NumberPicker">
+        <attr name="normalTextColor" format="color" />
+        <attr name="normalTextSize" format="dimension" />
+        <attr name="selecredTextColor" format="color" />
+        <attr name="selecredTextSize" format="dimension" />
+        <attr name="unitHight" format="dimension" />
+        <attr name="itemNumber" format="integer" />
+        <attr name="lineColor" format="color" />
+        <attr name="maskHight" format="dimension" />
+        <attr name="noEmpty" format="boolean" />
+        <attr name="isEnable" format="boolean" />
+    </declare-styleable>
+</resources>

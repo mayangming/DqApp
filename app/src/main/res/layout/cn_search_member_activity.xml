@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:stvSearchStyle="HasBackSearch"/>
+
+    <ListView
+        android:id="@+id/search_member_lsv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_layout"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:divider="@null"/>
+
+    <TextView
+        android:id="@+id/search_hint_tv"
+        android:text="@string/search_hint"
+        android:gravity="top|center_horizontal"
+        android:layout_marginTop="115dp"
+        style="@style/not_to_search_data_style"/>
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        android:visibility="gone"
+        style="@style/not_to_search_data_style" />
+</RelativeLayout>
+

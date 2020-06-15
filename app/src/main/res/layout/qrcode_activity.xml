@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/qrcode_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/qrcode_share_llyt"
+        layout="@layout/qrcode_share_layout"
+        android:visibility="invisible"/>
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:dqtTitle="@string/qrcode_card"/>
+
+    <LinearLayout
+        android:id="@+id/qrcode_llyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:background="@drawable/qrcode_shape_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/qrcode_header_portrait"
+            android:layout_width="@dimen/dd_dp100"
+            android:layout_height="@dimen/dd_dp100"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/minus_dd_dp50"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dd_dp10"
+            android:layout_marginTop="@dimen/dd_dp14"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/qrcode_header_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="1"
+                android:text="@string/user_portrait"
+                android:textColor="@color/text_blue_pressed"
+                android:textSize="18dp"/>
+
+            <ImageView
+                android:id="@+id/qrcode_header_gender"
+                android:layout_width="@dimen/dd_dp14"
+                android:layout_height="@dimen/dd_dp18"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dd_dp5"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/qrcode_image"
+                android:layout_width="@dimen/dd_dp234"
+                android:layout_height="@dimen/dd_dp234"
+                android:visibility="visible"
+                android:scaleType="fitXY"/>
+
+            <ProgressBar
+                android:id="@+id/qrcode_image_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/qrcode_warning"
+            android:layout_width="@dimen/dd_dp234"
+            android:layout_height="@dimen/dd_dp234"
+            android:gravity="center"
+            android:text="@string/qrcode_group_manager"
+            android:textColor="@color/color_a3a3a3"
+            android:textSize="@dimen/dd_dp20"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/qrcode_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dd_dp10"
+            android:layout_marginTop="@dimen/dd_dp12"
+            android:text="@string/qrcode_add"
+            android:textColor="@color/text_blue_pressed"
+            android:textSize="@dimen/dd_dp14"/>
+
+        <View
+            android:id="@+id/qrcode_bottom_line"
+            style="@style/OnePxDivider"/>
+
+        <LinearLayout
+            android:id="@+id/qrcode_option_llyt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp40"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/qrcode_save"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/qrcode_def_selector"
+                android:gravity="center"
+                android:text="@string/message_option_save_image"
+                android:textColor="@color/color_5495e8"
+                android:textSize="@dimen/dd_dp16"/>
+
+            <View
+                style="@style/OnePxDivider_Vertical"/>
+
+            <TextView
+                android:id="@+id/qrcode_share_qingchat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/qrcode_def_selector"
+                android:gravity="center"
+                android:text="@string/qrcode_share_dq"
+                android:textColor="@color/color_5495e8"
+                android:textSize="@dimen/dd_dp16"/>
+
+            <View
+                android:visibility="gone"
+                style="@style/OnePxDivider_Vertical"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/qrcode_share_weixin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/qrcode_def_selector"
+                android:gravity="center"
+                android:text="@string/qrcode_share_wx"
+                android:textColor="@color/color_5495e8"
+                android:textSize="@dimen/dd_dp16"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

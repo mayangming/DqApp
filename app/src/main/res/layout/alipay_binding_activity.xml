@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/alpay_binding_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+
+    <ImageView
+        android:layout_width="@dimen/dd_dp75"
+        android:layout_height="@dimen/dd_dp75"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:src="@mipmap/qc_alipay_binding_tips_bg"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px1"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:background="@color/color_ebebeb"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginStart="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:text="@string/alipay_binding_tips"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginStart="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:text="@string/alipay_binding_succeed_tips"
+        android:textSize="@dimen/dd_dp12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginStart="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:text="@string/alipay_binding_succeed_tips1"
+        android:textSize="@dimen/dd_dp12"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:text="@string/alipay_binding_succeed_tips2"
+        android:textSize="@dimen/dd_dp12"/>
+
+    <TextView
+        android:id="@+id/alpay_binding_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp35"
+        android:background="@drawable/btn_login_item_bg"
+        android:gravity="center"
+        android:text="@string/alipay_binding_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp14"/>
+</LinearLayout>

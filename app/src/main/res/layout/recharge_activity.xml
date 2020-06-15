@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/recharge_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/recharge"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp10"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/recharge_amount" />
+
+                <EditText
+                    android:id="@+id/recharge_amount_et"
+                    style="@style/comm_sub_item_right_et"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/please_input_recharge_amount"
+                    android:layout_marginRight="@dimen/dd_dp5"
+                    android:maxLength="5"
+                    tools:ignore="RtlHardcoded,TextFields"/>
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:layout_width="wrap_content"
+                    android:text="@string/rd_comm_yuan" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/recharge_current_amount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginStart="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:textSize="@dimen/dd_dp14"
+                android:textColor="@color/app_txt_999999"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recharge_ten_yuan"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/ten_yuan"/>
+
+                <TextView
+                    android:id="@+id/recharge_fifty_yuan"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:layout_marginLeft="@dimen/dd_dp40"
+                    android:layout_marginRight="@dimen/dd_dp40"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center"
+                    android:text="@string/fifty_yuan"/>
+                <TextView
+                    android:id="@+id/recharge_one_hundred_yuan"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/one_hundred_yuan"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recharge_five_hundred_yuan"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/five_hundred_yuan"/>
+
+                <TextView
+                    android:id="@+id/recharge_one_thousand_yuan"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:layout_marginLeft="@dimen/dd_dp40"
+                    android:layout_marginRight="@dimen/dd_dp40"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center"
+                    android:text="@string/one_thousand_yuan"/>
+                <TextView
+                    android:id="@+id/recharge_other_amount"
+                    android:layout_width="@dimen/dd_dp80"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dd_dp10"
+                    android:background="@drawable/recharge_amount_bg_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/other_amount"/>
+
+            </LinearLayout>
+
+            <com.wd.daquan.common.view.CommItemView
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:id="@+id/recharge_bank_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemIconVisible="false"
+                app:itemText="@string/recharge_bank_card"
+                app:itemTipsVisible="true"
+                app:itemLineVisible="false"/>
+
+            <TextView
+                android:id="@+id/recharge_confirm_tv"
+                style="@style/comm_corner_btn"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:text="@string/confirm_recharge"/>
+
+
+            <TextView
+                android:textSize="@dimen/dd_dp14"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                style="@style/comm_sub_item_right_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recharge_instructions"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/recharge_instructions_tv"
+                android:textSize="@dimen/dd_dp14"
+                android:paddingLeft="@dimen/dd_dp12"
+                android:paddingRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:layout_marginBottom="@dimen/dd_dp15"
+                style="@style/comm_sub_item_right_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

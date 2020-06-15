@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:text="@string/group_nickname" />
+
+                <EditText
+                    android:id="@+id/et_group_nickname"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/input_group_personal_nackname" />
+
+                <ImageView
+                    android:id="@+id/iv_clear_nickname"
+                    style="@style/clear_input_style"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:text="@string/group_phone" />
+
+                <EditText
+                    android:id="@+id/et_mobile_phone_number"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/group_input_phone"
+                    android:inputType="number"/>
+
+                <ImageView
+                    android:id="@+id/iv_clear_phone_number"
+                    style="@style/clear_input_style"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:text="@string/group_weixin" />
+
+                <EditText
+                    android:id="@+id/et_wei_xin_number"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/group_input_weixin"/>
+
+                <ImageView
+                    android:id="@+id/iv_clear_wei_xin_number"
+                    style="@style/clear_input_style"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:text="@string/group_alipay" />
+
+                <EditText
+                    android:id="@+id/et_zhi_fu_bao"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="@string/group_input_alipay" />
+
+                <ImageView
+                    android:id="@+id/iv_clear_zhifubao"
+                    style="@style/clear_input_style"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_desc_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_add_describe"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:background="@drawable/rc_item_list_selector"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/cn_icon_add_describe"
+                    android:drawablePadding="@dimen/dd_dp5"
+                    android:gravity="center_vertical"
+                    android:text="@string/add_describe"
+                    android:textColor="@color/text_blue"
+                    android:textSize="@dimen/dd_dp18" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

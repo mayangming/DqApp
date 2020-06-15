@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ebebeb"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/accountBindActivityCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp46"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_weight="1"
+            android:text="@string/phone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp15"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/accountBindActivityTxtPhoneNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:textColor="@color/text_blue_pressed"
+            android:textSize="@dimen/dd_dp15"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/accountBindActivityLayoutWX"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp71"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@drawable/comm_item_selector"
+        tools:ignore="UselessLeaf">
+
+        <ImageView
+            android:id="@+id/accountBindActivityImgWX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:contentDescription="@string/wechat"
+            android:src="@mipmap/login_wechat"
+            tools:ignore="RtlHardcoded" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:layout_toRightOf="@id/accountBindActivityImgWX"
+            android:orientation="vertical"
+            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wechat"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dd_dp15" />
+
+            <TextView
+                android:id="@+id/accountBindActivityTxtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:textColor="@color/text_blue_pressed"
+                android:textSize="@dimen/dd_dp12" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/accountBindActivityTxtType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:textColor="@color/text_blue_pressed"
+            android:textSize="@dimen/dd_dp15"
+            tools:ignore="RelativeOverlap,RtlHardcoded"
+            android:text="@string/setting_no_blind"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/walletVerifyActivityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/wallet_open"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/feeedback_name" />
+
+                <EditText
+                    android:id="@+id/walletVerifyNameTxt"
+                    android:layout_alignParentRight="true"
+                    android:hint="@string/name_write"
+                    android:gravity="center_vertical|right"
+                    style="@style/comm_sub_item_right_et_wallet"
+                    android:maxLength="6"/>
+            </RelativeLayout>
+
+            <View style="@style/item_line"/>
+
+            <RelativeLayout style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/id_card_number" />
+
+                <EditText
+                    android:id="@+id/walletVerifyCardNoTxt"
+                    android:layout_alignParentRight="true"
+                    android:hint="@string/card_no_write"
+                    android:gravity="center_vertical|right"
+                    style="@style/comm_sub_item_right_et_wallet"
+                    android:maxLength="18"/>
+            </RelativeLayout>
+            <View style="@style/item_line"/>
+            <RelativeLayout style="@style/comm_sub_item_layout">
+
+                <TextView
+                    android:layout_width="@dimen/dd_dp100"
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/id_card_no_validity" />
+
+                <TextView
+                    android:id="@+id/walletVerifyCardNoValidityTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/app_txt_333333"
+                    android:textSize="@dimen/dd_dp16"
+                    android:gravity="right"
+                    android:hint="@string/card_no_validity_write"/>
+            </RelativeLayout>
+
+            <!--职业-->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/professional" />
+
+                <TextView
+                    android:id="@+id/walletVerifyJobTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/app_txt_333333"
+                    android:textSize="@dimen/dd_dp16"
+                    android:hint="@string/please_choice_professional"
+                    android:gravity="right"/>
+            </RelativeLayout>
+
+            <View style="@style/item_line"/>
+            <!--地区-->
+            <RelativeLayout style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/area" />
+
+                <TextView
+                    android:id="@+id/walletVerifyAreaTxt"
+                    android:layout_alignParentRight="true"
+                    android:hint="@string/please_choice_area"
+                    style="@style/comm_sub_item_right_et_wallet"/>
+            </RelativeLayout>
+            <View style="@style/item_line"/>
+            <!--联系地址-->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/contacts_address" />
+
+                <EditText
+                    android:id="@+id/walletVerifyContactsAddressTxt"
+                    android:layout_alignParentRight="true"
+                    style="@style/comm_sub_item_right_et_wallet"
+                    android:hint="@string/contacts_address_write"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="15"/>
+            </RelativeLayout>
+
+            <View style="@style/item_line"/>
+            <!--支付密码-->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    android:layout_width="@dimen/dd_dp100"
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/set_pay_pwd" />
+
+                <EditText
+                    android:id="@+id/walletVerifyPwdTxt"
+                    android:layout_alignParentRight="true"
+                    android:inputType="numberPassword"
+                    android:letterSpacing="0.1"
+                    android:gravity="center_vertical|right"
+                    style="@style/comm_sub_item_right_et_wallet"
+                    android:hint="@string/set_pay_pwd_write"
+                    android:maxLength="6"/>
+            </RelativeLayout>
+            <View style="@style/item_line"/>
+            <!--再次支付密码-->
+            <RelativeLayout
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    android:layout_width="@dimen/dd_dp100"
+                    style="@style/comm_sub_item_left_tv"
+                    android:text="@string/set_pay_pwd_again" />
+
+                <EditText
+                    android:id="@+id/walletVerifyPwdAgainTxt"
+                    android:layout_alignParentRight="true"
+                    android:inputType="numberPassword"
+                    android:letterSpacing="0.1"
+                    android:gravity="center_vertical|right"
+                    style="@style/comm_sub_item_right_et_wallet"
+                    android:hint="@string/set_pay_pwd_again_write"
+                    android:maxLength="6"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/walletVerifyConfirmBtn"
+                style="@style/LoginRegisterButtonStyle"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:text="@string/confirm" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

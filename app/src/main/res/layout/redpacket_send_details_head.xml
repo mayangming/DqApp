@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_fef3ed"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/icon_bg_redpacket_title" />
+
+        <ImageView
+            android:id="@+id/redpacket_details_head_avater"
+            android:layout_width="@dimen/dd_dp54"
+            android:layout_height="@dimen/dd_dp54"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp56"
+            android:contentDescription="@string/headPic" />
+
+        <TextView
+            android:id="@+id/redpacket_details_head_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_details_head_avater"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dd_dp9"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp12" />
+
+        <TextView
+            android:id="@+id/redpacket_details_head_greet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_details_head_name"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dd_dp5"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp12" />
+
+        <LinearLayout
+            android:id="@+id/redpacket_details_head_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_details_head_greet"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/redpacket_details_head_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dd_dp26"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dd_dp5"
+                    android:layout_marginLeft="@dimen/dd_dp5"
+                    android:layout_marginBottom="@dimen/dd_dp5"
+                    android:text="@string/redpacket_send_yuan"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="@dimen/dd_dp214"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp9"
+                android:gravity="center"
+                android:text="@string/redpacket_details_deposit_change"
+                android:textColor="@color/app_txt_999999"
+                android:textSize="@dimen/dd_dp14"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp23"
+            android:layout_below="@id/redpacket_details_head_group" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/redpacket_details_head_money_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:layout_marginBottom="@dimen/dd_dp9"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dd_dp23" />
+
+    <TextView
+        android:id="@+id/redpacket_details_head_money_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:background="@color/white"
+        android:textSize="@dimen/dd_dp12" />
+
+    <View style="@style/OnePxDivider" />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transfer_msg_vh_bg"
+    android:layout_width="@dimen/dd_dp221"
+    android:layout_height="@dimen/dd_dp86"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/transfer_msg_vh_bri_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp9"
+        android:gravity="center|left"
+        android:paddingLeft="@dimen/dd_dp65"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dd_dp13"
+        tools:text="￥"
+        android:layout_marginEnd="@dimen/dd_dp9"
+        android:paddingStart="@dimen/dd_dp65" />
+
+    <TextView
+        android:id="@+id/transfer_msg_vh_bri_mess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp37"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:gravity="center|left"
+        android:paddingLeft="@dimen/dd_dp58"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dd_dp13"
+        tools:ignore="RtlHardcoded"
+        tools:text="恭喜发财" />
+
+    <TextView
+        android:id="@+id/transfer_msg_vh_bri_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dd_dp9"
+        android:layout_marginBottom="@dimen/dd_dp2"
+        android:gravity="center|left"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        tools:text="斗圈转账"
+        android:layout_marginStart="@dimen/dd_dp9" />
+</RelativeLayout>
+

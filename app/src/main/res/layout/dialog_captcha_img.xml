@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/dp_20"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/captcha_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入图形验证码"
+        android:layout_marginTop="@dimen/dp_20"
+        android:textColor="@color/color_black_ff666666"
+        android:textSize="@dimen/sp_20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/captcha_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginVertical="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/captcha_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/captcha_img"
+            android:layout_width="@dimen/dd_dp150"
+            android:layout_height="@dimen/dd_dp50" />
+        <TextView
+            android:id="@+id/replace_captcha_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_FF49649D"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_gravity="center"
+            android:text="换一个"/>
+        <EditText
+            android:id="@+id/captcha_edt"
+            android:layout_width="@dimen/dd_dp100"
+            android:layout_height="@dimen/dd_dp50"
+            android:padding="@dimen/dp_10"
+            android:lines="1"
+            android:background="@drawable/captcha_code_edt_bg"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/captcha_operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/captcha_ll"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_26"
+            android:background="@color/color_grey_999999"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:paddingVertical="@dimen/dp_10"
+            android:text="取消"/>
+        <TextView
+            android:id="@+id/btn_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_26"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:paddingVertical="@dimen/dp_10"
+            android:background="@color/color_F39825"
+            android:text="确定"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

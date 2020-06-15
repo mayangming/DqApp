@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".login.activity.LoginRegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/wechat_login_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dd_dp40"
+        android:contentDescription="@string/wechat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/third_login_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dd_dp20"
+        android:layout_marginLeft="@dimen/dd_dp20"
+        android:layout_marginRight="@dimen/dd_dp20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/wechat_login_iv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dd_dp1"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:layout_weight="1"
+            android:background="@color/app_page_bg"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/other_login_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/third_part_login" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dd_dp1"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_weight="1"
+            android:background="@color/app_page_bg"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp33"
+        android:layout_marginRight="@dimen/dd_dp33"
+        android:layout_marginTop="@dimen/dd_dp17"
+        android:gravity="center"
+        android:text="@string/register"
+        android:textColor="@color/btn_text_color_selector"
+        android:textSize="@dimen/dd_dp16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/third_login_ll"
+        android:layout_marginBottom="@dimen/dd_dp40"
+        tools:ignore="SpUsage" />
+
+    <Button
+        android:id="@+id/phone_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp33"
+        android:layout_marginRight="@dimen/dd_dp33"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/register_btn"
+        android:layout_marginBottom="@dimen/dd_dp12"
+        tools:ignore="SpUsage" />
+
+</android.support.constraint.ConstraintLayout>

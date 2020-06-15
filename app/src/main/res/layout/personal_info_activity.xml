@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_efeff4"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dqtTitle="@string/personal_info"/>
+
+    <LinearLayout
+        android:id="@+id/personal_portrait_llyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp75"
+        android:layout_marginTop="@dimen/dd_dp12"
+        android:background="@drawable/comm_item_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dd_dp16">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/personal_info_avatar"/>
+        <RelativeLayout
+            android:id="@+id/vip_head_outline_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5">
+            <FrameLayout
+                android:id="@+id/head_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+                <ImageView
+                    android:id="@+id/personal_portrait"
+                    android:layout_width="@dimen/dd_dp50"
+                    android:layout_height="@dimen/dd_dp50"
+                    android:contentDescription="@string/portrait"
+                    android:scaleType="centerCrop"/>
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/vip_head_outline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/head_container"
+                android:layout_alignBottom="@+id/head_container"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_vip"/>
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dd_dp15"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+
+    <View style="@style/item_line"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:id="@+id/personal_phone_llyt"
+        style="@style/comm_sub_item_layout">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/phone"/>
+
+        <TextView
+            android:id="@+id/personal_phone"
+            style="@style/comm_sub_small_txt"/>
+    </LinearLayout>
+
+    <View style="@style/item_line"/>
+
+    <LinearLayout
+        android:id="@+id/personal_nickname_llyt"
+        style="@style/comm_sub_item_layout">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/nickname"/>
+
+        <TextView
+            android:id="@+id/personal_nickname"
+            style="@style/comm_sub_small_txt"
+            android:layout_marginEnd="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:ellipsize="end"
+            android:maxLength="16"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:id="@+id/personal_qrcode_llyt"
+        style="@style/comm_sub_item_layout">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/mine_qr"/>
+
+        <ImageView
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/main_title_left_qrcode"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+
+
+    <View style="@style/item_line"/>
+
+    <LinearLayout
+        android:id="@+id/personal_qingchat_llyt"
+        style="@style/comm_sub_item_layout">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/personal_info_qingchat"/>
+
+        <TextView
+            android:id="@+id/personal_qingchat"
+            style="@style/comm_sub_small_txt"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:ellipsize="end"
+            android:maxLength="20"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/personal_qingchat_jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/personal_gender_llyt"
+        style="@style/comm_sub_item_layout"
+        android:layout_marginTop="@dimen/dd_dp20">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/personal_info_gender"/>
+
+        <TextView
+            android:id="@+id/personal_gender"
+            style="@style/comm_sub_small_txt"
+            android:layout_marginRight="@dimen/dd_dp5"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/personal_certification_llyt"
+        style="@style/comm_sub_item_layout"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dd_dp20">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_weight="1"
+            android:text="@string/personal_info_real"/>
+
+        <TextView
+            android:id="@+id/personal_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp5"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_right_step"/>
+    </LinearLayout>
+</LinearLayout>

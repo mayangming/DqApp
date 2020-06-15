@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:switchview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/group_manager_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:id="@+id/groupManagerActivityManagerLayout"
+                style="@style/group_manager_linear"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/group_manager_set_manager" />
+
+                <TextView
+                    android:id="@+id/groupManagerActivityManagerText"
+                    style="@style/group_manager_text"
+                    android:text="@string/group_manager_no_set" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+
+<!--            <View style="@style/OnePxDivider" />-->
+
+            <LinearLayout
+                android:id="@+id/groupManagerActivityTransferLayout"
+                style="@style/group_manager_linear"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/group_manager_group_transfer" />
+                <!--android:id="@+id/groupManagerActivityTransferText"-->
+                <TextView style="@style/group_manager_text" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+<!--            <View style="@style/OnePxDivider" />-->
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/exit_group_member_ll"
+                style="@style/group_manager_linear">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/list_of_exit_group_member" />
+                <!--android:id="@+id/groupManagerActivityTransferText"-->
+                <TextView style="@style/group_manager_text" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+<!--            <View style="@style/OnePxDivider" />-->
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/dispatcher_group_member_ll"
+                style="@style/group_manager_linear">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/dispatcher_group_member" />
+
+                <TextView style="@style/group_manager_text" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/groupManagerActivityCopyNewGroupLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View style="@style/OnePxDivider" />
+
+                <LinearLayout style="@style/group_manager_linear">
+
+                    <TextView
+                        style="@style/group_manager_text_ins"
+                        android:text="@string/group_manager_group_copy_new" />
+
+                    <TextView style="@style/group_manager_text" />
+
+                    <ImageView style="@style/group_manager_img" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/groupManagerActivityMarkLayout"
+                style="@style/group_manager_linear"
+                android:layout_marginTop="@dimen/dd_dp20">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/group_manager_set_mark" />
+
+                <TextView
+                    android:id="@+id/groupManagerActivityMarkText"
+                    style="@style/group_manager_text"
+                    android:text="@string/group_manager_no_set" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+<!--            <View style="@style/OnePxDivider" />-->
+
+            <LinearLayout
+                android:id="@+id/group_assistant_ll"
+                style="@style/group_manager_linear"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_manager_text_ins"
+                    android:text="@string/group_of_aides" />
+
+                <ImageView style="@style/group_manager_img" />
+            </LinearLayout>
+
+<!--            <View style="@style/OnePxDivider" />-->
+
+<!--            <com.wd.daquan.common.view.CommSwitchButton-->
+<!--                android:visibility="gone"-->
+<!--                android:id="@+id/group_manager_long_time_red_sv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dd_dp48"-->
+<!--                android:layout_marginTop="@dimen/dd_dp20"-->
+<!--                android:background="@color/white"-->
+<!--                switchview:swBtnDescVisible="false"-->
+<!--                switchview:swBtnDesc="@string/longtime_redpacket" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dd_dp15"-->
+<!--                android:layout_marginTop="@dimen/dd_dp5"-->
+<!--                android:layout_marginRight="@dimen/dd_dp15"-->
+<!--                android:layout_marginBottom="@dimen/dd_dp5"-->
+<!--                android:text="@string/long_time_did_not_get_red_envelope_hint"-->
+<!--                android:textSize="12sp"-->
+<!--                android:visibility="gone" />-->
+
+<!--            <com.wd.daquan.common.view.CommSwitchButton-->
+<!--                android:visibility="gone"-->
+<!--                android:id="@+id/group_manager_protect"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dd_dp48"-->
+<!--                android:layout_marginTop="@dimen/dd_dp20"-->
+<!--                android:background="@color/white"-->
+<!--                switchview:swBtnDescVisible="false"-->
+<!--                switchview:swBtnDesc="@string/group_member_protect" />-->
+
+<!--            <TextView-->
+<!--                android:visibility="gone"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dd_dp15"-->
+<!--                android:layout_marginTop="@dimen/dd_dp5"-->
+<!--                android:layout_marginRight="@dimen/dd_dp15"-->
+<!--                android:layout_marginBottom="@dimen/dd_dp5"-->
+<!--                android:text="@string/group_member_protect_tips"-->
+<!--                android:textSize="12sp" />-->
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:id="@+id/csb_team_examine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                switchview:swBtnDesc="@string/group_member_tips"
+                switchview:swBtnDescVisible="true"
+                switchview:swBtnTitle="@string/set_invite"/>
+
+            <com.da.library.NestedListView
+                android:id="@+id/lv_manager"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

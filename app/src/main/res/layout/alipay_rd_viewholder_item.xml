@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/alipay_rd_rlyt"
+        android:layout_width="221dp"
+        android:layout_height="86dp"
+        android:paddingLeft="@dimen/dd_dp10"
+        android:paddingRight="@dimen/dd_dp10">
+
+        <ImageView
+            android:id="@+id/alipay_rd_repeat_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="-3dp"
+            android:background="@mipmap/cn_track_redpacket_tag"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_blessing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_marginTop="13dp"
+            android:gravity="center|left"
+            android:paddingLeft="55dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:text="恭喜发财"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:gravity="center|left"
+            android:paddingLeft="55dp"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:text="领取红包"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="@dimen/dd_dp4"
+            android:gravity="center|left"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tools:ignore="RtlHardcoded"
+            tools:text="支付宝红包"/>
+
+        <ImageView
+            android:id="@+id/alipay_rd_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dd_dp5"
+            android:src="@mipmap/qc_ali_logo_small"/>
+    </RelativeLayout>
+</FrameLayout>

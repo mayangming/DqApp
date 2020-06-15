@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+    <item android:top="@dimen/dd_dp100">
+        <bitmap
+            android:gravity="top"
+            android:src="@drawable/splash_logo" />
+    </item>
+    <item android:bottom="@dimen/dd_dp100">
+        <bitmap
+            android:gravity="bottom"
+            android:src="@drawable/splash_net" />
+    </item>
+</layer-list>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".common.activity.ShareActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/share_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/share_create_chat_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dd_dp10"
+        android:paddingLeft="@dimen/dd_dp9"
+        android:paddingRight="@dimen/dd_dp9"
+        android:paddingTop="@dimen/dd_dp10"
+        android:text="@string/create_a_new_chat"
+        android:textColor="@color/text_title_black"
+        android:background="@drawable/comm_item_selector"
+        android:textSize="@dimen/dd_dp14"
+        app:layout_constraintTop_toBottomOf="@+id/share_title_layout"
+        tools:ignore="SpUsage" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_create_chat_tv"
+        app:layout_constraintVertical_weight="1">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="Scale"
+            app:srlDrawableProgress="@drawable/ic_progress_puzzle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<com.da.library.widget.CommSearchEditText-->
+                <!--android:id="@+id/saved_team_search_layout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dd_dp5"
+                android:paddingLeft="@dimen/dd_dp9"
+                android:paddingRight="@dimen/dd_dp9"
+                android:paddingTop="@dimen/dd_dp5"
+                android:text="@string/recent_chat"
+                android:textColor="@color/text_title_black"
+                android:background="@color/app_page_bg"
+                android:textSize="@dimen/dd_dp12"
+                tools:ignore="SpUsage" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/share_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        style="@style/not_to_search_data_style"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:text="@string/no_chat_record_please_choose_a_chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_create_chat_tv"
+        app:layout_constraintVertical_weight="1" />
+
+</android.support.constraint.ConstraintLayout>

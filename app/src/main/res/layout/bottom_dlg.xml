@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_custom_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_bg_4dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_hint"
+        style="@style/dialog_bottom_item_style"
+        android:textSize="@dimen/dd_dp12"
+        android:textColor="@color/color_a7a7a7"
+        android:text="@string/setting_logout_ins" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        style="@style/dialog_bottom_item_style"
+        android:text="@string/dialog_bottom_picture" />
+
+    <View style="@style/item_line" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        style="@style/dialog_bottom_item_style"
+        android:text="@string/dialog_bottom_from_pics" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp8"
+        android:background="@color/color_e5e5e5" />
+
+    <TextView
+        android:id="@+id/tv_cancle"
+        style="@style/dialog_bottom_item_style"
+        android:text="@string/cancel" />
+</LinearLayout>

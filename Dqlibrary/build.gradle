@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    api rootProject.ext.dependencies.kyleduo_switchbutton
+    implementation rootProject.ext.dependencies.design
+    api rootProject.ext.dependencies.support_v4
+    api rootProject.ext.dependencies.constraint_layout
+    api rootProject.ext.dependencies.custom_seekbar
+    api rootProject.ext.dependencies.zxing_core
+    api rootProject.ext.dependencies.zxing_android_core
+    api project(':DqModel')
+    api project(':DqGlide')
+}

@@ -1,0 +1,8 @@
+<resources>
+    <string name="token_err" translatable="false">授权已过期,请重新登录</string>
+    <string name="net_err" translatable="false">您的网络异常,请检查网络后重新尝试</string>
+
+    <string name="request_ok_no_data" translatable="false">请求成功，无数据返回</string>
+    <string name="request_err" translatable="false">请求失败</string>
+
+</resources>

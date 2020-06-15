@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/qc_unread_message_tip_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_gravity="top|right"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/qc_unread_msg_bg_style"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/qc_unread_message_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="7dp"
+        android:background="@drawable/qc_unread_msg_arrow"/>
+
+    <TextView
+        android:id="@+id/qc_unread_message_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/qc_unread_message_tips"
+        android:text="条新消息"
+        android:textColor="@color/text_title_black"
+        android:textSize="14sp"/>
+</RelativeLayout>

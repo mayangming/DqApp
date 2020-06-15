@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".login.activity.SetUserInfoActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/set_user_info_comm_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_user_info_comm_title_layout"
+        app:layout_constraintVertical_weight="1">
+
+        <RelativeLayout
+            android:id="@+id/translation_container_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/set_username_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp50"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setheadNickname" />
+
+                <ImageView
+                    android:id="@+id/set_user_info_portrait_iv"
+                    android:layout_width="@dimen/dd_dp50"
+                    android:layout_height="@dimen/dd_dp50"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dd_dp10"
+                    android:background="@drawable/user_avatar"
+                    android:contentDescription="@string/portrait"
+                    android:scaleType="centerCrop" />
+
+
+                <EditText
+                    android:id="@+id/set_user_info_nickname_et"
+                    style="@style/LoginRegisterEditTextStyle"
+                    android:layout_marginTop="@dimen/dd_dp30"
+                    android:hint="@string/nickNameBi"
+                    android:inputType="text"
+                    android:maxLength="16"
+                    tools:ignore="RtlHardcoded,SpUsage,TextFields" />
+
+                <View style="@style/item_line" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/set_user_info_next_step_btn"
+                style="@style/LoginRegisterButtonStyle"
+                android:layout_marginLeft="@dimen/dd_dp12"
+                android:layout_marginRight="@dimen/dd_dp12"
+                android:layout_marginTop="@dimen/dd_dp30"
+                android:text="@string/next_step"
+                android:layout_below="@+id/set_username_ll" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

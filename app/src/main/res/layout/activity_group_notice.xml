@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/linhelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/base_title"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/notice_modify_hint_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="发布后将以系统消息发送群聊,全体成员可见."
+            android:textSize="@dimen/sp13" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/notice_modify_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/group_notice_modify_time"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linhelp"
+        android:paddingLeft="@dimen/dd_dp15"
+        android:paddingRight="@dimen/dd_dp15"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:gravity="top"
+        android:hint="@string/empty_group_notice"
+        android:inputType="text|textMultiLine"
+        android:maxLength="749"
+        android:scrollbars="vertical"
+        android:textColor="@android:color/black"
+        android:textColorHint="#e6e6e6"
+        android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:id="@+id/tvwu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="@dimen/dd_dp20"
+        android:drawableTop="@mipmap/icon_gonggao"
+        android:text="管理员还没有发布群公告"
+        android:textColor="@color/color_8C8C8C"
+        android:textSize="@dimen/sp10"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <!--搜索标题栏的自定义属性-->
+    <declare-styleable name="SearchTitleView">
+
+        <!--搜索提示-->
+        <attr name="stvSearchHint" format="string" />
+        <!--搜索按钮文字-->
+        <attr name="stvSearchTvText" format="string" />
+        <!--搜索标题栏背景-->
+        <attr name="stvSearchTitleBg" format="color" />
+        <!--搜索标题栏返回键背景-->
+        <attr name="stvSearchBackBg" format="reference" />
+        <!--搜索标题栏返回键图片-->
+        <attr name="stvSearchBackIcon" format="reference" />
+        <!--搜索控件背景-->
+        <attr name="stvSearchEtBg" format="reference" />
+        <!--搜索标题栏搜索键背景-->
+        <attr name="stvSearchConfirmTvBg" format="reference" />
+        <!--是否显示返回键-->
+        <attr name="stvShowBack" format="boolean" />
+        <!--是否显示线-->
+        <attr name="stvShowLine" format="boolean" />
+        <!--是否显示搜索按钮-->
+        <attr name="stvShowSearchTv" format="boolean" />
+        <!--是否显示搜索按钮-->
+        <attr name="stvShowSearchIconTv" format="boolean" />
+        <!-- 设置搜索按钮字体大小 -->
+        <attr name="stvSearchTextSize" format="dimension"/>
+        <!-- 设置搜索按钮字体颜色 -->
+        <attr name="stvSearchTextColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="CommItemView">
+        <attr name="itemSrc" format="reference"/>
+        <attr name="itemText" format="string"/>
+        <attr name="itemRedVisible" format="boolean"/>
+        <attr name="itemArrowVisible" format="boolean"/>
+        <attr name="itemLineVisible" format="boolean"/>
+        <attr name="itemIconVisible" format="boolean"/>
+        <attr name="itemTipsVisible" format="boolean"/>
+        <attr name="itemTextTipsVisible" format="boolean"/>
+        <attr name="itemTipsColor" format="color"/>
+        <attr name="itemTipsText" format="string"/>
+        <attr name="itemHeight" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="PayPsdInputView">
+        <attr name="maxCount" format="integer" />
+        <attr name="circleColor" format="color" />
+        <attr name="bottomLineColor" format="color" />
+        <attr name="radiuspwd" format="dimension" />
+        <attr name="divideLineWidth" format="dimension" />
+        <attr name="divideLineColor" format="color" />
+        <attr name="rectAngle" format="dimension" />
+        <attr name="focusedColor" format="color" />
+        <attr name="psdType" format="enum">
+            <enum name="weChat" value="0" />
+            <enum name="bottomLine" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CommSwitchButton">
+        <attr name="swBtnTitle" format="string"/>
+        <attr name="swBtnDesc" format="string"/>
+        <attr name="swBtnDescVisible" format="boolean"/>
+        <attr name="swBtnVisible" format="boolean"/>
+    </declare-styleable>
+
+</resources>

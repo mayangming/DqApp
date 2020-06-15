@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linCaSet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dd_dp1">
+
+    <LinearLayout
+        android:id="@+id/itemRedPacketLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp50"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/itemRedPacketTxtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_title_black"
+                android:textSize="15dp"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/itemRedPacketTxtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:textSize="12dp"
+                android:textColor="@color/text_blue_pressed"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/itemRedPacketTxtMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:textColor="@color/text_title_black"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <View
+        style="@style/OnePxDivider" />
+</LinearLayout>

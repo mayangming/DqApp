@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/dispatcher_headpic_iv"
+        android:layout_width="@dimen/dd_dp34"
+        android:layout_height="@dimen/dd_dp34"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/dd_dp8"
+        android:layout_marginLeft="@dimen/dd_dp9"
+        android:layout_marginRight="@dimen/dd_dp8"
+        android:layout_marginTop="@dimen/dd_dp8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_avatar"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/dispatcher_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLength="32"
+        android:layout_toRightOf="@+id/dispatcher_headpic_iv"
+        android:textSize="@dimen/dd_dp16"
+        android:layout_centerVertical="true"
+        android:textColor="@color/black"
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    <Button
+        android:id="@+id/dispatcher_remove_bt"
+        android:layout_marginRight="@dimen/dd_dp20"
+        android:layout_width="@dimen/dd_dp45"
+        android:layout_height="@dimen/dd_dp27"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/main_shape_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp13"
+        android:text="@string/move_delete"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RtlHardcoded" />
+
+    <View
+        style="@style/OnePxDivider"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/ll_custom_dialog"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/check_dialog_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/dd_dp300"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/check_dialog_btn_bottom"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dd_dp10"
+            android:paddingLeft="@dimen/dd_dp15"
+            android:paddingRight="@dimen/dd_dp15"
+            android:paddingTop="@dimen/dd_dp15"
+            android:text="@string/about_check_upgrade_version"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp16"/>
+
+        <TextView
+            android:id="@+id/tvcontentupdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dd_dp20"
+            android:paddingLeft="@dimen/dd_dp30"
+            android:paddingRight="@dimen/dd_dp15"
+            android:paddingTop="@dimen/dd_dp20"
+            android:text="@string/about_check_upgrade_ins"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp15"/>
+
+        <View
+            style="@style/OnePxDivider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp60"
+            android:background="@drawable/check_dialog_btn_bottom"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dd_dp15"
+            android:paddingRight="@dimen/dd_dp15">
+
+            <TextView
+                android:id="@+id/tvCancelCheck"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dd_dp40"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:layout_weight="1"
+                android:background="@drawable/comm_item_selector"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dd_dp10"
+                android:paddingTop="@dimen/dd_dp10"
+                android:text="@string/about_logout"
+                android:textColor="@color/text_title_black"
+                android:textSize="@dimen/dd_dp16"/>
+
+            <View
+                style="@style/OnePxDivider_Vertical"/>
+
+            <TextView
+                android:id="@+id/tvUpCheck"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dd_dp40"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:layout_weight="1"
+                android:background="@drawable/comm_item_selector"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/dd_dp10"
+                android:paddingTop="@dimen/dd_dp10"
+                android:text="@string/about_download"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/dd_dp16"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

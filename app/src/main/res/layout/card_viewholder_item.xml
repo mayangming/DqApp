@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/card_item_llyt"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:background="@drawable/qc_card_bg">
+
+        <ImageView
+            android:id="@+id/card_item_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="@dimen/dd_dp12"/>
+
+        <TextView
+            android:id="@+id/card_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/card_item_icon"
+            android:gravity="center|left"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <View
+            android:id="@+id/card_item_line"
+            style="@style/OnePxDivider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px1"
+            android:layout_below="@+id/card_item_icon"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"/>
+
+        <TextView
+            android:id="@+id/card_item_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_item_line"
+            android:layout_marginBottom="@dimen/dd_dp5"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginTop="4dp"
+            android:gravity="center|left"
+            android:text="@string/viewholder_card"
+            android:textColor="@color/text_title_black"
+            android:textSize="14dp"/>
+    </RelativeLayout>
+</RelativeLayout>

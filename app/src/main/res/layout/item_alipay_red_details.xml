@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/itemAlipayRedDetailsAvatar"
+        android:layout_width="@dimen/dd_dp40"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/dd_dp8"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp8"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_avatar"/>
+    <TextView
+        android:id="@+id/itemAlipayRedDetailsTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/text_blue_pressed"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginStart="@dimen/dd_dp10"
+        android:layout_alignBottom="@id/itemAlipayRedDetailsAvatar"
+        android:layout_toRightOf="@id/itemAlipayRedDetailsAvatar"
+        android:layout_toEndOf="@id/itemAlipayRedDetailsAvatar" />
+
+
+    <TextView
+        android:id="@+id/itemAlipayRedDetailsName"
+        android:layout_width="@dimen/dd_dp125"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp16"
+        android:layout_alignTop="@id/itemAlipayRedDetailsAvatar"
+        android:layout_toRightOf="@id/itemAlipayRedDetailsAvatar"
+        android:layout_toEndOf="@id/itemAlipayRedDetailsAvatar"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginStart="@dimen/dd_dp10" />
+
+
+
+    <TextView
+        android:id="@+id/itemAlipayRedDetailsMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="2222222"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp16"
+        android:layout_alignTop="@id/itemAlipayRedDetailsAvatar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dd_dp10"/>
+    <View
+        android:layout_below="@id/itemAlipayRedDetailsAvatar"
+        style="@style/OnePxDivider"/>
+</RelativeLayout>

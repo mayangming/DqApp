@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    tools:context=".contacts.activity.GroupPersonalInfoActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/personal_info_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personal_info_title_layout"
+        app:layout_constraintVertical_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:text="@string/group_nickname" />
+
+                <TextView
+                    android:id="@+id/tv_group_nickname"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:textIsSelectable="true"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:text="@string/shou_ji_hao" />
+
+                <TextView
+                    android:id="@+id/tv_mobile_phone_number"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/text_title_black"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:text="@string/wei_xin_number" />
+
+                <TextView
+                    android:id="@+id/tv_wei_xin_number"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/text_title_black"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp48"
+                android:layout_marginTop="@dimen/dd_dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:text="@string/zhi_fu_bao" />
+
+                <TextView
+                    android:id="@+id/tv_zhi_fu_bao"
+                    style="@style/group_personal_info_text_style"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/text_title_black"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_desc_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="@dimen/dd_dp14"
+                android:paddingTop="10dp"
+                android:text="@string/describe"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <!--最大条目数10条-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/desc_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/dd_dp14"
+                android:paddingRight="@dimen/dd_dp14" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

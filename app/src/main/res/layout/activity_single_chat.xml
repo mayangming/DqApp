@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dqtTitle="@string/single_chat_details"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/single_stick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:visibility="gone"
+                app:swBtnDescVisible="false"
+                app:swBtnTitle="@string/chatdetails_set_top"/>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/single_mute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                app:swBtnDescVisible="false"
+                app:swBtnTitle="@string/chatdetails_message_notice"/>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:visibility="gone"
+                android:id="@+id/single_burn"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:swBtnDesc="@string/chatdetails_readdestory"
+                app:swBtnDescVisible="true"
+                app:swBtnTitle="@string/input_panel_burn"/>
+
+
+            <View android:visibility="gone" style="@style/item_line_marin_left_right_10dp"/>
+
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:visibility="gone"
+                android:id="@+id/single_screenshot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:swBtnDesc="@string/screenshot_notice_desc"
+                app:swBtnDescVisible="true"
+                app:swBtnTitle="@string/screenshot_notice"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/dd_dp12"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="加密"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dd_dp5"
+                    android:layout_marginLeft="@dimen/dd_dp12"
+                    android:text="此对话中所发送的信息都已经进行端到端的加密。"
+                    android:textSize="@dimen/sp9"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/single_clean"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:background="@drawable/comm_item_selector"
+                android:clickable="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="@dimen/dd_dp12"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/chatdetails_clean_message"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

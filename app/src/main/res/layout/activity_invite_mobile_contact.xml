@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contacts.activity.InviteMobileContactActivity">
+
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/invite_mobile_contact_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.da.library.widget.CommSearchEditText
+        android:id="@+id/invite_mobile_contact_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/invite_mobile_contact_title_layout"
+        app:stvSearchStyle="DefaultSearch"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/invite_mobile_contact_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invite_mobile_contact_search_layout"/>
+
+    <com.da.library.widget.SideBar
+        android:id="@+id/invite_mobile_contact_side_bar"
+        android:layout_width="@dimen/dd_dp20"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/invite_mobile_contact_search_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_weight="1"/>
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        style="@style/not_to_search_data_style"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/invite_mobile_contact_search_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_weight="1"
+        android:text="@string/mobile_phone_no_contact"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/invite_mobile_contact_letter_tv"
+        android:layout_width="@dimen/dd_dp80"
+        android:layout_height="@dimen/dd_dp80"
+        android:background="@drawable/side_bar_text"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dd_dp30"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invite_mobile_contact_search_layout"
+        tools:ignore="SpUsage" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.da.library.widget.CommTitle
+        android:id="@+id/myEmotionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <GridView
+        android:id="@+id/emotionActivityGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myEmotionTitle"
+        android:stretchMode="columnWidth"
+        android:paddingBottom="@dimen/dd_dp1"
+        android:listSelector="@null"
+        android:numColumns="4"
+        android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/emotionActivityImgExample"
+        android:layout_width="@dimen/dd_dp80"
+        android:layout_height="@dimen/dd_dp80"
+        android:layout_below="@id/myEmotionTitle"
+        android:paddingTop="@dimen/dd_dp5"
+        android:paddingBottom="@dimen/dd_dp5"
+        android:src="@drawable/loading_small"
+        android:visibility="gone"
+        android:background="@drawable/bj_gridding"/>
+
+    <RelativeLayout
+        android:id="@+id/emotionActivityDelete"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:background="@color/text_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16"/>
+
+    </RelativeLayout>
+</RelativeLayout>

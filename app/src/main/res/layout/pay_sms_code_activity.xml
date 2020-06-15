@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_page_bg">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/pay_sms_code_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/sms_code" />
+
+    <!--&lt;!&ndash;验证码&ndash;&gt;-->
+
+    <TextView
+        android:id="@+id/pay_sms_code_phone_hint_tv"
+        android:paddingLeft="@dimen/dd_dp12"
+        android:paddingRight="@dimen/dd_dp12"
+        android:paddingTop="@dimen/dd_dp5"
+        android:paddingBottom="@dimen/dd_dp5"
+        android:textSize="@dimen/dd_dp14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="SpUsage" />
+
+    <LinearLayout
+        style="@style/comm_sub_item_layout">
+
+        <EditText
+            android:id="@+id/pay_sms_code_get_code_et"
+            style="@style/comm_sub_item_right_et"
+            android:hint="@string/sms_code"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/pay_sms_code_get_code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:minEms="5"
+            android:text="@string/getCode"
+            android:textColor="@color/text_color_selector"
+            android:textSize="@dimen/dd_dp13"
+            tools:ignore="RtlHardcoded,SpUsage" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pay_sms_code_confirm_tv"
+        style="@style/comm_corner_btn"
+        android:layout_marginLeft="@dimen/dd_dp12"
+        android:layout_marginRight="@dimen/dd_dp12"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:text="@string/confirm"/>
+
+
+</LinearLayout>

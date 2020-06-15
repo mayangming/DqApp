@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:ignore="MissingDefaultResource">
+
+    <ImageView
+        android:id="@+id/longtime_rp_item_head"
+        android:layout_width="@dimen/dd_dp40"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:id="@+id/longtime_rp_item_rlyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/longtime_rp_item_head"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/longtime_rp_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@+id/longtime_rp_item_time"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textSize="@dimen/dd_dp14"/>
+
+        <TextView
+            android:id="@+id/longtime_rp_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/dd_dp10"/>
+
+        <RelativeLayout
+            android:id="@+id/longtime_rp_item_rp_rlyt"
+            android:layout_width="221dp"
+            android:layout_height="86dp"
+            android:layout_below="@+id/longtime_rp_item_name">
+
+            <TextView
+                android:id="@+id/longtime_rp_item_rp_greetings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dd_dp20"
+                android:layout_marginRight="@dimen/dd_dp20"
+                android:layout_marginTop="15dp"
+                android:gravity="center|left"
+                android:paddingLeft="65dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp37"
+                android:gravity="center|left"
+                android:paddingLeft="65dp"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:text="@string/longtime_rp_item_receive"/>
+
+            <TextView
+                android:id="@+id/longtime_rp_item_rp_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/dd_dp4"
+                android:layout_marginLeft="@dimen/dd_dp20"
+                android:layout_marginStart="@dimen/dd_dp20"
+                android:gravity="center|left"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:text="支付宝红包"/>
+
+            <ImageView
+                android:id="@+id/longtime_rp_item_rp_alipay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/dd_dp4"
+                android:layout_marginEnd="@dimen/dd_dp20"
+                android:layout_marginRight="@dimen/dd_dp20"
+                android:src="@mipmap/qc_ali_logo_small"
+                android:visibility="visible"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        style="@style/item_line_marin_left_right_10dp"
+        android:layout_below="@+id/longtime_rp_item_rlyt"/>
+</RelativeLayout>

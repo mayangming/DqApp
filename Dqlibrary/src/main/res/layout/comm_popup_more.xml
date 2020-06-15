@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:background="@android:color/transparent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/popwindow_bg"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:id="@+id/comm_add_friend"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/comm_item_radius4dp_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/main_title_plus_add_friend"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/comm_add_friend_tips"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dd_dp15"/>
+        </RelativeLayout>
+
+
+        <View
+            style="@style/item_line"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5"/>
+
+        <RelativeLayout
+            android:id="@+id/comm_team"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/comm_item_radius4dp_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/main_title_plus_create_group"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/comm_team_tips"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dd_dp15"/>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/item_line"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5"/>
+
+        <RelativeLayout
+            android:id="@+id/comm_scancode"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/comm_item_radius4dp_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/main_title_left_scan"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/comm_scancode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dd_dp15"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/item_line"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:id="@+id/comm_mine_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/comm_item_radius4dp_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/comm_mine_qrcode"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/comm_mind_qrcode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dd_dp15"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

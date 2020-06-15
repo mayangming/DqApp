@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pop_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+       android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:background="@drawable/shape_white_bg_4dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp40"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/pay_key_board_close_iv"
+                    android:layout_width="@dimen/dd_dp40"
+                    android:layout_height="@dimen/dd_dp40"
+                    android:padding="@dimen/dd_dp12"
+                    android:src="@mipmap/pay_key_board_close" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/please_input_pay_pwd"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/dd_dp14"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <View style="@style/OnePxDivider"/>
+
+            <TextView
+                android:id="@+id/pay_key_board_money_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/dd_dp14"
+                android:text="@string/confirm"
+                android:textColor="@color/text_blue_pressed"
+                android:layout_marginTop="@dimen/dd_dp5"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:textColor="@color/text_title_black"
+                android:textSize="@dimen/dd_dp25"
+                android:textStyle="bold"
+                android:text="￥0.00"
+                android:id="@+id/pay_key_board_amount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp5"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:id="@+id/pay_key_board_wallet_ll"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp46"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginRight="@dimen/dd_dp10"
+                android:background="@drawable/comm_item_selector"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <View style="@style/OnePxDivider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_marginLeft="@dimen/dd_dp15"
+                        android:layout_marginRight="@dimen/dd_dp15"
+                        android:layout_width="@dimen/dd_dp25"
+                        android:layout_height="@dimen/dd_dp25"
+                        android:src="@mipmap/icon_mine_wallet" />
+
+                    <TextView
+                        android:id="@+id/pay_key_board_extra_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_title_black"
+                        android:text="@string/pay_key_board_balance"
+                        android:textSize="@dimen/dd_dp14"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dd_dp10"
+                        android:layout_marginRight="@dimen/dd_dp10"
+                        android:src="@mipmap/icon_right_step" />
+
+                </LinearLayout>
+
+                <View style="@style/OnePxDivider"/>
+            </LinearLayout>
+
+            <com.da.library.view.PwdInputView
+                android:id="@+id/pwd_view"
+                app:pivMaxCount="6"
+                app:pivType="weChat"
+                android:inputType="numberPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dd_dp20"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="@dimen/dd_dp50"
+            android:id="@+id/pay_key_board_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>
+

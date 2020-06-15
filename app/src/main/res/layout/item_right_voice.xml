@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+    <LinearLayout
+        android:layout_width="@dimen/dd_dp100"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dd_dp10"
+        android:background="@mipmap/icon_sender_text_node_normal"
+        android:gravity="end|center">
+        <ProgressBar
+            android:id="@+id/voice_loading"
+            android:layout_width="@dimen/dd_dp20"
+            android:layout_height="@dimen/dd_dp20"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:text="12s"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/item_right_voice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/chat_right_voice_anim"/>
+    </LinearLayout>
+</LinearLayout>

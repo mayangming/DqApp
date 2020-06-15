@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="@dimen/dd_dp150"
+    android:layout_width="@dimen/dd_dp121"
+    android:orientation="vertical"
+    android:background="@mipmap/vip_price_uncheck"
+    android:gravity="center"
+    android:padding="@dimen/dd_dp20">
+    <TextView
+        android:id="@+id/vip_card_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/white"
+        tools:text="月付"/>
+    <TextView
+        android:id="@+id/vip_card_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/sp28"
+        android:textColor="@color/white"
+        tools:text="￥20"/>
+    <TextView
+        android:id="@+id/vip_card_remark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_12"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/color_C9AB78"
+        tools:text="首月开通赠7天"/>
+</RelativeLayout>

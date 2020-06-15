@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:dqtTitle="@string/detail_info"/>
+
+    <TextView
+        android:id="@+id/user_info_exist_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/user_not_exist"
+        android:visibility="gone" />
+
+    <!--头像名称-->
+    <RelativeLayout
+        android:id="@+id/start_user_profile_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp88"
+        android:layout_below="@+id/user_info_title_layout"
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:layout_marginBottom="@dimen/dd_dp20"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        tools:ignore="ObsoleteLayoutParam">
+        <RelativeLayout
+            android:id="@+id/vip_head_outline_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp14"
+            android:layout_marginRight="@dimen/dd_dp14"
+            android:layout_centerVertical="true">
+            <FrameLayout
+                android:id="@+id/head_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+                <ImageView
+                    android:id="@+id/mine_header_iv"
+                    android:layout_width="@dimen/dd_dp50"
+                    android:layout_height="@dimen/dd_dp50"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/portrait"
+                    android:scaleType="centerCrop"/>
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/vip_head_outline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_alignEnd="@+id/head_container"
+                android:layout_alignBottom="@+id/head_container"
+                android:src="@mipmap/icon_vip"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/userLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dd_dp14"
+            android:layout_toRightOf="@id/vip_head_outline_rl"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/mine_name_tv"
+                style="@style/comm_sub_title"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="1"
+                android:padding="0dp" />
+
+            <ImageView
+                android:id="@+id/mine_sex_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dd_dp5"
+                android:contentDescription="@string/sex"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userLayout"
+            android:layout_toRightOf="@id/vip_head_outline_rl"
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/original_nickname_tv"
+                style="@style/comm_sub_small_txt"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/group_nickname_tv"
+                style="@style/comm_sub_small_txt"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/user_detail_chuiniunum_tv"
+                style="@style/comm_sub_small_txt"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_remark_rl"
+        style="@style/comm_sub_item_layout"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/set_remark_phone_tv"
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:text="@string/set_remark" />
+
+        <TextView
+            android:id="@+id/set_remark_phone_bumber_tv"
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp4"
+            android:layout_toRightOf="@+id/set_remark_phone_tv"
+            android:textColor="@color/color_3c74ba" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/userdetail_remarks_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View style="@style/OnePxDivider" />
+
+        <LinearLayout style="@style/comm_sub_item_layout">
+
+            <TextView
+                android:id="@+id/userdetail_remarks_name_tv"
+                style="@style/comm_sub_title"
+                android:text="设置备注和描述" />
+
+            <ImageView
+                android:id="@+id/userdetail_remarks_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dd_dp4"
+                android:layout_marginRight="@dimen/dd_dp6"
+                android:src="@mipmap/remarks_img"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/userdetail_remarks_tv"
+                style="@style/comm_sub_title"
+                android:layout_marginLeft="@dimen/dd_dp4"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <View style="@style/OnePxDivider" />
+    </LinearLayout>
+
+
+    <!--<View android:id="@+id/set_remark_rl_line" style="@style/comm_item_line"/>-->
+
+    <RelativeLayout
+        android:id="@+id/rl_personal_info"
+        style="@style/comm_sub_item_layout"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:text="@string/personal_info" />
+
+        <View
+            style="@style/OnePxDivider"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <!--<View android:id="@+id/rl_personal_info_line" style="@style/comm_item_line"/>-->
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/send_card_rl"-->
+    <!--        style="@style/comm_sub_item_layout"-->
+    <!--        android:layout_marginTop="@dimen/dd_dp20"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_cardcase"-->
+    <!--            style="@style/comm_sub_title"-->
+    <!--            android:text="@string/friend_fa" />-->
+
+    <!--        <View-->
+    <!--            style="@style/OnePxDivider"-->
+    <!--            android:layout_alignParentBottom="true" />-->
+    <!--    </RelativeLayout>-->
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/add_blacklist_rl"-->
+    <!--        style="@style/comm_sub_item_layout"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_blacklist"-->
+    <!--            style="@style/comm_sub_title"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:text="@string/add_blacklist" />-->
+
+    <!--        <View-->
+    <!--            style="@style/OnePxDivider"-->
+    <!--            android:layout_alignParentBottom="true" />-->
+    <!--    </RelativeLayout>-->
+    <!---->
+    <!---->
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/rl_delete_friend"-->
+    <!--        style="@style/comm_sub_item_layout"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <TextView-->
+    <!--            style="@style/comm_sub_title"-->
+    <!--            android:layout_centerVertical="true"-->
+    <!--            android:text="@string/friend_delete" />-->
+
+    <!--        <View-->
+    <!--            style="@style/OnePxDivider"-->
+    <!--            android:layout_alignParentBottom="true" />-->
+    <!--    </RelativeLayout>-->
+
+    <LinearLayout
+        android:id="@+id/into_group_way_ll"
+        style="@style/comm_sub_item_layout"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_width="120dp"
+            android:layout_weight="1"
+            android:text="@string/into_the_group_of_way" />
+
+        <TextView
+            android:id="@+id/into_group_way_tv"
+            style="@style/comm_sub_small_txt"
+            android:layout_weight="3"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="1"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/send_message_tv"
+        style="@style/comm_corner_btn"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:clickable="true"
+        android:enabled="true"
+        android:gravity="center"
+        android:text="@string/send_message"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/user_detail_tips_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:text="@string/add_user_tips"
+        android:visibility="gone" />
+</LinearLayout>

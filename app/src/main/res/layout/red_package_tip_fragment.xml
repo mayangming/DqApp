@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="334dp"
+        android:layout_height="400dp"
+        android:padding="@dimen/dd_dp10"
+        android:background="@mipmap/red_package_tip_bg">
+    <TextView
+        android:id="@+id/red_package_tip1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:text="每日红包雨"/>
+    <ScrollView
+        android:id="@+id/red_package_content_layout"
+        android:layout_width="210dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="100dp"
+        android:scrollbars="none"
+        android:layout_centerHorizontal="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/red_package_outline"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/red_package_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_d14222"
+            android:lineSpacingMultiplier="1.2"
+            android:letterSpacing="0.2"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginTop="@dimen/dp_20"
+            tools:text="说明：每日14：00和20：00分两场红包雨活动准时开抢，持续时长1分钟，用户可点击掉落的红包并打开获取现金，现金会自动存至斗圈零钱内，绑定微信即可提现。"/>
+        <TextView
+            android:id="@+id/red_package_tip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/red_package_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dd_dp5"
+            android:textColor="@color/color_d14222"
+            android:lineSpacingMultiplier="1.2"
+            android:letterSpacing="0.2"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerHorizontal="true"
+            android:text="仅限VIP用户参加"/>
+    </RelativeLayout>
+    </ScrollView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:src="@mipmap/red_package_tip_logo" />
+    <TextView
+        android:id="@+id/red_package_tip_logo"
+        android:layout_below="@+id/red_package_content_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@mipmap/red_package_ok" />
+
+    <TextView
+        android:id="@+id/red_package_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginBottom="@dimen/dd_dp10"
+        android:layout_below="@+id/red_package_tip1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18"
+        android:visibility="gone"
+        android:text="活动说明"/>
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/red_package_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:src="@mipmap/dialog_close"/>
+</LinearLayout>

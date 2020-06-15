@@ -1,0 +1,143 @@
+ext {
+
+    supportVersion = '28.0.0'
+
+    app = [
+       "name"    :    "douquan"
+    ]
+
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: '28.0.3',
+            applicationId    : "com.wd.daquan",
+            minSdkVersion    : 17,
+            targetSdkVersion : 29,
+            versionCode      : 10208,
+            versionName      : "1.02.08",
+
+            /**
+             * JDK版本
+             */
+            sdkSourceCompatibility : 1.8,
+            sdkTargetCompatibility : 1.8,
+            appSourceCompatibility : 1.8,
+            appTargetCompatibility : 1.8
+
+
+    ]
+
+    /*****************************************************************
+     * 注意：定义名称时，如果出现'-'连接符，只能按照该格式使用dependencies['test']，
+     *      反之dependencies.test或dependencies['test']都可以
+     *
+     */
+    dependencies = [
+            /*********************************************************
+             * Android 系统自带
+             */
+            multidex                : 'com.android.support:multidex:1.0.3',
+            support_v4              : "com.android.support:support-v4:${supportVersion}",
+            appcompat_v7            : "com.android.support:appcompat-v7:${supportVersion}",
+            recyclerview_v7         : "com.android.support:recyclerview-v7:${supportVersion}",
+            design                  : "com.android.support:design:${supportVersion}",
+            constraint_layout       : 'com.android.support.constraint:constraint-layout:1.1.3',
+            support_compat          : "com.android.support:support-compat:${supportVersion}",
+            glide                   : 'com.github.bumptech.glide:glide:4.9.0',
+            glide_compiler          : 'com.github.bumptech.glide:compiler:4.9.0',
+            glide_okhttp3           : 'com.github.bumptech.glide:okhttp3-integration:4.8.0',
+            rxandroid               : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+            rxjava                  : 'io.reactivex.rxjava2:rxjava:2.0.5',
+            okhttp                  : 'com.squareup.okhttp3:okhttp:3.10.0',
+            gson                    : 'com.google.code.gson:gson:2.8.4',
+            annotations             : "com.android.support:support-annotations:${supportVersion}",
+            kotlin_config           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
+
+            /*********************************************************
+             * 第三方依赖库
+             */
+            oss_android_sdk             : 'com.aliyun.dpa:oss-android-sdk:2.8.5',
+            //hms_push                    : 'com.huawei.android.hms:push:2.5.3.305',
+            //wheel_picker                : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.1',
+            rxlifecycle_components      : 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1',
+            rxscreenshot_detector       : 'com.github.piasy:rxscreenshotdetector:1.2.0',
+            zxing_android_core          : 'com.google.zxing:android-core:3.3.0',
+            zxing_core                  : 'com.google.zxing:core:3.3.0',
+            //stetho                      : 'com.facebook.stetho:stetho:1.4.1',
+            leakcanary_android          : 'com.squareup.leakcanary:leakcanary-android:1.5.4',
+            leakcanary_android_no_op    : 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4',
+            //stickylistheaders           : 'se.emilsjolander:stickylistheaders:2.7.0',
+            custom_seekbar              : 'io.haydar.csb:custom-seekbar:1.0',
+            kyleduo_switchbutton        : 'com.kyleduo.switchbutton:library:2.0.0',
+            //magic_indicator             : 'com.github.hackware1993:MagicIndicator:1.5.0',
+            rxjava                      : 'io.reactivex.rxjava2:rxjava:2.1.9',
+            rxandroid                   : 'io.reactivex.rxjava2:rxandroid:2.0.2',
+            banner                      : 'com.youth.banner:banner:1.4.10',
+//            xlog                        : 'com.elvishew:xlog:1.6.1',
+
+            // 聊得来，新增
+            //SmartRefreshLayout的github地址： http://github.com/scwang90/SmartRefreshLayout
+            //SmartRefreshLayout的简书地址： https://www.jianshu.com/p/05ce4ab4b948
+            //SmartRefreshLayout的掘进金地址: https://segmentfault.com/a/1190000010066071
+            SmartRefreshLayout          : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14',
+            baseRecyclerView            : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34',
+            //sqlbrite                    : 'com.squareup.sqlbrite3:sqlbrite:3.2.0',
+            //db_framework                : 'android.arch.persistence:db-framework:1.1.1',
+            ijkplayer_java              : 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8',
+            ijkplayer_armv7a            : 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8',
+            overscroll                  : 'me.everything:overscroll-decor-android:1.0.4',
+            ShortcutBadger              : 'me.leolin:ShortcutBadger:1.1.17@aar',
+
+            converter_gson              : 'com.squareup.retrofit2:converter-gson:2.4.0',
+            retrofit                    : 'com.squareup.retrofit2:retrofit:2.6.1',
+            adapter_rxjava              : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
+            logging_intercept           : "com.github.ihsanbal:LoggingInterceptor:3.0.0",
+    ]
+
+    /******************************************************************
+     * 第三方配置信息
+     */
+
+    debug = [
+            /*************************************************************
+             * 测试环境
+             */
+//            "server_open"       : '"https://192.168.72.182:8086/"',
+//            "server"            : '"http://123.56.182.161:9010/"',
+//            "umeng_key"         : '"5d7effde570df3464b000635"',
+//            "umeng_channel"     : '"douquan"',
+//            "yx_appkey"         : '"973afbbc6c0c0a9c95740d929f1c6953"',
+//            "yx_red_packet_key"         : '"dqtest"'
+
+            "server_open"       : '"http://39.106.158.176:8086/"',
+            "server"            : '"http://39.106.158.176:9010/"',
+//            "server"            : '"http://192.168.72.204:9010/"',
+//            "server"            : '"http://192.168.72.197:9010/"',
+//            "server"            : '"http://192.168.72.44:9010/"',
+            "umeng_key"         : '"5d7effde570df3464b000635"',
+            "umeng_channel"     : '"daquan"',
+            "yx_appkey"         : '"973afbbc6c0c0a9c95740d929f1c6953"',
+            "yx_red_packet_key" : '"dqtest"',
+            "wx_pay_app_id"     : '"wx02e1114117d39fed"',//微信ID
+            "wx_pay_api_key"    : '"792C60DBBDF765BED53FBA82168F44D5"',//签名方式一定要与统一下单接口使用的一致
+            "wx_pay_pacakage"   : '"Sign=WXPay"'//微信固定参数
+    ]
+
+    release = [
+               /*************************************************************
+                * 正式环境
+                */
+            "server_open"       : '"http://39.106.158.176:8086/"',
+            "server"            : '"http://api.dq.ink:9010/"',
+//            "server"            : '"http://123.56.182.161:9010/"',
+            "umeng_key"         : '"5d7effde570df3464b000635"',
+            "umeng_channel"     : '"douquan"',
+            "yx_appkey"         : '"4dedc739cca5284c389482a8e31139be"',
+            "yx_red_packet_key" : '"douquan1113"',
+            "wx_pay_app_id"     : '"wx02e1114117d39fed"',//微信ID
+            "wx_pay_api_key"    : '"792C60DBBDF765BED53FBA82168F44D5"',//签名方式一定要与统一下单接口使用的一致
+            "wx_pay_pacakage"   : '"Sign=WXPay"'//微信固定参数
+    ]
+
+    isDebug = true
+    third = isDebug ? debug : release
+}

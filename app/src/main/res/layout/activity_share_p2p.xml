@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".common.activity.ShareP2pOrNewTeamActivity">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/share_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/share_choice_team_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dd_dp10"
+        android:paddingLeft="@dimen/dd_dp9"
+        android:paddingRight="@dimen/dd_dp9"
+        android:paddingTop="@dimen/dd_dp10"
+        android:text="@string/select_team_tips"
+        android:textColor="@color/text_title_black"
+        android:background="@drawable/comm_item_selector"
+        android:textSize="@dimen/dd_dp14"
+        app:layout_constraintTop_toBottomOf="@+id/share_title_layout"
+        tools:ignore="SpUsage" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/share_choice_team_tv"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="Scale"
+            app:srlDrawableProgress="@drawable/ic_progress_puzzle" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/share_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--<com.scwang.smartrefresh.layout.footer.ClassicsFooter-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <com.da.library.widget.SideBar
+        android:id="@+id/share_p2p_side_bar"
+        android:layout_width="@dimen/dd_dp20"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/share_choice_team_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/share_p2p_letter_tv"
+        android:layout_width="@dimen/dd_dp80"
+        android:layout_height="@dimen/dd_dp80"
+        android:background="@drawable/side_bar_text"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dd_dp30"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_choice_team_tv"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/no_data_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_friends"
+        android:textColor="@color/text_title_black"
+        android:textSize="@dimen/dd_dp15"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_choice_team_tv"
+        android:visibility="invisible"
+        tools:ignore="SpUsage" />
+
+</android.support.constraint.ConstraintLayout>

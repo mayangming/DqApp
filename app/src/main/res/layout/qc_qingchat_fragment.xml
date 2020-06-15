@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/messages_fragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/main_title_layout"/>
+        <LinearLayout
+            android:id="@+id/red_package_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dd_dp5"
+            android:layout_centerInParent="true">
+            <LinearLayout
+                android:id="@+id/main_red_package_rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/red_package_logo"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/red_rain_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_000000"
+                        android:layout_marginEnd="@dimen/dd_dp5"
+                        android:layout_marginRight="@dimen/dd_dp5"
+                        android:textSize="@dimen/sp_14"
+                        android:visibility="visible"
+                        android:text="每日红包雨"/>
+                    <cn.iwgang.countdownview.CountdownView
+                        android:id="@+id/count_down_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/dd_dp2"
+                        app:isHideTimeBackground="true"
+                        app:isShowDay="false"
+                        app:isShowHour="false"
+                        app:isShowMinute="true"
+                        app:isShowSecond="true"
+                        app:isShowMillisecond="false"
+                        app:timeTextColor="#000000"
+                        app:timeTextSize="14sp"
+                        app:isTimeTextBold="false"
+                        app:suffixGravity="bottom"
+                        app:suffixTextColor="#000000"
+                        app:suffixTextSize="12sp"
+                        app:suffixHour=":"
+                        app:suffixMinute=":"
+                        app:suffixSecond=""
+                        app:suffixMillisecond="" />
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/main_turntable_lottery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="转盘抽奖"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <include layout="@layout/network_status_bar"/>
+
+    <include layout="@layout/multiport_status_bar"/>
+
+</LinearLayout>

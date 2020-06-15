@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/app_page_bg"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
+
+            <com.da.library.widget.NonScrollGridView
+                android:id="@+id/grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="5"
+                android:paddingLeft="@dimen/dd_dp16"
+                android:paddingRight="@dimen/dd_dp16"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_group_member_size"
+                style="@style/cn_group_detail_item_container_style"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_group_member_size"
+                    style="@style/comm_sub_small_txt"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/dd_dp4"
+                    android:drawableRight="@mipmap/ic_rightjian"
+                    android:text="@string/groupdetails_more_member"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_group_member_online_status"
+                style="@style/comm_sub_item_layout"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_group_member_onlinestatus"
+                    style="@style/comm_sub_title"
+                    android:text="@string/groupdetails_member_online_status"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group_name"
+                style="@style/comm_sub_item_layout"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/groupdetails_name"/>
+
+                <TextView
+                    android:id="@+id/tv_group_name"
+                    style="@style/comm_sub_small_txt"
+                    android:layout_marginRight="@dimen/dd_dp6"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:textColor="@color/text_blue_pressed"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+            </LinearLayout>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_group_code"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/groupdetails_code"/>
+
+                <ImageView
+                    android:id="@+id/iv_code_er_wei_ma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/comm_item_selector"
+                    android:padding="@dimen/dd_dp6"
+                    android:src="@mipmap/main_title_left_qrcode"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+            </LinearLayout>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_group_announcement"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/groupdetails_announcement"/>
+
+                <TextView
+                    android:id="@+id/tv_group_announcement"
+                    style="@style/comm_sub_small_txt"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:gravity="right"
+                    android:singleLine="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+            </LinearLayout>
+
+<!--            <View style="@style/item_line"/>-->
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_group_personal_info"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/group_personal_info"/>
+
+                <TextView
+                    android:id="@+id/tv_group_personal_info"
+                    style="@style/comm_sub_small_txt"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:ems="10"
+                    android:gravity="right"
+                    android:singleLine="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+
+            </LinearLayout>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_group_managed"
+                style="@style/comm_sub_item_layout"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/group_managed"/>
+
+                <ImageView
+                    android:id="@+id/iv_dian_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/conv_voice_rec"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_group_search_chat"
+                style="@style/comm_sub_item_layout"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/group_search_chat"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+
+            </LinearLayout>
+
+            <!--<View style="@style/comm_item_line"/>-->
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:visibility="gone"
+                android:id="@+id/no_brought_group_ll"
+                style="@style/comm_sub_item_layout">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/longtime_redpacket"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rightjian"/>
+            </LinearLayout>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/group_detail_stick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:swBtnDescVisible="false"
+                app:swBtnTitle="@string/chatdetails_set_top"/>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/group_detail_mute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:swBtnDescVisible="false"
+                app:swBtnTitle="@string/chatdetails_message_notice"/>
+
+            <View style="@style/item_line_marin_left_right_10dp"/>
+
+            <LinearLayout
+                style="@style/comm_sub_item_switch_layout"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:layout_weight="1"
+                    android:text="@string/jinyan_notice"/>
+
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/sw_btn_jinyan_notfaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:kswAnimationDuration="300"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswThumbDrawable="@mipmap/ios_thumb"
+                    app:kswThumbMarginBottom="-8dp"
+                    app:kswThumbMarginLeft="-5dp"
+                    app:kswThumbMarginRight="-5dp"
+                    app:kswThumbMarginTop="-2.5dp"
+                    app:kswThumbRangeRatio="1.4"/>
+
+                <!--<com.netease.nim.uikit.common.ui.widget.SwitchButton-->
+                <!--android:id="@+id/sw_btn_jinyan_notfaction"-->
+                <!--android:layout_width="58dip"-->
+                <!--android:layout_height="36.67dip"-->
+                <!--android:layout_gravity="center" />-->
+            </LinearLayout>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/group_detail_maillist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:swBtnDescVisible="false"
+                app:swBtnTitle="保存到通讯录"/>
+
+
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:visibility="gone"
+                android:id="@+id/group_detail_burn"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:swBtnDesc="@string/chatdetails_readdestory"
+                app:swBtnDescVisible="true"
+                app:swBtnTitle="@string/input_panel_burn"/>
+
+            <View
+                android:visibility="gone" style="@style/item_line_marin_left_right_10dp"/>
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:visibility="gone"
+                android:id="@+id/group_detail_screenshot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:swBtnDesc="@string/screenshot_notice_desc"
+                app:swBtnDescVisible="true"
+                app:swBtnTitle="@string/screenshot_notice"/>
+
+            <View
+                android:visibility="gone" style="@style/item_line_marin_left_right_10dp"/>
+
+            <LinearLayout
+                style="@style/comm_sub_item_switch_layout"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dd_dp10"
+                android:paddingRight="@dimen/dd_dp16"
+                android:paddingTop="@dimen/dd_dp10">
+
+                <TextView
+                    android:id="@+id/group_detail_encr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_password"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/sp16"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dd_dp6"
+                    android:text="此对话中所发送的信息都已经进行端到端的加密。"
+                    android:textColor="@color/text_blue_pressed"
+                    android:textSize="@dimen/sp12"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group_clean"
+                style="@style/comm_sub_item_layout"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:text="@string/chatdetails_clean_message"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_group_quit"
+                style="@style/comm_quit_btn"
+                android:layout_marginLeft="@dimen/dd_dp14"
+                android:layout_marginRight="@dimen/dd_dp14"
+                android:layout_marginTop="@dimen/dd_dp30"
+                android:text="@string/quit_group"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

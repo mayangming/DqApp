@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/groupSetMarkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dd_dp32"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:gravity="center_vertical"
+        android:text="@string/group_manager_set_mark_title"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp12" />
+
+    <EditText
+        android:id="@+id/groupSetMarkEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp48"
+        android:background="@color/white"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="@string/group_manager_set_mark_hint"
+        android:maxLength="15"
+        android:paddingLeft="@dimen/dd_dp10"
+        android:paddingRight="@dimen/dd_dp10"
+        android:singleLine="true"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp15" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp12"
+        android:text="@string/group_manager_mark_ins_o"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp6"
+        android:text="@string/group_manager_mark_ins_t"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp12" />
+
+</LinearLayout>

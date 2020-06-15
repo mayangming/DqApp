@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/app_page_bg">
+
+    <RelativeLayout
+        android:id="@+id/itemAlipayRedDetailsHeaderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/bg_redpacket_title" />
+
+        <ImageView
+            android:id="@+id/itemAlipayRedDetailsHeaderAvatar"
+            android:layout_width="@dimen/dd_dp60"
+            android:layout_height="@dimen/dd_dp60"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp64" />
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemAlipayRedDetailsHeaderAvatar"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp13" />
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderBlessing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemAlipayRedDetailsHeaderName"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dd_dp5"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp13" />
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemAlipayRedDetailsHeaderBlessing"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp29"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderMoneyIns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/itemAlipayRedDetailsHeaderMoney"
+            android:layout_marginBottom="@dimen/dd_dp5"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:layout_marginStart="@dimen/dd_dp5"
+            android:layout_toEndOf="@id/itemAlipayRedDetailsHeaderMoney"
+            android:layout_toRightOf="@id/itemAlipayRedDetailsHeaderMoney"
+            android:text="@string/rmb"
+            android:textColor="@color/text_title_black"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderIns"
+            android:layout_width="@dimen/dd_dp240"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemAlipayRedDetailsHeaderMoney"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:gravity="center"
+            android:text="@string/alipay_red_details_account"
+            android:textColor="@color/text_blue"
+            android:textSize="@dimen/dd_dp15"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp25"
+            android:layout_below="@id/itemAlipayRedDetailsHeaderIns" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/itemAlipayRedDetailsHeaderListTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp30"
+        android:layout_below="@id/itemAlipayRedDetailsHeaderLayout"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/itemAlipayRedDetailsHeaderListTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:textSize="@dimen/dd_dp13" />
+    </LinearLayout>
+
+    <View
+        style="@style/OnePxDivider"
+        android:layout_below="@id/itemAlipayRedDetailsHeaderListTitleLayout" />
+</RelativeLayout>

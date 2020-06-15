@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.da.library.widget.CommTitle
+        android:id="@+id/aboutActivityCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/complain_content"
+        android:layout_width="match_parent"
+        android:background="@mipmap/bg_input"
+        android:layout_margin="@dimen/dp_20"
+        android:layout_below="@+id/aboutActivityCommtitle"
+        android:hint="请输入您的投诉问题，客服会在后台为您进行处理~"
+        android:gravity="top|left"
+        android:padding="@dimen/dd_dp5"
+        android:textSize="@dimen/sp_16"
+        android:maxLength="300"
+        android:layout_height="400dp"/>
+    <TextView
+        android:id="@+id/complain_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/complain_content"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/btn_normal"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="提交"/>
+</RelativeLayout>

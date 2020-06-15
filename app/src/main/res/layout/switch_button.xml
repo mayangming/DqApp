@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ch.ielse.view.SwitchView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:isOpened="true"-->
+    <!--app:primaryColorDark="@color/color_5495e8"-->
+    <!--app:primaryColor="@color/color_5495e8"/>-->
+
+
+<com.kyleduo.switchbutton.SwitchButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:kswBackDrawable="@drawable/ios_back_drawable"
+    app:kswThumbRangeRatio="1.4"
+    app:kswThumbDrawable="@mipmap/ios_thumb"
+    app:kswAnimationDuration="300"
+    app:kswThumbMarginBottom="-8dp"
+    app:kswThumbMarginLeft="-5dp"
+    app:kswThumbMarginRight="-5dp"
+    app:kswThumbMarginTop="-2.5dp" />
+

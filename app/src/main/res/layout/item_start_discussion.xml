@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/comm_item_selector"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dis_catalog"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp20"
+        android:background="@color/color_ebebeb"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dd_dp11"
+        android:textSize="@dimen/dd_dp12"
+        android:text="A"
+        android:textColor="@color/color_929197" />
+
+
+    <LinearLayout
+        android:id="@+id/dis_frienditem"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="false"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/list_selector">
+
+        <CheckBox
+            android:id="@+id/dis_select"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/transparent"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp11"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" />
+
+        <ImageView
+            android:id="@+id/dis_frienduri"
+            android:layout_width="@dimen/dd_dp34"
+            android:layout_height="@dimen/dd_dp34"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dd_dp8"
+            android:layout_marginRight="@dimen/dd_dp8"
+            android:layout_marginTop="@dimen/dd_dp8"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_avatar" />
+
+        <TextView
+            android:id="@+id/dis_friendname"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="32"
+            android:layout_toRightOf="@+id/new_header"
+            android:textSize="@dimen/dd_dp16"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/color_dbdbdb" />
+
+</LinearLayout>

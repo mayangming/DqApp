@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wd.daquan">
+    <!-- 权限声明 -->
+    <!-- 访问网络状态 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 控制呼吸灯，振动器等，用于新消息提醒 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 外置存储存取权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" /> <!--在SDCard中创建与删除文件权限-->
+    <!-- 8.0 系统需要 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 多媒体相关 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_IPHONE_STATE" />
+    <!-- 如果需要实时音视频通话模块，下面的权限也是必须的。否则，可以不加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- 安装未知来源的应用 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"
+        tools:ignore="UnusedAttribute" />
+    <!-- SDK 权限申明, 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
+    <!-- 和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。 -->
+    <permission
+        android:name="com.wd.daquan.permission.RECEIVE_MSG"
+        android:protectionLevel="signature" />
+    <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
+    <uses-permission android:name="com.wd.daquan.permission.RECEIVE_MSG" />
+    <!-- 定位相关，帮助投放广告 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 屏幕亮度,视频广告需要 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
+    <!-- 小米推送 -->
+    <permission
+        android:name="com.wd.daquan.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.wd.daquan..permission.MIPUSH_RECEIVE"/>
+    <uses-sdk tools:overrideLibrary="com.huawei.android.hms.base,com.huawei.android.hms.push"/>
+    <!--魅族推送-->
+    <!-- 兼容flyme5.0以下版本，魅族内部集成pushSDK必填，不然无法收到消息-->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE"/>
+    <permission
+        android:name="com.wd.daquan.push.permission.MESSAGE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.wd.daquan.push.permission.MESSAGE"/>
+    <!--  兼容flyme3.0配置权限-->
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE"/>
+    <permission
+        android:name="com.wd.daquan.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.wd.daquan.permission.C2D_MESSAGE"/>
+    <!--  oppo推送配置权限-->
+    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+
+    <application
+        android:name=".DqApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".login.activity.StartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LauncherBg">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:label="@string/app_name">
+                <!-- 系统分享-->
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <!-- SDK分享-->
+                <data
+                    android:host="dqshare"
+                    android:scheme="dqchat" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <!-- SDK登录-->
+                <data
+                    android:host="dqlogin"
+                    android:scheme="dqchat" />
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".login.activity.SplashActivity"
+
+            android:screenOrientation="portrait">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter android:label="@string/app_name">-->
+<!--            &lt;!&ndash; 系统分享&ndash;&gt;-->
+<!--                <action android:name="android.intent.action.SEND" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                &lt;!&ndash; SDK分享&ndash;&gt;-->
+<!--                <data-->
+<!--                    android:host="dqshare"-->
+<!--                    android:scheme="dqchat" />-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                &lt;!&ndash; SDK登录&ndash;&gt;-->
+<!--                <data-->
+<!--                    android:host="dqlogin"-->
+<!--                    android:scheme="dqchat" />-->
+
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <!--
+             APP key, 可以在这里设置，也可以在 SDKOptions 中提供。
+            如果 SDKOptions 中提供了，取 SDKOptions 中的值。云信app_key:4c10a79a17f0bb0c89541757ae70349d
+        -->
+<!--        <meta-intentUrl-->
+<!--            android:name="com.netease.nim.appKey"-->
+<!--            android:value="4c10a79a17f0bb0c89541757ae70349d" />-->
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 录音的服务 -->
+        <service android:name="com.zlw.main.recorderlib.recorder.RecordService" />
+        <!-- 选择登录注册，微信第三方登录 -->
+        <activity
+            android:name=".login.activity.LoginRegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
+        <!-- 密码登录 -->
+        <activity
+            android:name=".login.activity.LoginPasswordActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <!-- 密码快捷登录 -->
+        <activity
+            android:name=".login.activity.LoginPasswordQuickActivity"
+            android:screenOrientation="portrait" />
+        <!-- 验证码登录 -->
+        <activity
+            android:name=".login.activity.LoginCodeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 注册 -->
+        <activity
+            android:name=".login.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.activity.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置用户信息 -->
+        <activity
+            android:name=".login.activity.SetUserInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置用户密码 -->
+        <activity
+            android:name=".login.activity.SetLoginPasswordActivity"
+            android:screenOrientation="portrait" />
+        <!-- 验证码快捷登录 -->
+        <activity
+            android:name=".login.activity.LoginCodeQuickActivity"
+            android:screenOrientation="portrait" />
+        <!-- 忘记密码 -->
+        <activity
+            android:name=".login.activity.ForgetLoginPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.carema.CaremaActivity"
+            android:screenOrientation="portrait" />
+        <!-- webview -->
+        <activity
+            android:name=".common.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置 -->
+        <activity
+            android:name=".mine.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- VIP页面 -->
+        <activity
+            android:name=".mine.activity.VipActivity"
+            android:screenOrientation="portrait" />
+        <!-- VIP兑换页面 -->
+        <activity
+            android:name=".mine.activity.VipExchangeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 零钱 -->
+        <activity
+            android:name=".mine.activity.WalletCloudActivity"
+            android:screenOrientation="portrait" />
+        <!-- 提现 -->
+        <activity
+            android:name=".mine.activity.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <!-- 提现结果页 -->
+        <activity
+            android:name=".mine.activity.WithdrawResultActivity"
+            android:screenOrientation="portrait" />
+        <!-- 提现微信绑定页面 -->
+        <activity
+            android:name=".mine.activity.BindWxActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 提现记录页 -->
+        <activity
+            android:name=".mine.activity.WithdrawRecordActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 提现记录页 -->
+        <activity
+            android:name=".mine.activity.PayPasswordActivity"
+            android:screenOrientation="portrait" />
+        <!-- 账号绑定 -->
+        <activity
+            android:name=".mine.alipay.AccountBlindActivity"
+            android:screenOrientation="portrait" />
+        <!-- 新消息通知 -->
+        <activity
+            android:name=".mine.activity.NewMsgNotifyActivity"
+            android:screenOrientation="portrait" />
+        <!-- 安全 -->
+        <activity
+            android:name=".mine.activity.SafeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置登录密码 -->
+        <activity
+            android:name=".mine.activity.LoginPwdSettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 修改登录密码 -->
+        <activity
+            android:name=".mine.activity.LoginPwdModifyActivity"
+            android:screenOrientation="portrait" />
+        <!-- 黑名单 -->
+        <activity
+            android:name=".mine.activity.BlackListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 安全中心 -->
+        <activity
+            android:name=".mine.safe.SafeCenterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 冻结与解冻 -->
+        <activity
+            android:name=".mine.safe.AboutFreezeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 冻结与解冻下一步 -->
+        <activity
+            android:name=".mine.safe.DoAboutFreezeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 冻结类型 -->
+        <activity
+            android:name=".mine.safe.FreezeTypeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 字体大小 -->
+        <activity
+            android:name=".mine.activity.TextSizeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 背景 -->
+        <activity
+            android:name=".mine.activity.ChatBGSettingInActivity"
+            android:screenOrientation="portrait" />
+        <!-- 背景详情 -->
+        <activity
+            android:name=".mine.activity.ChatBGSettingDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 关于 -->
+        <activity
+            android:name=".mine.activity.AboutQSActivity"
+            android:screenOrientation="portrait" />
+        <!-- 关于 -->
+        <activity
+            android:name=".mine.activity.ComplaintActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人信息 -->
+        <activity
+            android:name=".mine.user.PersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人信息设置 -->
+        <activity
+            android:name=".mine.user.PersonalInfoSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.redpacket.activity.AlipayP2pActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.redpacket.activity.AlipayTeamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.redpacket.activity.AlipayBindingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 微信登录 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 微信支付结果回调 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 微信绑定手机号 -->
+        <activity
+            android:name=".login.activity.BindPhoneActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户资料详情 -->
+        <activity
+            android:name=".contacts.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 添加好友 -->
+        <activity
+            android:name=".contacts.activity.AddFriendActivity"
+            android:screenOrientation="portrait" />
+        <!-- 搜索添加好友 -->
+        <activity
+            android:name=".contacts.activity.SearchAddFriendActivity"
+            android:screenOrientation="portrait" />
+        <!-- 新的朋友 -->
+        <activity
+            android:name=".contacts.activity.NewFriendActivity"
+            android:screenOrientation="portrait" />
+        <!-- 手机通讯录匹配 -->
+        <activity
+            android:name=".contacts.activity.MobileContactsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 单聊设置页面 -->
+        <activity
+            android:name=".chat.single.SingleDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群设置页面 -->
+        <activity
+            android:name=".chat.group.activity.GroupDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 抢红包 -->
+        <activity
+            android:name=".chat.redpacket.activity.RedpacketRobActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden|adjustResize" />
+        <!-- 查看大图 -->
+        <activity
+            android:name=".common.activity.LookBigPhotoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 邀请手机联系人 -->
+        <activity
+            android:name=".contacts.activity.InviteMobileContactActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".contacts.activity.SetRemarkNameActivity"
+            android:screenOrientation="portrait" />
+        <!-- 备注图片放大 -->
+        <activity
+            android:name=".contacts.activity.RemarksImgZoomAct"
+            android:screenOrientation="portrait" />
+        <!-- 红包单人详情页 -->
+        <activity
+            android:name=".chat.redpacket.activity.RedpacketP2pDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 红包群组详情页 -->
+        <activity
+            android:name=".chat.redpacket.activity.RedpacketTeamDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 专属抢红包 -->
+        <activity
+            android:name=".chat.redpacket.activity.RedpacketExclusiveRobActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <!-- 修改头像 -->
+        <activity
+            android:name=".mine.user.PersonalAvatarSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name=".common.DqFileProvider"
+            android:authorities="com.wd.daquan.dqprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/img" />
+        </provider>
+        <!-- 支付宝授权 -->
+        <activity
+            android:name=".mine.alipay.AlipayAuthActivity"
+            android:screenOrientation="portrait" />
+        <!-- 支付宝红包列表 -->
+        <activity
+            android:name=".mine.alipay.AlipayPayListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 支付宝红包领取详情 -->
+        <activity
+            android:name=".mine.alipay.AlipayRedDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 下载app -->
+        <activity
+            android:name=".login.activity.DownAppActivity"
+            android:screenOrientation="portrait" />
+        <!-- 支付宝红包选择联系人 -->
+        <activity
+            android:name=".chat.friend.SelectGroupMemberActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.friend.SelectedActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden|adjustResize" />
+        <!-- 我的二维码 群二维码 -->
+        <activity
+            android:name=".mine.scan.QRCodeActivity"
+            android:screenOrientation="portrait"/>
+        <!-- 我的二维码 群二维码 -->
+        <activity
+            android:name=".mine.scan.ScanQRCodeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme"/>
+        <!-- 我的二维码 群二维码 -->
+        <activity
+            android:name=".mine.alipay.AliPayWebviewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群昵称 -->
+        <activity
+            android:name=".chat.group.activity.GroupChatNameActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群公告 -->
+        <activity
+            android:name=".chat.group.activity.GroupNoticeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群公告 -->
+        <activity
+            android:name=".chat.group.activity.GroupPersonalInfosActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <!-- 群聊搜索 -->
+        <activity
+            android:name=".chat.group.activity.GroupSearchChatActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <!-- 设置群群管理 -->
+        <activity
+            android:name=".chat.group.activity.GroupManagerActivity"
+            android:screenOrientation="portrait" />
+        <!-- 总群人数界面 -->
+        <activity
+            android:name=".chat.group.activity.TotalGroupMemberActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <!-- 群管理员 -->
+        <activity
+            android:name=".chat.group.activity.GroupManagerSettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群成员 -->
+        <activity
+            android:name=".chat.group.activity.GroupMembersActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.ExitGroupMembersActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置群聊号 -->
+        <activity
+            android:name=".chat.group.activity.GroupNumberActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择群组成员界面 -->
+        <activity
+            android:name=".chat.group.activity.SelectFriendsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden|adjustResize"/>
+        <!-- 相册列表 -->
+        <activity
+            android:name=".mine.scan.QCPhotoAlbumListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 相册详情 -->
+        <activity
+            android:name=".mine.scan.QCPhotoAlbumDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.TeamListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 已保存的群聊 -->
+        <activity
+            android:name=".contacts.activity.SavedTeamsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".chat.ait.AitActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <!-- 最近聊天分享 -->
+        <activity
+            android:name=".common.activity.ShareActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择联系人分享 -->
+        <activity
+            android:name=".common.activity.ShareP2pOrNewTeamActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择群组分享 -->
+        <activity
+            android:name=".common.activity.ShareTeamActivity"
+            android:screenOrientation="portrait" />
+        <!-- 查看群成员个人信息 -->
+        <activity
+            android:name=".contacts.activity.GroupPersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 新朋友详情页 -->
+        <activity
+            android:name=".contacts.activity.NewFriendDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 搜索好友页面 -->
+        <activity
+            android:name=".contacts.activity.SearchFriendActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <!-- 群助手 -->
+        <activity
+            android:name=".chat.group.activity.GroupAidesActivity"
+            android:screenOrientation="portrait" />
+        <!-- 群助手详情 -->
+        <activity
+            android:name=".chat.group.activity.GroupAidesDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 搜索群助手 -->
+        <activity
+            android:name=".chat.group.activity.SearchGroupAidesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.card.CardActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.search.SearchConversationActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.emotion.MyEmotionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.emotion.PicSelectorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.AddGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.multiport.MultiportActivity"
+            android:screenOrientation="portrait" />
+        <!-- glide配置 -->
+        <meta-data
+            android:name="com.wd.daquan.glide.CustomGlideModule"
+            android:value="AppGlideModule" />
+        <!-- sdk登录 -->
+        <activity
+            android:name=".sdk.DqSdkLoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="dq.intent.login" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- sdk分享 -->
+        <activity
+            android:name=".sdk.DqSdkShareActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="dq.intent.share" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sdk.DqSdkP2pOrNewTeamShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sdk.DqSdkTeamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.GroupLongTimeRpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.collection.CollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.collection.SessionCollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.GroupMemberForbidDoRPActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.GroupMemberForbidDoRPMemberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.group.activity.GroupCopyNewActivity"
+            android:screenOrientation="portrait" />
+        <!--我的零钱-->
+        <activity android:name=".mine.wallet.activity.WalletActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Red_d84e43_Theme"
+            />
+        <!--按聊天类型搜索聊天记录-->
+        <activity android:name=".chat.group.activity.GroupSearchChatTypeActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <!--验证原密码-->
+        <activity android:name=".mine.wallet.activity.CheckPayPwdActivity"
+            android:screenOrientation="portrait" />
+        <!--设置支付密码-->
+        <activity android:name=".mine.wallet.activity.SetPayPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".third.camera.CameraAct"
+            android:screenOrientation="portrait" />
+        <!-- 个人发送红包 -->
+        <activity
+            android:name=".chat.redpacket.RedPacketPersonalSendAct"
+            android:screenOrientation="portrait" />
+        <!--我的银行卡 -->
+        <activity android:name=".mine.wallet.activity.MyBankCardActivity"
+            android:screenOrientation="portrait" />
+        <!--添加银行卡 -->
+        <activity android:name=".mine.wallet.activity.AddBankCardActivity"
+            android:screenOrientation="portrait" />
+        <!--银行卡详情 -->
+        <activity android:name=".mine.wallet.activity.BankCardDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 群发送红包 -->
+        <activity
+            android:name=".chat.redpacket.RedPacketGroupSendAct"
+            android:screenOrientation="portrait" />
+        <!-- 添加银行卡绑定的个人信息 -->
+        <activity
+            android:name=".mine.wallet.activity.WriteBankCardInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 选择职业 -->
+        <activity
+            android:name=".mine.wallet.activity.ChoiceProfessionalActivity"
+            android:screenOrientation="portrait" />
+        <!-- 提现 -->
+        <activity
+            android:name=".mine.wallet.activity.CashOutActivity"
+            android:screenOrientation="portrait" />
+        <!-- 充值 -->
+        <activity
+            android:name=".mine.wallet.activity.RechargeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 钱包认证 短信-->
+        <activity
+            android:name=".mine.wallet.activity.VerificationCodeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 钱包认证 -->
+        <activity
+            android:name=".mine.wallet.activity.WalletVerifyActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 零钱明细 -->
+        <activity
+            android:name=".mine.wallet.activity.LooseChangeTransationListActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 红包明细 -->
+        <activity
+            android:name=".mine.wallet.activity.RedTransationListActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 接收红包 -->
+        <activity
+            android:name=".chat.redpacket.RedPacketReceiveAct"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:theme="@style/dialog"/>
+
+        <!-- 发送者红包详情 -->
+        <activity
+            android:name=".chat.redpacket.details.RedPacketDetailsAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 接收者红包详情 -->
+        <!-- p2p转帐 -->
+        <activity
+            android:name=".chat.redpacket.transfer.TransferP2PAct"
+            android:screenOrientation="portrait" />
+
+        <!-- p2p转帐接收 -->
+        <activity
+            android:name=".chat.redpacket.transfer.TransferP2PReceiveAct"
+            android:screenOrientation="portrait" />
+
+        <!-- 连连支付忘记密码设置密码 -->
+        <activity
+            android:name=".mine.wallet.activity.ForgotSetPayPwdActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 支付短信验证码 -->
+        <activity
+            android:name=".mine.wallet.activity.PaySmsCodeActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity android:name=".imui.activity.PhotoDetailsActivity" />
+        <activity android:name=".imui.activity.RedPackageDetailsActivity" />
+        <activity android:name=".imui.activity.RedPackageSendActivity" />
+        <activity android:name=".imui.activity.VideoDetailsActivity" android:keepScreenOn="true" />
+
+        <!-- ======穿山甲广告 start========= -->
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:authorities="${applicationId}.TTFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+            android:authorities="${applicationId}.TTMultiProvider"
+            android:exported="false" />
+        <!-- =======穿山甲广告 end======== -->
+
+        <service
+            android:name=".service.HuaWeiHmsMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

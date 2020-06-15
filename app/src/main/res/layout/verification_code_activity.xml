@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/verificationCodeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        style="@style/OnePxDivider"/>
+    <EditText
+        android:id="@+id/verificationCodePhoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp50"
+        android:layout_toLeftOf="@+id/verification_code_resend"
+        android:paddingLeft="@dimen/dd_dp10"
+        android:background="@color/white"
+        android:hint="请输入手机号码"
+        android:inputType="number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/color_000000"
+        android:textColorHint="@color/color_d8d8d8"
+        android:textSize="@dimen/dd_dp18" />
+    <View
+        style="@style/OnePxDivider"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/verification_code_tips">
+
+        <EditText
+            android:id="@+id/verificationCodeCodeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp50"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:layout_toLeftOf="@+id/verificationCodeSend"
+            android:background="@color/white"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_000000"
+            android:textColorHint="@color/color_d8d8d8"
+            android:textSize="@dimen/dd_dp18" />
+
+        <TextView
+            android:id="@+id/verificationCodeSend"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp50"
+            android:layout_alignBottom="@+id/verificationCodeCodeEditText"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:minEms="5"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"
+            android:background="@color/white"
+            android:text="@string/getCode"
+            android:textColor="@color/text_color_selector"
+            android:textSize="@dimen/dd_dp16" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/verificationCodeNextBtn"
+        style="@style/LoginRegisterButtonStyle"
+        android:layout_below="@+id/password_rl"
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:text="@string/nextStep" />
+
+</LinearLayout>

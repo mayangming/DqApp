@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:su="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@android:color/white"
+    android:orientation="horizontal" >
+
+    <com.base.baselibrary.util.pickerios.picker.ScrollerNumberPicker
+        android:id="@+id/pickerTimer_Hour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        su:itemNumber="3"
+        su:lineColor="#ffff6000"
+        su:maskHight="32dp"
+        su:noEmpty="true"
+        su:normalTextColor="#777"
+        su:normalTextSize="14sp"
+        su:selecredTextColor="#ff000000"
+        su:selecredTextSize="22sp"
+        su:unitHight="50dp" />
+    
+    <TextView 
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="时"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        />
+
+    <com.base.baselibrary.util.pickerios.picker.ScrollerNumberPicker
+        android:id="@+id/pickerTimer_Minute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        su:itemNumber="3"
+        su:lineColor="#ffff6000"
+        su:maskHight="32dp"
+        su:noEmpty="true"
+        su:normalTextColor="#777"
+        su:normalTextSize="14sp"
+        su:selecredTextColor="#ff000000"
+        su:selecredTextSize="22sp"
+        su:unitHight="50dp" />
+
+    <TextView 
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="分"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        />
+</LinearLayout>

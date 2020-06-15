@@ -1,0 +1,21 @@
+package com.wd.daquan.http;
+
+import com.google.gson.JsonElement;
+
+/**
+ * HTTP返回数据的基本结构
+ */
+public class HttpBaseBean<T>{
+    public int status;//请求结果状态码
+    public String msg;//请求结果描述内容
+    public JsonElement data;//该字段不解析,写成这样的话，该字段就不会解析了，使用toString()既可以获取到原来的json内容
+    public T obj;//解析后的对象
+    @Override
+    public String toString() {
+        return "HttpBaseBean{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", data='" + data.toString() + '\'' +
+                '}';
+    }
+}

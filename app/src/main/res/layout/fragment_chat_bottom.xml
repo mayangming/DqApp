@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/chat_bottom_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dd_dp10"
+        android:gravity="center"
+        android:background="@drawable/selector_recodering_btn"
+        android:text="录音"/>
+    <EditText
+        android:id="@+id/chat_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:layout_toStartOf="@+id/chat_send"
+        android:layout_toEndOf="@+id/chat_bottom_audio"
+        android:hint="输入框"/>
+    <Button
+        android:id="@+id/chat_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/chat_bottom_more"
+        android:text="发送消息"/>
+    <Button
+        android:id="@+id/chat_bottom_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="更多"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chat_bottom_more_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@+id/chat_edt"/>
+</RelativeLayout>

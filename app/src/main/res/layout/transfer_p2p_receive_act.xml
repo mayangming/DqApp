@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/base_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44" />
+
+    <ImageView
+        android:id="@+id/transfer_p2p_receive_img"
+        android:layout_width="@dimen/dd_dp38"
+        android:layout_height="@dimen/dd_dp38"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp48"
+        android:contentDescription="@string/headPic"
+        android:gravity="center_vertical"
+        android:src="@mipmap/icon_pay_wait" />
+
+    <TextView
+        android:id="@+id/transfer_p2p_receive_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="11dp"
+        android:text="@string/transfer_receive_wait_receipt"
+        android:textColor="@color/app_txt_333333"
+        android:textSize="@dimen/dd_dp16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp48"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/transfer_p2p_receive_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dd_dp14"
+            android:layout_marginBottom="@dimen/dd_dp27"
+            android:gravity="center_vertical"
+            android:text="@string/redpacket_send_money"
+            android:textColor="@color/color_21251d"
+            android:textSize="@dimen/dd_dp40" />
+
+        <TextView
+            android:id="@+id/transfer_p2p_receive_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp36"
+            android:layout_marginLeft="@dimen/dd_dp14"
+            android:layout_marginRight="@dimen/dd_dp14"
+            android:background="@drawable/btn_login_item_bg"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="@string/transfer_receive_confirm_receipt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dd_dp16" />
+
+        <TextView
+            android:id="@+id/transfer_p2p_receive_confirm_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:text="@string/transfer_receive_return"
+            android:textColor="@color/app_txt_999999"
+            android:textSize="@dimen/dd_dp14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/transfer_p2p_receive_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginBottom="@dimen/dd_dp20"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/transfer_p2p_receive_tranfer_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/app_theme_color"
+            android:textSize="@dimen/dd_dp12" />
+
+        <TextView
+            android:id="@+id/transfer_p2p_receive_receive_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:textColor="@color/app_theme_color"
+            android:textSize="@dimen/dd_dp12" />
+    </LinearLayout>
+</LinearLayout>

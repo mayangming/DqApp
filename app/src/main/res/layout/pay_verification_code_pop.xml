@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pay_pwd_pop_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp14"
+        android:layout_marginBottom="@dimen/dd_dp45"
+        android:background="@drawable/shape_button_solid"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp36"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/pay_verification_code_pop_close"
+                android:layout_width="@dimen/dd_dp14"
+                android:layout_height="@dimen/dd_dp14"
+                android:layout_marginStart="@dimen/dd_dp14"
+                android:layout_marginLeft="@dimen/dd_dp14"
+                android:background="@mipmap/icon_pay_close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/pay_pwd_input"
+                android:textColor="@color/color_000000"
+                android:textSize="@dimen/dd_dp17" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp1"
+            android:background="@color/color_d4d4d6" />
+
+        <TextView
+            android:id="@+id/pay_verification_code_pop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dd_dp8"
+            android:textColor="@color/app_txt_999999"
+            android:textSize="@dimen/dd_dp15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:layout_marginBottom="@dimen/dd_dp10"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:text="@string/redpacket_send_money"
+                android:textColor="@color/color_252525"
+                android:textSize="@dimen/dd_dp16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pay_verification_code_pop_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_252525"
+                android:textSize="@dimen/dd_dp23" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp1"
+            android:layout_marginLeft="@dimen/dd_dp15"
+            android:layout_marginRight="@dimen/dd_dp15"
+            android:background="@color/color_d4d4d6" />
+
+        <com.da.library.view.PwdInputView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pay_verification_code_pop_pswview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dd_dp20"
+            android:inputType="number"
+            app:pivMaxCount="6"
+            app:pivType="weChat" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_ebebeb"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/personalInfoSettingImgAvatar"
+            android:layout_width="@dimen/dd_dp60"
+            android:layout_height="@dimen/dd_dp60"
+            android:layout_margin="@dimen/dd_dp10"
+            android:src="@drawable/user_avatar"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/personalInfoSettingTxtQCNumName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@id/personalInfoSettingImgAvatar"
+            android:ellipsize="end"
+            android:maxLength="16"
+            android:maxLines="1"
+            android:text="@string/personal_info_setting_qs_portrait"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp16"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/personalInfoSettingTxtQSNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="斗圈号 "/>
+
+        <View
+            android:id="@+id/personalInfoSettingline"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/personalInfoSettingTxtQSNum"
+            android:background="@color/color_e7e7e7"/>
+
+        <EditText
+            android:id="@+id/personalInfoSettingEtQSNum"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp34"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/personalInfoSettingline"
+            android:background="@mipmap/bg_input"
+            android:focusable="true"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-"
+            android:focusableInTouchMode="true"
+            android:hint="@string/personal_info_setting_qs_hint"
+            android:maxLength="20"
+            android:paddingLeft="@dimen/dd_dp5"
+            android:paddingRight="30dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_blue_pressed"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <ImageView
+            android:id="@+id/personalInfoSettingImgQCNum"
+            android:layout_width="@dimen/dd_dp16"
+            android:layout_height="@dimen/dd_dp16"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:background="@mipmap/clear"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dd_dp10"
+            android:scaleType="center"
+            android:textColor="@color/text_blue"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/personalInfoSettingTxtQCNumIns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/personal_info_setting_qs_tips"
+        android:visibility="visible"/>
+    <TextView
+        android:id="@+id/personalInfoSettingTxtQCNumwarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/personal_info_setting_qs_warning"
+        android:textColor="@color/color_ff0000"
+        android:visibility="gone"/>
+</LinearLayout>

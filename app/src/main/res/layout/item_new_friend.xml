@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--item内容展示容器-->
+    <RelativeLayout
+        android:id="@+id/item_container_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp71"
+        android:background="@drawable/comm_item_selector">
+
+        <!--头像-->
+        <RelativeLayout
+            android:id="@+id/item_portrait_head_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9">
+            <FrameLayout
+                android:id="@+id/head_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+                <ImageView
+                    android:id="@+id/item_portrait_iv"
+                    android:layout_width="@dimen/dd_dp34"
+                    android:layout_height="@dimen/dd_dp34"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_avatar"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/item_portrait_head_outline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_alignBottom="@+id/head_container"
+                android:layout_alignEnd="@+id/head_container"
+                android:src="@mipmap/icon_vip"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_portrait_head_ll"
+            android:layout_toLeftOf="@+id/item_add_tv">
+            <!--用户名-->
+            <TextView
+                android:id="@+id/item_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLength="32"
+                android:textColor="@color/text_title_black"
+                android:textSize="@dimen/dd_dp16"
+                android:visibility="gone"
+                tools:text="用户名"
+                tools:visibility="visible"
+                tools:ignore="RtlHardcoded,SpUsage" />
+            <!--备注-->
+            <TextView
+                android:id="@+id/item_remark_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLength="32"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:textColor="@color/text_blue_pressed"
+                android:textSize="@dimen/dd_dp14"
+                tools:visibility="visible"
+                tools:text="备注"
+                tools:ignore="RtlHardcoded,SpUsage" />
+        </LinearLayout>
+        <!--添加按钮/已添加按钮-->
+        <TextView
+            android:id="@+id/item_add_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp27"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dd_dp22"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/comm_btn_4dp_corner_selector"
+            android:textSize="@dimen/dd_dp13"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/dd_dp6"
+            android:paddingRight="@dimen/dd_dp6"
+            tools:visibility="visible"
+            tools:text="同意"
+            tools:ignore="RtlHardcoded,SpUsage" />
+    </RelativeLayout>
+
+    <!--底部分割线-->
+    <View
+        android:id="@+id/item_line"
+        style="@style/item_line"
+        android:layout_marginLeft="@dimen/dd_dp9"
+        android:layout_marginRight="@dimen/dd_dp9"
+        tools:ignore="RtlHardcoded" />
+
+</LinearLayout>

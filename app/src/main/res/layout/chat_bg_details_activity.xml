@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/chatBGSettingDetailsCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/chatBGSettingDetailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/chatBGSettingDetailsCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/text_title_black"
+            android:gravity="center"
+            android:padding="@dimen/dd_dp10"/>
+        <TextView
+            android:id="@+id/chatBGSettingDetailsSet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/chat_bg_set"
+            android:textSize="@dimen/title_text_size"
+            android:textColor="@color/text_title_black"
+            android:gravity="center"
+            android:padding="@dimen/dd_dp10"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/chatBGSettingDetailsImg"
+        android:layout_below="@id/chatBGSettingDetailsCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chatBGSettingDetailsLayout"/>
+</RelativeLayout>

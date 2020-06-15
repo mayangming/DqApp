@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp5"
+        android:layout_marginBottom="@dimen/dd_dp5">
+
+        <ImageView
+            android:id="@+id/groupSetMangerListAvatar"
+            android:layout_width="@dimen/dd_dp34"
+            android:layout_height="@dimen/dd_dp34"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_avatar" />
+
+        <TextView
+            android:id="@+id/groupSetMangerListName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/groupSetMangerListAvatar"
+            android:layout_marginLeft="@dimen/dd_dp5"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="16"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16" />
+        <ImageView
+            android:id="@+id/groupSetMangerListDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:padding="@dimen/dd_dp8"
+            android:src="@mipmap/cn_icon_delete_describe"/>
+    </RelativeLayout>
+    <View
+        android:layout_alignParentBottom="true"
+        style="@style/OnePxDivider"/>
+</RelativeLayout>

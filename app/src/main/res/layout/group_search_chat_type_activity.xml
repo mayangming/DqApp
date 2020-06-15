@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:orientation="horizontal"
+        android:background="@color/app_page_bg"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dd_dp5"
+            android:background="@drawable/shape_white_bg_4dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/dd_dp5"
+                android:src="@mipmap/search" />
+
+            <TextView
+                android:id="@+id/group_search_trade_search_hint_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/group_search_chat_trade"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/dd_dp13" />
+
+            <EditText
+                android:id="@+id/group_search_trade_input_et"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp34"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="@dimen/dd_dp5"
+                android:paddingRight="@dimen/dd_dp5"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/app_txt_999999"
+                android:textSize="@dimen/dd_dp13" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/group_search_trade_title_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textSize="@dimen/dd_dp16"
+            android:textColor="@color/text_color_selector"
+            android:textIsSelectable="true"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/title_ll"
+        android:id="@+id/group_search_trade_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/group_search_trade_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp120"
+        android:layout_below="@+id/title_ll"
+        android:visibility="gone"
+        android:text="@string/group_search_chat_no_content"
+        android:textSize="@dimen/dd_dp12"
+        android:textColor="@color/color_ababad"/>
+
+</RelativeLayout>

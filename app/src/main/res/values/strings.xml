@@ -1,0 +1,1025 @@
+<resources >
+    <string name="app_name" translatable="false">斗圈</string>
+
+    <string name="main_tab_chat" translatable="false">斗圈</string>
+    <string name="main_tab_contacts" translatable="false">通讯录</string>
+    <string name="main_tab_discover" translatable="false">发现</string>
+    <string name="main_tab_news" translatable="false">资讯</string>
+    <string name="main_tab_shopping" translatable="false">商城</string>
+    <string name="main_tab_mine" translatable="false">我的</string>
+
+
+    <!-- 提示语 -->
+    <string name="tip_is_loading" translatable="false">正在努力加载中...</string>
+    <string name="tip_data_empty" translatable="false">没有数据!</string>
+    <string name="tip_click_refresh" translatable="false">点击刷新</string>
+    <string name="tip_net_error" translatable="false">您的网络异常,请检查网络后点击重试</string>
+
+    <string name="network_poor" translatable="false">您的网络状况不佳，请检查网络连接</string>
+
+    <string name="title_activity_fullscreen" translatable="false">FullscreenActivity</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+
+    <!-- 云信SDK所需文案 -->
+    <string name="nim_status_bar_multi_messages_incoming" translatable="false">%1$d位联系人有新消息</string>
+    <string name="nim_status_bar_ticker_text" translatable="false">%1$s有新消息</string>
+    <string name="nim_status_bar_image_message" translatable="false">%1$s发来一条图片消息</string>
+    <string name="nim_status_bar_audio_message" translatable="false">%1$s发来一条语音消息</string>
+    <string name="nim_status_bar_video_message" translatable="false">%1$s发来一条视频消息</string>
+    <string name="nim_status_bar_file_message" translatable="false">%1$s发来一条文件消息</string>
+    <string name="nim_status_bar_location_message" translatable="false">%1$s分享了一个地理位置</string>
+    <string name="nim_status_bar_notification_message" translatable="false">%1$s: 通知消息</string>
+    <string name="nim_status_bar_custom_message" translatable="false">%1$s: 自定义消息</string>
+    <string name="nim_status_bar_unsupported_message" translatable="false">%1$s: 无法显示该内容</string>
+    <string name="nim_status_bar_hidden_msg_content" translatable="false">你收到一条新消息</string>
+
+
+    <!-- 多端在线类型 -->
+    <string name="on_line" translatable="false">在线</string>
+    <string name="on_line_pc" translatable="false">PC在线</string>
+    <string name="on_line_mac" translatable="false">Mac在线</string>
+    <string name="on_line_web" translatable="false">web在线</string>
+    <string name="client_aos" translatable="false">Android</string>
+    <string name="client_ios" translatable="false">iOS</string>
+    <string name="on_line_busy" translatable="false">忙碌</string>
+    <string name="off_line" translatable="false">离线</string>
+
+    <!-- 多端登录 -->
+    <string name="computer_version" translatable="false">斗圈电脑版</string>
+    <string name="web_version" translatable="false">斗圈网页版</string>
+    <string name="mobile_version" translatable="false">斗圈移动版</string>
+    <string name="kickout_notify" translatable="false">下线通知</string>
+    <string name="multiport_logging" translatable="false">正在使用</string>
+
+
+    <!--RTS白板-->
+    <string name="start_session_record" translatable="false">我发起了白板演示</string>
+    <string name="session_end_record" translatable="false">白板演示已结束</string>
+
+
+    <!-- session -->
+    <string name="input_panel_guess" translatable="false">猜 拳</string>
+    <string name="input_panel_audio_call" translatable="false">语音通话</string>
+    <string name="input_panel_video_call" translatable="false">视频通话</string>
+    <string name="input_panel_file" translatable="false">发送文件</string>
+    <string name="input_panel_RTS" translatable="false">白 板</string>
+    <string name="input_panel_burn" translatable="false">阅后即焚</string>
+    <string name="input_panel_tip" translatable="false">Tip</string>
+    <string name="input_panel_ack_msg" translatable="false">已读回执</string>
+    <string name="message_history_query" translatable="false">云消息记录</string>
+    <string name="message_search_title" translatable="false">搜索本地消息记录</string>
+    <string name="message_clear" translatable="false">清空本地消息记录</string>
+    <string name="message_info" translatable="false">聊天信息</string>
+
+    <!-- 阅后即焚 -->
+    <string name="snapchat_longclick_to_view" translatable="false">按住查看</string>
+
+    <!--联系人-->
+    <string name="no_friends" translatable="false">暂无好友</string>
+    <string name="no_friends_click_retry" translatable="false">暂无好友, 请点击重试</string>
+    <string name="new_friends" translatable="false">新的朋友</string>
+    <string name="add_friend" translatable="false">添加好友</string>
+    <string name="invite_wechat_contacts" translatable="false">邀请微信联系人</string>
+    <string name="mobile_contact_matching" translatable="false">手机通讯录匹配</string>
+    <string name="saved_group_chat" translatable="false">已保存的群聊</string>
+    <string name="pic_contacts" translatable="false">位联系人</string>
+    <string name="detail_info" translatable="false">详细资料</string>
+    <string name="please_input_phone_number_or_dq_number" translatable="false">请输入手机号</string>
+<!--    <string name="please_input_phone_number_or_dq_number" translatable="false">请输入手机号/斗圈号</string>-->
+    <string name="inviter_wechat" translatable="false">邀请微信中的朋友</string>
+    <string name="inviter_contact" translatable="false">邀请手机联系人</string>
+    <string name="matchContact" translatable="false">匹配手机通讯录中的朋友</string>
+    <string name="saoFriend" translatable="false">扫描好友的二维码</string>
+    <string name="chat_to_me_add_friend" translatable="false">即可添加我为好友，一起聊天</string>
+    <string name="we_chat_share" translatable="false">加我为好友,一起用斗圈聊天!</string>
+    <string name="user_not_exist" translatable="false">用户不存在</string>
+    <string name="title_select_friend_delete" translatable="false">删除成员</string>
+    <string name="title_select_friend_shield" translatable="false">选择成员</string>
+    <string name="search_contact_list_hint" translatable="false">搜索联系人</string>
+    <string name="friend_delete" translatable="false">删除好友</string>
+    <string name="add_blacklist" translatable="false">加入黑名单</string>
+    <string name="remove_blacklist" translatable="false">移除黑名单</string>
+    <string name="friend_fa" translatable="false">发送名片</string>
+    <string name="set_remark" translatable="false">设置备注</string>
+    <string name="delete_dialog_contacts" translatable="false">删除联系人</string>
+    <string name="personal_info" translatable="false">个人信息</string>
+    <string name="not_set_personal_info" translatable="false">未设置</string>
+    <string name="into_the_group_of_way" translatable="false">进群方式</string>
+    <string name="remove_friend_dialog_desc" translatable="false">将联系人%1$s删除，将同时删除与该联系人的聊天记录</string>
+    <string name="delete" translatable="false">删除</string>
+    <string name="delete_success" translatable="false">删除成功</string>
+    <string name="no_data_for_team_list" translatable="false">当前群聊通讯录为空,可以在群聊详情中添加</string>
+    <string name="agree_to_friend_request" translatable="false">同意好友请求</string>
+    <string name="not_set_remark" translatable="false">未设置备注</string>
+
+    <!--添加好友界面-->
+    <string name="add_user_tips" translatable="false">群主已开启群成员保护模式，无法通过该群添加好友，请通过其他方式添加用户</string>
+    <string name="send_message" translatable="false">发送消息</string>
+    <string name="sex" translatable="false">性别</string>
+    <string name="back" translatable="false">返回</string>
+    <string name="choice_from_phone_list" translatable="false">从手机通讯录选择</string>
+    <string name="user_portrait" translatable="false">用户头像</string>
+    <string name="please_input_phone_number" translatable="false">please_input_phone_number</string>
+    <string name="the_user_does_not_exist" translatable="false">该用户不存在</string>
+    <string name="not_black_list" translatable="false">暂无黑名单</string>
+    <string name="not_new_friend" translatable="false">暂无新朋友</string>
+    <string name="not_team_invite" translatable="false">暂无群邀请</string>
+    <string name="add_group_confirm_add" translatable="false">确认加入该群聊</string>
+    <string name="add_group_add" translatable="false">加入群聊</string>
+    <string name="add_group_auth_ins" translatable="false">群主开启了群认证\n只能好友邀请进群</string>
+    <string name="add_group_add_again" translatable="false">请重新加入</string>
+
+    <!--设置斗圈号相关-->
+    <string name="set_chuiniu_tips" translatable="false">1.斗圈号是账号的唯一凭证，只能设置一次。\n2.设置斗圈账号后，可通过搜索斗圈账号添加您为好友。</string>
+    <string name="set_chuiniu_hint" translatable="false">以字母开头，6~20个字母、数字、下划线。</string>
+    <string name="set_chuiniu_warning" translatable="false">斗圈号仅支持使用6-20个字母、数字、下划线或减号，以字母开头</string>
+    <string name="set_chuiniu_dialog_tips" translatable="false">你确定将斗圈号设置为%1$s吗？确定后不可修改。</string>
+    <string name="mine_chuiniu_num" translatable="false">斗圈号：%1$s</string>
+    <string name="mine_safe_chuiniu_num" translatable="false">允许通过斗圈号搜索到我</string>
+    <string name="mine_safe_chuiniu_num_tips" translatable="false">关闭后，你不会被其他用户通过斗圈找到。</string>
+    <string name="add_friend_re_txt" translatable="false">好友申请成功</string>
+    <string name="friend_apply" translatable="false">好友申请</string>
+    <string name="team_invite" translatable="false">群组邀请</string>
+    <string name="add_successful" translatable="false">添加成功</string>
+
+
+    <!--登录-->
+    <string name="login" translatable="false">登录</string>
+    <string name="login_phone_pwd" translatable="false">密码登录</string>
+    <string name="login_phone_code" translatable="false">手机验证码登录</string>
+    <string name="register" translatable="false">注册斗圈</string>
+    <string name="third_part_login" translatable="false">第三方登录</string>
+    <string name="wechat" translatable="false">微信</string>
+    <string name="zhongGuo" translatable="false">中国(+86)</string>
+    <string name="inputDong" translatable="false">请输入需要冻结的斗圈账号</string>
+    <string name="suo" translatable="false">锁</string>
+    <string name="choiceDong" translatable="false">请选择冻结方式</string>
+    <string name="phoneDong" translatable="false">通过手机短信冻结</string>
+    <string name="comfirmDong" translatable="false">确认解冻账户</string>
+    <string name="jianCe" translatable="false">检测到当前设备是你斗圈的账号的冻结设备,</string>
+    <string name="keYi" translatable="false">可以执行一键解冻</string>
+    <string name="comfirmJie" translatable="false">确认解冻</string>
+    <string name="yiJie" translatable="false">已解冻</string>
+    <string name="niLogin" translatable="false">你的斗圈账号现在可以正常登录</string>
+    <string name="zhiDao" translatable="false">知道了</string>
+    <string name="codeLogin" translatable="false">使用验证码登录</string>
+    <string name="use_password_to_login" translatable="false">使用密码登录</string>
+    <string name="phoneJin" translatable="false">手机号(仅支持大陆手机号码)</string>
+    <string name="inputCodes" translatable="false">请输入验证码</string>
+    <string name="please_input_the_phone_number" translatable="false">请输入手机号</string>
+    <string name="please_input_the_password" translatable="false">请输入密码</string>
+    <string name="phone_number_format" translatable="false">+86</string>手机号格式
+    <string name="diRegister" translatable="false">点击注册表示已阅读并同意</string>
+    <string name="serviceUser" translatable="false">用户服务协议</string>
+    <string name="privacyUser" translatable="false">用户隐私协议</string>
+    <string name="nickNameBi" translatable="false">昵称(必填)</string>
+    <string name="password" translatable="false">密码</string>
+    <string name="add_remarks" translatable="false">添加备注</string>
+    <string name="code" translatable="false">短信验证码</string>
+    <string name="send_code" translatable="false">发送验证码</string>
+    <string name="codes" translatable="false">验证码</string>
+    <string name="confirm_password" translatable="false">确认密码</string>
+    <string name="determine" translatable="false">确定</string>
+    <string name="modify" translatable="false">修改</string>
+    <string name="forget_password" translatable="false">忘记密码？ </string>
+    <string name="retry" translatable="false">重试</string>
+    <string name="code_login" translatable="false">验证码登录</string>
+    <string name="password_login" translatable="false">密码登录</string>
+    <string name="phone" translatable="false">手机号</string>
+    <string name="phone_empty" translatable="false">手机号不能为空</string>
+    <string name="code_empty" translatable="false">验证码不能为空</string>
+    <string name="phone_number_is_null" translatable="false">手机号不能为空</string>
+    <string name="Illegal_phone_number" translatable="false">非法手机号</string>
+    <string name="password_is_null" translatable="false">密码不能为空</string>
+    <string name="password_cannot_contain_spaces" translatable="false">密码不能包含空格</string>
+    <string name="phone_number_available" translatable="false">手机号可用</string>
+    <string name="phone_number_has_been_registered" translatable="false">手机号已被注册</string>
+    <string name="messge_send" translatable="false">短信已发出,请注意查收</string>
+    <string name="message_frequency" translatable="false">短信发送频率超限</string>
+    <string name="captcha_overdue" translatable="false">验证码过期,请重新请求</string>
+    <string name="verification_code_error" translatable="false">验证码错误</string>
+    <string name="register_success" translatable="false">注册成功</string>
+    <string name="forgot_password" translatable="false">找回密码</string>
+    <string name="new_user" translatable="false">新用户</string>
+    <string name="nickname" translatable="false">昵称</string>
+    <string name="logout" translatable="false">退出登录</string>
+    <string name="portrait" translatable="false">头像</string>
+    <string name="more" translatable="false">更多</string>
+    <string name="auth_fail" translatable="false">授权已过期,请重新登录</string>
+    <string name="switch_account" translatable="false">切换账号</string>
+    <string name="security_center" translatable="false">安全中心</string>
+    <string name="getCode" translatable="false">获取验证码</string>
+    <string name="network_err_please_check_and_try_again" translatable="false">您的网络异常,请检查网络后重新尝试</string>
+    <string name="please_input_the_correct_phone_number" translatable="false">请输入正确的手机号码</string>
+    <string name="your_password_input_error_please_input_again" translatable="false">您的密码输入错误，请重新输入</string>
+    <string name="using_SMS_verification_code_to_login" translatable="false">使用短信验证码登录</string>
+    <string name="china_mobile_phone" translatable="false">中国(China)(+86)</string>
+    <string name="user_agreement" translatable="false">用户使用协议</string>
+    <string name="login_readed" translatable="false">点击&#180;登录&#180;即表示已阅读并同意</string>
+    <string name="mobile_phone_number_cannot_be_empty" translatable="false">手机号码不能为空</string>
+    <string name="verification_code_cannot_be_empty" translatable="false">验证码不能为空</string>
+    <string name="whether_synchronous_wechat_data" translatable="false">是否同步微信头像昵称?</string>
+    <string name="synchronous" translatable="false">同步</string>
+    <string name="register_agreement" translatable="false">用户注册协议</string>
+    <string name="user_service_agreement" translatable="false">用户服务协议</string>
+    <string name="set_success" translatable="false">设置成功</string>
+    <string name="replace_personal_info_error" translatable="false">修改信息失败</string>
+    <string name="perfect" translatable="false">根据国家法规的要求,你需要进行身份信息完善,才能继续使用该功能</string>
+    <string name="text_identification" translatable="false">立即认证</string>
+    <string name="replace_personal_info_success" translatable="false">修改信息成功</string>
+    <string name="is_delete_describe" translatable="false">是否删除此条描述</string>
+    <string name="title_select_friend" translatable="false">添加成员</string>
+
+
+    <!--云信使用-->
+    <string name="login_failed" translatable="false">帐号或密码错误</string>
+    <string name="net_broken" translatable="false">当前网络不可用</string>
+    <string name="nim_status_unlogin" translatable="false">未登录</string>
+    <string name="nim_status_connecting" translatable="false">连接中...</string>
+    <string name="nim_status_logining" translatable="false">登录中...</string>
+
+
+    <!--自定义-->
+    <string name="input_panel_image" translatable="false">图 片</string>
+    <string name="input_panel_camera" translatable="false">拍 照</string>
+    <string name="input_panel_video" translatable="false">录 像</string>
+    <string name="input_panel_local_video" translatable="false">视 频</string>
+    <string name="input_panel_alipay" translatable="false">支付宝红包</string>
+    <string name="input_panel_card" translatable="false">名片</string>
+    <string name="input_panel_poke" translatable="false">戳一下</string>
+    <string name="input_panel_assistant" translatable="false">群助手</string>
+    <string name="input_panel_alipay_code" translatable="false">支付宝收款</string>
+    <string name="input_panel_transfer" translatable="false">转帐</string>
+
+
+    <!--viewholder-->
+    <string name="viewholder_card" translatable="false">个人名片</string>
+
+    <string name="push_ticker" translatable="false">你有一条斗圈消息</string>
+
+
+    <!--我的-->
+    <string name="mine_scan" translatable="false">扫一扫</string>
+    <string name="mine_vip" translatable="false">我的会员</string>
+    <string name="mine_share" translatable="false">分享给朋友</string>
+    <string name="mine_qr" translatable="false">我的二维码</string>
+    <string name="mine_jrmf_wallet" translatable="false">云钱包</string>
+    <string name="mine_my_wallet" translatable="false">我的钱包</string>
+    <string name="mine_alipay_red" translatable="false">支付宝红包</string>
+    <string name="collection" translatable="false">收藏</string>
+    <string name="setting" translatable="false">设置</string>
+    <string name="vip" translatable="false">Vip会员</string>
+    <string name="wallet_cloud" translatable="false">斗圈零钱</string>
+    <string name="wallet_withdraw" translatable="false">提现</string>
+    <string name="wallet_withdraw_result" translatable="false">提现结果</string>
+    <string name="wallet_pay_pwd" translatable="false">支付密码</string>
+    <string name="wallet_withdraw_record" translatable="false">提现记录</string>
+    <string name="wallet_bind_wx" translatable="false">绑定微信</string>
+    <string name="vip_exchange" translatable="false">Vip会员兑换</string>
+    <string name="mine_help" translatable="false">帮助</string>
+    <string name="mine_feedback" translatable="false">意见反馈</string>
+    <string name="qrcode_user_portrait" translatable="false">用户头像</string>
+    <string name="qrcode_group_manager" translatable="false">群主开启了群认证\n只能好友邀请进群</string>
+    <string name="qrcode_add" translatable="false">使用斗圈app扫描上面的二维码,加我</string>
+    <string name="qrcode_share_wx" translatable="false">分享至微信</string>
+    <string name="qrcode_create_fail" translatable="false">生成二维码失败</string>
+    <string name="qrcode_share_add" translatable="false">识别图中二维码，加我为斗圈好友</string>
+    <string name="qrcode_group_add" translatable="false">使用斗圈扫描上面的二维码,加入群聊</string>
+    <string name="qrcode_share_group_add" translatable="false">识别图中二维码，加入斗圈群聊</string>
+    <string name="scan" translatable="false">扫一扫</string>
+    <string name="qr_code_no_find" translatable="false">未识别斗圈以外的二维码</string>
+    <string name="qr_code_self_warning" translatable="false">不能扫自己的二维码</string>
+    <string name="qr_code_retry" translatable="false">请重新扫一扫</string>
+    <string name="qr_code_light_open" translatable="false">开灯</string>
+    <string name="qr_code_light_close" translatable="false">关灯</string>
+    <string name="qr_code_data_error" translatable="false">二维码数据解析失败</string>
+    <string name="alipay" translatable="false">支付宝</string>
+    <string name="unidentification_pic" translatable="false">未识别图片</string>
+    <string name="qrcode_share_dq" translatable="false">分享至斗圈</string>
+    <string name="qrcode_card" translatable="false">二维码名片</string>
+
+    <!--意见反馈-->
+    <string name="feeedback_title" translatable="false">意见反馈</string>
+    <string name="feeedback_question_opinion" translatable="false">问题与意见描述</string>
+    <string name="feeedback_inputs" translatable="false">请填写您的问题描述,以便我们提供更好的帮助</string>
+    <string name="feeedback_words_num" translatable="false">0/200</string>
+    <string name="feeedback_name" translatable="false">姓名</string>
+    <string name="feeedback_contact_ins" translatable="false">联系方式(注册斗圈手机号)</string>
+    <string name="feeedback_name_hint" translatable="false">请填写真实姓名</string>
+    <string name="feeedback_contacts_hint" translatable="false">官方客服会添加您的斗圈好友进行沟通</string>
+    <string name="feeedback_submit" translatable="false">提交</string>
+    <string name="feeedback_right_phone" translatable="false">请输入正确的手机号码</string>
+    <string name="feeedback_more_business" translatable="false">更多业务,请点击此处联系我们</string>
+    <string name="feeedback_no_null_content" translatable="false">反馈内容不能为空</string>
+    <string name="feeedback_no_null_name" translatable="false">姓名不能为空</string>
+    <string name="feeedback_no_null_phone" translatable="false">电话号码不能为空</string>
+    <string name="feeedback_submit_suc" translatable="false">成功提交</string>
+    <string name="contact_us" translatable="false">联系我们</string>
+    <!--设置-->
+    <string name="setting_account_bing" translatable="false">账号与绑定</string>
+    <string name="setting_new_message" translatable="false">新消息通知</string>
+    <string name="setting_safe" translatable="false">安全与隐私</string>
+    <string name="setting_font_size" translatable="false">字体大小</string>
+    <string name="setting_chat_bg" translatable="false">聊天背景</string>
+    <string name="setting_cache" translatable="false">缓存设置</string>
+    <string name="complaint" translatable="false">投诉举报</string>
+    <string name="setting_about" translatable="false">关于斗圈</string>
+    <string name="setting_login_out" translatable="false">退出登录</string>
+    <string name="setting_log_out" translatable="false">注销账号</string>
+    <string name="net_error" translatable="false">您的网络异常,请检查网络后点击重试</string>
+    <string name="setting_no_blind" translatable="false">未绑定</string>
+    <string name="setting_blind" translatable="false">已绑定</string>
+    <string name="setting_wx_install" translatable="false">您还未安装微信客户端</string>
+    <string name="setting_relieve_blind" translatable="false">确定要解除绑定吗?</string>
+    <string name="setting_logout_ins" translatable="false">退出后不会删除任何历史数据,下次登录依然可以使用本账号</string>
+    <string name="dialog_bottom_picture" translatable="false">拍照</string>
+    <string name="dialog_bottom_import_from_local" translatable="false">从本地导入</string>
+    <string name="dialog_bottom_from_pics" translatable="false">从手机相册选择</string>
+    <string name="setting_logout" translatable="false">退出登录</string>
+    <string name="setting_logout_success" translatable="false">成功退出登录</string>
+    <string name="setting_logoff_success" translatable="false">账号已注销</string>
+    <string name="setting_newmsg_notify" translatable="false">新消息通知</string>
+    <string name="setting_newmsg_close_ins" translatable="false">关闭后,手机将不再接收新消息通知</string>
+    <string name="setting_newmsg_voice" translatable="false">声音</string>
+    <string name="setting_newmsg_vibration" translatable="false">震动</string>
+    <string name="setting_newmsg_poke" translatable="false">接受戳一下消息</string>
+
+
+    <string name="setting_newmsg_voice_ins" translatable="false">当应用运行时,你可以设置是否需要声音或者震动</string>
+    <string name="setting_since_the_launch_of_applications" translatable="false">设置应用自启动</string>
+    <string name="setting_allow_application_background_is_active" translatable="false">允许应用后台活跃</string>
+    <string name="new_message_show" translatable="false">新消息通知</string>
+    <string name="setting_safe_insearch" translatable="false">允许通过手机号码搜索</string>
+    <string name="setting_safe_insearch_ins" translatable="false">关闭后,你不会被其他用户通过手机号码找到,也不会被其他用户通过手机通讯录匹配到。</string>
+    <string name="setting_safe_qingchat_num" translatable="false">允许通过斗圈号搜索到我</string>
+    <string name="setting_safe_qingchat_num_ins" translatable="false">关闭后，你不会被其他用户通过斗圈找到。</string>
+    <string name="setting_safe_add_friend" translatable="false">加我为朋友时需要验证</string>
+    <string name="setting_safe_team_invite" translatable="false">允许直接被添加至群聊</string>
+    <string name="setting_safe_add_friend_ins" translatable="false">关闭后,互相不为好友也可直接聊天</string>
+    <string name="setting_safe_add_group" translatable="false">关闭后,其他人拉你进群是需要你本人审核才能加入</string>
+    <string name="setting_safe_safecenter" translatable="false">安全中心</string>
+    <string name="setting_safe_safecenter_ins" translatable="false">如果怀疑账号被盗,可前往安全中心</string>
+    <string name="setting_safe_black" translatable="false">黑名单</string>
+    <string name="setting_safe_black_ins" translatable="false">被添加的联系人将无法发送消息给你</string>
+    <string name="setting_safe_login" translatable="false">设置登录密码</string>
+    <string name="setting_safe_login_ins" translatable="false">设置登录密码后,可以使用密码来登录</string>
+    <string name="setting_login_pwd_hint" translatable="false">输入手机号</string>
+    <string name="setting_login_pwd_hint_code" translatable="false">短信验证码</string>
+    <string name="setting_login_pwd_get_code" translatable="false">获取验证码</string>
+    <string name="setting_login_pwd_newpwd" translatable="false">请输入新密码</string>
+    <string name="setting_login_pwd_newpwd_again" translatable="false">请再次输入新密码</string>
+    <string name="setting_login_pwd_pwd_inconformity" translatable="false">输入密码不一致</string>
+    <string name="setting_login_pwd_pwd_atleast" translatable="false">输入密码位数最少6位</string>
+    <string name="setting_login_pwd_pwd_set_success" translatable="false">密码设置成功</string>
+    <string name="login_pwd_modify_old_pwd" translatable="false">原密码</string>
+    <string name="login_pwd_modify_old_pwd_hint" translatable="false">请输入原密码</string>
+    <string name="login_pwd_modify_new_pwd" translatable="false">请输入新密码</string>
+    <string name="login_pwd_modify_new_pwd_again" translatable="false">请再次输入新密码</string>
+    <string name="login_pwd_modify" translatable="false">修改登录密码</string>暂无黑名单
+    <string name="black_list_no" translatable="false">暂无黑名单</string>
+    <string name="black_list" translatable="false">黑名单</string>
+    <string name="remove" translatable="false">移除</string>
+    <string name="safe_center_ins" translatable="false">安全连接你我</string>
+    <string name="safe_center" translatable="false">安全中心</string>
+    <string name="safe_center_freeze" translatable="false">冻结账户</string>
+    <string name="safe_center_freeze_ins" translatable="false">怀疑账户被盗,可以冻结斗圈</string>
+    <string name="safe_center_unfreeze" translatable="false">解冻账户</string>
+    <string name="safe_center_unfreeze_ins" translatable="false">解除安全风险后,可以解冻斗圈</string>
+    <string name="about_freeze_freeze_start" translatable="false">开始冻结</string>
+    <string name="about_freeze_freeze_ins_f" translatable="false">发现斗圈被盗,你可以冻结斗圈账号</string>
+    <string name="about_freeze_freeze_ins_s" translatable="false">解除安全风险后,可以解冻斗圈\n防止坏人冒用你的身份证诈骗好友</string>
+    <string name="about_freeze_unfreeze_start" translatable="false">开始解冻</string>
+    <string name="about_freeze_unfreeze_ins_s" translatable="false">请在确认账户安全后再解冻</string>
+    <string name="about_freeze_unfreeze" translatable="false">解冻账户</string>
+    <string name="about_freeze_freeze" translatable="false">冻结账户</string>
+    <string name="freeze_next_inputCode" translatable="false">请输入收到的短信验证码</string>
+    <string name="nextStep" translatable="false">下一步</string>
+    <string name="freeze_next_confirm_freeze" translatable="false">确认冻结</string>
+    <string name="freeze_next_confirm_freeze_user" translatable="false">确认冻结账户</string>
+    <string name="freeze_next_confirm_unfreeze" translatable="false">确认解冻</string>
+    <string name="freeze_next_confirm_unfreeze_user" translatable="false">确认解冻账户</string>
+    <string name="text_size_see" translatable="false">预览字体大小</string>
+    <string name="text_size_remove" translatable="false">拖动下面的滑块,可设置字体大小.</string>
+    <string name="text_size_size" translatable="false">字体大小</string>
+    <string name="text_size_select_size" translatable="false">请选择字体大小</string>
+    <string name="chat_bg_bg" translatable="false">聊天背景</string>
+    <string name="chat_bg_set" translatable="false">设置</string>
+    <string name="about" translatable="false">关于斗圈</string>
+    <string name="complain" translatable="false">投诉建议</string>
+    <string name="about_check" translatable="false">检查新版本</string>
+    <string name="about_error" translatable="false">报错</string>
+    <string name="network_unavailable" translatable="false">当前网络不可用，请检查你的网络设置</string>
+    <string name="about_logout" translatable="false">退出</string>
+    <string name="about_download" translatable="false">下载</string>
+    <string name="about_check_upgrade_version" translatable="false">新版本1.0.0</string>
+    <string name="about_check_upgrade_ins" translatable="false">新版本火热出炉,快来尝鲜</string>
+    <string name="about_check_exit" translatable="false">退出</string>
+    <string name="about_check_current_new_version" translatable="false">当前是最新版本</string>
+    <string name="setting_clear_msg_history_success" translatable="false">聊天记录已清空</string>
+    <string name="personal_info_avatar" translatable="false">头像</string>
+    <string name="personal_info_qingchat" translatable="false">斗圈号</string>
+    <string name="personal_info_gender" translatable="false">性别</string>
+    <string name="personal_info_real" translatable="false">实名认证</string>
+    <string name="personal_info_male" translatable="false">男</string>
+    <string name="personal_info_female" translatable="false">女</string>
+    <string name="personal_info_setting_name" translatable="false">昵称</string>
+    <string name="personal_info_setting_input_name" translatable="false">请输入你的昵称</string>
+    <string name="personal_info_setting_close_name" translatable="false">关闭</string>
+    <string name="personal_info_setting_qs_portrait" translatable="false">用户头像</string>
+    <string name="personal_info_setting_qs_hint" translatable="false">以字母开头，6~20个字母、数字、下划线。</string>
+<!--    <string name="personal_info_setting_qs_tips" translatable="false">1.斗圈号是账号的唯一凭证，只能设置一次。\n2.设置斗圈账号后，可通过搜索斗圈账号添加您为好友。</string>-->
+    <string name="personal_info_setting_qs_tips" translatable="false">1.斗圈号是账号的唯一凭证，只能设置一次。</string>
+    <string name="personal_info_setting_name_is_null" translatable="false">昵称不能为空</string>
+    <string name="personal_info_setting_name_no_space" translatable="false">昵称不能包含空格</string>
+    <string name="save_success" translatable="false">保存成功</string>
+    <string name="personal_info_setting_qc_num_tips" translatable="false">你确定将斗圈号设置为%1$s吗？确定后不可修改。</string>
+    <string name="personal_info_setting_qc_num_suc" translatable="false">设置斗圈号成功</string>
+    <string name="personal_info_setting_qc_num_fail" translatable="false">设置斗圈号失败</string>
+    <string name="personal_info_setting_qs_warning" translatable="false">斗圈号仅支持使用6-20个字母、数字、下划线或减号，以字母开头</string>
+    <string name="personal_info_setting_avatar" translatable="false">个人头像</string>
+    <string name="alipay_auth" translatable="false">支付宝红包</string>
+    <string name="alipay_auth_title_ins" translatable="false">你还没有绑定支付宝账户,请先绑定支付宝账户</string>
+    <string name="alipay_auth_ins" translatable="false">绑定成功后:\n- 可以用支付宝发红包\n- 收到的红包自动转入支付宝账户</string>
+    <string name="alipay_auth_btn" translatable="false">立刻绑定支付宝</string>
+    <string name="alipay_auth_bingding" translatable="false">绑定支付宝</string>
+    <string name="alipay_auth_suc" translatable="false">成功授权</string>
+    <string name="alipay_pay_details_ins" translatable="false">收到的红包会自动转入支付宝账户</string>
+    <string name="alipay_pay_details_reveive" translatable="false">收到的支付宝红包</string>
+    <string name="alipay_pay_details_send" translatable="false">发出的支付宝红包</string>
+    <string name="alipay_pay_details_no" translatable="false">暂时没有明细记录</string>
+    <string name="alipay_pay_details_select_time" translatable="false">请选择年月日</string>
+    <string name="alipay_pay_details_select_year" translatable="false">请选择年份</string>
+    <string name="cancel_alipay_auth" translatable="false">你确定取消支付宝授权吗?</string>
+    <string name="auth_alipay_cancel" translatable="false">成功取消授权</string>
+    <string name="alipay_red_details_mine" translatable="false">查看我的支付宝红包记录</string>
+    <string name="alipay_red_details_account" translatable="false">金额已存入您授权的支付宝账户</string>
+    <string name="cache_tips" translatable="false">将删除所有个人和群的聊天记录</string>
+    <string name="cache_empty" translatable="false">清空聊天记录</string>
+    <!--设置用户信息-->
+    <string name="setheadNickname" translatable="false">请设置你的个人头像和昵称</string>
+    <string name="next_step" translatable="false">下一步</string>
+    <string name="user_info" translatable="false">个人信息</string>
+    <string name="please_set_your_login_password" translatable="false">请设置您的登录密码</string>
+    <string name="set_login_password" translatable="false">设置登录密码</string>
+    <string name="input_password_again" translatable="false">再次输入密码</string>
+    <string name="skip" translatable="false">跳过</string>
+    <string name="experience_immediately" translatable="false">立即体验</string>
+
+    <!--忘记密码-->
+    <string name="new_password" translatable="false">新密码</string>
+    <string name="please_input_new_password" translatable="false">请输入新密码</string>
+    <string name="please_input_again_new_password" translatable="false">请再次输入新密码</string>
+
+    <!--微信登录-->
+    <string name="you_not_installed_wechat_client" translatable="false">您还未安装微信客户端</string>
+    <string name="bind_phone_number" translatable="false">绑定手机号</string>
+    <string name="bind" translatable="false">绑定</string>
+
+    <!--发红包界面-->
+    <string name="forbid_redpacket_tips" translatable="false">群管理已禁止你在本群内收发红包</string>
+    <string name="alipay_rd_jine" translatable="false">金额</string>
+    <string name="alipay_rd_tianxiejine" translatable="false">填写金额</string>
+    <string name="alipay_rd_yuan" translatable="false">元</string>
+    <string name="alipay_rd_money_hints" translatable="false">￥0.00</string>
+    <string name="alipay_rd_bottom_tips" translatable="false">未领取的红包将在24小时后自动退回零钱，最晚48小时到账</string>
+    <string name="alipay_rp" translatable="false">红包</string>
+    <string name="redpacket_random_tips" translatable="false">发送了一个红包,金额随机</string>
+    <string name="redpacket_lookup" translatable="false">看看大家的手气</string>
+
+    <string name="redpacket_rob_private" translatable="false">给你发送一个红包</string>
+    <string name="redpacket_rob_team" translatable="false">给你发送一个红包</string>
+    <string name="redpacket_rob_empty" translatable="false">手慢了,红包被抢完了</string>
+
+    <string name="alipay_binding_tips" translatable="false">你还没有绑定支付宝账户,请先绑定支付宝账户</string>
+    <string name="alipay_binding_succeed_tips" translatable="false">绑定成功后:</string>
+    <string name="alipay_binding_succeed_tips1" translatable="false">- 可以用支付宝发红包</string>
+    <string name="alipay_binding_succeed_tips2" translatable="false">- 收到的红包自动转入支付宝账户</string>
+    <string name="alipay_binding_btn" translatable="false">立刻绑定支付宝</string>
+    <string name="alipay_rd_p2p_bottom_tips" translatable="false">未领取的红包将在24小时后自动退回发送红包的支付宝账户，最晚48小时到账</string>
+    <string name="rd_detail_pay_history" translatable="false">查看我的支付宝红包记录</string>
+    <string name="rd_detail_pay_money" translatable="false">金额已存入您授权的支付宝账户</string>
+    <string name="rd_team_detail_totalmoney_tips" translatable="false">总金额</string>
+    <string name="rd_comm_yuan" translatable="false">元</string>
+    <string name="rd_comm_000_hints" translatable="false">0.00</string>
+    <string name="rd_comm_unenough_money" translatable="false">零钱金额不足,</string>
+    <string name="rd_comm_recharge" translatable="false">去充值</string>
+    <string name="rd_comm_num_tips" translatable="false">红包个数</string>
+    <string name="rd_comm_num_hint" translatable="false">填写个数</string>
+    <string name="rd_comm_ge" translatable="false">个</string>
+    <string name="rd_comm_random_tips" translatable="false">每人抽到的金额随机,</string>
+    <string name="rd_comm_exchange" translatable="false">改为普通红包</string>
+    <string name="rd_comm_whoreceive_tips" translatable="false">谁可以领</string>
+    <string name="rd_comm_all_member" translatable="false">群内所有人</string>
+    <string name="rd_comm_blessing_hints" translatable="false">财源滚滚，大富大贵</string>
+    <string name="rd_comm_money_symbol" translatable="false">￥</string>
+    <string name="rd_comm_send_btn" translatable="false">塞钱进红包</string>
+    <string name="rd_comm_teamtips" translatable="false">群人数</string>
+    <string name="rd_comm_bottom_alipay_tips" translatable="false">未领取的红包将在24小时后自动退回发送红包的支付宝账户，最晚48小时到账</string>
+
+    <!--好友相关-->
+    <string name="select_team_tips" translatable="false">选择一个群</string>
+
+    <!--@成员-->
+    <string name="ait_all" translatable="false">群内所有人</string>
+    <string name="avatar_ait" translatable="false">\@Ta</string>
+    <string name="avatar_alipay_redpacket" translatable="false">支付宝专属红包</string>
+
+    <!--群组相关-->
+    <string name="team_ni" translatable="false">你</string>
+    <string name="team_transfer_master" translatable="false">%1$s已成为群主</string>
+    <string name="team_add_admin" translatable="false">%1$s将%2$s设置为管理员</string>
+    <string name="team_rename" translatable="false">%1$s修改群名称为%2$s</string>
+    <string name="team_quit" translatable="false">退出了群组</string>
+    <string name="team_dismiss" translatable="false">解散了群组</string>
+    <string name="team_create" translatable="false">%1$s创建了群组</string>
+    <string name="team_kicked" translatable="false">%1$s将%2$s移出了群组</string>
+    <string name="team_add" translatable="false">%1$s邀请%2$s加入了群组</string>
+    <string name="team_add_tips" translatable="false">加入了群组</string>
+    <string name="group_block" translatable="false">群已封禁</string>
+    <string name="group_disolve" translatable="false">群组已解散</string>
+    <string name="team" translatable="false">群聊</string>
+    <string name="create_a_new_chat" translatable="false">创建新的聊天</string>
+    <string name="recent_chat" translatable="false">最近聊天</string>
+    <string name="choose_a_chat" translatable="false">选择一个聊天</string>
+    <string name="no_chat_record_please_choose_a_chat" translatable="false">没有聊天记录，请创建新的聊天</string>
+    <string name="choice_contact" translatable="false">选择联系人</string>
+    <string name="longtime_rp_warning" translatable="false">此功能已被群主禁用，如有疑问请联系群主</string>
+    <string name="longtime_rp_tips" translatable="false">10分钟内的红包不显示在此列表</string>
+    <string name="longtime_rp_no_rp" translatable="false">暂时没有未领红包</string>
+    <string name="longtime_rp_item_receive" translatable="false">领取红包</string>
+    <string name="single_chat_details" translatable="false">聊天详情</string>
+
+
+
+    <!--公共提示信息-->
+    <string name="expiry_auth" translatable="false">授权已过期,请重新登录</string>
+    <string name="comm_no_network" translatable="false">您的网络异常,请检查网络后重新尝试</string>
+    <string name="comm_network_error" translatable="false">您的网络异常,请检查网络后重新尝试</string>
+    <string name="comm_error" translatable="false">服务器异常,请稍后再试</string>
+    <string name="add_authority" translatable="false">请添加必要权限</string>
+    <string name="authority" translatable="false">立刻授权</string>
+    <string name="params_error" translatable="false">参数错误</string>
+    <string name="load_alldata" translatable="false">已加载全部数据</string>
+    <string name="year" translatable="false">年</string>
+    <string name="mouth" translatable="false">月</string>
+    <string name="date" translatable="false">日</string>
+    <string name="rmb" translatable="false">元</string>
+    <string name="comm_please_add_permissions" translatable="false">请添加必要权限</string>
+    <string name="comm_setting" translatable="false">设置</string>
+    <string name="save_fail" translatable="false">保存失败</string>
+    <string name="pic_save_local" translatable="false">图片保存在</string>
+    <string name="album" translatable="false">相册</string>
+    <string name="turn_on" translatable="false">开灯</string>
+    <string name="browser" translatable="false">您的手机里没有安装浏览器</string>
+    <string name="album_list" translatable="false">相册列表</string>
+    <string name="pics" translatable="false">图片</string>
+    <string name="permission_grant_needed" translatable="false">您需要在设置中打开权限</string>
+    <string name="allpics" translatable="false">所有图片</string>
+    <string name="pic_catalog_number" translatable="false">%d张</string>
+
+    <string name="message_option_save_image" translatable="false">保存图片</string>
+    <string name="message_option_transfer" translatable="false">转发</string>
+    <string name="message_option_save_video" translatable="false">保存视频</string>
+    <string name="message_option_save_tips" translatable="false">图片保存成功</string>
+    <string name="message_option_save_fail_tips" translatable="false">源文件不存在</string>
+    <string name="message_unknown" translatable="false">当前版本暂不支持查看此消息</string>
+    <string name="message_option_qrcode1" translatable="false">识别图中二维码</string>
+    <string name="message_option_qrcode_error" translatable="false">未识别图片</string>
+    <string name="unread_message_tips" translatable="false">%1$s条新消息</string>
+    <string name="unread_message_title_tips" translatable="false">斗圈(%1$s)</string>
+
+    <!--识别二维码-->
+    <string name="qrcode_disolve" translatable="false">群组已解散</string>
+    <string name="qrcode_block" translatable="false">群已封禁</string>
+
+    <!--手机通讯录匹配和联系人页面-->
+    <string name="no_data" translatable="false">没有数据</string>
+    <string name="added" translatable="false">已添加</string>
+    <string name="sms" translatable="false">嗨～ 我正在使用斗圈App，一款专为同好量身打造的聊天工具，快来试试吧！官网地址 http://www.meetqs.com</string>
+    <string name="mobile_phone_no_contact" translatable="false">手机通讯录没有联系人</string>
+    <string name="mobile_contact_not_register" translatable="false">还没有联系人注册斗圈哦,快去邀请他们吧</string>
+
+    <!--聊天-->
+    <string name="chatdetails_clean_message" translatable="false">清除聊天记录</string>
+    <string name="chatdetails_readdestory" translatable="false">当退出对话时,对话中的所有消息会自动销毁。</string>
+    <string name="chatdetails_message_notice" translatable="false">消息免打扰</string>
+    <string name="chatdetails_set_top" translatable="false">置顶聊天</string>
+    <string name="chatdetails_burn" translatable="false">置顶聊天</string>
+    <string name="groupdetails_member_online_status" translatable="false">群成员在线状态</string>
+    <string name="groupdetails_more_member" translatable="false">查看更多群成员</string>
+    <string name="groupdetails_name" translatable="false">群名称</string>
+    <string name="groupdetails_announcement" translatable="false">群公告</string>
+    <string name="groupdetails_code" translatable="false">群二维码</string>
+    <string name="group_personal_info" translatable="false">我在本群的信息</string>
+    <string name="group_managed" translatable="false">群管理</string>
+    <string name="group_search_chat" translatable="false">搜索聊天记录</string>
+    <string name="longtime_redpacket" translatable="false">长时间未领红包</string>
+    <string name="jinyan_notice" translatable="false">全员禁言</string>
+    <string name="add_password" translatable="false">加密</string>
+    <string name="quit_group" translatable="false">删除并退出</string>
+    <string name="clean_private_chat_history" translatable="false">确定删除聊天记录吗</string>
+    <string name="group_info" translatable="false">群组信息</string>
+    <!--<string name="this_function_is_close_please_contact_admin">此功能已被群主禁用，如有疑问请联系群主</string>-->
+    <string name="group_detail_more_member" translatable="false">查看更多群成员</string>
+    <string name="quit_success" translatable="false">退出成功</string>
+    <string name="dismiss_success" translatable="false">解散成功</string>
+    <string name="set_screenshot" translatable="false">设置截屏通知成功</string>
+    <string name="screenshot_notice" translatable="false">截屏通知</string>
+    <string name="screenshot_notice_desc" translatable="false">开启后，在对话中的截屏，双方都会收到通知。</string>
+    <string name="cancel_screenshot" translatable="false">取消截屏通知成功</string>
+    <string name="save_contacts_success" translatable="false">群通讯录保存成功</string>
+    <string name="remove_contacts_success" translatable="false">群通讯录移除成功</string>
+    <string name="only_group_master_and_manage_can_open" translatable="false">只有群主和管理员才可修改</string>
+    <string name="set_notifaction_success" translatable="false">设置免打扰成功</string>
+    <string name="set_notifaction_error" translatable="false">取消免打扰成功</string>
+    <string name="group_dismiss_confirm_notify" translatable="false">解散后不会通知群聊中其他成员，且再也不会接受此群聊消息</string>
+    <string name="clean_group_chat_history" translatable="false">确定删除群聊天记录吗</string>
+    <string name="group_quit_confirm_notify" translatable="false">退出后不会通知群聊中其他成员，且再也不会接受此群聊消息</string>
+    <string name="groupName" translatable="false">群聊名称</string>
+    <string name="complete" translatable="false">完成</string>
+    <string name="group_notice_modify_time" translatable="false">发布时间：</string>
+    <string name="empty_group_notice" translatable="false">请编辑群公告</string>
+    <string name="group_notice_modify" translatable="false">修改群公告</string>
+    <string name="group_announcement" translatable="false">群公告</string>
+    <string name="group_nickname" translatable="false">群昵称</string>
+    <string name="input_group_personal_nackname" translatable="false">请输入您的昵称</string>
+    <string name="group_phone" translatable="false">手机号</string>
+    <string name="group_input_phone" translatable="false">请输入您的手机号</string>
+    <string name="group_weixin" translatable="false">微信号</string>
+    <string name="group_input_weixin" translatable="false">请输入您的微信号</string>
+    <string name="group_alipay" translatable="false">支付宝账号</string>
+    <string name="group_input_alipay" translatable="false">请输入您的支付宝账号</string>
+    <string name="add_describe" translatable="false">添加描述</string>
+    <string name="edit_personal_info" translatable="false">修改我在本群的信息</string>
+    <string name="group_phone_max_hint" translatable="false">手机号最长11位</string>
+    <string name="group_nickname_max_hint" translatable="false">群昵称最长16位</string>
+    <string name="group_weixin_max_hint" translatable="false">微信号最长20位</string>
+    <string name="group_alipay_max_hint" translatable="false">支付宝账号最长20位</string>
+    <string name="group_user_desc_max_hint" translatable="false">个人信息描述最长70位</string>
+    <string name="describe" translatable="false">描述</string>
+    <string name="input_describe" translatable="false">请输入您的描述</string>
+    <string name="at_least_describe" translatable="false">至少保留一条描述</string>
+    <string name="guanmanager" translatable="false">关闭群认证后,所有的进群申请将过期,是否确定?</string>
+    <string name="is_cancel_alipay" translatable="false">你确定取消支付宝授权吗?</string>
+    <string name="is_cancle_edit" translatable="false">是否放弃编辑</string>
+    <string name="max_item" translatable="false">最多添加10条描述</string>
+    <string name="select_group" translatable="false">选择一个群</string>
+    <string name="No_friends" translatable="false">暂无好友</string>
+    <string name="group_manager_set_manager" translatable="false">设置管理员</string>
+    <string name="group_manager_no_set" translatable="false">未设置</string>
+    <string name="group_of_aides" translatable="false">我的群助手</string>
+    <string name="group_manager_set_mark" translatable="false">群聊号</string>
+    <string name="group_manager_group_transfer" translatable="false">群主管理权转让</string>
+    <string name="list_of_exit_group_member" translatable="false">退群成员列表</string>
+    <string name="long_time_did_not_get_red_envelope_hint" translatable="false">关闭后，群内普通成员无法使用长时间未领红包功能</string>
+    <string name="group_member_protect" translatable="false">群成员保护模式</string>
+    <string name="group_member_protect_tips" translatable="false">开启后，群成员无法通过该群添加好友</string>
+    <string name="set_invite" translatable="false">开启群认证</string>
+    <string name="group_member_tips" translatable="false">开启后，需要群管理同意后才能加入群聊，同时停用扫描二维码进群方式。</string>
+    <string name="group_member_protect_warning" translatable="false">关闭此开关后，允许群组内成员相互加好友，是否确定？</string>
+    <string name="long_time_did_not_get_red_envelope_dialog_desc" translatable="false">关闭后，群内普通成员无法使用长时间未领红包功能</string>
+    <string name="refuse" translatable="false">拒绝</string>
+    <string name="agrees" translatable="false">同意</string>
+    <string name="group_manager_set_mark_title" translatable="false">群聊号</string>
+    <string name="group_manager_set_mark_hint" translatable="false">设置群聊号</string>
+    <string name="group_manager_mark_ins_o" translatable="false">1.群聊号只能设置一次；</string>
+    <string name="group_manager_mark_ins_t" translatable="false">2.群聊号必须以字母开头，可以使用6-15个字母、数字组合。</string>
+    <string name="first_letter" translatable="false">首位应该为字母</string>
+    <string name="group_group_confirm_mark" translatable="false">确定群聊号</string>
+    <string name="group_manager_manager" translatable="false">群管理员</string>
+    <string name="group_manager_master" translatable="false">群主</string>
+    <string name="group_delete_managers" translatable="false">是否将%1$s从管理员列表中删除</string>
+    <string name="group_master_transfer" translatable="false">确定选择%1$s为新群主，你将放弃群主身份。</string>
+    <string name="group_set_managers" translatable="false">确定将%1$s设置为管理员</string>
+    <string name="remove_group_chat" translatable="false">移除群聊</string>
+    <string name="active_exit_group_chat" translatable="false">主动退出群聊</string>
+    <string name="to_be_group_admin" translatable="false">被管理员%1$s移除群聊</string>
+    <string name="to_be_group_owner" translatable="false">被群主%1$s移除群聊</string>
+    <string name="no_members_exit" translatable="false">当前没有群成员退出</string>
+    <string name="group_search_chat_quick" translatable="false">快速搜索</string>
+    <string name="group_search_chat_trade" translatable="false">交易</string>
+    <string name="group_search_chat_no_content" translatable="false">未找到“%1$s”相关内容</string>
+    <string name="group_search_chat_list_trade_no_content" translatable="false">暂时没有交易记录</string>
+    <string name="group_search_chat_list_send_red" translatable="false">发了一个红包</string>
+    <string name="group_search_chat_list_get_red" translatable="false">领取红包</string>
+    <string name="group_search_chat_list_geted_red" translatable="false">已领取红包</string>
+
+
+    <!--公共字符串-->
+    <string name="comm_ok" translatable="false">确定</string>
+    <string name="comm_cancel" translatable="false">取消</string>
+
+
+    <!--设置备注-->
+    <string name="please_input_your_nickname" translatable="false">请输入你的昵称</string>
+    <string name="remark_not_be_empty" translatable="false">备注不能为空</string>
+    <string name="blacklist_dialog_content_end" translatable="false">加入黑名单，你将不再收到对方的消息</string>
+
+    <!--欢迎及升级界面-->
+    <string name="current_progress" translatable="false">当前进度：</string>
+    <string name="down_error" translatable="false">下载错误</string>
+    <string name="sweet_hint" translatable="false">温馨提示</string>
+    <string name="download" translatable="false">下载</string>
+    <string name="not_wifi_down" translatable="false">你当前处于非WiFi环境下,继续下载将会产生手机流量,确定继续?</string>
+    <string name="cancel_upgrade" translatable="false">取消升级</string>
+
+    <!--安全中心-->
+    <string name="safe_you_and_me" translatable="false">安全连接你我</string>
+    <string name="suspect_account_stolen_can_freeze_brag" translatable="false">怀疑账户被盗,可以冻结斗圈账号</string>
+    <string name="remove_after_the_security_risks_can_thaw_brag" translatable="false">解除安全风险后,可以解冻斗圈账号</string>
+    <string name="thaw_account" translatable="false">解冻账户</string>
+    <string name="frozen_account" translatable="false">冻结账户</string>
+    <string name="start_frozen" translatable="false">开始冻结</string>
+    <string name="start_thaw" translatable="false">开始解冻</string>
+    <string name="find_account_stolen_you_can_frozen" translatable="false">发现斗圈被盗,你可以冻结斗圈账号</string>
+    <string name="prevent_the_bad_guys_use_your_id_fraud_friends" translatable="false">防止坏人冒用你的身份证诈骗好友</string>
+    <string name="please_confirm_account_safe_again_after_thawing" translatable="false">请在确认账号安全后再解冻</string>
+    <string name="remove_after_the_security_risks_can_thaw_brag_" translatable="false">解除安全风险后,可以解冻斗圈账号\n\n防止坏人冒用你的身份证诈骗好友</string>
+    <string name="please_input_the_need_of_thawing_brag_account" translatable="false">请输入需要解冻的斗圈账号</string>
+    <string name="please_input_the_need_to_brag_account_freeze" translatable="false">请输入需要冻结的斗圈账号</string>
+
+    <!--群组查看个人信息-->
+    <string name="zhi_fu_bao" translatable="false">支付宝账号</string>
+    <string name="wei_xin_number" translatable="false">微信号</string>
+    <string name="shou_ji_hao" translatable="false">手机号</string>
+    <string name="detaile_info" translatable="false">详细信息</string>
+    <string name="copy_text_success" translatable="false">复制文本成功</string>
+    <string name="copy_text_null" translatable="false">复制文本失败</string>
+
+    <!--搜索好友-->
+    <string name="please_input_search_content" translatable="false">请输入搜索内容</string>
+    <string name="search_contact_no_result" translatable="false">没有搜索到%1$s相关的联系人</string>
+
+    <!--发现-->
+    <string name="discover_video" translatable="false">小视频</string>
+    <string name="discover_game" translatable="false">游戏</string>
+
+    <!--登录相关-->
+    <string name="user_kickout_tips" translatable="false">>您的账号在其他地方登录</string>
+
+    <string name="ait_warning_tips" translatable="false">字数太多了，不要超过200个字哦!</string>
+
+    <!--网页登录-->
+    <string name="web_logout" translatable="false">退出网页斗圈</string>
+    <string name="web_login_confirm" translatable="false">网页版斗圈登录确认</string>
+    <string name="web_login_tips" translatable="false">你已在浏览器上登录网页版斗圈</string>
+    <string name="web_logout_tips" translatable="false">退出网页版斗圈?</string>
+    <string name="web_login_success_tips" translatable="false">网页版斗圈已登陆</string>
+
+    <string name="replace" translatable="false">更换</string>
+    <string name="delete1" translatable="false">删除</string>
+    <string name="keywords_have_been_added" translatable="false">已添加的关键字</string>
+    <string name="have_not_add_the_keyword" translatable="false">还未添加关键字</string>
+    <string name="go_add" translatable="false">去添加</string>
+    <string name="not_group_of_aides" translatable="false">还没有群助手哦~</string>
+    <string name="update_time" translatable="false">更新时间：</string>
+    <string name="developers" translatable="false">开发者：</string>
+    <string name="group_aides_disclaimer_start" translatable="false">免责声明：本服务由</string>
+    <string name="group_aides_disclaimer_end" translatable="false">提供，相关服务和责任将由第三方承担，如有问题请咨询该公司</string>
+    <string name="group_aides_delete_confirm" translatable="false">是否确认删除该助手?</string>
+    <string name="confirm1" translatable="false">确定</string>
+    <string name="group_aides_search_hint" translatable="false">通过搜索找到你要的群助手</string>
+    <string name="search_con_list_hint" translatable="false">搜索</string>
+    <string name="enter" translatable="false">进入</string>
+
+    <!--群助手-->
+    <string name="conversation_group_assist_auth_title" translatable="false">群助手授权</string>
+    <string name="conversation_group_assist_auth_desc" translatable="false">群助手提供方申请获取以下权限</string>
+    <string name="conversation_group_assist_auth_desc_t" translatable="false">获取你的公开信息(头像、昵称等)</string>
+    <string name="conversation_group_assist_share" translatable="false">分享助手</string>
+    <string name="search_group_assist" translatable="false">搜索群助手</string>
+
+    <!--sdk用-->
+    <string name="auth_ins" translatable="false">登录后应用将获得以下权限</string>
+    <string name="auth_ins_info" translatable="false">●  获得你的公开信息(昵称，头像等)</string>
+    <string name="sdk_confirm" translatable="false">确认</string>
+    <string name="sdk_cancel" translatable="false">取消</string>
+    <string name="download_prompt" translatable="false">检测到你的手机未安装斗圈，请前往下载!</string>
+    <string name="dialog_third_account_title" translatable="false">分享失败</string>
+    <string name="dialog_third_account_count" translatable="false">使用此游戏绑定的账号才能分享!</string>
+    <string name="dialog_third_account_cancel" translatable="false">取消</string>
+    <string name="dialog_third_account_switch" translatable="false">切换账号</string>
+    <string name="create_new_chat" translatable="false">创建新聊天</string>
+    <string name="recently_chat" translatable="false">最近聊天</string>
+    <string name="loading_fail_txt" translatable="false">没有最近聊天记录，点击重新获取试试</string>
+    <string name="recent_contact_txt" translatable="false">最近联系人</string>
+    <string name="share" translatable="false">分享</string>
+    <string name="sended_txt" translatable="false">已发送</string>
+    <string name="stay_cn_txt" translatable="false">留在斗圈</string>
+    <string name="layout_dialog_loading" translatable="false">正在加载</string>
+    <string name="no_groups" translatable="false">暂无群组</string>
+    <string name="nonsupport_format" translatable="false">暂时不支持此格式分享</string>
+    <string name="audit" translatable="false">点击去审核</string>
+
+    <!--戳一下功能-->
+    <string name="poke_click_tips" translatable="false">请%1$s秒后再次发起戳一下</string>
+    <string name="poke_warning" translatable="false">只有群主和管理员才能发起戳一下</string>
+    <string name="poke_dialog_title" translatable="false">向%1$s发起通知</string>
+    <!--收藏-->
+    <string name="collection_no_content" translatable="false">没有任何收藏\n可以在聊天中长按消息来收藏</string>
+    <string name="collection_unfold" translatable="false">展开</string>
+    <string name="collection_keep" translatable="false">收起</string>
+    <string name="message_delete" translatable="false">删除</string>
+    <string name="message_transfer" translatable="false">转发</string>
+    <string name="message_copy" translatable="false">复制</string>
+    <string name="voice_no_transfer" translatable="false">语音消息不能转发</string>
+    <!--禁止群成群收发红包-->
+    <string name="dispatcher_group_member" translatable="false">禁止群成员收发红包</string>
+    <string name="dispatcher_member" translatable="false">已禁止在本群收发红包的成员</string>
+    <string name="add_other_member" translatable="false">添加其他成员</string>
+    <string name="dispatcher_red" translatable="false">禁止收发红包</string>
+    <string name="dispatcher_none" translatable="false">暂无禁止在本群收发红包的成员</string>
+    <string name="move_delete" translatable="false">移除</string>
+    <string name="dispatcher_contact" translatable="false">群管理已禁止你在本群内收发红包</string>
+    <string name="forbid_dispatcher" translatable="false">禁止%1$s在本群收发红包</string>
+    <string name="move_dispatcher" translatable="false">允许%1$s在本群收发红包</string>
+    <string name="group_manager_group_copy_new" translatable="false">一键复制新群</string>
+    <string name="group_copy_new_prompt" translatable="false">温馨提示：生成的新群仅支持复制群成员信息，现有群的所有设置无法复制</string>
+    <string name="group_copy_new_confirm_copy" translatable="false">确认复制</string>
+
+
+    <string name="team_screenshot" translatable="false"><Data><![CDATA[<font color="#3f94ef">\"%1$s\"</font>%2$s]]></Data></string>
+
+    <!--我的零钱-->
+    <string name="my_money" translatable="false">我的零钱</string>
+    <string name="my_money_yuan" translatable="false">我的零钱(元)</string>
+    <string name="recharge" translatable="false">充值</string>
+    <string name="cash_out" translatable="false">提现</string>
+    <string name="money_details" translatable="false">零钱明细</string>
+    <string name="rdp_details" translatable="false">红包明细</string>
+    <string name="modify_payment_password" translatable="false">修改支付密码</string>
+    <string name="forgot_payment_password" translatable="false">忘记支付密码</string>
+    <string name="my_bank_card" translatable="false">我的银行卡</string>
+    <string name="please_input_origin_pay_pwd" translatable="false">请输入原支付密码</string>
+    <string name="request_error_please_again" translatable="false">请求出错，请重试！</string>
+    <string name="set_pay_pwd" translatable="false">设置支付密码</string>
+    <string name="input_pay_pwd_diff" translatable="false">输入支付密码不一致</string>
+    <string name="no_bank_card_at_now" translatable="false">暂时没有银行卡哦</string>
+    <string name="add_at_now" translatable="false">现在去添加</string>
+    <string name="please_add_self_bank_card" translatable="false">请添加账户本人的银行卡</string>
+    <string name="card_owner" translatable="false">持卡人</string>
+    <string name="card_number" translatable="false">卡号</string>
+    <string name="please_input_card_number" translatable="false">请输入卡号</string>
+    <string name="add_bank_card" translatable="false">添加银行卡</string>
+    <string name="write_bank_card_info" translatable="false">填写银行卡信息</string>
+    <string name="bank_name" translatable="false">银行名称</string>
+    <string name="please_write_bank_card_info" translatable="false">请填写银行卡预留信息</string>
+    <string name="id_card_number" translatable="false">身份证号</string>
+    <string name="please_input_id_card_number" translatable="false">请输入身份证号</string>
+    <string name="bank_card_details" translatable="false">银行卡详情</string>
+    <string name="card_type_" translatable="false">卡类型：</string>
+    <string name="card_number_" translatable="false">卡号：</string>
+    <string name="remove_bank_card" translatable="false">移除银行卡</string>
+    <string name="unbind" translatable="false">解绑</string>
+    <string name="professional" translatable="false">职业</string>
+    <string name="area" translatable="false">地区</string>
+    <string name="user_agreement_bracket" translatable="false">《用户使用协议》</string>
+    <string name="agreement_and_determine" translatable="false">同意协议并确定</string>
+    <string name="please_choice_professional" translatable="false">请选择职业</string>
+    <string name="please_choice_area" translatable="false">请选择地区</string>
+    <string name="choice_city" translatable="false">选择城市</string>
+    <string name="choice_professional" translatable="false">选择职业</string>
+    <string name="account_of_bank_card" translatable="false">到账银行卡</string>
+    <string name="recharge_bank_card" translatable="false">充值银行卡</string>
+    <string name="account_of_city" translatable="false">开户省、市</string>
+    <string name="cash_out_amount" translatable="false">提现金额</string>
+    <string name="recharge_amount" translatable="false">充值金额</string>
+    <string name="please_input_cash_out_amount" translatable="false">请输入提现金额</string>
+    <string name="please_input_recharge_amount" translatable="false">请输入充值金额</string>
+    <string name="current_balance_amount" translatable="false">当前零钱余额￥%1$s</string>
+    <string name="all_cash_out" translatable="false">全部提现</string>
+    <string name="today_can_be_cash_out" translatable="false">今日还可提现%1$s元</string>
+    <string name="confirm_cash_out" translatable="false">确认提现</string>
+    <string name="confirm_recharge" translatable="false">确认充值</string>
+    <string name="cash_out_instructions" translatable="false">提现说明：</string>
+    <string name="recharge_instructions" translatable="false">充值说明：</string>
+    <string name="cash_out_amount_colon" translatable="false">提现金额：</string>
+    <string name="service_charge_colon" translatable="false">手续费：</string>
+    <string name="service_charge_extra" translatable="false">手续费(%1$s)：</string>
+    <string name="real_amount_to_account_colon" translatable="false">实际到账金额：</string>
+    <string name="ten_yuan" translatable="false">10元</string>
+    <string name="fifty_yuan" translatable="false">50元</string>
+    <string name="one_hundred_yuan" translatable="false">100元</string>
+    <string name="five_hundred_yuan" translatable="false">500元</string>
+    <string name="one_thousand_yuan" translatable="false">1000元</string>
+    <string name="other_amount" translatable="false">其他金额</string>
+    <string name="beijing" translatable="false">北京市</string>
+    <string name="balance_is_zero_not_cash_out" translatable="false">余额为零，不能提现</string>
+    <string name="cash_out_amount_is_not_more_than_balance" translatable="false">提现金额不可大于零钱金额</string>
+    <string name="extra_deduct_service_fee" translatable="false">额外扣除%1$s笔手续费</string>
+    <string name="set_new_pay_pwd" translatable="false">设置新支付密码</string>
+    <string name="input_again" translatable="false">再次输入</string>
+    <string name="pwd_is_six_number" translatable="false">密码为6位数字</string>
+    <string name="please_input_new_pay_pwd" translatable="false">请再次输入新的支付密码</string>
+    <string name="pay_pwd" translatable="false">支付密码</string>
+    <string name="confirm_pay_pwd" translatable="false">确认支付密码</string>
+    <string name="sms_code" translatable="false">短信验证码</string>
+    <string name="pay_pwd_format_is_not_correct" translatable="false">支付密码格式不对</string>
+    <string name="please_input_receive_sms_code" translatable="false">请输入%1$s接收的短信验证码</string>
+
+    <!-- 阿里收款码 -->
+    <string name="ali_paymentcode" translatable="false">支付宝收款码</string>
+    <string name="ali_qr_paymentcode" translatable="false">支付宝二维码</string>
+    <string name="ali_paymentcode_tips" translatable="false">请%1$s秒后再次发送</string>
+
+
+    <string name="is_save_modify" translatable="false">是否保存修改</string>
+    <string name="ac_note_info_save" translatable="false">保存</string>
+    <string name="telephone_number" translatable="false">电话号码</string>
+    <string name="set_friend_remark_and_desc" translatable="false">设置备注和描述</string>
+
+    <!-- 图片文件操作tips-->
+    <string name="src_file_not_found" translatable="false">源文件不存在</string>
+    <string name="save_picture_suc" translatable="false">图片保存成功</string>
+    <string name="headPic" translatable="false">头像</string>
+
+    <!-- 红包-->
+    零钱红包
+    <string name="redpacket_change_redenvelope" translatable="false">零钱红包</string>
+    <string name="redpacket_send_title" translatable="false">发红包</string>
+    <string name="redpacket_send_amount" translatable="false">金额</string>
+    <string name="redpacket_send_totalamount" translatable="false">总金额</string>
+    <string name="redpacket_send_yuan" translatable="false">元</string>
+    <string name="redpacket_send_in_amount" translatable="false">填写金额</string>
+    <string name="redpacket_send_greetings" translatable="false">财源滚滚，大富大贵</string>
+    <string name="redpacket_send_money" translatable="false">￥</string>
+    <string name="redpacket_send_zero" translatable="false">0.00</string>
+    <string name="redpacket_send_prompt" translatable="false">未领取的红包将在24小时后自动退回零钱，最晚48小时到账</string>
+    <string name="redpacket_send_num" translatable="false">红包个数</string>
+    <string name="redpacket_send_input_num" translatable="false">填写个数</string>
+    <string name="redpacket_send_unit" translatable="false">个</string>
+    <string name="redpacket_send_amount_casual" translatable="false">每人抽到的金额随机,</string>
+    <string name="redpacket_send_ordinary" translatable="false">改为普通红包</string>
+    <string name="redpacket_send_who_collar" translatable="false">谁可以领</string>
+    <string name="redpacket_send_who_all" translatable="false">群内所有人</string>
+    <string name="redpacket_send_group_num" translatable="false">群人数</string>
+
+    <string name="redpacket_receive_random_packet" translatable="false">发送了一个红包,金额随机</string>
+    <string name="redpacket_receive_open" translatable="false">开</string>
+    <string name="redpacket_receive_hand" translatable="false">看看大家的手气</string>
+
+    <string name="redpacket_details_title" translatable="false">红包详情</string>
+    <string name="redpacket_details_deposit_change" translatable="false">已存入零钱,可用于发红包</string>
+    <string name="redpacket_details_best_luck" translatable="false">手气最佳</string>
+
+
+    <string name="transfer_transfer" translatable="false">转账</string>
+    <string name="transfer_transfer_amount" translatable="false">转账金额</string>
+    <string name="transfer_amount_insufficient" translatable="false">零钱金额不足,</string>
+    <string name="transfer_amount_recharge" translatable="false">去充值</string>
+    <string name="transfer_add_desc" translatable="false">添加转账描述</string>
+    <string name="transfer_receive_wait_receipt" translatable="false">待确认收款</string>
+    <string name="transfer_receive_confirm_receipt" translatable="false">待确认收款</string>
+    <string name="transfer_receive_return" translatable="false">一天内未确认将退还给对方</string>
+    <string name="transfer_receive_complete" translatable="false">完成</string>
+    <string name="transfer_receive_complete_prompt" translatable="false">一天内朋友未确认，将退换给你</string>
+
+
+    <string name="pay_pwd_input" translatable="false">请输入支付密码</string>
+    <string name="wallet_open" translatable="false">开通钱包</string>
+    <string name="name_write" translatable="false">请填写姓名</string>
+    <string name="card_no_write" translatable="false">请填写身份证号</string>
+    <string name="id_card_no_validity" translatable="false">身份证有效期</string>
+    <string name="card_no_validity_write" translatable="false">请填写身份证有效期</string>
+    <string name="contacts_address" translatable="false">联系地址</string>
+    <string name="contacts_address_write" translatable="false">请填写地址</string>
+    <string name="set_pay_pwd_write" translatable="false">请输入六位密码</string>
+    <string name="set_pay_pwd_again" translatable="false">再次输入密码</string>
+    <string name="set_pay_pwd_again_write" translatable="false">请再次输入密码</string>
+    <string name="money_details_no" translatable="false">暂时没有明细记录</string>
+    <string name="choice_time" translatable="false">选择时间</string>
+    <string name="redpaper_get" translatable="false">收到的红包</string>
+
+    <string name="video" translatable="false">视频</string>
+    <string name="head_news" translatable="false">头条</string>
+
+
+    <string name="focus" translatable="false">关注</string>
+    <string name="system_msg" translatable="false">系统消息</string>
+    <string name="shopping_car" translatable="false">购物车</string>
+    <string name="my_order" translatable="false">我的订单</string>
+    <string name="bank_card" translatable="false">银行卡</string>
+
+    <string name="red_packet" translatable="false">红包</string>
+    <string name="open_rp" translatable="false">领取红包</string>
+    <string name="rp_has_receive" translatable="false">红包已领取</string>
+    <string name="check_rp" translatable="false">查看红包</string>
+    <string name="rp_push_content" translatable="false">发来了一个红包</string>
+
+    <string name="no_this_function" translatable="false">此功能暂未开通</string>
+    <string name="return_type" translatable="false">返款类型</string>
+    <string name="return_cause" translatable="false">返款原因</string>
+    <string name="return_time" translatable="false">返款时间</string>
+    <string name="order_no" translatable="false">订单号\t\t</string>
+    <string name="protocol_content" translatable="false">已阅读并同意《用户服务协议》和《用户隐私协议》</string>
+    <string name="protocol_content_splash" translatable="false">请你务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于
+为了向你提供即时通讯、内容分享等服务，我们需要手机你的设备信息、操作日志等个人信息。你可阅读《用户服务协议》
+和《用户隐私协议》了解详细信息。如你同意，请点击“同意”开始接受我们的服务。</string>
+    <string name="vip_exchange_time" translatable="false">您已成功兑换%1$sVIP会员</string>
+    <string name="vip_exchange_count" translatable="false">本次兑换消耗%1$d个兑换人数</string>
+
+
+
+
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dd_dp15"
+        android:paddingBottom="@dimen/dd_dp10"
+        android:paddingStart="@dimen/dd_dp20"
+        android:paddingEnd="@dimen/dd_dp20">
+
+        <LinearLayout
+            android:id="@+id/withdraw_date_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/withdraw_date"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="2019年12月"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dd_dp10"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dd_dp10">
+            <TextView
+                android:id="@+id/withdraw_expenditure_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16"
+                tools:text="支出￥ 34.50元"/>
+            <TextView
+                android:id="@+id/withdraw_income_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginStart="@dimen/dd_dp10"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                tools:text="收入￥ 18.50元"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/withdraw_sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/dd_dp20"
+        android:paddingEnd="@dimen/dd_dp20"/>
+
+</LinearLayout>

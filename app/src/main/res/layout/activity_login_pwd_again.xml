@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".login.activity.LoginPasswordQuickActivity">
+
+    <ImageView
+        android:id="@+id/back_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dd_dp44"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/comm_item_selector"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dd_dp15"
+        android:paddingRight="@dimen/dd_dp15"
+        android:src="@mipmap/back"
+        android:visibility="visible"
+        tools:ignore="ContentDescription,MissingConstraints" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_iv"
+        app:layout_constraintVertical_weight="1">
+
+
+        <RelativeLayout
+            android:id="@+id/translation_container_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/login_again_portrait_iv"
+                android:layout_width="@dimen/dd_dp84"
+                android:layout_height="@dimen/dd_dp84"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dd_dp40"
+                android:background="@drawable/portrait_bg_shape"
+                android:padding="10dp"
+                android:src="@drawable/user_avatar"
+                tools:ignore="ContentDescription" />
+
+            <RelativeLayout
+                android:id="@+id/phone_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp50"
+                android:layout_below="@+id/login_again_portrait_iv"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp">
+
+                <!--<TextView-->
+                <!--android:id="@+id/phone_hint_tv"-->
+                <!--style="@style/LoginRegisterEditTextStyle"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/dd_dp5"-->
+                <!--android:layout_marginRight="@dimen/dd_dp5"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:text="@string/phone_number_format"-->
+                <!--android:textColor="@color/text_title_black"-->
+                <!--tools:ignore="RtlHardcoded,SpUsage,TextFields" />-->
+
+
+                <TextView
+                    android:id="@+id/login_again_phone_number_tv"
+                    style="@style/LoginRegisterEditTextStyle"
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded" />
+
+                <!--<View-->
+                <!--style="@style/item_line"-->
+                <!--android:layout_alignParentBottom="true" />-->
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/password_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp50"
+                android:layout_below="@+id/phone_rl"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginTop="30dp">
+
+                <ImageView
+                    android:id="@+id/icon_password"
+                    style="@style/LoginRegisterEditTextIconStyle"
+                    android:contentDescription="@string/password"
+                    android:src="@mipmap/password" />
+
+                <EditText
+                    android:id="@+id/login_again_password_again_et"
+                    style="@style/LoginRegisterEditTextStyle"
+                    android:layout_toRightOf="@+id/icon_password"
+                    android:hint="@string/please_input_the_password"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    tools:ignore="RtlHardcoded,TextFields" />
+
+                <View
+                    style="@style/item_line"
+                    android:layout_alignParentBottom="true" />
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/login_again_password_btn"
+                style="@style/LoginRegisterButtonStyle"
+                android:layout_below="@+id/password_rl"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:text="@string/login" />
+
+            <TextView
+                android:id="@+id/login_again_forget_password_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/login_again_password_btn"
+                android:layout_marginBottom="@dimen/dd_dp25"
+                android:layout_marginRight="36dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/forget_password"
+                android:textColor="@color/text_press_color_selector"
+                android:textSize="@dimen/dd_dp14"
+                tools:ignore="RtlHardcoded,SpUsage" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dd_dp25"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/login_again_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dd_dp30"
+                    android:gravity="center"
+                    android:text="@string/codeLogin"
+                    android:textColor="@color/text_color_selector"
+                    android:textSize="@dimen/dd_dp14"
+                    tools:ignore="SpUsage" />
+
+                <View
+                    android:layout_width="@dimen/dd_dp1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dd_dp8"
+                    android:background="@color/app_theme_color" />
+
+                <TextView
+                    android:id="@+id/login_again_more_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dd_dp30"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/dd_dp10"
+                    android:text="@string/more"
+                    android:textColor="@color/text_color_selector"
+                    android:textSize="@dimen/dd_dp14"
+                    tools:ignore="RtlHardcoded,RtlSymmetry,SpUsage" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

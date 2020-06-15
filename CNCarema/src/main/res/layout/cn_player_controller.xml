@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cn_player_firstframe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"/>
+
+    <ImageView
+        android:id="@+id/cn_player_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:src="@mipmap/cn_player_close"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/cn_player_center"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/cn_player_center"
+        android:visibility="gone"
+        />
+
+    <com.meetqs.qingchat.carema.view.CircleProgressView
+        android:id="@+id/cn_player_progress"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/cn_player_bottom_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cn_player_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:src="@drawable/cn_player_option_selector"/>
+
+        <TextView
+            android:id="@+id/cn_player_cur_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/cn_player_option"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+
+        <SeekBar
+            android:id="@+id/cn_player_seakbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/cn_player_total_duration"
+            android:layout_toRightOf="@+id/cn_player_cur_position"
+            android:maxHeight="2dp"
+            android:minHeight="2dp"
+            android:progressDrawable="@drawable/seekbar_bg"
+            android:thumb="@drawable/cn_player_seekbar_thumb_bg"/>
+
+        <TextView
+            android:id="@+id/cn_player_total_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="6dp"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+    </RelativeLayout>
+
+</FrameLayout>

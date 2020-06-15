@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--字母导航栏-->
+    <TextView
+        android:id="@+id/item_letter_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp20"
+        android:background="@color/app_page_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dd_dp11"
+        android:text="A"
+        android:textColor="@color/text_blue_pressed"
+        android:textSize="@dimen/dd_dp12"
+        android:visibility="gone"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+
+    <!--item内容展示容器-->
+    <RelativeLayout
+        android:id="@+id/item_container_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/comm_item_selector">
+
+        <!--选择框-->
+        <CheckBox
+            android:id="@+id/item_select_cb"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded" />
+
+        <!--头像-->
+        <RelativeLayout
+            android:id="@+id/item_portrait_head_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_select_cb"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9">
+            <FrameLayout
+                android:id="@+id/head_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+                <ImageView
+                    android:id="@+id/item_portrait_iv"
+                    android:layout_width="@dimen/dd_dp34"
+                    android:layout_height="@dimen/dd_dp34"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_avatar"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/item_portrait_head_outline"
+                android:layout_width="@dimen/dd_dp20"
+                android:layout_height="@dimen/dd_dp20"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:layout_alignBottom="@+id/head_container"
+                android:layout_alignEnd="@+id/head_container"
+                android:src="@mipmap/icon_vip"/>
+        </RelativeLayout>
+        <!--同时显示用户名和昵称-->
+        <LinearLayout
+            android:id="@+id/item_name_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_portrait_head_rl"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded">
+
+            <TextView
+                android:id="@+id/item_user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxEms="16"
+                android:maxLines="1"
+                android:textColor="@color/text_title_black"
+                android:textSize="@dimen/dd_dp16"
+                tools:text="你好"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/item_nick_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxEms="10"
+                android:maxLines="1"
+                android:textColor="@color/text_blue_pressed"
+                android:textSize="@dimen/dd_dp12"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <!--用户名-->
+        <TextView
+            android:id="@+id/item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_portrait_head_rl"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLength="32"
+            android:textColor="@color/text_title_black"
+            android:textSize="@dimen/dd_dp16"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded,SpUsage" />
+
+        <!--添加按钮/已添加按钮-->
+        <TextView
+            android:id="@+id/item_add_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp27"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dd_dp22"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/comm_btn_4dp_corner_selector"
+            android:textSize="@dimen/dd_dp13"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/dd_dp6"
+            android:paddingRight="@dimen/dd_dp6"
+            tools:ignore="RtlHardcoded,SpUsage" />
+
+        <!--时间-->
+        <TextView
+            android:id="@+id/item_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dd_dp9"
+            android:layout_marginTop="@dimen/dd_dp9"
+            android:textColor="@color/text_blue_pressed"
+            android:textSize="@dimen/dd_dp13"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded,SpUsage" />
+    </RelativeLayout>
+
+    <!--底部分割线-->
+    <View
+        android:id="@+id/item_line"
+        style="@style/item_line"
+        android:layout_marginLeft="@dimen/dd_dp9"
+        android:layout_marginRight="@dimen/dd_dp9"
+        tools:ignore="RtlHardcoded" />
+
+</LinearLayout>

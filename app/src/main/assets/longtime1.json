@@ -1,0 +1,28 @@
+ {
+		"info": "\u8d85\u8fc710\u5206\u949f\u672a\u9886\u5b8c\u7ea2\u5305\u5728\u6b64\u663e\u793a",
+		"list": [{
+			"group_id": 3020,
+			"create_uid": 118,
+			"nickname": "dkk1",
+			"headpic": "http:\/\/t.file.sy.qingic.com\/upload\/head_pic_2231545275760.png",
+			"type": 2,
+			"redpacket_id": 6,
+			"signature": "sy74f753a899:19_201901",
+			"greetings": "\u606d\u559c\u53d1\u8d22\uff0c\u5927\u5409\u5927\u5229\uff01",
+			"redpacket_extra": [],
+			"create_time": "2019-01-21 18:58:22",
+			"is_receive": 0
+		}, {
+			"group_id": 3020,
+			"create_uid": 118,
+			"nickname": "dkk1",
+			"headpic": "http:\/\/t.file.sy.qingic.com\/upload\/head_pic_2231545275760.png",
+			"type": 2,
+			"redpacket_id": 5,
+			"signature": "sy22c9d55b70:19_201901",
+			"greetings": "\u606d\u559c\u53d1\u8d22\uff0c\u5927\u5409\u5927\u5229\uff01",
+			"redpacket_extra": [],
+			"create_time": "2019-01-21 18:55:56",
+			"is_receive": 0
+		}]
+}

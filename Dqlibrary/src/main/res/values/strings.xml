@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">斗圈</string>
+
+    <string name="year" />
+    <string name="mouth" />
+    <string name="share_dialog_cancel" translatable="false">取消</string>
+    <string name="please_input_apply_content" translatable="false">请输入申请内容</string>
+    <string name="search_hint" translatable="false">搜索</string>
+    <string name="cancel_zhifubao_auth" translatable="false">取消支付宝授权</string>
+    <string name="date" translatable="false">日</string>
+    <string name="none" translatable="false">无</string>
+    <string name="qrcode_meg" translatable="false">请扫描二维码</string>
+
+
+
+    <string name="comm_team_tips" translatable="false">发起群聊</string>
+    <string name="comm_add_friend_tips" translatable="false">添加好友</string>
+    <string name="comm_scancode" translatable="false">扫一扫</string>
+    <string name="comm_mind_qrcode" translatable="false">我的二维码</string>
+    <string name="confirm" translatable="false">确认</string>
+    <string name="search" translatable="false">搜索</string>
+
+
+    <string name="please_input_pay_pwd" translatable="false">请输入支付密码</string>
+    <string name="please_input_pay_pwd_again" translatable="false">请再次输入支付密码</string>
+    <string name="pay_key_board_balance" translatable="false">零钱</string>
+
+</resources>

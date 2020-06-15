@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/feedbackCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/feedbackTextFirstIns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:text="@string/feeedback_question_opinion"
+                tools:ignore="RtlHardcoded" />
+
+            <RelativeLayout
+                android:id="@+id/feedbackEtFirstLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp140"
+                android:layout_below="@id/feedbackTextFirstIns"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:layout_marginRight="@dimen/dd_dp10"
+                android:background="@drawable/feedback_first_bg">
+
+                <EditText
+                    android:id="@+id/feedbackEtFirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dd_dp124"
+                    android:layout_marginLeft="@dimen/dd_dp5"
+                    android:layout_marginTop="@dimen/dd_dp10"
+                    android:layout_marginRight="@dimen/dd_dp5"
+                    android:background="@color/white"
+                    android:gravity="top"
+                    android:hint="@string/feeedback_inputs"
+                    android:maxLength="200"
+                    android:paddingLeft="@dimen/dd_dp5"
+                    android:paddingTop="@dimen/dd_dp5"
+                    android:paddingRight="@dimen/dd_dp10"
+                    android:textColorHint="@color/color_e1e1e1"
+                    android:textSize="@dimen/dd_dp14" />
+
+                <TextView
+                    android:id="@+id/feedbackTxtWordNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/dd_dp10"
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:text="@string/feeedback_words_num"
+                    android:textColor="@color/color_e1e1e1"
+                    android:textSize="@dimen/dd_dp14" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/feedbackTextSencondIns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feedbackEtFirstLayout"
+                android:layout_marginStart="@dimen/dd_dp10"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:text="@string/feeedback_name" />
+
+            <EditText
+                android:id="@+id/feedbackEtSecond"
+                style="@style/feedback_et"
+                android:layout_below="@id/feedbackTextSencondIns"
+                android:hint="@string/feeedback_name_hint"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/feedbackTextThirdIns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/feedbackEtSecond"
+                android:layout_marginStart="@dimen/dd_dp10"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:text="@string/feeedback_contact_ins" />
+
+            <EditText
+                android:id="@+id/feedbackEtThird"
+                style="@style/feedback_et"
+                android:layout_below="@id/feedbackTextThirdIns"
+                android:hint="@string/feeedback_contacts_hint"
+                android:inputType="number"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <Button
+                android:id="@+id/feedbackBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp44"
+                android:layout_below="@id/feedbackEtThird"
+                android:layout_marginLeft="@dimen/dd_dp10"
+                android:layout_marginTop="@dimen/dd_dp15"
+                android:layout_marginRight="@dimen/dd_dp10"
+                android:background="@drawable/btn_login_item_bg"
+                android:gravity="center"
+                android:text="@string/feeedback_submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dd_dp14" />
+
+            <TextView
+                android:id="@+id/feedbackTextIns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dd_dp50"
+                android:text="@string/feeedback_more_business"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:background="@color/white"
+        app:dqtRightTv="@string/save"/>
+    <include
+        android:id="@+id/personalInfoSettingLayoutName"
+        layout="@layout/set_nick_name"/>
+    <include
+        android:id="@+id/personalInfoSettingLayoutGender"
+        layout="@layout/set_gender"/>
+    <include
+        android:id="@+id/personalInfoSettingLayoutQSNum"
+        layout="@layout/set_qingchat_num"/>
+
+</LinearLayout>

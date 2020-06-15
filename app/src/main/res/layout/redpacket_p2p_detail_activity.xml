@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/redpacket_p2p_detail_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+
+    <RelativeLayout
+        android:id="@+id/redpacket_p2p_detail_headrlyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp300"
+        android:layout_below="@+id/redpacket_p2p_detail_commtitle">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/redpacket_p2p_detail_icon"
+            android:layout_width="@dimen/dd_dp60"
+            android:layout_height="@dimen/dd_dp60"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp54"/>
+
+        <TextView
+            android:id="@+id/redpacket_p2p_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_p2p_detail_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:id="@+id/redpacket_p2p_detail_blessing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_p2p_detail_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp5"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp13"/>
+
+
+        <TextView
+            android:id="@+id/redpacket_p2p_detail_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_p2p_detail_blessing"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dd_dp5"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:textColor="@color/black"
+            android:textSize="65dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/redpacket_p2p_detail_money"
+            android:layout_marginBottom="@dimen/dd_dp15"
+            android:layout_toEndOf="@+id/redpacket_p2p_detail_money"
+            android:layout_toRightOf="@+id/redpacket_p2p_detail_money"
+            android:text="@string/rd_comm_yuan"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/redpacket_p2p_detail_pay_purpose"
+            android:layout_width="@dimen/dd_dp240"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redpacket_p2p_detail_money"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textColor="@color/text_blue"
+            android:textSize="@dimen/dd_dp15"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/redpacket_p2p_detail_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/redpacket_p2p_detail_headrlyt"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/dd_dp15"-->
+        <!--android:layout_marginRight="@dimen/dd_dp15"-->
+        <!--android:layout_marginTop="@dimen/dd_dp5"-->
+        <!--android:drawablePadding="@dimen/dd_dp5"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="@dimen/dd_dp13"-->
+        <!--android:visibility="gone"/>-->
+
+    <TextView
+        android:id="@+id/redpacket_p2p_detail_payhistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dd_dp20"
+        android:text="@string/rd_detail_pay_history"
+        android:textColor="@color/text_blue"
+        />
+</RelativeLayout>

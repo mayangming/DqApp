@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dd_dp89"
+    android:layout_marginRight="@dimen/dd_dp23"
+    android:layout_marginLeft="@dimen/dd_dp23"
+    android:layout_marginBottom="@dimen/dd_dp89"
+    android:background="@mipmap/redenvelope_open_bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <!-- 关闭按钮框 -->
+    <ImageView
+        android:id="@+id/redpacket_receive_close"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="left"
+        android:contentDescription="@string/guanbi"
+        android:padding="15dp"
+        android:src="@mipmap/icon_pay_close"
+        tools:ignore="RtlHardcoded" />
+
+    <!-- 头像以及相关文字 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            tools:ignore="NestedWeights">
+
+            <ImageView
+                android:id="@+id/redpacket_receive_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/headPic" />
+
+            <TextView
+                android:id="@+id/redpacket_receive_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/redpacket_receive_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_f0d472"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/redpacket_receive_random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/redpacket_receive_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dd_dp7"
+                android:text="@string/redpacket_receive_random_packet"
+                android:textColor="@color/color_f0d472"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/redpacket_receive_greet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/redpacket_receive_random"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dd_dp18"
+                android:layout_marginBottom="@dimen/dd_dp1"
+                android:gravity="center_horizontal"
+                android:text="@string/redpacket_send_greetings"
+                android:textColor="@color/color_f0d472"
+                android:textSize="@dimen/dd_dp23" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dd_dp18"
+            android:layout_weight="2"
+            android:gravity="center_horizontal|bottom">
+
+            <ImageView
+                android:id="@+id/redpacket_receive_open"
+                android:layout_width="@dimen/dd_dp89"
+                android:layout_height="@dimen/dd_dp89"
+                android:contentDescription="@string/redpacket_receive_open" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/redpacket_receive_hand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="14dp"
+                android:drawableEnd="@mipmap/icon_jin"
+                android:drawableRight="@mipmap/icon_jin"
+                android:drawablePadding="@dimen/dd_dp5"
+                android:text="@string/redpacket_receive_hand"
+                android:textColor="@color/color_f0d472"
+                android:textSize="@dimen/dd_dp12"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

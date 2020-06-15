@@ -1,0 +1,93 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+//apply plugin: 'com.novoda.bintray-release'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //    json解析库
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //okHttp不要升级，因为网络请求代码需要更新
+//    implementation "com.squareup.okhttp:okhttp:2.7.0"
+//    implementation "com.squareup.okio:okio:1.6.0"
+    implementation "com.squareup.okhttp3:okhttp:4.2.1"
+    implementation "com.squareup.okio:okio:2.4.1"
+    implementation 'com.squareup.okhttp3:mockwebserver:3.8.1'//okHttp的webSocket库
+    implementation project(path: ':httplibary')
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    /**
+     * ROOM数据库
+     * */
+//    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+//    implementation 'androidx.room:room-runtime:2.2.5'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    androidTestImplementation "androidx.room:room-testing:2.2.5"
+    // Lifecycle components
+//    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    api "android.arch.lifecycle:extensions:1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
+    implementation "android.arch.lifecycle:livedata:1.1.1"
+    implementation "com.android.support:support-annotations:28.0.0"
+
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0"
+//    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.android.support:design:28.0.0'
+//    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
+//  github地址：  https://github.com/WhiteDG/EasySP
+    api 'com.white:easysp:1.0.0'
+
+    //  阿里云oss云端文件存储
+//  配置参考  https://blog.csdn.net/bencheng06/article/details/88244171
+    api 'com.aliyun.dpa:oss-android-sdk:2.9.3'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+}
+//publish {
+//    userOrg = 'YMM'//bintray.com用户名
+//    groupId = 'com.dq.im'//jcenter上的路径
+//    artifactId = 'dqimsdk'//项目名称
+//    publishVersion = '1.0.0'//版本号
+//    desc = 'noThing'//描述，不重要
+//    website = 'https://github.com/ym'//网站，最好有，不重要
+//}

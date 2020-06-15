@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/redpacket_rob_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/dd_dp25"
+        android:background="@mipmap/qc_redpacket_bg">
+
+        <ImageView
+            android:id="@+id/redpacket_rob_close"
+            android:layout_width="@dimen/dd_dp46"
+            android:layout_height="@dimen/dd_dp46"
+            android:layout_gravity="left"
+            android:padding="@dimen/dd_dp15"
+            android:src="@mipmap/qc_redpacket_close"/>
+
+
+        <ImageView
+            android:id="@+id/redpacket_rob_headicon"
+            android:layout_width="@dimen/dd_dp60"
+            android:layout_height="@dimen/dd_dp60"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp20"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/redpacket_rob_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_rob_headicon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp10"
+            android:text="name"
+            android:textColor="@color/color_f0d472"
+            android:textSize="@dimen/dd_dp18"/>
+
+        <TextView
+            android:id="@+id/redpacket_rob_random_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_rob_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp7"
+            android:text="@string/redpacket_random_tips"
+            android:textColor="@color/color_f0d472"
+            android:textSize="@dimen/dd_dp15"/>
+
+        <TextView
+            android:id="@+id/redpacket_rob_blessing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redpacket_rob_random_tips"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp20"
+            android:gravity="center_horizontal"
+            android:text="@string/rd_comm_blessing_hints"
+            android:textColor="@color/color_f0d472"
+            android:textSize="@dimen/dd_dp23"/>
+
+        <ImageView
+            android:id="@+id/redpacket_rob_open"
+            android:layout_width="@dimen/dd_dp100"
+            android:layout_height="@dimen/dd_dp100"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_below="@+id/redpacket_rob_blessing"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dd_dp60"
+            android:scaleType="center"/>
+
+        <TextView
+            android:id="@+id/redpacket_rob_lookup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_below="@+id/redpacket_rob_open"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dd_dp12"
+            android:layout_marginTop="@dimen/dd_dp60"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:drawableRight="@mipmap/qc_redpacket_jiantou"
+            android:text="@string/redpacket_lookup"
+            android:textColor="@color/color_f0d472"
+            android:textSize="@dimen/dd_dp13"
+            android:visibility="visible"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/redpacket_rob_lookup"/>
+    </RelativeLayout>
+
+</RelativeLayout>

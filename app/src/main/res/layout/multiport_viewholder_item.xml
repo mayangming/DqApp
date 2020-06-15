@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="@dimen/dd_dp15"
+    android:layout_marginRight="@dimen/dd_dp15"
+    android:background="@drawable/nim_bg_message_tip"
+    android:gravity="center_horizontal"
+    android:paddingLeft="@dimen/dd_dp7"
+    android:paddingRight="@dimen/dd_dp7">
+
+    <TextView
+        android:id="@+id/multiport_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp14"/>
+</RelativeLayout>

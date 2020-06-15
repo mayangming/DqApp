@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_page_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/check_pay_pwd_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/check_pay_pwd_origin_pwd_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dd_dp40"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/check_pay_pwd_title_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_input_origin_pay_pwd"
+            android:textColor="@color/text_title_black" />
+
+        <com.da.library.view.PwdInputView
+            android:id="@+id/check_pay_pwd_input_view"
+            android:layout_width="@dimen/dd_dp250"
+            android:layout_height="wrap_content"
+            android:inputType="numberPassword"
+            app:pivMaxCount="6"
+            app:pivType="bottomLine" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/check_pay_pwd_forgot_pwd_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dd_dp40"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/check_pay_pwd_phone_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp12"
+            android:layout_marginRight="@dimen/dd_dp12"
+            android:layout_marginTop="@dimen/dd_dp8"
+            android:layout_marginBottom="@dimen/dd_dp8"
+            android:textColor="@color/app_txt_999999"/>
+
+        <LinearLayout style="@style/comm_sub_item_layout">
+
+            <TextView
+                style="@style/comm_sub_item_left_tv"
+                android:text="@string/feeedback_name" />
+
+            <EditText
+                android:id="@+id/check_pay_pwd_name_et"
+                style="@style/comm_sub_item_right_et"
+                android:hint="@string/feeedback_name"
+                android:maxLength="11"/>
+        </LinearLayout>
+
+        <View style="@style/item_line"/>
+
+        <LinearLayout style="@style/comm_sub_item_layout">
+
+            <TextView
+                style="@style/comm_sub_item_left_tv"
+                android:text="@string/id_card_number" />
+
+            <EditText
+                android:id="@+id/check_pay_pwd_id_card_et"
+                style="@style/comm_sub_item_right_et"
+                android:hint="@string/please_input_id_card_number"
+                android:maxLength="11"/>
+        </LinearLayout>
+
+        <View style="@style/item_line"/>
+
+        <LinearLayout style="@style/comm_sub_item_layout">
+
+            <TextView
+                style="@style/comm_sub_item_left_tv"
+                android:text="@string/phone" />
+
+            <EditText
+                android:id="@+id/check_pay_pwd_phone_et"
+                style="@style/comm_sub_item_right_et"
+                android:hint="@string/phone"
+                android:maxLength="11"/>
+        </LinearLayout>
+
+        <View style="@style/item_line"/>
+
+        <LinearLayout
+            style="@style/comm_sub_item_layout">
+
+            <TextView
+                style="@style/comm_sub_item_left_tv"
+                android:text="@string/codes" />
+
+            <EditText
+                android:id="@+id/check_pay_pwd_get_code_et"
+                style="@style/comm_sub_item_right_et"
+                android:hint="@string/code"
+                android:maxLength="4"/>
+
+            <TextView
+                android:id="@+id/check_pay_pwd_get_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:minEms="5"
+                android:text="@string/getCode"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_color_selector"
+                android:textSize="@dimen/dd_dp13"
+                tools:ignore="RtlHardcoded,SpUsage" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/check_pay_pwd_confirm_tv"
+            style="@style/comm_corner_btn"
+            android:layout_marginLeft="@dimen/dd_dp12"
+            android:layout_marginRight="@dimen/dd_dp12"
+            android:layout_marginTop="@dimen/dd_dp20"
+            android:text="@string/confirm"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

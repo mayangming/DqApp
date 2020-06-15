@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <com.da.library.widget.CommTitle
+        android:id="@+id/alipayAuthActivityCommtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_width="@dimen/dd_dp75"
+        android:layout_height="@dimen/dd_dp75"
+        android:src="@mipmap/icon_alipay"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:contentDescription="@string/alipay_auth"/>
+    <View
+        style="@style/OnePxDivider"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp20"/>
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/alipay_auth_title_ins"
+       android:layout_marginLeft="@dimen/dd_dp15"
+       android:layout_marginTop="@dimen/dd_dp30"
+       android:textColor="@color/black"
+       android:layout_marginStart="@dimen/dd_dp15" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/alipay_auth_ins"
+        android:textSize="@dimen/dd_dp12"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp50"
+        android:layout_marginStart="@dimen/dd_dp15" />
+
+    <TextView
+        android:id="@+id/alipayAuthActivityBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        android:layout_marginTop="@dimen/dd_dp35"
+        android:background="@drawable/btn_login_item_bg"
+        android:gravity="center"
+        android:text="@string/alipay_auth_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp14"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginLeft="@dimen/dd_dp10"/>
+</LinearLayout>

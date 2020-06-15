@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/ll_custom_dialog"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/shape_white_bg_4dp"
+              android:orientation="vertical"
+                android:paddingBottom="@dimen/dd_dp4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:layout_marginLeft="@dimen/dd_dp10">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/app_txt_999999"
+            android:text="@string/cash_out_amount_colon"
+            tools:ignore="RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/cash_out_amount_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:textColor="@color/app_txt_333333"
+            tools:ignore="RtlHardcoded"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp12"
+        android:layout_marginLeft="@dimen/dd_dp12">
+
+
+        <TextView
+            android:id="@+id/service_charge_hint_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/app_txt_999999"
+            android:text="@string/service_charge_extra"
+            tools:ignore="RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/service_charge_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:textColor="@color/app_txt_333333"
+            tools:ignore="RtlHardcoded"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp12"
+        android:layout_marginLeft="@dimen/dd_dp12">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/app_txt_999999"
+            android:text="@string/real_amount_to_account_colon"
+            tools:ignore="RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/real_amount_to_account_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:textColor="@color/app_txt_333333"
+            tools:ignore="RtlHardcoded"/>
+    </LinearLayout>
+
+    <View android:layout_marginTop="@dimen/dd_dp20" style="@style/OnePxDivider"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44">
+        <View
+            android:id="@+id/center_line"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/color_efeff4"/>
+
+        <TextView
+            android:id="@+id/cancel_tv"
+            style="@style/dialog_btn"
+            android:layout_toLeftOf="@+id/center_line"
+            android:text="@string/share_dialog_cancel"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/cash_out_tv"
+            style="@style/dialog_btn"
+            android:layout_toRightOf="@+id/center_line"
+            android:text="@string/cash_out"
+            android:textColor="@color/color_5495e8"
+            tools:ignore="RtlHardcoded" />
+    </RelativeLayout>
+</LinearLayout>

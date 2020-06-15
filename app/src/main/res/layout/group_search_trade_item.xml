@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemGroupSearchRedPacketLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dd_dp8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_group_search_message_sender_avatar"
+            android:layout_width="@dimen/dd_dp15"
+            android:layout_height="@dimen/dd_dp15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_avatar" />
+
+        <TextView
+            android:id="@+id/item_group_search_message_sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/item_group_search_message_sender_avatar"
+            android:layout_toRightOf="@+id/item_group_search_message_sender_avatar"
+            android:ellipsize="end"
+            android:maxEms="10"
+            android:maxLines="1"
+            android:textColor="@color/color_ababad"
+            android:textSize="@dimen/dd_dp12"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/item_group_search_message_sender_name"
+            android:layout_toRightOf="@+id/item_group_search_message_sender_name"
+            android:ellipsize="end"
+            android:maxLength="25"
+            android:text="@string/group_search_chat_list_send_red"
+            android:textColor="@color/color_ababad"
+            android:textSize="@dimen/dd_dp12"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/item_group_search_message_sender_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:textColor="@color/color_ababad"
+            android:textSize="@dimen/dd_dp10"
+            tools:ignore="SpUsage" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp10">
+
+        <ImageView
+            android:id="@+id/item_group_search_message_rdp_icon"
+            android:layout_width="@dimen/dd_dp34"
+            android:layout_height="@dimen/dd_dp34"
+            android:layout_marginLeft="@dimen/dd_dp9"
+            android:layout_marginRight="@dimen/dd_dp9"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/_xiaobao_icon" />
+
+        <TextView
+            android:id="@+id/item_group_search_message_rdp_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_group_search_message_rdp_icon"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dd_dp12"
+            android:layout_toEndOf="@+id/item_group_search_message_rdp_icon"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/item_group_search_message_rdp_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_group_search_message_rdp_desc"
+            android:layout_toRightOf="@id/item_group_search_message_rdp_desc"
+            android:textColor="@color/color_ababad"
+            android:textSize="@dimen/dd_dp10"
+            tools:ignore="SpUsage"
+            android:layout_toEndOf="@id/item_group_search_message_rdp_desc" />
+    </RelativeLayout>
+
+    <View
+        style="@style/OnePxDivider"
+        android:layout_marginTop="@dimen/dd_dp8" />
+</LinearLayout>

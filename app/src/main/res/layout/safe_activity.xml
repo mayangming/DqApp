@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:switchview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ebebeb"
+    android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/safeActivityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/safeActivitySwitchPhone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp45"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:background="@color/white"
+                switchview:swBtnDescVisible="false"
+                switchview:swBtnTitle="@string/setting_safe_insearch" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:text="@string/setting_safe_insearch_ins"
+                android:textSize="@dimen/dd_dp12" />
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/safeActivitySwitchQingChatNum"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp45"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:background="@color/white"
+                switchview:swBtnDescVisible="false"
+                switchview:swBtnTitle="@string/setting_safe_qingchat_num" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:text="@string/setting_safe_qingchat_num_ins"
+                android:textSize="12sp" />
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/safeActivitySwitchAddFriend"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp45"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:background="@color/white"
+                switchview:swBtnDescVisible="false"
+                switchview:swBtnTitle="@string/setting_safe_add_friend" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:text="@string/setting_safe_add_friend_ins"
+                android:textSize="@dimen/dd_dp12" />
+
+            <com.wd.daquan.common.view.CommSwitchButton
+                android:id="@+id/safe_team_invite_switchbtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dd_dp45"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:background="@color/white"
+                switchview:swBtnDescVisible="false"
+                switchview:swBtnTitle="@string/setting_safe_team_invite" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:text="@string/setting_safe_add_group"
+                android:textSize="@dimen/dd_dp12"/>
+
+            <LinearLayout
+                android:id="@+id/safeActivityLayoutLogin"
+                style="@style/mine_item_layout"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_weight="1"
+                    android:text="@string/setting_safe_login" />
+
+                <ImageView
+                    android:id="@+id/safeActivityImgRedDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:src="@mipmap/icon_red_dot"
+                    android:visibility="gone" />
+
+                <ImageView style="@style/comm_arrow_right" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:text="@string/setting_safe_login_ins"
+                android:textSize="@dimen/dd_dp12" />
+
+            <LinearLayout
+                android:id="@+id/safeActivityLayoutBlack"
+                style="@style/mine_item_layout"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_weight="1"
+                    android:text="@string/setting_safe_black" />
+
+                <ImageView style="@style/comm_arrow_right" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:visibility="gone"
+                android:text="@string/setting_safe_black_ins"
+                android:textSize="@dimen/dd_dp12" />
+
+            <LinearLayout
+                android:id="@+id/safeActivityLayoutSafe"
+                style="@style/mine_item_layout"
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="@dimen/dd_dp8"
+                    android:layout_weight="1"
+                    android:text="@string/setting_safe_safecenter" />
+
+                <ImageView style="@style/comm_arrow_right" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dd_dp15"
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:layout_marginRight="@dimen/dd_dp15"
+                android:text="@string/setting_safe_safecenter_ins"
+                android:textSize="@dimen/dd_dp12"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

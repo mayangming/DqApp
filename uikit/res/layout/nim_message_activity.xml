@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/message_fragment_container"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/nim_message_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+
+    <include
+        android:id="@+id/p2p_message_addfriend_lyt"
+        layout="@layout/p2p_message_addfriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+</LinearLayout>

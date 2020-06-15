@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#000000"
+             android:orientation="vertical">
+
+    <com.meetqs.qingchat.carema.view.VideoPlayer
+        android:id="@+id/carema_video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/carema_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:padding="18dp"
+        android:src="@mipmap/cn_player_close"/>
+
+    <ImageView
+        android:id="@+id/carema_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="16dp"
+        android:src="@mipmap/cn_player_switch"/>
+
+    <com.meetqs.qingchat.carema.view.CaptureLayout
+        android:id="@+id/carema_capture_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+
+    <com.meetqs.qingchat.carema.view.FoucsView
+        android:id="@+id/carema_foucs_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+</FrameLayout>

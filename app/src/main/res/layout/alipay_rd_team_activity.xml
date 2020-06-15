@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/rl_seting_two"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/color_ebebeb"
+              android:orientation="vertical">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/alipay_rd_team_commtitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp15"
+        android:background="@drawable/rp_team_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/alipay_rd_team_totalmoney_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_team_detail_totalmoney_tips"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <EditText
+            android:id="@+id/alipay_rd_team_totalmoney_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp5"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:digits="0123456789"
+            android:gravity="center_vertical|right"
+            android:hint="@string/rd_comm_000_hints"
+            android:inputType="numberDecimal"
+            android:maxLength="16"
+            android:textColor="@color/color_252525"
+            android:textColorHint="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_yuan"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp13"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alipay_rd_team_recharge_llyt"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_unenough_money"
+            android:textColor="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_team_recharge"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_recharge"
+            android:textColor="@color/color_ea463a"
+            android:textSize="@dimen/dd_dp13"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp15"
+        android:background="@drawable/rp_team_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_num_tips"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp13"/>
+
+
+        <EditText
+            android:id="@+id/alipay_rd_team_redpackt_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp5"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp5"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:digits="0123456789"
+            android:gravity="center_vertical|right"
+            android:hint="@string/rd_comm_num_hint"
+            android:inputType="number"
+            android:maxLength="16"
+            android:textColor="@color/color_252525"
+            android:textColorHint="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_ge"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp13"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/alipay_rd_team_exchange_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_random_tips"
+            android:textColor="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_team_exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_exchange"
+            android:textColor="@color/color_ea463a"
+            android:textSize="@dimen/dd_dp13"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/alipay_rd_team_selectmember_rylt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@drawable/rp_team_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/alipay_rd_team_selectmember_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_whoreceive_tips"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp13"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_team_selectmember"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginRight="@dimen/dd_dp10"
+            android:layout_toEndOf="@+id/alipay_rd_team_selectmember_tips"
+            android:layout_toRightOf="@+id/alipay_rd_team_selectmember_tips"
+            android:drawableEnd="@mipmap/icon_right_step"
+            android:drawablePadding="@dimen/dd_dp5"
+            android:drawableRight="@mipmap/icon_right_step"
+            android:ellipsize="end"
+            android:gravity="right|center_vertical"
+            android:singleLine="true"
+            android:text="@string/rd_comm_all_member"
+            android:textColor="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/alipay_rd_team_grouptips_llyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/alipay_rd_team_groupnum_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dd_dp10"
+            android:layout_marginStart="@dimen/dd_dp10"
+            android:gravity="center_vertical"
+            android:text="@string/rd_comm_teamtips"
+            android:textColor="@color/color_8e8e8e"
+            android:textSize="@dimen/dd_dp13"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/alipay_rd_team_blessing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp80"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@drawable/rp_team_item_bg"
+        android:gravity="top"
+        android:hint="@string/rd_comm_blessing_hints"
+        android:inputType="textMultiLine"
+        android:maxEms="20"
+        android:maxLength="20"
+        android:padding="@dimen/dd_dp5"
+        android:textColor="@color/color_252525"
+        android:textColorHint="@color/color_8e8e8e"
+        android:textColorLink="@color/color_565656"
+        android:textSize="@dimen/dd_dp15"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="@dimen/dd_dp12"
+            android:text="@string/rd_comm_money_symbol"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp17"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/alipay_rd_team_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rd_comm_000_hints"
+            android:textColor="@color/color_252525"
+            android:textSize="@dimen/dd_dp40"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/alipay_rd_team_sendbtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp40"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:background="@drawable/qc_alipay_rd_btn_bg"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="@string/rd_comm_send_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp14"/>
+
+    <TextView
+        android:id="@+id/alipay_rd_team_bottom_tips"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dd_dp20"
+        android:gravity="center|bottom"
+        android:paddingLeft="52dp"
+        android:paddingRight="52dp"
+        android:text="@string/rd_comm_bottom_alipay_tips"
+        android:textColor="@color/color_8e8e8e"/>
+</LinearLayout>
+
+

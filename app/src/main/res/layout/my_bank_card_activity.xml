@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.da.library.widget.CommTitle
+        android:id="@+id/my_bank_card_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/my_bank_card"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/my_bank_card_title_layout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_bank_card_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/my_bank_card_no_data_ll"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_bank_card_title_layout"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/no_bank_card_at_now"
+            android:textColor="@color/app_txt_999999"
+            android:textSize="@dimen/dd_dp15"
+            tools:ignore="SpUsage" />
+
+        <Button
+            android:id="@+id/my_bank_card_add_card_btn"
+            style="@style/comm_corner_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dd_dp40"
+            android:layout_marginTop="@dimen/dd_dp30"
+            android:paddingLeft="@dimen/dd_dp20"
+            android:paddingRight="@dimen/dd_dp20"
+            android:text="@string/add_at_now"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

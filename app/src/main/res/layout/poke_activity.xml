@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_1e2027"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/poke_portrait"
+        android:layout_width="@dimen/dd_dp100"
+        android:layout_height="@dimen/dd_dp100"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dd_dp120"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/poke_sender_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/poke_portrait"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dd_dp10"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/dd_dp22"
+        android:gravity="center"
+        android:text="xxx"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp30"/>
+
+    <TextView
+        android:id="@+id/poke_target_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/poke_sender_name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dd_dp10"
+        android:layout_marginLeft="@dimen/dd_dp10"
+        android:layout_marginRight="@dimen/dd_dp10"
+        android:gravity="center"
+        android:text="222"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp15"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/poke_message_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@+id/poke_target_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:background="@drawable/poke_dialog_content"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="3"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="@dimen/dd_dp15"
+        />
+
+    <RelativeLayout
+        android:id="@+id/poke_option_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dd_dp40"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/poke_option_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dd_dp12"
+            android:drawableTop="@mipmap/poke_cancel"
+            android:gravity="center"
+            android:text="忽略"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dd_dp16"/>
+
+        <TextView
+            android:id="@+id/poke_option_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_toRightOf="@+id/poke_option_cancel"
+            android:drawablePadding="@dimen/dd_dp12"
+            android:drawableTop="@mipmap/poke_ok"
+            android:gravity="center"
+            android:text="进入聊天"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dd_dp16"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

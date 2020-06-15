@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.da.library.view.DqToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp44"
+        app:dqtTitle="@string/login_pwd_modify"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_pwd_modify_old_pwd"
+        android:layout_marginLeft="@dimen/dd_dp25"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginStart="@dimen/dd_dp25" />
+
+    <EditText
+        android:id="@+id/loginPwdModifyEtOldPwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dd_dp49"
+        android:hint="@string/login_pwd_modify_old_pwd_hint"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColorHint="@color/color_e1e1e1"
+        android:textSize="@dimen/dd_dp16"
+        android:background="@drawable/shape_white_bg_4dp"
+        android:maxLength="15"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:ellipsize="end"
+        android:paddingLeft="@dimen/dd_dp10"
+        android:paddingRight="@dimen/dd_dp10"
+        android:layout_marginTop="@dimen/dd_dp10"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_password"
+        android:layout_marginLeft="@dimen/dd_dp25"
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginStart="@dimen/dd_dp25" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:layout_marginLeft="@dimen/dd_dp15"
+        android:layout_marginRight="@dimen/dd_dp15"
+        android:orientation="vertical"
+        android:background="@drawable/shape_white_bg_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/loginPwdModifyEtNewPwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp49"
+            android:hint="@string/login_pwd_modify_new_pwd"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="@color/color_e1e1e1"
+            android:textSize="@dimen/dd_dp16"
+            android:background="@color/white"
+            android:maxLength="15"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"
+            android:ellipsize="end"/>
+        <View
+            style="@style/OnePxDivider"/>
+        <EditText
+            android:id="@+id/loginPwdModifyEtNewPwdAgain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dd_dp49"
+            android:hint="@string/login_pwd_modify_new_pwd_again"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="@color/color_e1e1e1"
+            android:textSize="@dimen/dd_dp16"
+            android:background="@color/white"
+            android:maxLength="15"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/dd_dp10"
+            android:paddingRight="@dimen/dd_dp10"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/loginPwdModifyTxtConfirm"
+        style="@style/LoginRegisterButtonStyle"
+        android:layout_marginTop="@dimen/dd_dp30"
+        android:text="@string/confirm"
+        android:enabled="true" />
+
+</LinearLayout>
