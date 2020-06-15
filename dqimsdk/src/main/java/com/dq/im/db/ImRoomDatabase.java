@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
           TeamUserJoinModel.class,
           TeamMessageBaseModel.class,
           P2PMessageBaseModel.class},
-          version = 3, exportSchema = true)
+          version = 1, exportSchema = true)
 public abstract class ImRoomDatabase extends RoomDatabase {
     public static volatile String USER_ID = "";
 
@@ -75,7 +75,7 @@ public abstract class ImRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ImRoomDatabase.class, "im_"+USER_ID)//数据库名
-                            .addMigrations(MIGRATION_2_3)
+//                            .addMigrations(MIGRATION_2_3)
 //                            .fallbackToDestructiveMigration()
                             .build();
                 }

@@ -8,6 +8,8 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
+import com.dq.im.ImProvider;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -48,7 +50,7 @@ public class FileSDCardUtil {
      * @description: 下载的图片保存的位置
      **/
     public String getPublickDiskImagePicDir() {
-        return getPublickDiskFileDir(BaseApplication.getInstance(), DIRECTORY_PICTURES);
+        return getPublickDiskFileDir(ImProvider.context, DIRECTORY_PICTURES);
     }
 
 
@@ -58,7 +60,7 @@ public class FileSDCardUtil {
      * @description: 电影保存的位置
      **/
     public String getPublickDiskMoviesDir() {
-        return getPublickDiskFileDir(BaseApplication.getInstance(), DIRECTORY_MOVIES);
+        return getPublickDiskFileDir(ImProvider.context, DIRECTORY_MOVIES);
     }
 
     /**
@@ -67,7 +69,7 @@ public class FileSDCardUtil {
      * @description:音乐保存的位置
      **/
     public String getPublickDiskMusicDir() {
-        return getPublickDiskFileDir(BaseApplication.getInstance(), DIRECTORY_MUSIC);
+        return getPublickDiskFileDir(ImProvider.context, DIRECTORY_MUSIC);
     }
 
     /**
@@ -76,7 +78,7 @@ public class FileSDCardUtil {
      * @Description: 创建保存图片的缓存目录
      */
     public String getPublickDiskImagePicCacheDir() {
-        return getPublickDiskCacheDir(BaseApplication.getInstance(), DIRECTORY_PICTURES);
+        return getPublickDiskCacheDir(ImProvider.context, DIRECTORY_PICTURES);
     }
 
     /**
@@ -85,7 +87,7 @@ public class FileSDCardUtil {
      * @description:获取音乐的缓存目录
      **/
     public String getPublickDiskMusicCacheDir() {
-        return getPublickDiskCacheDir(BaseApplication.getInstance(), DIRECTORY_MUSIC);
+        return getPublickDiskCacheDir(ImProvider.context, DIRECTORY_MUSIC);
     }
 
     /**
@@ -94,7 +96,7 @@ public class FileSDCardUtil {
      * @descripion:获取视频的缓存目录
      **/
     public String getPublickDiskMoviesCacheDir() {
-        return getPublickDiskCacheDir(BaseApplication.getInstance(), DIRECTORY_MOVIES);
+        return getPublickDiskCacheDir(ImProvider.context, DIRECTORY_MOVIES);
     }
 
 

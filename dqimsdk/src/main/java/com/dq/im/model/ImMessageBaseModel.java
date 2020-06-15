@@ -58,17 +58,17 @@ public class ImMessageBaseModel implements Serializable {
     @Ignore
     protected IMContentDataModel contentData = new IMContentDataModel();//数据解析
 
-    @ColumnInfo(name = "signal")
-    @NonNull
-    protected String signal = "PUB_ACK";//PC端使用的字段，本地不需要处理
-
-    @ColumnInfo(name = "subSignal")
-    @NonNull
-    protected String subSignal = "MP";//PC端使用的字段，本地不需要处理
-
-    @ColumnInfo(name = "conversationType")
-    @NonNull
-    protected String conversationType = "";// PC端使用的字段，本地不需要处理
+//    @ColumnInfo(name = "signal")
+//    @NonNull
+//    protected String signal = "PUB_ACK";//PC端使用的字段，本地不需要处理
+//
+//    @ColumnInfo(name = "subSignal")
+//    @NonNull
+//    protected String subSignal = "MP";//PC端使用的字段，本地不需要处理
+//
+//    @ColumnInfo(name = "conversationType")
+//    @NonNull
+//    protected String conversationType = "";// PC端使用的字段，本地不需要处理
 
     @NonNull
     public String getMsgIdClient() {
@@ -167,29 +167,29 @@ public class ImMessageBaseModel implements Serializable {
         this.msgSecondType = msgSecondType;
     }
 
-    public String getSignal() {
-        return signal;
-    }
-
-    public void setSignal(String signal) {
-        this.signal = signal;
-    }
-
-    public String getSubSignal() {
-        return subSignal;
-    }
-
-    public void setSubSignal(String subSignal) {
-        this.subSignal = subSignal;
-    }
-
-    public String getConversationType() {
-        return conversationType;
-    }
-
-    public void setConversationType(String conversationType) {
-        this.conversationType = conversationType;
-    }
+//    public String getSignal() {
+//        return signal;
+//    }
+//
+//    public void setSignal(String signal) {
+//        this.signal = signal;
+//    }
+//
+//    public String getSubSignal() {
+//        return subSignal;
+//    }
+//
+//    public void setSubSignal(String subSignal) {
+//        this.subSignal = subSignal;
+//    }
+//
+//    public String getConversationType() {
+//        return conversationType;
+//    }
+//
+//    public void setConversationType(String conversationType) {
+//        this.conversationType = conversationType;
+//    }
 
     @Override
     public String toString() {

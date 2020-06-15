@@ -135,9 +135,16 @@ public class FileUtils {
      * @param localPath 本地路径，会转成Uri再进行判断
      */
     public static boolean fileExists(String localPath){
-        Uri uri = Uri.parse(localPath);
-        DocumentFile videoDocumentFile = DocumentFile.fromSingleUri(DqApp.sContext, uri);
-        return videoDocumentFile.exists();
+        boolean isExists = false;
+        if (Build.VERSION.SDK_INT>=29) {//android 10
+            Uri uri = Uri.parse(localPath);
+            DocumentFile videoDocumentFile = DocumentFile.fromSingleUri(DqApp.sContext, uri);
+            isExists = videoDocumentFile.exists();
+        }else {
+            File file = new File(localPath);
+            isExists = file.exists();
+        }
+        return isExists;
     }
 
     /**

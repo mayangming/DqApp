@@ -3,6 +3,7 @@ package com.dq.im.util.media;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -42,6 +43,16 @@ class MediaPlayerUtil{
             player = null;
         }
     }
+
+    public void playVoice(String tag,String voicePath){
+        if (Build.VERSION.SDK_INT>=29) {//android 10
+            Uri voiceUri = Uri.parse(voicePath);
+            initVoice(tag,voiceUri);
+        }else {
+            initVoice(tag,voicePath);
+        }
+    }
+
     /**
      * 播放音频文件
      */

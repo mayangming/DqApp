@@ -75,27 +75,36 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
         long second = messageVoiceBean.getDuration() / 1000;
         rightVoiceViewHolder.duration.setText(second+"s");
         rightVoiceViewHolder.itemView.setOnClickListener(v ->{
-//            File file = new File(messageVoiceBean.getLocalUriString());
-            Uri voiceUri = Uri.parse(messageVoiceBean.getLocalUriString());
-//            boolean fileExists = file.exists();
             boolean fileExists = FileUtils.fileExists(messageVoiceBean.getLocalUriString());
             Log.e("YM","文件是否存在:"+fileExists);
             if (fileExists){
                 mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-                mediaPlayerUtil.initVoice(uuid,voiceUri);
+                mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 rightVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
-                            Uri uri = (Uri) object;
-                            messageVoiceBean.setLocalUriString(uri.toString());
+                            String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                            if (object instanceof File){
+                                File file = (File) object;
+                                localPath = file.getAbsolutePath();
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                localPath = uri.toString();
+                            }
+                            messageVoiceBean.setLocalUriString(localPath);
                             String source = gson.toJson(messageVoiceBean);
                             p2PMessageBaseModel.setSourceContent(source);
                             p2PMessageViewModel.update(p2PMessageBaseModel);
                             mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-                            mediaPlayerUtil.initVoice(uuid,uri);
+                            if (object instanceof File){
+                                mediaPlayerUtil.initVoice(uuid,localPath);
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                mediaPlayerUtil.initVoice(uuid,uri);
+                            }
                             rightVoiceViewHolder.itemView.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -117,59 +126,42 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
         long second = messageVoiceBean.getDuration() / 1000;
         rightVoiceViewHolder.duration.setText(second+"s");
         rightVoiceViewHolder.itemView.setOnClickListener(v ->{
-            Uri voiceUri = Uri.parse(messageVoiceBean.getLocalUriString());
             boolean fileExists = FileUtils.fileExists(messageVoiceBean.getLocalUriString());
             Log.e("YM","文件是否存在:"+fileExists);
             if (fileExists){
                 mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-                mediaPlayerUtil.initVoice(uuid,voiceUri);
+                mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 rightVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-//                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
-//                    @Override
-//                    public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
-//                        if (status == 1){
-//                            Uri uri = (Uri) object;
-//                            messageVoiceBean.setLocalUriString(uri.toString());
-//                            String source = gson.toJson(messageVoiceBean);
-//                            teamMessageBaseModel.setSourceContent(source);
-//                            teamMessageViewModel.update(teamMessageBaseModel);
-//                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-//                            mediaPlayerUtil.initVoice(uuid,uri);
-//                            rightVoiceViewHolder.itemView.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
-//                                }
-//                            });
-//                        }
-//
-//                    }
-//                });
                 HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir("https://static.runoob.com/images/demo/demo2.jpg", rightVoiceViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
+                            String localPath = "";//10.0之上是uri，10.0之下是本地路径
                             if (object instanceof File){
                                 File file = (File) object;
-                                Log.e("YM","下载的是文件,文件路径:"+file.getAbsolutePath());
+                                localPath = file.getAbsolutePath();
                             }else if (object instanceof Uri){
                                 Uri uri = (Uri) object;
-                                Log.e("YM","下载的是Uri,Uri路径:"+uri.toString());
+                                localPath = uri.toString();
                             }
-//                            Uri uri = (Uri) object;
-//                            messageVoiceBean.setLocalUriString(uri.toString());
-//                            String source = gson.toJson(messageVoiceBean);
-//                            teamMessageBaseModel.setSourceContent(source);
-//                            teamMessageViewModel.update(teamMessageBaseModel);
-//                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-//                            mediaPlayerUtil.initVoice(uuid,uri);
-//                            rightVoiceViewHolder.itemView.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
-//                                }
-//                            });
+                            messageVoiceBean.setLocalUriString(localPath);
+                            String source = gson.toJson(messageVoiceBean);
+                            teamMessageBaseModel.setSourceContent(source);
+                            teamMessageViewModel.update(teamMessageBaseModel);
+                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
+                            if (object instanceof File){
+                                mediaPlayerUtil.initVoice(uuid,localPath);
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                mediaPlayerUtil.initVoice(uuid,uri);
+                            }
+                            rightVoiceViewHolder.itemView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
+                                }
+                            });
                         }
                     }
                 });

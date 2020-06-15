@@ -17,6 +17,8 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
+import com.dq.im.util.download.HttpDownFileUtils;
+import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.media.MediaPlayerIpc;
 import com.dq.im.util.media.MediaPlayerUtil;
 import com.dq.im.util.oss.AliOssUtil;
@@ -27,6 +29,7 @@ import com.wd.daquan.imui.adapter.viewholder.LeftVoiceViewHolder;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
 
+import java.io.File;
 import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
@@ -73,31 +76,37 @@ public class LeftVoiceChatViewHolderBind extends BaseLeftViewHolderBind<LeftVoic
         }
 
         leftVoiceViewHolder.itemView.setOnClickListener(v -> {
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                TToast.show(activity,"该系统版本暂时不支持语音消息播放");
-               return;
-            }
-            Uri voiceUri = Uri.parse(messageVoiceBean.getLocalUriString());
             boolean fileExists = FileUtils.fileExists(messageVoiceBean.getLocalUriString());
             Log.e("YM","文件是否存在:"+fileExists);
             if (fileExists){
                 mediaPlayerUtil.addMediaPlayerListener(uuid, LeftVoiceChatViewHolderBind.this);
-                mediaPlayerUtil.initVoice(uuid,voiceUri);
+                mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 leftVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), leftVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), leftVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
-                            Uri uri = (Uri) object;
-                            messageVoiceBean.setLocalUriString(uri.toString());
+                            String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                            if (object instanceof File){
+                                File file = (File) object;
+                                localPath = file.getAbsolutePath();
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                localPath = uri.toString();
+                            }
+                            messageVoiceBean.setLocalUriString(localPath);
                             messageVoiceBean.setReadStatus(1);
                             String source = gson.toJson(messageVoiceBean);
                             p2PMessageBaseModel.setSourceContent(source);
                             p2PMessageViewModel.update(p2PMessageBaseModel);
-//                            initVoice(uri);
                             mediaPlayerUtil.addMediaPlayerListener(uuid, LeftVoiceChatViewHolderBind.this);
-                            mediaPlayerUtil.initVoice(uuid,uri);
+                            if (object instanceof File){
+                                mediaPlayerUtil.initVoice(uuid,localPath);
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                mediaPlayerUtil.initVoice(uuid,uri);
+                            }
                             leftVoiceViewHolder.itemView.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -125,30 +134,37 @@ public class LeftVoiceChatViewHolderBind extends BaseLeftViewHolderBind<LeftVoic
             leftVoiceViewHolder.voiceUnread.setVisibility(View.GONE);
         }
         leftVoiceViewHolder.itemView.setOnClickListener(v -> {
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                TToast.show(activity,"该系统版本暂时不支持对方语音消息播放");
-                return;
-            }
-            Uri voiceUri = Uri.parse(messageVoiceBean.getLocalUriString());
             boolean fileExists = FileUtils.fileExists(messageVoiceBean.getLocalUriString());
             Log.e("YM","文件是否存在:"+fileExists);
             if (fileExists){
                 mediaPlayerUtil.addMediaPlayerListener(uuid, LeftVoiceChatViewHolderBind.this);
-                mediaPlayerUtil.initVoice(uuid,voiceUri);
+                mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 leftVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), leftVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), leftVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
-                            Uri uri = (Uri) object;
-                            messageVoiceBean.setLocalUriString(uri.toString());
+                            String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                            if (object instanceof File){
+                                File file = (File) object;
+                                localPath = file.getAbsolutePath();
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                localPath = uri.toString();
+                            }
+                            messageVoiceBean.setLocalUriString(localPath);
                             messageVoiceBean.setReadStatus(1);
                             String source = gson.toJson(messageVoiceBean);
                             teamMessageBaseModel.setSourceContent(source);
                             teamMessageViewModel.update(teamMessageBaseModel);
                             mediaPlayerUtil.addMediaPlayerListener(uuid, LeftVoiceChatViewHolderBind.this);
-                            mediaPlayerUtil.initVoice(uuid,uri);
+                            if (object instanceof File){
+                                mediaPlayerUtil.initVoice(uuid,localPath);
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                mediaPlayerUtil.initVoice(uuid,uri);
+                            }
                             leftVoiceViewHolder.itemView.post(new Runnable() {
                                 @Override
                                 public void run() {

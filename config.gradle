@@ -8,7 +8,7 @@ ext {
 
     android = [
             compileSdkVersion: 29,
-            buildToolsVersion: '28.0.3',
+            buildToolsVersion: '29.0.3',
             applicationId    : "com.wd.daquan",
             minSdkVersion    : 17,
             targetSdkVersion : 29,
