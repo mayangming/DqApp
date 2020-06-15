@@ -16,19 +16,22 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
+import com.dq.im.util.download.HttpDownFileUtils;
+import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.media.MediaPlayerIpc;
 import com.dq.im.util.media.MediaPlayerUtil;
 import com.dq.im.util.oss.AliOssUtil;
-import com.dq.im.util.oss.OnFileDownListener;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
 import com.wd.daquan.imui.adapter.viewholder.RightVoiceViewHolder;
 import com.wd.daquan.util.FileUtils;
 
+import java.io.File;
 import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
+import static android.os.Environment.DIRECTORY_PICTURES;
 
 /**
  * 右侧音频内容填充
@@ -122,25 +125,52 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
                 mediaPlayerUtil.initVoice(uuid,voiceUri);
             }else {
                 rightVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
+//                AliOssUtil.getInstance().downMusicVideoPicFromService(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
+//                    @Override
+//                    public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                        if (status == 1){
+//                            Uri uri = (Uri) object;
+//                            messageVoiceBean.setLocalUriString(uri.toString());
+//                            String source = gson.toJson(messageVoiceBean);
+//                            teamMessageBaseModel.setSourceContent(source);
+//                            teamMessageViewModel.update(teamMessageBaseModel);
+//                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
+//                            mediaPlayerUtil.initVoice(uuid,uri);
+//                            rightVoiceViewHolder.itemView.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
+//                                }
+//                            });
+//                        }
+//
+//                    }
+//                });
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir("https://static.runoob.com/images/demo/demo2.jpg", rightVoiceViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
-                            Uri uri = (Uri) object;
-                            messageVoiceBean.setLocalUriString(uri.toString());
-                            String source = gson.toJson(messageVoiceBean);
-                            teamMessageBaseModel.setSourceContent(source);
-                            teamMessageViewModel.update(teamMessageBaseModel);
-                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
-                            mediaPlayerUtil.initVoice(uuid,uri);
-                            rightVoiceViewHolder.itemView.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
-                                }
-                            });
+                            if (object instanceof File){
+                                File file = (File) object;
+                                Log.e("YM","下载的是文件,文件路径:"+file.getAbsolutePath());
+                            }else if (object instanceof Uri){
+                                Uri uri = (Uri) object;
+                                Log.e("YM","下载的是Uri,Uri路径:"+uri.toString());
+                            }
+//                            Uri uri = (Uri) object;
+//                            messageVoiceBean.setLocalUriString(uri.toString());
+//                            String source = gson.toJson(messageVoiceBean);
+//                            teamMessageBaseModel.setSourceContent(source);
+//                            teamMessageViewModel.update(teamMessageBaseModel);
+//                            mediaPlayerUtil.addMediaPlayerListener(uuid, RightVoiceViewHolderBind.this);
+//                            mediaPlayerUtil.initVoice(uuid,uri);
+//                            rightVoiceViewHolder.itemView.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    rightVoiceViewHolder.progressBar.setVisibility(View.GONE);
+//                                }
+//                            });
                         }
-
                     }
                 });
             }

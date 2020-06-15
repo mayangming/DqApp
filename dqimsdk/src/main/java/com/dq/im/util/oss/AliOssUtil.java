@@ -28,6 +28,7 @@ import com.alibaba.sdk.android.oss.model.GetObjectRequest;
 import com.alibaba.sdk.android.oss.model.GetObjectResult;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.dq.im.util.download.OnFileDownListener;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -276,7 +277,7 @@ public class AliOssUtil {
         oss.asyncGetObject(get, new OSSCompletedCallback<GetObjectRequest, GetObjectResult>() {
             @Override
             public void onSuccess(GetObjectRequest request, GetObjectResult result) {
-            //开始读取数据。
+                //开始读取数据。
                 long length = result.getContentLength();
                 byte[] buffer = new byte[(int) length];
                 int readCount = 0;
@@ -287,7 +288,7 @@ public class AliOssUtil {
                         OSSLog.logInfo(e.toString());
                     }
                 }
-            //将下载后的文件存放在指定的本地路径。
+                //将下载后的文件存放在指定的本地路径。
                 try {
                     FileOutputStream fout = new FileOutputStream("download_filePath");
                     fout.write(buffer);
@@ -342,7 +343,7 @@ public class AliOssUtil {
                     String fileName = downPathUrl.substring(downPathUrl.lastIndexOf("/") + 1);;
 //                    if (code == HttpURLConnection.HTTP_OK) {
 //                        fileName = conn.getHeaderField("Content-Disposition");
-                        // 通过Content-Disposition获取文件名，这点跟服务器有关，需要灵活变通
+                    // 通过Content-Disposition获取文件名，这点跟服务器有关，需要灵活变通
 //                        if (fileName == null || fileName.length() < 1) {
 //                            // 通过截取URL来获取文件名
 //                            URL downloadUrl = conn.getURL(); // 获得实际下载文件的URL
@@ -365,14 +366,18 @@ public class AliOssUtil {
                     if (inserType.equals(DIRECTORY_PICTURES)) {
                         contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
                         contentValues.put(MediaStore.Images.Media.MIME_TYPE, getMIMEType(fileName));
-                        contentValues.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                        if (Build.VERSION.SDK_INT>=29) {//android 10
+                            contentValues.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                        }
                         //只是往 MediaStore 里面插入一条新的记录，MediaStore 会返回给我们一个空的 Content Uri
                         //接下来问题就转化为往这个 Content Uri 里面写入
                         uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
                     } else if (inserType.equals(DIRECTORY_MOVIES)) {
                         contentValues.put(MediaStore.Video.Media.MIME_TYPE, getMIMEType(fileName));
                         contentValues.put(MediaStore.Video.Media.DISPLAY_NAME, fileName);
-                        contentValues.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis());
+                        if (Build.VERSION.SDK_INT>=29) {//android 10
+                            contentValues.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis());
+                        }
                         //只是往 MediaStore 里面插入一条新的记录，MediaStore 会返回给我们一个空的 Content Uri
                         //接下来问题就转化为往这个 Content Uri 里面写入
                         uri = context.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, contentValues);
@@ -561,4 +566,12 @@ public class AliOssUtil {
         };
         return MIME_MapTable;
     }
+
+    /**
+     * 10.0之上保存文件的方式
+     */
+    private void saveFileOf10Above(){
+
+    }
+
 }

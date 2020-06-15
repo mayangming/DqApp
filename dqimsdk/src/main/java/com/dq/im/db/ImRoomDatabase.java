@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
           TeamUserJoinModel.class,
           TeamMessageBaseModel.class,
           P2PMessageBaseModel.class},
-          version = 1, exportSchema = true)
+          version = 3, exportSchema = true)
 public abstract class ImRoomDatabase extends RoomDatabase {
     public static volatile String USER_ID = "";
 
@@ -75,7 +75,7 @@ public abstract class ImRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ImRoomDatabase.class, "im_"+USER_ID)//数据库名
-//                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_2_3)
 //                            .fallbackToDestructiveMigration()
                             .build();
                 }
@@ -95,7 +95,7 @@ public abstract class ImRoomDatabase extends RoomDatabase {
         }
     }
 
-    static Migration MIGRATION_1_2 = new Migration(1, 2) {
+    static Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             // 为个人聊天记录旧表添加新的字段
@@ -106,21 +106,21 @@ public abstract class ImRoomDatabase extends RoomDatabase {
             database.execSQL("ALTER TABLE person_message "
                     + "ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
 
-//            // 为首页聊天记录旧表添加新的字段
-//            database.execSQL("ALTER TABLE team_message "
-//                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
-//            database.execSQL("ALTER TABLE team_message "
-//                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
-//            database.execSQL("ALTER TABLE team_message "
-//                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
-//
-//            // 为群聊聊天记录旧表添加新的字段
-//            database.execSQL("ALTER TABLE home_message "
-//                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
-//            database.execSQL("ALTER TABLE home_message "
-//                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
-//            database.execSQL("ALTER TABLE home_message "
-//                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+            // 为首页聊天记录旧表添加新的字段
+            database.execSQL("ALTER TABLE team_message "
+                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
+            database.execSQL("ALTER TABLE team_message "
+                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
+            database.execSQL("ALTER TABLE team_message "
+                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+
+            // 为群聊聊天记录旧表添加新的字段
+            database.execSQL("ALTER TABLE home_message "
+                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
+            database.execSQL("ALTER TABLE home_message "
+                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
+            database.execSQL("ALTER TABLE home_message "
+                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
         }
     };
 

@@ -20,7 +20,6 @@ import com.dq.im.type.ImType;
 import com.dq.im.util.media.MediaPlayerIpc;
 import com.dq.im.util.media.MediaPlayerUtil;
 import com.dq.im.util.oss.AliOssUtil;
-import com.dq.im.util.oss.OnFileDownListener;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;

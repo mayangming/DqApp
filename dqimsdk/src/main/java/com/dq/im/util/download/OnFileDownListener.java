@@ -1,4 +1,4 @@
-package com.dq.im.util.oss;
+package com.dq.im.util.download;
 
 /**
  * @date: 创建时间:2019/12/11
