@@ -14,6 +14,7 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
+import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
@@ -23,6 +24,8 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.imui.activity.VideoDetailsActivity;
 import com.wd.daquan.imui.adapter.viewholder.LeftVideoViewHolder;
 import com.wd.daquan.util.FileUtils;
+
+import java.io.File;
 
 import static android.os.Environment.DIRECTORY_MOVIES;
 import static android.os.Environment.DIRECTORY_PICTURES;
@@ -91,16 +94,43 @@ public class LeftVideoViewHolderBind extends BaseLeftViewHolderBind<LeftVideoVie
                     leftVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
                     leftVideoViewHolder.leftVideo.setVisibility(View.GONE);
                     Log.e("YM","文件开始进行下载");
-                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//                        @Override
+//                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                            if (status == 1){
+//                                Uri uri = (Uri) object;
+//                                messageVideoBean.setVideoLocalPath(uri.toString());
+//                                String source = gson.toJson(messageVideoBean);
+//                                p2PMessageBaseModel.setSourceContent(source);
+//                                p2PMessageViewModel.update(p2PMessageBaseModel);
+//                                playVideo(v.getContext(),uri.toString());
+//                                leftVideoViewHolder.itemView.post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        leftVideoViewHolder.videoLoading.setVisibility(View.GONE);
+//                                        leftVideoViewHolder.leftVideo.setVisibility(View.VISIBLE);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
                         @Override
                         public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                             if (status == 1){
-                                Uri uri = (Uri) object;
-                                messageVideoBean.setVideoLocalPath(uri.toString());
+                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                                if (object instanceof File){
+                                    File file = (File) object;
+                                    localPath = file.getAbsolutePath();
+                                }else if (object instanceof Uri){
+                                    Uri uri = (Uri) object;
+                                    localPath = uri.toString();
+                                }
+                                messageVideoBean.setVideoLocalPath(localPath);
                                 String source = gson.toJson(messageVideoBean);
                                 p2PMessageBaseModel.setSourceContent(source);
                                 p2PMessageViewModel.update(p2PMessageBaseModel);
-                                playVideo(v.getContext(),uri.toString());
+                                playVideo(v.getContext(),localPath);
                                 leftVideoViewHolder.itemView.post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -155,16 +185,43 @@ public class LeftVideoViewHolderBind extends BaseLeftViewHolderBind<LeftVideoVie
                     Log.e("YM","文件开始进行下载");
                     leftVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
                     leftVideoViewHolder.leftVideo.setVisibility(View.GONE);
-                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//                        @Override
+//                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                            if (status == 1){
+//                                Uri uri = (Uri) object;
+//                                messageVideoBean.setVideoLocalPath(uri.toString());
+//                                String source = gson.toJson(messageVideoBean);
+//                                teamMessageBaseModel.setSourceContent(source);
+//                                teamMessageViewModel.update(teamMessageBaseModel);
+//                                playVideo(v.getContext(),uri.toString());
+//                                leftVideoViewHolder.itemView.post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        leftVideoViewHolder.videoLoading.setVisibility(View.GONE);
+//                                        leftVideoViewHolder.leftVideo.setVisibility(View.VISIBLE);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), leftVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
                         @Override
                         public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                             if (status == 1){
-                                Uri uri = (Uri) object;
-                                messageVideoBean.setVideoLocalPath(uri.toString());
+                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                                if (object instanceof File){
+                                    File file = (File) object;
+                                    localPath = file.getAbsolutePath();
+                                }else if (object instanceof Uri){
+                                    Uri uri = (Uri) object;
+                                    localPath = uri.toString();
+                                }
+                                messageVideoBean.setVideoLocalPath(localPath);
                                 String source = gson.toJson(messageVideoBean);
                                 teamMessageBaseModel.setSourceContent(source);
                                 teamMessageViewModel.update(teamMessageBaseModel);
-                                playVideo(v.getContext(),uri.toString());
+                                playVideo(v.getContext(),localPath);
                                 leftVideoViewHolder.itemView.post(new Runnable() {
                                     @Override
                                     public void run() {
