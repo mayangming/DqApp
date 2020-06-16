@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dd_dp20"
         android:layout_toStartOf="@+id/base_right_container"
+        android:layout_below="@+id/item_right_name"
         android:layout_centerVertical="true">
         <ProgressBar
             android:id="@+id/message_loading"
