@@ -20,7 +20,6 @@ import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.media.MediaPlayerIpc;
 import com.dq.im.util.media.MediaPlayerUtil;
-import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
@@ -133,7 +132,7 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
                 mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 rightVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir("https://static.runoob.com/images/demo/demo2.jpg", rightVoiceViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){
