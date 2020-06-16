@@ -57,7 +57,7 @@ public class OSSAuthCredentialsProvider extends OSSFederationCredentialProvider 
             JSONObject jsonObj = new JSONObject(authData);
             Log.e("YM","获取的临时TOKEN:"+jsonObj.toString());
             int statusCode = jsonObj.getInt("status");
-            if (statusCode == 1) {
+            if (statusCode == 0) {
                 JSONObject data = jsonObj.getJSONObject("data");
                 String ak = data.getString("accessKeyId");
                 String sk = data.getString("accessKeySecret");
