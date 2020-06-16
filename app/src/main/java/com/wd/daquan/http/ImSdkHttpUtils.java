@@ -4,12 +4,7 @@ import android.widget.Toast;
 
 import com.dq.im.DqWebSocketClient;
 import com.dq.im.constants.URLUtil;
-import com.google.gson.Gson;
 import com.wd.daquan.DqApp;
-import com.wd.daquan.model.bean.UserBean;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.SocketException;
 import java.util.Map;
@@ -52,40 +47,7 @@ public class ImSdkHttpUtils {
 //        return content;
 //    }
 
-    /**
-     * 公共请求参数处理
-     */
-    private static String createRequestJson(Map<String,Object> hashMap){
-        String content;
-        HttpBaseRequestBean httpBaseRequestBean = new HttpBaseRequestBean();
-        Gson gson = new Gson();
-        content = gson.toJson(httpBaseRequestBean);
-        try {
-            JSONObject jsonObject = new JSONObject(content);
-            if (null == hashMap || hashMap.size() == 0){
-                jsonObject.put("data", new JSONObject());
-            }else {
-                jsonObject.put("data", new JSONObject(hashMap));
-            }
 
-            jsonObject.put("user",new UserBean());
-            content = jsonObject.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return content;
-    }
-    /**
-     * 公共请求参数处理
-     */
-    private static String createRequestJson(Object object){
-        String content;
-        HttpBaseRequestBean httpBaseRequestBean = new HttpBaseRequestBean();
-        httpBaseRequestBean.setData(object);
-        Gson gson = new Gson();
-        content = gson.toJson(httpBaseRequestBean);
-        return content;
-    }
 
     /**
      * 获取数据的接口
@@ -99,7 +61,7 @@ public class ImSdkHttpUtils {
                 return;
             }
         }
-        OkHttpUtil.postJson().url(URLUtil.getURL(url)).content(createRequestJson(params)).build().execute(callBack);
+        OkHttpUtil.postJson().url(URLUtil.getURL(url)).content(MessageJsonRequestUtil.createRequestJson(params)).build().execute(callBack);
     }
     /**
      * 获取数据的接口
@@ -113,7 +75,7 @@ public class ImSdkHttpUtils {
                 return;
             }
         }
-        OkHttpUtil.postJson().url(URLUtil.getURL(host,url)).content(createRequestJson(params)).build().execute(callBack);
+        OkHttpUtil.postJson().url(URLUtil.getURL(host,url)).content(MessageJsonRequestUtil.createRequestJson(params)).build().execute(callBack);
     }
 
     /**
@@ -138,7 +100,7 @@ public class ImSdkHttpUtils {
                 return;
             }
         }
-        OkHttpUtil.postJson().url(URLUtil.getURL(url)).content(createRequestJson(params)).build().execute(callBack);
+        OkHttpUtil.postJson().url(URLUtil.getURL(url)).content(MessageJsonRequestUtil.createRequestJson(params)).build().execute(callBack);
     }
 
     /**

@@ -220,11 +220,13 @@ public class DqWebSocketClient {
 //        mOkHttpClient.dispatcher().executorService().shutdown();
     }
 
-    public void sendMessage(String json){
+    public boolean sendMessage(String json){
+        boolean isResult = false;
         if (null != socketListener){
-            boolean isResult = socketListener.senMessage(json);
+            isResult  = socketListener.senMessage(json);
             Log.e("YM","发送消息的结果:"+isResult);
         }
+        return isResult;
     }
 
     private void buildNotification(P2PMessageBaseModel notificationModel){
