@@ -32,6 +32,9 @@ public class LeftRedPackageViewHolderBind extends BaseLeftViewHolderBind<LeftRed
     }
 
     private void setP2PLeftTextData(LeftRedPackageViewHolder leftTextViewHolder, MessageRedPackageBean messageRedPackageBean){
+        if (null == messageRedPackageBean){
+            return;
+        }
         String statusContent = RedPackageStatus.getRedPackageStatusDescription(messageRedPackageBean.getStatus());
         RedPackageStatus redPackageStatus = RedPackageStatus.getRedPackageStatus(messageRedPackageBean.getStatus());
         leftTextViewHolder.leftRedPackageStatus.setText(statusContent);

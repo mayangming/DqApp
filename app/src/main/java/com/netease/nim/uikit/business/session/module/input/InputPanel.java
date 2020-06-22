@@ -51,6 +51,7 @@ import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.third.helper.UserInfoHelper;
+import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.TToast;
 import com.wd.daquan.util.audiorecord.AudioRecoderDialog;
 import com.zlw.main.recorderlib.RecordManager;
@@ -457,7 +458,8 @@ public class InputPanel implements IEmoticonSelectedListener,
     private void onTextMessageSendButtonPressed() {
         String text = messageEditText.getText().toString();
         // 文本加密
-        text = AESHelper.encryptString(text);
+//        text = AESHelper.encryptString(text);
+        text = AESUtil.encode(text);
         MessageTextBean messageTextBean = new MessageTextBean();
         messageTextBean.setDescription(text);
 

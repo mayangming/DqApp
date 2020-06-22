@@ -29,6 +29,11 @@ public interface TeamMessageBaseDao {
     @Query("UPDATE team_message SET sourceContent = :sourceContent , messageSendStatus = :messageSendStatus , msgIdServer = :msgServerId WHERE msgIdClient = :msgClientId")
     void updateMessageSendStatus(String sourceContent,int messageSendStatus,String msgServerId,String msgClientId);
 
+
+    @Query("UPDATE team_message SET msgIdServer = :serverId ,messageSendStatus = :messageSendStatus,sourceContent = :sourceContent WHERE msgIdClient = :clientId")
+    void updateTeamPMessageByClientId(String clientId,String serverId,int messageSendStatus,String sourceContent);
+
+
     @Query("DELETE FROM team_message")
     void deleteAll();
 

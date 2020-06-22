@@ -224,7 +224,7 @@ public class DqWebSocketClient {
         boolean isResult = false;
         if (null != socketListener){
             isResult  = socketListener.senMessage(json);
-            Log.e("YM","发送消息的结果:"+isResult);
+//            Log.e("YM","发送消息的结果:"+isResult);
         }
         return isResult;
     }

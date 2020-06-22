@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.dq.im.db.ImRoomDatabase;
 import com.dq.im.model.HomeImBaseMode;
+import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.repository.HomeMessageRepository;
 
 import java.util.List;
@@ -45,6 +46,9 @@ public class HomeMessageViewModel extends AndroidViewModel {
     }
     public void updateTeamUnReadNumber(String groupId, int unReadNum){
         homeMessageRepository.updateTeamUnReadNumber(groupId,unReadNum);
+    }
+    public void updateHomeMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        homeMessageRepository.updateHomeMessageByClientId(imMessageBaseModel);
     }
 
     public void deleteForServerMessageId(String msgServerId){

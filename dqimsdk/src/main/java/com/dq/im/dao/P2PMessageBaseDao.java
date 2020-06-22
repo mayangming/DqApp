@@ -39,6 +39,9 @@ public interface P2PMessageBaseDao {
     @Query("DELETE FROM person_message WHERE fromUserId = :friendId OR toUserId = :friendId")
     void deleteMessageForFriendId(String friendId);
 
+    @Query("UPDATE person_message SET msgIdServer = :serverId ,messageSendStatus = :messageSendStatus,sourceContent = :sourceContent WHERE msgIdClient = :clientId")
+    void updateP2PMessageByClientId(String clientId,String serverId,int messageSendStatus,String sourceContent);
+
     @Query("SELECT * FROM person_message ")
     LiveData<List<P2PMessageBaseModel>> getAllMessage();
 

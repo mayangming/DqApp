@@ -134,7 +134,7 @@ public abstract class ChatBaseAdapter<VH extends RecycleBaseViewHolder> extends 
         if (ChatLayoutParentType.SYSTEM == rootLayoutType){//如果是系统消息的话，就从二级类型获取参数
             firstLayoutType = p2PMessageBean.getMsgSecondType();//消息布局，表示布局是文本布局还是图片布局等等
             if (TextUtils.isEmpty(firstLayoutType)){//有时候二级类型没有，所以这里统一按未识别类型处理
-                firstLayoutType = MsgSecondType.MSG_SECOND_TYPE_UN_KNOWN.type;
+                firstLayoutType = MsgSecondType.MSG_SECOND_TYPE_UN_KNOWN.getType();
             }
         }else {
             firstLayoutType = p2PMessageBean.getMsgType();//消息布局，表示布局是文本布局还是图片布局等等

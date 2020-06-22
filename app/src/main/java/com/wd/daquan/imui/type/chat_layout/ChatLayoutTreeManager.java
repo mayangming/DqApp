@@ -90,9 +90,9 @@ public class ChatLayoutTreeManager {
         TreeNodeIml leftRedPackage = new ChatLayoutTreeNode();
         leftRedPackage.setNodeType(ChatLayoutChildType.LEFT_RED_PACKAGE);
         leftRedPackage.setMessageType(MessageType.RED_PACKAGE.getValue());
-        TreeNodeIml leftLink = new ChatLayoutTreeNode();
-        leftLink.setNodeType(ChatLayoutChildType.LEFT_LINK);
-        leftLink.setMessageType(MessageType.TEXT_LINK.getValue());
+//        TreeNodeIml leftLink = new ChatLayoutTreeNode();
+//        leftLink.setNodeType(ChatLayoutChildType.LEFT_LINK);
+//        leftLink.setMessageType(MessageType.TEXT_LINK.getValue());
         TreeNodeIml leftCard = new ChatLayoutTreeNode();
         leftCard.setNodeType(ChatLayoutChildType.LEFT_CARD);
         leftCard.setMessageType(MessageType.PERSON_CARD.getValue());
@@ -102,7 +102,7 @@ public class ChatLayoutTreeManager {
         treeNodeIml.addNode(leftVoice);
         treeNodeIml.addNode(leftVideo);
         treeNodeIml.addNode(leftRedPackage);
-        treeNodeIml.addNode(leftLink);
+//        treeNodeIml.addNode(leftLink);
         treeNodeIml.addNode(leftCard);
     }
     /**
@@ -125,9 +125,9 @@ public class ChatLayoutTreeManager {
         TreeNodeIml rightRedPackage = new ChatLayoutTreeNode();
         rightRedPackage.setNodeType(ChatLayoutChildType.RIGHT_RED_PACKAGE);
         rightRedPackage.setMessageType(MessageType.RED_PACKAGE.getValue());
-        TreeNodeIml rightLink = new ChatLayoutTreeNode();
-        rightLink.setNodeType(ChatLayoutChildType.RIGHT_LINK);
-        rightLink.setMessageType(MessageType.TEXT_LINK.getValue());
+//        TreeNodeIml rightLink = new ChatLayoutTreeNode();
+//        rightLink.setNodeType(ChatLayoutChildType.RIGHT_LINK);
+//        rightLink.setMessageType(MessageType.TEXT_LINK.getValue());
         TreeNodeIml rightCard = new ChatLayoutTreeNode();
         rightCard.setNodeType(ChatLayoutChildType.RIGHT_CARD);
         rightCard.setMessageType(MessageType.PERSON_CARD.getValue());
@@ -137,7 +137,7 @@ public class ChatLayoutTreeManager {
         treeNodeIml.addNode(rightVoice);
         treeNodeIml.addNode(rightVideo);
         treeNodeIml.addNode(rightRedPackage);
-        treeNodeIml.addNode(rightLink);
+//        treeNodeIml.addNode(rightLink);
         treeNodeIml.addNode(rightCard);
 
     }
@@ -147,17 +147,17 @@ public class ChatLayoutTreeManager {
     private void initChatLayoutSystem(TreeNodeIml treeNodeIml){
         TreeNodeIml normalText = new ChatLayoutTreeNode();
         normalText.setNodeType(ChatLayoutChildType.CENTER_TEXT);
-        normalText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_NORMAL.type);
+        normalText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_NORMAL.getType());
         TreeNodeIml transferText = new ChatLayoutTreeNode();
         transferText.setNodeType(ChatLayoutChildType.CENTER_TEXT);
-        transferText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_TRANSFER.type);
+        transferText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_TRANSFER.getType());
         TreeNodeIml redPackageText = new ChatLayoutTreeNode();
         redPackageText.setNodeName("系统红包消息");
         redPackageText.setNodeType(ChatLayoutChildType.CENTER_TEXT);
-        redPackageText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_RED_PACKAGE.type);
+        redPackageText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_RED_PACKAGE.getType());
         TreeNodeIml unKnownText = new ChatLayoutTreeNode();
         unKnownText.setNodeType(ChatLayoutChildType.CENTER_TEXT);
-        unKnownText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_UN_KNOWN.type);
+        unKnownText.setMessageType(MsgSecondType.MSG_SECOND_TYPE_UN_KNOWN.getType());
         unKnownText.setNodeName("未识别的消息类型");
 
         treeNodeIml.addNode(normalText);

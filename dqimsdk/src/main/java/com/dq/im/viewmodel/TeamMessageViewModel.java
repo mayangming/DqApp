@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.dq.im.model.ChatTeamModel;
+import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.repository.TeamMessageRepository;
 
@@ -70,6 +71,10 @@ public class TeamMessageViewModel extends AndroidViewModel {
 
     public void updateMessageSendStatus(TeamMessageBaseModel teamMessageBaseModel){
         teamMessageRepository.updateMessageSendStatus(teamMessageBaseModel);
+    }
+
+    public void updateTeamPMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        teamMessageRepository.updateTeamPMessageByClientId(imMessageBaseModel);
     }
 
     public void update(TeamMessageBaseModel teamMessageBaseModel){

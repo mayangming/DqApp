@@ -15,46 +15,48 @@ import com.dq.im.model.IMContentDataModel;
  * 没有定义的类型统统用null来表示，用的时候注意处理下
  */
 public enum MessageType {
-    UNKNOWN("-1",null),
-    SYSTEM("01",null),
-    TEXT("02", MessageTextBean.class),
-    TEXT_LINK("03",null),
-    VOICE("04", MessageVoiceBean.class),
-    PICTURE("05", MessagePhotoBean.class),
-    FILE("06",null),
-    VIDEO("07", MessageVideoBean.class),
-    RED_PACKAGE("08", MessageRedPackageBean.class),
-    LOCATION("09",null),
-    PERSON_CARD("10", MessageCardBean.class),
-    VOICE_PHONE("11",null),
-    VIDEO_PHONE("12",null),
-    EMOJI("13",null),//表情
-    ANONYMOUS("14",null),//匿名消息
-    FRIEND_ADD("15",null),//添加好友消息
-    GROUP_INVITE("16",null),//群组邀请消息
-    GROUP_APPLY_FOR("17",null),//加群申请消息
-    FRIEND_DELETE("18",null),//好友删除消息
-    GROUP_EXIT("19", null),//退群消息
-    GROUP_KICK_OUT("20", null),//你被踢出了群组
-    SIGN_LOGIN("21", null),//单点登陆登出
-    FRIEND_RECEIVED("22", null),//好友申请已经通过了
-    GROUP_REMOVE("25", null),//群解散消息
-    RED_PACKAGE_SEND("28", null),//发送红包消息
-    UPDATE_GROUP_NAME("29", null),//修改群名称
-    EXPAND_MSG("999", null);//拓展消息
+    RECEIVER_MESSAGE_CALLBACK_STATUS(-2, null),//消息回传状态
+    UNKNOWN(0,null),
+    SYSTEM(10,null),
+    TEXT(1, MessageTextBean.class),
+//    TEXT_LINK("03",null),
+    VOICE(2, MessageVoiceBean.class),
+    PICTURE(3, MessagePhotoBean.class),
+    LOCATION(4,null),
+    FILE(5,null),
+    VIDEO(6, MessageVideoBean.class),
+    PERSON_CARD(11, MessageCardBean.class),
+    RED_PACKAGE(12, MessageRedPackageBean.class),
+//    VOICE_PHONE("11",null),
+//    VIDEO_PHONE("12",null),
+    EMOJI(13,null),//表情
+    ANONYMOUS(14,null),//匿名消息
+    GROUP_APPLY_FOR(17,null),//加群申请消息
+    SIGN_LOGIN(21, null),//单点登陆登出
+    FRIEND_RECEIVED(22, null),//好友申请已经通过了
+    FRIEND_ADD(101,null),//添加好友消息
+    FRIEND_DELETE(102,null),//好友删除消息
+    GROUP_CREATE(104,null),//创建群组
+    GROUP_INVITE(105,null),//群组邀请消息
+    GROUP_KICK_OUT(106, null),//你被踢出了群组
+    GROUP_EXIT(107, null),//退群消息
+    GROUP_REMOVE(108, null),//群解散消息
+    UPDATE_GROUP_NAME(110, null),//修改群名称
+    RED_PACKAGE_SEND(111, null),//发送红包消息
+    EXPAND_MSG(999, null);//拓展消息
 //    FRIEND_ADD_AGREE("22", null);//对方已同意好友请求
 //    ANONYMOUS("99",null);//匿名
 
-    private String value;
+    private int value;
     private Class<? extends IMContentDataModel> classType;//具体消息类型
 
-    private MessageType(String var3,Class<? extends IMContentDataModel> classType) {
+    private MessageType(int var3,Class<? extends IMContentDataModel> classType) {
         this.classType = classType;
         this.value = var3;
     }
 
     public final String getValue() {
-        return this.value;
+        return String.valueOf(this.value);
     }
 
     public final Class<? extends IMContentDataModel> getClassType() {
@@ -80,7 +82,7 @@ public enum MessageType {
         MessageType[] messageTypes = values();
         Class classType = null;
         for (MessageType messageType : messageTypes){
-            if (messageType.value.equals(typeValue)){
+            if (messageType.getValue().equals(typeValue)){
                 classType = messageType.classType;
                 break;
             }
@@ -96,14 +98,14 @@ public enum MessageType {
             throw new NullPointerException("Class类型不能传递null");
         }
         MessageType[] messageTypes = values();
-        String typeValue = null;
+        int typeValue = 0;
         for (MessageType messageType : messageTypes){
             if (classType == messageType.classType){
                 typeValue = messageType.value;
                 break;
             }
         }
-        return typeValue;
+        return String.valueOf(typeValue);
     }
 
 }

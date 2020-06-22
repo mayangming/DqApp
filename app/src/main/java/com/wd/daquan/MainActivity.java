@@ -73,6 +73,7 @@ import com.wd.daquan.http.HttpBaseBean;
 import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
 import com.wd.daquan.imui.bean.MessageSystemBean;
+import com.wd.daquan.imui.convert.DqImParserUtils;
 import com.wd.daquan.mine.MainTitleLeftContainer;
 import com.wd.daquan.mine.fragment.MineFragment;
 import com.wd.daquan.model.bean.DataBean;
@@ -96,6 +97,7 @@ import com.wd.daquan.third.reminder.ReminderItem;
 import com.wd.daquan.third.reminder.ReminderManager;
 import com.wd.daquan.third.session.extension.CustomAttachmentType;
 import com.wd.daquan.third.session.extension.RedRainSystemAttachment;
+import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.ApplicationDialog;
 import com.wd.daquan.util.IntentUtils;
 
@@ -642,15 +644,20 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             public void onMessageReceiver(final String message) {
 //                        Toast.makeText(MainActivity.this,"接收的消息:"+message,Toast.LENGTH_LONG).show();
                 Log.e("YM","MainActivity接收的原始消息:"+message);
-                ImMessageBaseModel notificationModel = ImParserUtils.getBaseMessageModel(message);
+
+//                ImMessageBaseModel notificationModel = ImParserUtils.getBaseMessageModel(message);
+                ImMessageBaseModel notificationModel = DqImParserUtils.getBaseMessageModel(message);
+                notificationModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
                 if (ImType.P2P.getValue().equals(notificationModel.getType())){
-                    if (isSameUser(message)){//消息来源是当前用户则不再向下传递
+                    String dqImContentJson = GsonUtils.toJson(notificationModel);
+                    Log.e("YM","转换过的JSON消息格式:"+dqImContentJson);
+                    if (isSameUser(dqImContentJson)){//消息来源是当前用户则不再向下传递
                         return;
                     }
                     if (!notificationModel.getMsgType().equals(MessageType.SYSTEM.getValue())){
                         showNotification(notificationModel);
                     }
-                    P2PMessageBaseModel p2PMessageBaseModel = ImParserUtils.getP2PMessageBaseModel(message);
+                    P2PMessageBaseModel p2PMessageBaseModel = ImParserUtils.getP2PMessageBaseModel(dqImContentJson);
                     p2PMessageBaseModel.setToUserId(ModuleMgr.getCenterMgr().getUID());
                     p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
                     HomeImBaseMode homeImBaseMode = ImTransformUtils.p2pImModelTransformHomeImModel(p2PMessageBaseModel);
@@ -660,11 +667,13 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                         homeMessageViewModel.updateHomeMessage(homeImBaseMode,true);
                     }
 
-                    if (MessageType.TEXT.getValue().equals(p2PMessageBaseModel.getMsgType())){
-                        MessageTextBean messageTextBean = GsonUtils.fromJson(p2PMessageBaseModel.getSourceContent(),MessageTextBean.class);
-                        String content = AESHelper.decryptString(messageTextBean.getDescription());
-                        Log.e("YM","MainActivity接收的文本消息:"+content);
-                    }
+//                    if (MessageType.TEXT.getValue().equals(p2PMessageBaseModel.getMsgType())){
+//                        MessageTextBean messageTextBean = GsonUtils.fromJson(p2PMessageBaseModel.getSourceContent(),MessageTextBean.class);
+//                        Log.e("YM","MainActivity收到的文本消息内容:"+p2PMessageBaseModel.getSourceContent());
+////                        String content = AESHelper.decryptString(messageTextBean.getDescription());
+//                        String content = AESUtil.decode(messageTextBean.getDescription());
+//                        Log.e("YM","MainActivity接收的文本消息:"+content);
+//                    }
 
 //                    EventBusBean eventBusBean = new EventBusBean();
 //                    eventBusBean.setStatus(EventBusBeanType.TYPE_P2P);
@@ -672,10 +681,16 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //                    EventBus.getDefault().post(eventBusBean);
                     MsgMgr.getInstance().sendMsg(MsgType.P2P_MESSAGE_CONTENT, p2PMessageBaseModel);
                 }else if (ImType.Team.getValue().equals(notificationModel.getType())){
-                    if (isSameUser(message)){//消息来源是当前用户则不再向下传递
+                    String dqImContentJson = GsonUtils.toJson(notificationModel);
+                    if (isSameUser(dqImContentJson)){//消息来源是当前用户则不再向下传递
                         return;
                     }
-                    TeamMessageBaseModel teamMessageBaseModel = ImParserUtils.getTeamMessageBaseModel(message);
+
+                    TeamMessageBaseModel teamMessageBaseModel = ImParserUtils.getTeamMessageBaseModel(dqImContentJson);
+
+                    if (showNotificationByTeam(teamMessageBaseModel.getMsgType(),teamMessageBaseModel)){
+                        return;
+                    }
                     showNotification(teamMessageBaseModel);
                     teamMessageBaseModel.setToUserId(ModuleMgr.getCenterMgr().getUID());
                     teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
@@ -688,28 +703,99 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //                            Intent intent = new Intent(MainActivity.this, ChatTeamActivity.class);
 //                            intent.putExtra(ChatTeamActivity.TEAM_ID,teamMessageBaseModel.getGroupId());
 //                            startActivity(intent);
+//                    if (MessageType.TEXT.getValue().equals(teamMessageBaseModel.getMsgType())){
+//                        MessageTextBean messageTextBean = GsonUtils.fromJson(teamMessageBaseModel.getSourceContent(),MessageTextBean.class);
+//                        Log.e("YM","MainActivity收到的群组文本消息内容:"+teamMessageBaseModel.getSourceContent());
+////                        String content = AESHelper.decryptString(messageTextBean.getDescription());
+//                        String content = AESUtil.decode(messageTextBean.getDescription());
+//                        Log.e("YM","MainActivity接收的群组文本消息:"+content);
+//                    }
                     MsgMgr.getInstance().sendMsg(MsgType.TEAM_MESSAGE_CONTENT, teamMessageBaseModel);
                 }else if (ImType.System.getValue().equals(notificationModel.getType())){
                     Log.e("YM","系统消息");
                     String result = parserSystemMessage(notificationModel);
-                    NotificationUtil.NotificationUtilBuild notificationUtilBuild = NotificationUtil.getInstance().createBuild();
-                    notificationUtilBuild.context = MainActivity.this;
-                    notificationUtilBuild.title = "系统通知";
-                    if (!TextUtils.isEmpty(result)){//不为空时候弹出通知
-                        notificationUtilBuild.content = result;
-                        NotificationUtil.getInstance().showNotification(notificationUtilBuild);
-                        SoundPoolUtils.getInstance(getApplicationContext()).playMayWait();
-                        if (vibratorUtil.isVibrate()){
-                            vibratorUtil.stopVibrate();
-                        }
-                        vibratorUtil.setVibratePattern(1000);
-                        vibratorUtil.vibrate(VibratorUtil.Companion.getINTERRUPT());
+                    showNotification(result);
+                }else if (ImType.RECEIVE_MESSAGE_CALLBACK.getValue().equals(notificationModel.getType())){//消息发送后，服务器将消息状态回传过来并附加其他信息
+                    homeMessageViewModel.updateHomeMessageByClientId(notificationModel);
+                    if (notificationModel.getMsgSecondType().equals(ImType.P2P.getValue())){
+                        p2PMessageViewModel.updateP2PMessageByClientId(notificationModel);
+                    }else {
+                        teamMessageViewModel.updateTeamPMessageByClientId(notificationModel);
                     }
+                    MsgMgr.getInstance().sendMsg(MsgType.MESSAGE_RECEIVE_CALL_BACK, notificationModel);
                 }
             }
         });
         dqWebSocketClient.build();
     }
+
+    /**
+     * 是否弹出通知
+     * @param msgType
+     * @return
+     */
+    private boolean showNotificationByTeam(String msgType,TeamMessageBaseModel teamMessageBaseModel){
+        boolean isShowNotification;
+        MessageType messageType = MessageType.typeOfValue(msgType);
+        String content = "";
+        switch (messageType){
+            case GROUP_CREATE:
+                content = "创建群组";
+                break;
+            case GROUP_INVITE:
+                content = "群组邀请通知";
+                ModuleMgr.getAppManager().addTeamInviteUnread(teamMessageBaseModel.getGroupId());
+                MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);
+                break;
+            case GROUP_KICK_OUT:
+                content = "您被踢出了群组";
+                homeMessageViewModel.deleteForGroupId(teamMessageBaseModel.getGroupId());
+                teamMessageViewModel.deleteMessageForGroupId(teamMessageBaseModel.getGroupId());
+                TeamDbHelper.getInstance().delete(teamMessageBaseModel.getFromUserId());
+                MsgMgr.getInstance().sendMsg(MsgType.GROUP_REMOVE, null);
+                break;
+            case GROUP_EXIT:
+                content = "退出了群组";
+                break;
+            case GROUP_REMOVE:
+                content = "群组已解散";
+                homeMessageViewModel.deleteForGroupId(teamMessageBaseModel.getGroupId());
+                teamMessageViewModel.deleteMessageForGroupId(teamMessageBaseModel.getGroupId());
+                TeamDbHelper.getInstance().delete(teamMessageBaseModel.getFromUserId());
+                MsgMgr.getInstance().sendMsg(MsgType.GROUP_REMOVE, null);
+                break;
+            case UPDATE_GROUP_NAME:
+                content = "修改了群组名称";
+                break;
+            default:
+                break;
+        }
+        if (!TextUtils.isEmpty(content)){
+            showNotification(content);
+            isShowNotification = true;
+        }else {
+            isShowNotification = false;
+        }
+
+        return isShowNotification;
+    }
+
+    private void showNotification(String content){
+        NotificationUtil.NotificationUtilBuild notificationUtilBuild = NotificationUtil.getInstance().createBuild();
+        notificationUtilBuild.context = MainActivity.this;
+        notificationUtilBuild.title = "系统通知";
+        if (!TextUtils.isEmpty(content)){//不为空时候弹出通知
+            notificationUtilBuild.content = content;
+            NotificationUtil.getInstance().showNotification(notificationUtilBuild);
+            SoundPoolUtils.getInstance(getApplicationContext()).playMayWait();
+            if (vibratorUtil.isVibrate()){
+                vibratorUtil.stopVibrate();
+            }
+            vibratorUtil.setVibratePattern(1000);
+            vibratorUtil.vibrate(VibratorUtil.Companion.getINTERRUPT());
+        }
+    }
+
     /**
      * 判断消息来源是不是当前消息，因为群发消息的时候服务器会把当前用户发送的消息再发送回来
      */
@@ -937,7 +1023,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             case TEXT:
                 MessageTextBean messageTextBean = GsonUtils.fromJson(imMessageBaseModel.getSourceContent(),MessageTextBean.class);
                 String description = messageTextBean.getDescription();
-                content = AESHelper.decryptString(description);
+//                content = AESHelper.decryptString(description);
+                content = AESUtil.decode(description);
                 break;
             case VOICE:
                 content = "[音频消息]";
@@ -1037,12 +1124,15 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 TeamDbHelper.getInstance().delete(messageSystemBean.getFromUserId());
                 MsgMgr.getInstance().sendMsg(MsgType.GROUP_REMOVE, null);
                 break;
-            case RED_PACKAGE_SEND://你被群组踢出了群主
+            case RED_PACKAGE_SEND://红包发送
 //                content = "你被踢出了群组";
                 MsgMgr.getInstance().sendMsg(MsgType.RED_PACKAGE_PAY, "");
                 break;
             case EXPAND_MSG://拓展字段
                 parserSystemExpandMsg(imMessageBaseModel.getSourceContent());
+                break;
+            case RECEIVER_MESSAGE_CALLBACK_STATUS://接收的回传消息内容
+
                 break;
         }
         return content;

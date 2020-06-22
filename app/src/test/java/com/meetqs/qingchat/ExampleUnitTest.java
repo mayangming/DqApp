@@ -29,7 +29,20 @@ public class ExampleUnitTest {
 //            }
 //        });
 
-        String head = ChinesePinyinUtil.getPinYinHeadChar("闫");
-        System.out.println("head = " + head);
+//        String head = ChinesePinyinUtil.getPinYinHeadChar("闫");
+//        System.out.println("head = " + head);
+
+//        String result = "中国";
+//        String aesKey = "I0YmM5NTgtY2IyYi00OWIzLWFkZTktZj";
+//        String iv = "BjNzhiZDctOGMxOS";
+//        try {
+//            String encodeStr = AESUtils.encryptAES(result,aesKey);
+//
+//            System.out.println("加密的字符串:"+encodeStr);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+
     }
 }

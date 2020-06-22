@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import com.dq.im.dao.HomeImBaseDao;
 import com.dq.im.db.ImRoomDatabase;
 import com.dq.im.model.HomeImBaseMode;
+import com.dq.im.model.ImMessageBaseModel;
 
 import java.util.List;
 
@@ -50,6 +51,11 @@ public class HomeMessageRepository {
     public void updateTeamUnReadNumber(String groupId, int unReadNum){
         ImRoomDatabase.databaseWriteExecutor.execute(() -> {
             homeImBaseDao.updateTeamUnReadNumber(groupId,unReadNum);
+        });
+    }
+    public void updateHomeMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        ImRoomDatabase.databaseWriteExecutor.execute(() -> {
+            homeImBaseDao.updateHomeMessageByClientId(imMessageBaseModel.getMsgIdClient(),imMessageBaseModel.getMsgIdServer(),imMessageBaseModel.getMessageSendStatus(),imMessageBaseModel.getSourceContent());
         });
     }
 

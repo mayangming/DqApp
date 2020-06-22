@@ -14,7 +14,7 @@ public class MessageRedPackageBean extends IMContentDataModel {
     private String money = "0";//红包金额
     private String count = "1";//红包数量
     private String fromUserId = "1";//红包数量
-    private String type;//红包类型,1,个人 2:群组
+    private String redMsgType;//红包类型,1,个人 2:群组
     private int redType;//红包支付类型，从零钱支付还是从微信支付 1：零钱 2：微信
     public String getDescription() {
         return description;
@@ -48,12 +48,12 @@ public class MessageRedPackageBean extends IMContentDataModel {
         this.count = count;
     }
 
-    public String getType() {
-        return type;
+    public String getRedMsgType() {
+        return redMsgType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRedMsgType(String redMsgType) {
+        this.redMsgType = redMsgType;
     }
 
     public String getCouponId() {
@@ -88,7 +88,7 @@ public class MessageRedPackageBean extends IMContentDataModel {
                 ", status='" + status + '\'' +
                 ", money='" + money + '\'' +
                 ", count='" + count + '\'' +
-                ", type='" + type + '\'' +
+                ", redMsgType='" + redMsgType + '\'' +
                 ", redType=" + redType +
                 '}';
     }

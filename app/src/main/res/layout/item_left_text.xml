@@ -13,7 +13,7 @@
         android:paddingBottom="@dimen/dp_10"
         android:paddingTop="@dimen/dp_10"
         android:gravity="center_vertical"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@mipmap/icon_receiver_text_node_normal"
         tools:text="左侧布局显示的内容"/>
 </RelativeLayout>

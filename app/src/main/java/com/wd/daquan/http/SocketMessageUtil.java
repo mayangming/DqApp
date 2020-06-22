@@ -1,9 +1,11 @@
 package com.wd.daquan.http;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dq.im.DqWebSocketClient;
 import com.wd.daquan.DqApp;
+import com.wd.daquan.model.utils.GsonUtils;
 
 /**
  * socket消息发送工具类
@@ -26,7 +28,9 @@ class SocketMessageUtil {
                 return false;
             }
         }
-        String messageContent = MessageJsonRequestUtil.createRequestJson(params);
+//        String messageContent = MessageJsonRequestUtil.createRequestJson(params);
+        String messageContent = GsonUtils.toJson(params);
+        Log.e("YM","发送的Socket消息内容:"+messageContent);
         return dqWebSocketClient.sendMessage(messageContent);
     }
 

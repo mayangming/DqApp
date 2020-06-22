@@ -9,7 +9,8 @@ package com.dq.im.type;
 public enum ImType{
     P2P("1"),
     Team("2"),
-    System("6");
+    System("6"),
+    RECEIVE_MESSAGE_CALLBACK("7");
 
     private String value;
 

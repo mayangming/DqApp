@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -131,6 +132,8 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         homeMessageViewModel.getAllMessage().observe(getViewLifecycleOwner(), new android.arch.lifecycle.Observer<List<HomeImBaseMode>>() {
             @Override
             public void onChanged(@Nullable List<HomeImBaseMode> homeImBaseModesTemp) {
+                Log.e("YM","首页数据数量:"+homeImBaseModesTemp.size());
+                Log.e("YM","首页数据内容:"+homeImBaseModesTemp.toString());
                 homeImBaseModes.clear();
                 homeImBaseModes.addAll(homeImBaseModesTemp);
                 homeMessageAdapter.setData(homeImBaseModes);

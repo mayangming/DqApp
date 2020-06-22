@@ -35,6 +35,7 @@ import com.dq.im.constants.URLUtil;
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.model.IMContentDataModel;
 import com.dq.im.model.ImMessageBaseModel;
+import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
@@ -64,12 +65,16 @@ import com.wd.daquan.bean.ImSendMessageResultBean;
 import com.wd.daquan.http.HttpBaseBean;
 import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
+import com.wd.daquan.http.SocketMessageUtil;
 import com.wd.daquan.imui.activity.PhotoDetailsActivity;
 import com.wd.daquan.imui.adapter.ChaTeamAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickForChildViewListenerCompat;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
 import com.wd.daquan.imui.adapter.RecycleItemOnLongClickListener;
 import com.wd.daquan.imui.bean.VoiceBean;
+import com.wd.daquan.imui.bean.im.DqImBaseBean;
+import com.wd.daquan.imui.convert.CommonImConvertDqIm;
+import com.wd.daquan.imui.convert.DqImParserUtils;
 import com.wd.daquan.imui.dialog.MessageOptionDialog;
 import com.wd.daquan.imui.dialog.OpenRedPackageDialog;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutChildType;
@@ -80,6 +85,7 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
 import com.wd.daquan.model.sp.QCSharedPrefManager;
+import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
 
@@ -131,6 +137,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
     private GroupInfoBean mGroupInfo;
     private boolean isFirstLoadData = true;//是不是第一次加载数据，第一次加载数据会滚动到底部，下拉刷新则不会
     private IMContentDataModel sendContent;
+    private CommonImConvertDqIm commonImConvertDqIm = new CommonImConvertDqIm();
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -261,7 +268,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                     redPackageRoutePager(view.getContext(),messageRedPackageBean,model);
                 }
 
-                if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
+                if (MessageType.PICTURE.getValue() == model.getMsgType()){//假如是图片消息
                     ArrayList<TeamMessageBaseModel> temp = (ArrayList<TeamMessageBaseModel>)chaTeamAdapter.getData();
                     Intent intent = new Intent(view.getContext(), PhotoDetailsActivity.class);
                     intent.putExtra(PhotoDetailsActivity.PHOTO_DATA,temp);
@@ -275,7 +282,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             public boolean onItemLongClick(View view, int position) {
                 MessageOptionDialog messageOptionDialog = new MessageOptionDialog();
                 TeamMessageBaseModel model = chaTeamAdapter.getData(position);
-                if (model.getMsgType().equals(MessageType.TEXT.getValue())){//文本消息
+                if (model.getMsgType() == MessageType.TEXT.getValue()){//文本消息
                     String content = model.getSourceContent();
                     MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
                     Bundle bundle = new Bundle();
@@ -385,7 +392,8 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
 //        if (customization != null) {
 //            messageListPanel.setChattingBackground(customization.backgroundUri, customization.backgroundColor);
 //        }
-
+        commonImConvertDqIm.setUserId(ModuleMgr.getCenterMgr().getUID());
+        commonImConvertDqIm.setToken(ModuleMgr.getCenterMgr().getToken());
     }
 
     private void initAitManager() {
@@ -629,6 +637,18 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
             homeMessageViewModel.updateTeamUnReadNumber(sessionId,0);//消息从ImMainActivity传入，所以先设置未读消息数，进入里面再重置为0
             saveMsgSuccess(teamMessageBaseModel);
+        }else if(MsgType.MESSAGE_RECEIVE_CALL_BACK.equals(key)){//消息发送后，服务器把消息回传给客户端的内容
+            ImMessageBaseModel imMessageBaseModel = (ImMessageBaseModel)value;
+            for (TeamMessageBaseModel messageBaseModel : chaTeamAdapter.getData()){
+                if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
+                    messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
+                    messageBaseModel.setSourceContent(imMessageBaseModel.getSourceContent());
+                    messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
+                    chaTeamAdapter.updateMessageStatus(messageBaseModel);
+                    Log.e("YM","更新消息发送状态");
+                    return;
+                }
+            }
         }else if (MsgType.CHAT_RED_PACKAGE.equals(key)){//发送红包的消息
             inputPanel.switchRobotMode(false);
             inputPanel.collapse(false);
@@ -650,7 +670,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             TToast.show(getContext(),"群已解散，无法再进行聊天");
             getActivity().finish();
         }else if (MsgType.MT_GROUP_SETTING_QUIT.equals(key)){
-            TToast.show(getContext(),"群已解散，无法再进行聊天");
+            TToast.show(getContext(),"已退出群聊");
             getActivity().finish();
         }
     }
@@ -681,30 +701,32 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
 //        TeamMessageBaseModel teamMessageBaseModel = createTeamMessage(messageType,localPath,netUrl,sessionId);
         TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel)imMessageBaseModel;
 //        saveMsgSuccess(teamMessageBaseModel);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("YM","链接问题:"+e.getMessage());
-                e.printStackTrace();
-                teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-//                saveMsgSuccess(p2PMessageBaseModel);
-                updateMsgStatus(teamMessageBaseModel);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String msgServerId = response.data.toString();
-                if (0 == status){
-                    teamMessageBaseModel.setMsgIdServer(msgServerId);
-                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(teamMessageBaseModel);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessageBaseModel);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("YM","链接问题:"+e.getMessage());
+//                e.printStackTrace();
+//                teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+////                saveMsgSuccess(p2PMessageBaseModel);
+//                updateMsgStatus(teamMessageBaseModel);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String msgServerId = response.data.toString();
+//                if (0 == status){
+//                    teamMessageBaseModel.setMsgIdServer(msgServerId);
+//                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(teamMessageBaseModel);
+//            }
+//        });
     }
 
     @Override
@@ -735,30 +757,32 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
     public void uploadVideoSuccess(TeamMessageBaseModel teamMessageBaseModel, IMContentDataModel imContentDataModel, MessageType messageType) {
 //        TeamMessageBaseModel teamMessageBaseModel = createTeamMessage(messageType,imContentDataModel,sessionId);
 //        saveMsgSuccess(teamMessageBaseModel);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("YM","链接问题:"+e.getMessage());
-                e.printStackTrace();
-                teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-//                saveMsgSuccess(p2PMessageBaseModel);
-                updateMsgStatus(teamMessageBaseModel);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String msgServerId = response.data.toString();
-                if (0 == status){
-                    teamMessageBaseModel.setMsgIdServer(msgServerId);
-                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(teamMessageBaseModel);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessageBaseModel);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("YM","链接问题:"+e.getMessage());
+//                e.printStackTrace();
+//                teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+////                saveMsgSuccess(p2PMessageBaseModel);
+//                updateMsgStatus(teamMessageBaseModel);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String msgServerId = response.data.toString();
+//                if (0 == status){
+//                    teamMessageBaseModel.setMsgIdServer(msgServerId);
+//                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(teamMessageBaseModel);
+//            }
+//        });
     }
 
 
@@ -797,31 +821,33 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
     private void sendMessage(IMContentDataModel messageRedPackageBean, MessageType messageType){
         TeamMessageBaseModel teamMessage = createTeamMessage(messageType,messageRedPackageBean,sessionId);
         saveMsgSuccess(teamMessage);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessage,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                e.printStackTrace();
-                teamMessage.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                updateMsgStatus(teamMessage);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String data = response.data.toString();
-                if (0 == status){
-                    IMContentDataModel resultContentModel = parserSendMessageResult(data,messageRedPackageBean,teamMessage);
-                    String resultContent = gson.toJson(resultContentModel);
-                    teamMessage.setSourceContent(resultContent);
-                    teamMessage.setContentData(resultContentModel);
-                    teamMessage.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    teamMessage.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(teamMessage);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessage);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessage,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                e.printStackTrace();
+//                teamMessage.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                updateMsgStatus(teamMessage);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String data = response.data.toString();
+//                if (0 == status){
+//                    IMContentDataModel resultContentModel = parserSendMessageResult(data,messageRedPackageBean,teamMessage);
+//                    String resultContent = gson.toJson(resultContentModel);
+//                    teamMessage.setSourceContent(resultContent);
+//                    teamMessage.setContentData(resultContentModel);
+//                    teamMessage.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    teamMessage.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(teamMessage);
+//            }
+//        });
     }
 
     /**
@@ -831,7 +857,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         IMContentDataModel result = messageRedPackageBean;
         ImSendMessageResultBean imSendMessageResultBean = gson.fromJson(data, ImSendMessageResultBean.class);
         imMessageBaseModel.setMsgIdServer(imSendMessageResultBean.getMsgId());
-        if (MessageType.RED_PACKAGE.getValue().equals(imSendMessageResultBean.getMsgType())){
+        if (MessageType.RED_PACKAGE.getValue() == imSendMessageResultBean.getMsgType()){
             MessageRedPackageBean redPackageBean = (MessageRedPackageBean)messageRedPackageBean;
             redPackageBean.setCouponId(imSendMessageResultBean.getCouponId());
             result = redPackageBean;
@@ -856,7 +882,8 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                         MessageTextBean messageTextBean = gson.fromJson(model.getSourceContent(),MessageTextBean.class);
                         if (null != messageTextBean){
                           String  content = messageTextBean.getDescription();
-                            content = AESHelper.decryptString(content);
+//                            content = AESHelper.decryptString(content);
+                            String text = AESUtil.decode(content);
                         }
                     }
 
@@ -898,7 +925,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             public void onResponse(HttpBaseBean response, int id) {
                 chatContainer.setRefreshing(false);
                 String content = response.data.toString();
-                List<TeamMessageBaseModel> messageBean = ImParserUtils.getTeamMessageBaseModelList(content);
+                List<TeamMessageBaseModel> messageBean = DqImParserUtils.getTeamMessageModels(content);
                 if (messageBean.size() == 0){
                     Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
                     return;
@@ -930,7 +957,8 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
     class MessageOption implements MessageOptionDialog.MessageOptionIpc {
         @Override
         public void result(String content) {
-            String result = AESHelper.decryptString(content);
+//            String result = AESHelper.decryptString(content);
+            String result = AESUtil.decode(content);
             ClipboardUtil.clipboardCopyText(getActivity(),result);
             TToast.show(getActivity(),"已经复制到粘贴板~");
         }

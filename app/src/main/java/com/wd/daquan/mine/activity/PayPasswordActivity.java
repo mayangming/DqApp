@@ -158,7 +158,7 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
     public void onFailed(String url, int code, DataBean entity) {
         super.onFailed(url, code, entity);
         if (DqUrl.url_user_transaction_password.equals(url)){
-            DqToast.showShort(entity.msg);
+            DqToast.showShort(entity.content);
         }
     }
     @Override

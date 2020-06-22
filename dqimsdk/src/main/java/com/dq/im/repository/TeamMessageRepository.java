@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import com.dq.im.dao.TeamMessageBaseDao;
 import com.dq.im.db.ImRoomDatabase;
 import com.dq.im.model.ChatTeamModel;
+import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 
 import java.util.List;
@@ -81,6 +82,11 @@ public class TeamMessageRepository {
     public void updateMessageSendStatus(TeamMessageBaseModel teamMessageBaseModel){
         ImRoomDatabase.databaseWriteExecutor.execute(() -> {
             teamMessageBaseDao.updateMessageSendStatus(teamMessageBaseModel.getSourceContent(),teamMessageBaseModel.getMessageSendStatus(),teamMessageBaseModel.getMsgIdServer(),teamMessageBaseModel.getMsgIdClient());
+        });
+    }
+    public void updateTeamPMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        ImRoomDatabase.databaseWriteExecutor.execute(() -> {
+            teamMessageBaseDao.updateTeamPMessageByClientId(imMessageBaseModel.getMsgIdClient(),imMessageBaseModel.getMsgIdServer(),imMessageBaseModel.getMessageSendStatus(),imMessageBaseModel.getSourceContent());
         });
     }
 

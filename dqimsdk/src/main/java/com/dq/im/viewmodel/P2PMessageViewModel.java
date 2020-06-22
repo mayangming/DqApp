@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.dq.im.model.ChatP2PModel;
+import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.repository.P2PMessageRepository;
 
@@ -86,6 +87,10 @@ public class P2PMessageViewModel extends AndroidViewModel {
 
     public void update(P2PMessageBaseModel p2PMessageBaseModel){
         p2PMessageRepository.update(p2PMessageBaseModel);
+    }
+
+    public void updateP2PMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        p2PMessageRepository.updateP2PMessageByClientId(imMessageBaseModel);
     }
 
     public void deleteAll(){

@@ -107,7 +107,7 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
             group_member_count.setText("本群共"+memberCount+"人");
         }
 
-        messageRedPackageBean.setType(redPackageType);
+        messageRedPackageBean.setRedMsgType(redPackageType);
         mPresenter.getUserCloudWallet(DqUrl.url_user_cloud_wallet,new HashMap<>());
         commTitle.setTitle("发红包");
         commTitle.getLeftIv().setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,7 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
                 }
                 Log.e("YM","零钱余额:"+userCloudWallet.getBalance());
                 Log.e("YM","红包金额(元):"+amount);
-                if (amount < 1){
+                if (amount * 100 < 1){
                     Toast.makeText(view.getContext(),"红包金额不能小于0.01元",Toast.LENGTH_SHORT).show();
                     return;
                 }

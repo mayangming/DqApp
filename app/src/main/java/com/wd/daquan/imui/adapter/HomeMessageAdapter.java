@@ -3,6 +3,7 @@ package com.wd.daquan.imui.adapter;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.wd.daquan.model.db.DbSubscribe;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.third.helper.TeamHelper;
 import com.wd.daquan.third.helper.UserInfoHelper;
+import com.wd.daquan.util.AESUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,10 +135,9 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
             MessageTextBean messageTextBean = gson.fromJson(homeImBaseMode.getSourceContent(),MessageTextBean.class);
             if (null != messageTextBean){
                 content = messageTextBean.getDescription();
-                content = AESHelper.decryptString(content);
+//                content = AESHelper.decryptString(content);
+                content = AESUtil.decode(content);
             }
-        }else if (MessageType.TEXT_LINK.getValue().equals(homeImBaseMode.getMsgType())){
-            content = "[链接消息]";
         }else if (MessageType.VOICE.getValue().equals(homeImBaseMode.getMsgType())){
             content = "[音频]";
         }else if (MessageType.PICTURE.getValue().equals(homeImBaseMode.getMsgType())){
@@ -151,10 +152,6 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
             content = "[位置]";
         }else if (MessageType.PERSON_CARD.getValue().equals(homeImBaseMode.getMsgType())){
             content = "[名片]";
-        }else if (MessageType.VOICE_PHONE.getValue().equals(homeImBaseMode.getMsgType())){
-            content = "[语音通话]";
-        }else if (MessageType.VIDEO_PHONE.getValue().equals(homeImBaseMode.getMsgType())){
-            content = "[视频通话]";
         }else if (MessageType.EMOJI.getValue().equals(homeImBaseMode.getMsgType())){
             content = "[表情]";
         }else if (MessageType.ANONYMOUS.getValue().equals(homeImBaseMode.getMsgType())){

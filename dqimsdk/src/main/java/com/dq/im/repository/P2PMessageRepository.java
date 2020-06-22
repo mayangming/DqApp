@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import com.dq.im.dao.P2PMessageBaseDao;
 import com.dq.im.db.ImRoomDatabase;
 import com.dq.im.model.ChatP2PModel;
+import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 
 import java.util.List;
@@ -88,6 +89,12 @@ public class P2PMessageRepository {
     public void update(P2PMessageBaseModel p2PMessageBaseModel){
         ImRoomDatabase.databaseWriteExecutor.execute(() -> {
             p2PMessageBaseDao.update(p2PMessageBaseModel);
+        });
+    }
+
+    public void updateP2PMessageByClientId(ImMessageBaseModel imMessageBaseModel){
+        ImRoomDatabase.databaseWriteExecutor.execute(() -> {
+            p2PMessageBaseDao.updateP2PMessageByClientId(imMessageBaseModel.getMsgIdClient(),imMessageBaseModel.getMsgIdServer(),imMessageBaseModel.getMessageSendStatus(),imMessageBaseModel.getSourceContent());
         });
     }
 

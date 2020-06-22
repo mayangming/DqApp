@@ -27,7 +27,7 @@ public class ImMessageBaseModel implements Serializable {
     //01：系统消息 02：文本消息 03：带链接文本消息 04：音频 05：图片 06：文件 07视频 08：红包 09：位置 10：名片 11：语音通话 12：视频通话 13：字符表情 14：匿名消息
     @ColumnInfo(name = "msgType")
     @NonNull
-    protected String msgType = "";
+    protected String msgType = "";//未知类型
 
     //二级消息类型，该类型内容取决于msgType消息类型
     //01:转账 02：红包 03：普通消息
@@ -57,18 +57,6 @@ public class ImMessageBaseModel implements Serializable {
 
     @Ignore
     protected IMContentDataModel contentData = new IMContentDataModel();//数据解析
-
-//    @ColumnInfo(name = "signal")
-//    @NonNull
-//    protected String signal = "PUB_ACK";//PC端使用的字段，本地不需要处理
-//
-//    @ColumnInfo(name = "subSignal")
-//    @NonNull
-//    protected String subSignal = "MP";//PC端使用的字段，本地不需要处理
-//
-//    @ColumnInfo(name = "conversationType")
-//    @NonNull
-//    protected String conversationType = "";// PC端使用的字段，本地不需要处理
 
     @NonNull
     public String getMsgIdClient() {
@@ -167,29 +155,7 @@ public class ImMessageBaseModel implements Serializable {
         this.msgSecondType = msgSecondType;
     }
 
-//    public String getSignal() {
-//        return signal;
-//    }
-//
-//    public void setSignal(String signal) {
-//        this.signal = signal;
-//    }
-//
-//    public String getSubSignal() {
-//        return subSignal;
-//    }
-//
-//    public void setSubSignal(String subSignal) {
-//        this.subSignal = subSignal;
-//    }
-//
-//    public String getConversationType() {
-//        return conversationType;
-//    }
-//
-//    public void setConversationType(String conversationType) {
-//        this.conversationType = conversationType;
-//    }
+
 
     @Override
     public String toString() {

@@ -7,8 +7,10 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Transaction;
 import android.arch.persistence.room.Update;
+import android.util.Log;
 
 import com.dq.im.model.HomeImBaseMode;
+import com.dq.im.model.ImMessageBaseModel;
 
 import java.util.List;
 
@@ -41,6 +43,10 @@ public abstract class HomeImBaseDao {
      */
     @Query("UPDATE home_message SET unReadNumber = :unReadNum WHERE groupId = :groupId")
     public abstract void updateTeamUnReadNumber(String groupId, int unReadNum);
+
+
+    @Query("UPDATE home_message SET msgIdServer = :serverId ,messageSendStatus = :messageSendStatus,sourceContent = :sourceContent WHERE msgIdClient = :clientId")
+    public abstract void updateHomeMessageByClientId(String clientId,String serverId,int messageSendStatus,String sourceContent);
 
     @Query("DELETE FROM home_message")
     public abstract void deleteAll();
@@ -91,7 +97,7 @@ public abstract class HomeImBaseDao {
      * 该接口不提供异步更新状态
      * 根据群组ID查询首页消息，判断首页是否有这条消息
      */
-    @Query("SELECT * FROM home_message WHERE groupId = :groupId ORDER BY createTime ASC")
+    @Query("SELECT * FROM home_message WHERE groupId = :groupId AND type = '2' ORDER BY createTime ASC")
     public abstract HomeImBaseMode queryHomeMessageModelByGroupId(String groupId);
 
     /**

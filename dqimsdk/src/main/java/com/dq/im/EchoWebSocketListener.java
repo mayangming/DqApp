@@ -30,7 +30,7 @@ public class EchoWebSocketListener extends WebSocketListener {
 
     private WebSocket mSocket;
     private DqWebSocketMessageFilter dqWebSocketListener;
-    private int socketHeartDuration = 5 * 1000;//心跳包间隔
+    private int socketHeartDuration = 20 * 1000;//心跳包间隔
     private String userId = "";//用户唯一编号
 
     private Handler handler = new Handler(Looper.getMainLooper()){
@@ -161,7 +161,7 @@ public class EchoWebSocketListener extends WebSocketListener {
         boolean isResult = false;
         if (null != mSocket){
             isResult = mSocket.send(message);
-            Log.e("YM","发送消息的结果:"+isResult);
+//            Log.e("YM","发送消息的结果:"+isResult);
         }
         if (isResult){
             handler.removeMessages(SOCKET_HEART_BEAT);

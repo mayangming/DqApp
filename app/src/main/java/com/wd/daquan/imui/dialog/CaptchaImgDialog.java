@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
@@ -83,6 +85,10 @@ public class CaptchaImgDialog extends BaseDialog {
                 break;
             case R.id.btn_sure:
                 captchaValue = captchaEdt.getText().toString();
+                if (TextUtils.isEmpty(captchaValue)){//数据为空的时候取消图形验证码的框
+                    Toast.makeText(getContext(),"图形验证码不能为空!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 operator.sure(captchaValue);
                 dismiss();
                 break;

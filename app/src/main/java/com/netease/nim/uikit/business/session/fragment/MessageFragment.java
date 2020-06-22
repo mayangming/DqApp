@@ -36,6 +36,7 @@ import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.model.IMContentDataModel;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
+import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
 import com.dq.im.type.ImType;
@@ -64,6 +65,7 @@ import com.wd.daquan.bean.ImSendMessageResultBean;
 import com.wd.daquan.http.HttpBaseBean;
 import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
+import com.wd.daquan.http.SocketMessageUtil;
 import com.wd.daquan.imui.activity.PhotoDetailsActivity;
 import com.wd.daquan.imui.adapter.ChatP2PAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickForChildViewListenerCompat;
@@ -71,6 +73,9 @@ import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
 import com.wd.daquan.imui.adapter.RecycleItemOnLongClickListener;
 import com.wd.daquan.imui.bean.ChatOfSystemMessageBean;
 import com.wd.daquan.imui.bean.VoiceBean;
+import com.wd.daquan.imui.bean.im.DqImBaseBean;
+import com.wd.daquan.imui.convert.CommonImConvertDqIm;
+import com.wd.daquan.imui.convert.DqImParserUtils;
 import com.wd.daquan.imui.dialog.MessageOptionDialog;
 import com.wd.daquan.imui.dialog.OpenRedPackageDialog;
 import com.wd.daquan.imui.type.MsgSecondType;
@@ -82,6 +87,8 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
 import com.wd.daquan.model.sp.QCSharedPrefManager;
+import com.wd.daquan.model.utils.GsonUtils;
+import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
 
@@ -132,10 +139,16 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     private long createTime = System.currentTimeMillis();//上一条消息的时间
     private boolean isFirstLoadData = true;//是不是第一次加载数据，第一次加载数据会滚动到底部，下拉刷新则不会
     private long timestampDiff = 24 * 60 * 60 * 1000;//时间差值，因为服务器的消息时间会跟当前系统时间有偏差，会晚于当前系统时间，所以在当前系统时间后面延迟一天
+    private CommonImConvertDqIm commonImConvertDqIm = new CommonImConvertDqIm();
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         MsgMgr.getInstance().attach(this);
+    }
+
+    @Override
+    protected TeamMessageBaseModel createTeamMessage(MessageType messageType, String localPath, String description, String groupId) {
+        return super.createTeamMessage(messageType, localPath, description, groupId);
     }
 
     @Override
@@ -394,6 +407,8 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
 //        if (customization != null) {
 //            messageListPanel.setChattingBackground(customization.backgroundUri, customization.backgroundColor);
 //        }
+        commonImConvertDqIm.setUserId(ModuleMgr.getCenterMgr().getUID());
+        commonImConvertDqIm.setToken(ModuleMgr.getCenterMgr().getToken());
     }
 
     private void initAitManager() {
@@ -565,9 +580,22 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
             homeMessageViewModel.updateTeFriendUnReadNumber(sessionId,0);//消息从ImMainActivity传入，所以先设置未读消息数，进入里面再重置为0
             saveMsgSuccess(p2PMessageBaseModel);
+        }else if(MsgType.MESSAGE_RECEIVE_CALL_BACK.equals(key)){//消息发送后，服务器把消息回传给客户端的内容
+            ImMessageBaseModel imMessageBaseModel = (ImMessageBaseModel)value;
+           for (P2PMessageBaseModel messageBaseModel : chatP2PAdapter.getData()){
+               if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
+                   messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
+                   messageBaseModel.setSourceContent(imMessageBaseModel.getSourceContent());
+                   messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
+                   chatP2PAdapter.updateMessageStatus(messageBaseModel);
+                   Log.e("YM","更新消息发送状态");
+                   return;
+               }
+           }
         }else if (MsgType.TEAM_MESSAGE_CONTENT.equals(key)){//群组消息
 
         }else if (MsgType.CHAT_RED_PACKAGE.equals(key)){//发送红包的消息
+
             inputPanel.switchRobotMode(false);
             inputPanel.collapse(false);
             MessageRedPackageBean messageRedPackageBean = (MessageRedPackageBean) value;
@@ -725,30 +753,32 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     public void uploadVideoSuccess(P2PMessageBaseModel p2PMessageBaseModel) {
 //        P2PMessageBaseModel p2PMessageBaseModel = createP2PMessage(messageType,imContentDataModel,sessionId);
 //        saveMsgSuccess(p2PMessageBaseModel);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("YM","链接问题:"+e.getMessage());
-                e.printStackTrace();
-                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-//                saveMsgSuccess(p2PMessageBaseModel);
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String msgServerId = response.data.toString();
-                if (0 == status){
-                    p2PMessageBaseModel.setMsgIdServer(msgServerId);
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("YM","链接问题:"+e.getMessage());
+//                e.printStackTrace();
+//                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+////                saveMsgSuccess(p2PMessageBaseModel);
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String msgServerId = response.data.toString();
+//                if (0 == status){
+//                    p2PMessageBaseModel.setMsgIdServer(msgServerId);
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//        });
     }
 
     @Override
@@ -764,30 +794,32 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
 //        P2PMessageBaseModel p2PMessageBaseModel = createMessage(messageType,localPath,netUrl,sessionId);
         P2PMessageBaseModel p2PMessageBaseModel = (P2PMessageBaseModel)imMessageBaseModel;
 //        saveMsgSuccess(p2PMessageBaseModel);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("YM","链接问题:"+e.getMessage());
-                e.printStackTrace();
-                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-//                saveMsgSuccess(p2PMessageBaseModel);
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String msgServerId = response.data.toString();
-                if (0 == status){
-                    p2PMessageBaseModel.setMsgIdServer(msgServerId);
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("YM","链接问题:"+e.getMessage());
+//                e.printStackTrace();
+//                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+////                saveMsgSuccess(p2PMessageBaseModel);
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String msgServerId = response.data.toString();
+//                if (0 == status){
+//                    p2PMessageBaseModel.setMsgIdServer(msgServerId);
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//        });
     }
 
     @Override
@@ -868,31 +900,33 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     private void sendMessage(IMContentDataModel messageRedPackageBean, MessageType messageType){
         P2PMessageBaseModel p2PMessageBaseModel = createP2PMessage(messageType,messageRedPackageBean,sessionId);
         saveMsgSuccess(p2PMessageBaseModel);
-        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                e.printStackTrace();
-                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-
-            @Override
-            public void onResponse(HttpBaseBean response, int id) {
-                int status = response.status;
-                String data = response.data.toString();
-                if (0 == status){
-                    IMContentDataModel resultContentModel = parserSendMessageResult(data,messageRedPackageBean,p2PMessageBaseModel);
-                    String resultContent = gson.toJson(resultContentModel);
-                    p2PMessageBaseModel.setSourceContent(resultContent);
-                    p2PMessageBaseModel.setContentData(resultContentModel);
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
-                }else {
-                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
-                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
-                }
-                updateMsgStatus(p2PMessageBaseModel);
-            }
-        });
+        DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
+        SocketMessageUtil.sendMessage(dqImBaseBean);
+//        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                e.printStackTrace();
+//                p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//
+//            @Override
+//            public void onResponse(HttpBaseBean response, int id) {
+//                int status = response.status;
+//                String data = response.data.toString();
+//                if (0 == status){
+//                    IMContentDataModel resultContentModel = parserSendMessageResult(data,messageRedPackageBean,p2PMessageBaseModel);
+//                    String resultContent = gson.toJson(resultContentModel);
+//                    p2PMessageBaseModel.setSourceContent(resultContent);
+//                    p2PMessageBaseModel.setContentData(resultContentModel);
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
+//                }else {
+//                    Toast.makeText(getContext(),"消息发送失败:"+response.msg,Toast.LENGTH_SHORT).show();
+//                    p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+//                }
+//                updateMsgStatus(p2PMessageBaseModel);
+//            }
+//        });
     }
 
     /**
@@ -902,7 +936,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
         IMContentDataModel result = messageRedPackageBean;
         ImSendMessageResultBean imSendMessageResultBean = gson.fromJson(data, ImSendMessageResultBean.class);
         imMessageBaseModel.setMsgIdServer(imSendMessageResultBean.getMsgId());
-        if (MessageType.RED_PACKAGE.getValue().equals(imSendMessageResultBean.getMsgType())){
+        if (MessageType.RED_PACKAGE.getValue().equals( imSendMessageResultBean.getMsgType())){
             MessageRedPackageBean redPackageBean = (MessageRedPackageBean)messageRedPackageBean;
             redPackageBean.setCouponId(imSendMessageResultBean.getCouponId());
             result = redPackageBean;
@@ -925,10 +959,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                 Log.e("YM","检索的本地消息长度:"+p2PMessageBaseModels.size());
 
                 for (P2PMessageBaseModel messageBaseModel : p2PMessageBaseModels){
-                    if (MessageType.TEXT.getValue().equals(messageBaseModel.getMsgType())){
-                        MessageTextBean messageTextBean = gson.fromJson(messageBaseModel.getSourceContent(),MessageTextBean.class);
-                        String content = AESHelper.decryptString(messageTextBean.getDescription());
-                    }
+//                    if (MessageType.TEXT.getValue().equals(messageBaseModel.getMsgType())){
+//                        MessageTextBean messageTextBean = gson.fromJson(messageBaseModel.getSourceContent(),MessageTextBean.class);
+//                        String content = AESHelper.decryptString(messageTextBean.getSearchableContent());
+//                    }
+                    Log.e("YM","查出来的数据:"+p2PMessageBaseModels.toString());
                 }
                 Collections.reverse(p2PMessageBaseModels);
                 chatP2PAdapter.addDataAll(p2PMessageBaseModels);
@@ -967,7 +1002,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             public void onResponse(HttpBaseBean response, int id) {
                 chatContainer.setRefreshing(false);
                 String content = response.data.toString();
-                List<P2PMessageBaseModel> messageBean = ImParserUtils.getP2PMessageBaseModelList(content);
+                List<P2PMessageBaseModel> messageBean = DqImParserUtils.getP2PMessageModels(content);
                 if (messageBean.size() == 0){
                     Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
                     return;
@@ -999,7 +1034,9 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     class MessageOption implements MessageOptionDialog.MessageOptionIpc {
         @Override
         public void result(String content) {
-            String result = AESHelper.decryptString(content);
+//            String result = AESHelper.decryptString(content);
+            String result = AESUtil.decode(content);
+
             ClipboardUtil.clipboardCopyText(getActivity(),result);
             TToast.show(getActivity(),"已经复制到粘贴板~");
         }

@@ -85,7 +85,7 @@
                 android:layout_marginLeft="@dimen/dd_dp15"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/dd_dp15"
-                android:text="官方斗圈号:dq1004x123456"/>
+                android:text="官方斗圈号:DY00000"/>
         </LinearLayout>
         <LinearLayout
             style="@style/mine_item_layout">

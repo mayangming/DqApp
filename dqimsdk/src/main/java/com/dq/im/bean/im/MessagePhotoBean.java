@@ -9,6 +9,7 @@ import com.dq.im.model.IMContentDataModel;
  */
 public class MessagePhotoBean extends IMContentDataModel {
     private String description;//图片网络路径
+    private String searchableContent;//图片描述
     private transient Uri photoUri;//图片的uri地址
     private String localUriString;//图片的本地Uri字符串路径
     public String getDescription() {
@@ -33,6 +34,14 @@ public class MessagePhotoBean extends IMContentDataModel {
 
     public void setLocalUriString(String localUriString) {
         this.localUriString = localUriString;
+    }
+
+    public String getSearchableContent() {
+        return searchableContent;
+    }
+
+    public void setSearchableContent(String searchableContent) {
+        this.searchableContent = searchableContent;
     }
 
     @Override

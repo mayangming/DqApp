@@ -81,7 +81,7 @@ public  class OpenRedPackageDialog extends BaseDialog {
     }
 
     private void openRedPackage(){
-        if (ImType.P2P.getValue().equals(messageRedPackageBean.getType())){//个人模式
+        if (ImType.P2P.getValue().equals(messageRedPackageBean.getRedMsgType())){//个人模式
             String userId = EasySP.init(getContext()).getString(UserSpConstants.USER_ID);
             if (userId.equals(imMessageBaseModel.getFromUserId())){//自己发的
                 requestRedPackageDetails(redPackageId);

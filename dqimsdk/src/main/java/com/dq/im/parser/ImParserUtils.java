@@ -27,7 +27,7 @@ public class ImParserUtils{
         try {
             jsonObject = new JSONObject(json);
             String type = jsonObject.optString("type");
-            String msgType = jsonObject.optString("msgType");
+            String msgType = jsonObject.optString("msgType","");
             String contentData = jsonObject.optString("contentData");
             String msgIdClient = jsonObject.optString("msgIdClient");
             String msgIdServer = jsonObject.optString("msgIdServer");
@@ -61,10 +61,11 @@ public class ImParserUtils{
         try {
             jsonObject = new JSONObject(json);
             String type = jsonObject.optString("type");
-            String msgType = jsonObject.optString("msgType");
+            String msgType = jsonObject.optString("msgType","");
             String fromUserId = jsonObject.optString("fromUserId");
             String toUserId = jsonObject.optString("toUserId");
             String contentData = jsonObject.optString("contentData");
+//            String contentData = jsonObject.optString("sourceContent");
             String msgIdClient = jsonObject.optString("msgIdClient");
             String msgIdServer = jsonObject.optString("msgIdServer");
             String msgSecondType = jsonObject.optString("msgSecondType");
@@ -114,11 +115,12 @@ public class ImParserUtils{
         try {
             jsonObject = new JSONObject(json);
             String type = jsonObject.optString("type");
-            String msgType = jsonObject.optString("msgType");
+            String msgType = jsonObject.optString("msgType","");
             String fromUserId = jsonObject.optString("fromUserId");
             String toUserId = jsonObject.optString("toUserId");
             String groupId = jsonObject.optString("groupId");
             String contentData = jsonObject.optString("contentData");
+//            String contentData = jsonObject.optString("sourceContent");
             String msgIdClient = jsonObject.optString("msgIdClient");
             String msgIdServer = jsonObject.optString("msgIdServer");
             long createTime = jsonObject.optLong("createTime");
@@ -167,10 +169,11 @@ public class ImParserUtils{
         try {
             jsonObject = new JSONObject(json);
             String type = jsonObject.optString("type");
-            String msgType = jsonObject.optString("msgType");
+            String msgType = jsonObject.optString("msgType","");
             String fromUserId = jsonObject.optString("fromUserId");
             String toUserId = jsonObject.optString("toUserId");
             String contentData = jsonObject.optString("contentData");
+//            String contentData = jsonObject.optString("sourceContent");
             String msgIdClient = jsonObject.optString("msgIdClient");
             String msgIdServer = jsonObject.optString("msgIdServer");
             long createTime = jsonObject.optLong("createTime");

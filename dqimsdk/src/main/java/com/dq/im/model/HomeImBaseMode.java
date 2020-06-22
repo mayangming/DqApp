@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 /**
  * 首页聊天消息模型，主要记录首页的最后一条消息，以及其未读消息数
  */
-@Entity(tableName = "home_message",primaryKeys = {"msgIdClient"})
+@Entity(tableName = "home_message",primaryKeys = {"msgIdClient","msgIdServer"})
 public class HomeImBaseMode extends ImMessageBaseModel{
 
     @ColumnInfo(name = "unReadNumber")
