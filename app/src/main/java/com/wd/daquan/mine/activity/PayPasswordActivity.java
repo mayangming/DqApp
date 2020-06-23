@@ -2,6 +2,7 @@ package com.wd.daquan.mine.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
     private EditText phoneCodeEt;
     private TextView phoneCodeBtn;
     private CaptchaImgDialog captchaImgDialog;
+    private CountDownTimerUtils mCountDownTimerUtils;
     @Override
     protected WalletCloudPresenter createPresenter() {
         return new WalletCloudPresenter();
@@ -102,8 +104,9 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
         hashMap.put(IConstant.Login.CAPTCHA, captchaQrCode);
         mPresenter.getPhoneCode(DqUrl.url_get_phone_msg,hashMap);
         //点击验证码时候就开始倒计时：不论是否接口请求成功，因为接口请求时间很长
-        CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(phoneCodeBtn, 60000, 1000, this);
+        mCountDownTimerUtils = new CountDownTimerUtils(phoneCodeBtn, 60000, 1000, this);
         mCountDownTimerUtils.start();
+
     }
 
     /**
@@ -148,9 +151,17 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
     @Override
     public void onSuccess(String url, int code, DataBean entity) {
         super.onSuccess(url, code, entity);
+        Log.e("YM","请求结果onSuccess:"+url);
         if (DqUrl.url_user_transaction_password.equals(url)){
-            DqToast.showShort("密码设置成功!");
-            finish();
+            if (entity.result == 0){
+                DqToast.showShort("密码设置成功!");
+                finish();
+            }
+        }else if (DqUrl.url_get_phone_msg.equals(url)){
+            if (entity.result != 0){
+                mCountDownTimerUtils.cancel();
+                mCountDownTimerUtils.onFinish();
+            }
         }
     }
 
@@ -159,6 +170,11 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
         super.onFailed(url, code, entity);
         if (DqUrl.url_user_transaction_password.equals(url)){
             DqToast.showShort(entity.content);
+        }else if (DqUrl.url_get_phone_msg.equals(url)){
+            DqToast.showShort(entity.content);
+            mCountDownTimerUtils.cancel();
+            mCountDownTimerUtils.onFinish();
+
         }
     }
     @Override

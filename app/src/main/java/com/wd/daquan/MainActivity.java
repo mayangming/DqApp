@@ -647,6 +647,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 
 //                ImMessageBaseModel notificationModel = ImParserUtils.getBaseMessageModel(message);
                 ImMessageBaseModel notificationModel = DqImParserUtils.getBaseMessageModel(message);
+                Log.e("YM","MainActivity转换的类型:"+notificationModel.toString());
                 notificationModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
                 if (ImType.P2P.getValue().equals(notificationModel.getType())){
                     String dqImContentJson = GsonUtils.toJson(notificationModel);
@@ -682,6 +683,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                     MsgMgr.getInstance().sendMsg(MsgType.P2P_MESSAGE_CONTENT, p2PMessageBaseModel);
                 }else if (ImType.Team.getValue().equals(notificationModel.getType())){
                     String dqImContentJson = GsonUtils.toJson(notificationModel);
+                    Log.e("YM","转换过的JSON消息格式:"+dqImContentJson);
                     if (isSameUser(dqImContentJson)){//消息来源是当前用户则不再向下传递
                         return;
                     }

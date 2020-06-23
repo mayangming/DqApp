@@ -150,33 +150,34 @@
         android:id="@+id/wallet_pay_psd_set"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dd_dp20"
         android:layout_marginStart="@dimen/dd_dp20"
-        android:layout_marginTop="@dimen/dd_dp20">
+        android:layout_marginTop="@dimen/dd_dp20"
+        android:layout_marginEnd="@dimen/dd_dp20">
 
         <ImageView
             android:id="@+id/wallet_pay_psd_set_left_icon"
             android:layout_width="@dimen/dd_dp19"
             android:layout_height="@dimen/dd_dp19"
             android:src="@mipmap/pwd_lock" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/wallet_pay_psd_set_left_icon"
-            android:layout_toEndOf="@+id/wallet_pay_psd_set_left_icon"
             android:layout_marginStart="@dimen/dd_dp10"
             android:layout_marginEnd="@dimen/dd_dp10"
+            android:layout_toEndOf="@+id/wallet_pay_psd_set_left_icon"
+            android:layout_toRightOf="@+id/wallet_pay_psd_set_left_icon"
+            android:text="设置提现密码"
             android:textColor="@color/color_333333"
-            android:textSize="@dimen/sp_16"
-            android:text="设置提现密码"/>
+            android:textSize="@dimen/sp_16" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/ic_rightjian"/>
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_rightjian" />
     </RelativeLayout>
 
 </LinearLayout>

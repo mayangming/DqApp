@@ -55,6 +55,7 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
     protected ImageView mClearPwdIv;
     protected EditText mPasswordEt;
     protected boolean isScrollLayout = true;
+    private CountDownTimerUtils countDownTimerUtils;
     /**
      * 登录，注册，或确认按钮
      */
@@ -168,7 +169,7 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
                 }
                 hashMap.put(IConstant.Login.TOKEN_KEY, token_key);
                 hashMap.put(IConstant.Login.CAPTCHA, captcha);
-                CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(mGetCodeTv, IConstant.TIME_60000,
+                countDownTimerUtils = new CountDownTimerUtils(mGetCodeTv, IConstant.TIME_60000,
                         IConstant.TIME_1000, this);
                 countDownTimerUtils.start();
                 mPresenter.getVerificationCode(DqUrl.url_get_phone_msg, hashMap);
@@ -255,6 +256,10 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
             }
         } else if (DqUrl.url_get_phone_msg.equals(url)) {
             if (null != mGetCodeTv) {
+                if (entity.result != 0){
+                    countDownTimerUtils.cancel();
+                    countDownTimerUtils.onFinish();
+                }
                 DqToast.showShort(entity.content);
             }
         }
@@ -263,7 +268,12 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
     @Override
     public void onFailed(String url, int code, DataBean entity) {
         if (null == entity) return;
-
+        if (DqUrl.url_get_phone_msg.equals(url)) {
+            if (entity.result != 0){
+                countDownTimerUtils.cancel();
+                countDownTimerUtils.onFinish();
+            }
+        }
         if (code == IConstant.Code.LOGIN_PASSWORD_ERROR_CODE || code == IConstant.Code.LOGIN_PASSWORD_ERROR_MAX_CODE) {
             return;
         }

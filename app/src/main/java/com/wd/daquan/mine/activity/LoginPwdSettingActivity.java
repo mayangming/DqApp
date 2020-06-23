@@ -29,7 +29,7 @@ public class LoginPwdSettingActivity extends DqBaseActivity<MinePresenter, DataB
     private EditText edit_pwd;
     private EditText edit_pwdAgain;
     private String encryPwd;
-
+    private CountDownTimerUtils mCountDownTimerUtils;
     @Override
     protected void setContentView() {
         setContentView(R.layout.login_pwd_setting_activity);
@@ -89,7 +89,7 @@ public class LoginPwdSettingActivity extends DqBaseActivity<MinePresenter, DataB
                     linkedHashMap.put("type", KeyValue.ONE_STRING);
                     linkedHashMap.put("token_key", token_key);
                     //点击验证码时候就开始倒计时：不论是否接口请求成功，因为接口请求时间很长
-                    CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(btn_getCode, 60000, 1000, this);
+                    mCountDownTimerUtils = new CountDownTimerUtils(btn_getCode, 60000, 1000, this);
                     mCountDownTimerUtils.start();
                     mPresenter.getPhoneCode(DqUrl.url_get_phone_msg, linkedHashMap);
                 }
@@ -134,6 +134,10 @@ public class LoginPwdSettingActivity extends DqBaseActivity<MinePresenter, DataB
 
     @Override
     public void onFailed(String url, int code, DataBean entity) {
+        if (DqUrl.url_get_phone_msg.equals(url)){
+            mCountDownTimerUtils.cancel();
+            mCountDownTimerUtils.onFinish();
+        }
         DqUtils.bequit(entity,this);
     }
 
@@ -141,11 +145,12 @@ public class LoginPwdSettingActivity extends DqBaseActivity<MinePresenter, DataB
     public void onSuccess(String url, int code, DataBean entity) {
         super.onSuccess(url, code, entity);
         if (DqUrl.url_get_phone_msg.equals(url)) {//验证码
-            if (0 == code) {
+            if (0 != code) {
                 DqToast.showShort(entity.content);
-            } else {
-                DqToast.showShort(entity.content);
+                mCountDownTimerUtils.cancel();
+                mCountDownTimerUtils.onFinish();
             }
+            DqToast.showShort(entity.content);
         }else  if (DqUrl.url_set_pwd.equals(url)) {//设置密码
             if (0 == code) {
                 ModuleMgr.getCenterMgr().putPwd(encryPwd);

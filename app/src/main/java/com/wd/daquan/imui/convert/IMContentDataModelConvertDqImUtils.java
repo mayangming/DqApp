@@ -10,6 +10,7 @@ import com.wd.daquan.imui.bean.im.DqMessageBaseContent;
 import com.wd.daquan.imui.bean.im.DqMessagePhotoBean;
 import com.wd.daquan.imui.bean.im.DqMessageTextBean;
 import com.wd.daquan.model.utils.GsonUtils;
+import com.wd.daquan.util.AESUtil;
 
 /**
  * 斗圈消息类型与通用消息类型的转换工具类
@@ -53,16 +54,18 @@ public class IMContentDataModelConvertDqImUtils {
     }
 
     /**
-     * 将通用文本消息转为斗圈消息
+     * 将通用消息转为斗圈消息
      * @param messagePhotoBean
      * @return
      */
     public static DqMessageBaseContent convertDqPhotoContent(MessagePhotoBean messagePhotoBean){
         DqMessagePhotoBean dqMessagePhotoBean = new DqMessagePhotoBean();
         dqMessagePhotoBean.setRemoteMediaUrl(messagePhotoBean.getDescription());
-        dqMessagePhotoBean.setSearchableContent(messagePhotoBean.getSearchableContent());
+//        dqMessagePhotoBean.setSearchableContent(messagePhotoBean.getSearchableContent());
+        dqMessagePhotoBean.setSearchableContent(AESUtil.decode("[图片]"));
         dqMessagePhotoBean.setLocalUriString(messagePhotoBean.getLocalUriString());
         dqMessagePhotoBean.setPhotoUri(messagePhotoBean.getPhotoUri());
+        Log.e("YM","斗圈的图片内容:"+dqMessagePhotoBean.toString());
         return dqMessagePhotoBean;
     }
 
@@ -113,6 +116,7 @@ public class IMContentDataModelConvertDqImUtils {
                 content = GsonUtils.toJson(dqMessageBaseContent);
                 break;
         }
+        Log.e("YM","convertDqCommonContentStr----->"+content);
         return content;
     }
 

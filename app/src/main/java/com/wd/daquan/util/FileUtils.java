@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v4.provider.DocumentFile;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.dq.im.ImProvider;
@@ -136,6 +137,9 @@ public class FileUtils {
      */
     public static boolean fileExists(String localPath){
         boolean isExists = false;
+        if (TextUtils.isEmpty(localPath)){
+            return isExists;
+        }
         if (Build.VERSION.SDK_INT>=29) {//android 10
             Uri uri = Uri.parse(localPath);
             DocumentFile videoDocumentFile = DocumentFile.fromSingleUri(DqApp.sContext, uri);

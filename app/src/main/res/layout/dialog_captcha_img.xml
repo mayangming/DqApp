@@ -46,6 +46,7 @@
             android:layout_height="@dimen/dd_dp50"
             android:padding="@dimen/dp_10"
             android:lines="1"
+            android:saveEnabled="false"
             android:background="@drawable/captcha_code_edt_bg"/>
 
     </LinearLayout>

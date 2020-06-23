@@ -11,7 +11,7 @@ public class MessagePhotoBean extends IMContentDataModel {
     private String description;//图片网络路径
     private String searchableContent;//图片描述
     private transient Uri photoUri;//图片的uri地址
-    private String localUriString;//图片的本地Uri字符串路径
+    private String localUriString = "";//图片的本地Uri字符串路径
     public String getDescription() {
         return description;
     }
@@ -48,6 +48,7 @@ public class MessagePhotoBean extends IMContentDataModel {
     public String toString() {
         return "MessagePhotoBean{" +
                 "description='" + description + '\'' +
+                ", searchableContent='" + searchableContent + '\'' +
                 ", photoUri=" + photoUri +
                 ", localUriString='" + localUriString + '\'' +
                 '}';

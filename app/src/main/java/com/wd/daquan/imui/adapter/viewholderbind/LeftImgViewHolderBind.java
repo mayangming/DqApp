@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.dq.im.bean.im.MessagePhotoBean;
 import com.dq.im.model.ImMessageBaseModel;
@@ -81,6 +82,7 @@ public class LeftImgViewHolderBind extends BaseLeftViewHolderBind<LeftImgViewHol
     private void setTeamLeftImgData(LeftImgViewHolder leftImgViewHolder, TeamMessageBaseModel teamMessageBaseModel){
         teamMessageViewModel = ViewModelProviders.of(activity).get(TeamMessageViewModel.class);
         String content = teamMessageBaseModel.getSourceContent();
+        Log.e("YM","获取的图片json数据:"+content);
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
         Uri photoUri = Uri.parse(messagePhotoBean.getLocalUriString());
         boolean fileExists = FileUtils.fileExists(messagePhotoBean.getLocalUriString());
