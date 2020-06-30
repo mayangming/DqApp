@@ -17,14 +17,14 @@ import com.dq.im.model.IMContentDataModel;
 public enum MessageType {
     RECEIVER_MESSAGE_CALLBACK_STATUS(-2, null),//消息回传状态
     UNKNOWN(0,null),
-    SYSTEM(10,null),
     TEXT(1, MessageTextBean.class),
-//    TEXT_LINK("03",null),
+    //    TEXT_LINK("03",null),
     VOICE(2, MessageVoiceBean.class),
     PICTURE(3, MessagePhotoBean.class),
     LOCATION(4,null),
     FILE(5,null),
     VIDEO(6, MessageVideoBean.class),
+    SYSTEM(10,null),
     PERSON_CARD(11, MessageCardBean.class),
     RED_PACKAGE(12, MessageRedPackageBean.class),
 //    VOICE_PHONE("11",null),
@@ -32,10 +32,10 @@ public enum MessageType {
     EMOJI(13,null),//表情
     ANONYMOUS(14,null),//匿名消息
     GROUP_APPLY_FOR(17,null),//加群申请消息
+    FRIEND_DELETE(18,null),//好友删除消息
     SIGN_LOGIN(21, null),//单点登陆登出
     FRIEND_RECEIVED(22, null),//好友申请已经通过了
     FRIEND_ADD(101,null),//添加好友消息
-    FRIEND_DELETE(102,null),//好友删除消息
     GROUP_CREATE(104,null),//创建群组
     GROUP_INVITE(105,null),//群组邀请消息
     GROUP_KICK_OUT(106, null),//你被踢出了群组

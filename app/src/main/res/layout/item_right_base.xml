@@ -9,8 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dd_dp20"
-        android:layout_toStartOf="@+id/base_right_container"
-        android:layout_below="@+id/item_right_name"
+        android:layout_toStartOf="@+id/base_right_container_ll"
         android:layout_centerVertical="true">
         <ProgressBar
             android:id="@+id/message_loading"
@@ -23,26 +22,31 @@
             android:src="@mipmap/message_send_fail"
             android:visibility="visible"/>
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/base_right_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_right_name"
-        android:layout_toStartOf="@+id/item_right_head_contain">
-    </FrameLayout>
-    <TextView
-        android:id="@+id/item_right_name"
+    <LinearLayout
+        android:id="@+id/base_right_container_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/item_right_head_contain"
         android:layout_toStartOf="@+id/item_right_head_contain"
-        android:layout_marginBottom="@dimen/dp_5"
-        tools:text="用户昵称"/>
+        android:layout_marginTop="@dimen/dp_5"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/item_right_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="end"
+            tools:text="用户昵称"/>
+        <FrameLayout
+            android:id="@+id/base_right_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/item_right_head_contain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_10"
         android:layout_alignParentEnd="true"
         android:padding="@dimen/dp_5">

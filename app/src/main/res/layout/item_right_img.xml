@@ -10,5 +10,6 @@
         android:layout_width="@dimen/dd_dp100"
         android:layout_height="@dimen/dd_dp150"
         android:src="@mipmap/ic_launcher"
-        android:gravity="end"/>
+        android:scaleType="fitStart"
+        android:gravity="end|top"/>
 </LinearLayout>

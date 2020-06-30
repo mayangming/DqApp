@@ -7,6 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.dq.im.dao.HomeImBaseDao;
 import com.dq.im.dao.P2PMessageBaseDao;
@@ -30,13 +31,13 @@ import java.util.concurrent.Executors;
  */
 
 @Database(entities = {
-          UserModel.class,
-          TeamModel.class,
-          HomeImBaseMode.class,
-          TeamUserJoinModel.class,
-          TeamMessageBaseModel.class,
-          P2PMessageBaseModel.class},
-          version = 1, exportSchema = true)
+        UserModel.class,
+        TeamModel.class,
+        HomeImBaseMode.class,
+        TeamUserJoinModel.class,
+        TeamMessageBaseModel.class,
+        P2PMessageBaseModel.class},
+        version = 2, exportSchema = true)
 public abstract class ImRoomDatabase extends RoomDatabase {
     public static volatile String USER_ID = "";
 
@@ -54,7 +55,7 @@ public abstract class ImRoomDatabase extends RoomDatabase {
 
     private static volatile ImRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    public static final ExecutorService databaseWriteExecutor =
+    public static ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static ImRoomDatabase createDatabase(final Context context,String userId) {
@@ -73,10 +74,12 @@ public abstract class ImRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (ImRoomDatabase.class) {
                 if (INSTANCE == null) {
+                    Log.e("YM","创建新的数据库");
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ImRoomDatabase.class, "im_"+USER_ID)//数据库名
-//                            .addMigrations(MIGRATION_2_3)
-//                            .fallbackToDestructiveMigration()
+//                            .addMigrations(MIGRATION_2_3)//升级时候不清空数据
+                            //添加fallbackToDestructiveMigration方法
+                            .fallbackToDestructiveMigration()//升级时候清空数据库
                             .build();
                 }
             }
@@ -88,39 +91,47 @@ public abstract class ImRoomDatabase extends RoomDatabase {
      * 关闭数据库
      */
     public void closeDataBase(){
-        if (null != INSTANCE){
-            INSTANCE.close();
+        if (null != INSTANCE){//尝试打开
+//            INSTANCE.close();
             INSTANCE = null;
             USER_ID = "";
+            databaseWriteExecutor.shutdown();//移除线程池
+            databaseWriteExecutor =
+                    Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         }
     }
 
-    static Migration MIGRATION_2_3 = new Migration(2, 3) {
+    static Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             // 为个人聊天记录旧表添加新的字段
-            database.execSQL("ALTER TABLE person_message "
-                    + "ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE person_message "
-                    + "ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE person_message "
-                    + "ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
 
-            // 为首页聊天记录旧表添加新的字段
-            database.execSQL("ALTER TABLE team_message "
-                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE team_message "
-                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE team_message "
-                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE home_message DROP PRIMARY KEY msgIdClient");
+//            database.execSQL("ALTER TABLE home_message ADD PRIMARY KEY (msgIdClient,msgIdServer)");
 
-            // 为群聊聊天记录旧表添加新的字段
-            database.execSQL("ALTER TABLE home_message "
-                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE home_message "
-                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
-            database.execSQL("ALTER TABLE home_message "
-                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+
+//            database.execSQL("ALTER TABLE person_message "
+//                    + "ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE person_message "
+//                    + "ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE person_message "
+//                    + "ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+//
+//            // 为首页聊天记录旧表添加新的字段
+//            database.execSQL("ALTER TABLE team_message "
+//                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE team_message "
+//                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE team_message "
+//                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
+//
+//            // 为群聊聊天记录旧表添加新的字段
+//            database.execSQL("ALTER TABLE home_message "
+//                    + " ADD COLUMN signal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE home_message "
+//                    + " ADD COLUMN subSignal TEXT NOT NULL DEFAULT ''");
+//            database.execSQL("ALTER TABLE home_message "
+//                    + " ADD COLUMN conversationType TEXT NOT NULL DEFAULT ''");
         }
     };
 

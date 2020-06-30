@@ -92,6 +92,7 @@ public class GroupChatNameActivity extends DqBaseActivity<ChatPresenter, DataBea
         TeamDbHelper.getInstance().getTeam(groupId, team -> {
             team.group_name = etGroupName.getText().toString().trim();
             TeamDbHelper.getInstance().update(team, null);
+            MsgMgr.getInstance().sendMsg(MsgType.HOME_UPDATE_MSG, team);//通知首页更改群组名称
             finish();
         });
 

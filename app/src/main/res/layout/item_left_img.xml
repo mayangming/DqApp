@@ -10,5 +10,6 @@
         android:layout_height="@dimen/dd_dp150"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher"
+        android:scaleType="fitStart"
         android:gravity="start"/>
 </RelativeLayout>

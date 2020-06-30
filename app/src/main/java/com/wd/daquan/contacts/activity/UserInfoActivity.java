@@ -224,39 +224,32 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         mListDialog.clear();
         List<String> itemList = new ArrayList<>();
 //        itemList.add(DqApp.getStringById(R.string.friend_fa));
-//        if(mFriend.isWhether_black()) {
-//            itemList.add(DqApp.getStringById(R.string.remove_blacklist));
-//        }else {
-//            itemList.add(DqApp.getStringById(R.string.add_blacklist));
-//        }
+        if(mFriend.isWhether_black()) {
+            itemList.add(DqApp.getStringById(R.string.remove_blacklist));
+        }else {
+            itemList.add(DqApp.getStringById(R.string.add_blacklist));
+        }
         itemList.add(DqApp.getStringById(R.string.friend_delete));
         mListDialog.setItems(itemList);
         mListDialog.show();
 
         mListDialog.setListener((item, position) -> {
             switch (position) {
-                case 0://删除好友
-                    String userName = mMineNameTv.getText().toString();
-                    mInfoHelper.deleteFriend(mUserId, userName);
-                    break;
+
 //                case  0://发送名片
 //                    sendCard();
 //                    break;
-////                case  1://添加/移除黑名单
-////                    if(mFriend.isWhether_black()) {
-////                        mInfoHelper.removeBlack(mUserId);
-////                    }else {
-////                        mInfoHelper.showAddBlackDialog(mUserId);
-////                    }
-////                    break;
-////                case  2://删除好友
-////                    String userName = mMineNameTv.getText().toString();
-////                    mInfoHelper.deleteFriend(mUserId, userName);
-////                    break;
-//                case  1://删除好友
-//                    String userName = mMineNameTv.getText().toString();
-//                    mInfoHelper.deleteFriend(mUserId, userName);
-//                    break;
+                case  0://添加/移除黑名单
+                    if(mFriend.isWhether_black()) {
+                        mInfoHelper.removeBlack(mUserId);
+                    }else {
+                        mInfoHelper.showAddBlackDialog(mUserId);
+                    }
+                    break;
+                case  1://删除好友
+                    String userName = mMineNameTv.getText().toString();
+                    mInfoHelper.deleteFriend(mUserId, userName);
+                    break;
             }
         });
 
@@ -309,7 +302,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
                 SessionHelper.startP2PSession(getActivity(), mUserId);
                 finish();
             } else {
-               mInfoHelper.addFriend(mUserId);
+                mInfoHelper.addFriend(mUserId);
             }
         }
     }

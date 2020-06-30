@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.da.library.constant.IConstant;
-import com.da.library.tools.AESHelper;
 import com.da.library.tools.Utils;
 import com.da.library.utils.DateUtil;
 import com.da.library.widget.DragPointView;
@@ -625,7 +624,12 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     }
     private void startSocket(){
         Log.e("YM","开始链接");
-        dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
+        dqWebSocketClient = DqWebSocketClient.getInstance2();
+        if (null == dqWebSocketClient){
+            dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
+        }else {
+            dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
+        }
         dqWebSocketClient.setDqWebSocketListener(new DqWebSocketListener() {
             @Override
             public void connectFail(String fileConnect) {
@@ -644,7 +648,6 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             public void onMessageReceiver(final String message) {
 //                        Toast.makeText(MainActivity.this,"接收的消息:"+message,Toast.LENGTH_LONG).show();
                 Log.e("YM","MainActivity接收的原始消息:"+message);
-
 //                ImMessageBaseModel notificationModel = ImParserUtils.getBaseMessageModel(message);
                 ImMessageBaseModel notificationModel = DqImParserUtils.getBaseMessageModel(message);
                 Log.e("YM","MainActivity转换的类型:"+notificationModel.toString());
@@ -699,9 +702,11 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                     HomeImBaseMode homeImBaseMode = ImTransformUtils.teamImModelTransformHomeImModel(teamMessageBaseModel);
                     insertUser(teamMessageBaseModel.getFromUserId());
                     insertTeam(teamMessageBaseModel.getGroupId());
-                    teamMessageViewModel.insert(teamMessageBaseModel);
-                    homeMessageViewModel.updateHomeMessage(homeImBaseMode,true);
-                    Log.e("YM","数据插入,更新群消息:");
+                    if (!MessageType.SYSTEM.getValue().equals(teamMessageBaseModel.getMsgType())){//不插入数据库，因为系统消息没有发消息用户的Id
+                        teamMessageViewModel.insert(teamMessageBaseModel);
+                        homeMessageViewModel.updateHomeMessage(homeImBaseMode,true);
+                        Log.e("YM","数据插入,更新群消息:");
+                    }
 //                            Intent intent = new Intent(MainActivity.this, ChatTeamActivity.class);
 //                            intent.putExtra(ChatTeamActivity.TEAM_ID,teamMessageBaseModel.getGroupId());
 //                            startActivity(intent);
@@ -713,8 +718,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //                        Log.e("YM","MainActivity接收的群组文本消息:"+content);
 //                    }
                     MsgMgr.getInstance().sendMsg(MsgType.TEAM_MESSAGE_CONTENT, teamMessageBaseModel);
-                }else if (ImType.System.getValue().equals(notificationModel.getType())){
-                    Log.e("YM","系统消息");
+                }else if (ImType.System_All.getValue().equals(notificationModel.getType())){
                     String result = parserSystemMessage(notificationModel);
                     showNotification(result);
                 }else if (ImType.RECEIVE_MESSAGE_CALLBACK.getValue().equals(notificationModel.getType())){//消息发送后，服务器将消息状态回传过来并附加其他信息
@@ -743,6 +747,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         switch (messageType){
             case GROUP_CREATE:
                 content = "创建群组";
+//                ModuleMgr.getAppManager().addTeamInviteUnread(teamMessageBaseModel.getGroupId());
+//                MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);
                 break;
             case GROUP_INVITE:
                 content = "群组邀请通知";
@@ -847,7 +853,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     }
 
     /**
-     * 获取用户网络数据
+     * 获取群组网络数据
      */
     private void requestTeamInfo(String teamId){
         Map<String,Object> params = new HashMap<>();
@@ -923,7 +929,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     public void onSuccess(String url, int code, DataBean entity) {
         super.onSuccess(url, code, entity);
         if (entity == null) return;
-        if (DqUrl.url_edit_group_info.equals(url)) {
+        if (DqUrl.url_select_group.equals(url)) {
             GroupInfoBean groupInfoBean = (GroupInfoBean) entity.data;
             if(groupInfoBean != null) {
                 DqApp.getInstance().getSingleThread(() -> {
@@ -933,15 +939,18 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                         MemberDbHelper.getInstance().update(groupInfoBean.group_id, memberList, null);
                     }
                 });
+                MsgMgr.getInstance().sendMsg(MsgType.HOME_UPDATE_MSG, groupInfoBean);
             }
         }else if (DqUrl.url_get_userinfo.equals(url)){
             Friend friend = (Friend) entity.data;
             FriendDbHelper.getInstance().update(friend, null);
+            MsgMgr.getInstance().sendMsg(MsgType.HOME_UPDATE_MSG, friend);
         }
     }
 
     /**
      * 获取网络数据
+     * 这里只是登录下账号让后台知道已经登录了，所以不对后台数据进行处理
      */
     private void requestLogin(String userId){
 
@@ -1095,6 +1104,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 }
                 ModuleMgr.getAppManager().addTeamInviteUnread(messageSystemBean.getGroupId());
                 MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);
+                ModuleMgr.getAppManager().addFriendUnread(messageSystemBean.getFromUserId());
+                MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);
                 content = "你收到了一条群组邀请消息";
                 break;
             case GROUP_APPLY_FOR://加群申请消息
@@ -1102,6 +1113,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 break;
             case FRIEND_DELETE://好友删除消息
                 content = "你被好友删除了";
+//                FriendDbHelper.getInstance().delete(imMessageBaseModel.getFromUserId());
+                MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMOVE_FRIEND, imMessageBaseModel.getFromUserId());
                 break;
             case GROUP_EXIT://退群消息
                 content = "你有一个群成员退出了群组";

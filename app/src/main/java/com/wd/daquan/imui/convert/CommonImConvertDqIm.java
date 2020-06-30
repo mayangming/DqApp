@@ -80,7 +80,7 @@ public class CommonImConvertDqIm {
         imMessageBaseModel.setMsgIdServer(firstContentBean.getMsgIdServer());
         imMessageBaseModel.setMsgSecondType(firstContentBean.getMsgSecondType());
         imMessageBaseModel.setMsgType(firstContentBean.getMsgType()+"");
-        String secondType = "0";//0 单聊 1群聊
+        String secondType = firstContentBean.getMsgSecondType();//0 单聊 1群聊 4红包领取的消息
         if ("0".equals(firstContentBean.getMsgSecondType())){//单聊
             secondType = "1";
         }else if ("1".equals(firstContentBean.getMsgSecondType())){//群聊

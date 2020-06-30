@@ -36,7 +36,7 @@ public class DqWebSocketClient {
     private Request request;
     private EchoWebSocketListener socketListener;
     private Gson gson;
-    private WebSocket webSocket;
+    private WebSocket dqWebSocket;
     private boolean isConnectIng = false;//WebSocket是否在链接过程中
     private DqWebSocketListener dqWebSocketListener;
     private int retryDuration = 5 * 1000;//重连间隔，两次重连间隔多久
@@ -92,6 +92,9 @@ public class DqWebSocketClient {
         }
         return dqWebSocketClient;
     }
+    public static DqWebSocketClient getInstance2(){
+        return dqWebSocketClient;
+    }
 
     private DqWebSocketClient(String userId) {
         this.userId = userId;
@@ -137,6 +140,17 @@ public class DqWebSocketClient {
         netWorkUtil.addConnectChangeListener(ImProvider.context);
     }
 
+    public void switchUserId(String userId){
+        Log.e("YM","切换账号");
+        Log.e("YM","socketConnecting:"+socketConnecting);
+        Log.e("YM","isConnectIng:"+isConnectIng);
+        this.userId = userId;
+        String socketServer = ResourceBundle.getBundle("appConfig").getString("webSocketServer") + userId;
+        request = new Request.Builder().url(socketServer).build();
+//        Request request = new Request.Builder().url("ws://echo.websocket.org").build();
+        socketListener.setUserId(userId);
+    }
+
     private void initGson(){
         gson = new GsonBuilder()
                 .registerTypeAdapter(P2PMessageBaseModel.class, new ImContentDeserializer())
@@ -170,7 +184,7 @@ public class DqWebSocketClient {
             @Override
             public void connectSuccess(WebSocket webSocket) {
                 dqWebSocketListener.connectSuccess();
-                DqWebSocketClient.this.webSocket = webSocket;
+                dqWebSocket = webSocket;
                 isConnectIng = true;
                 socketConnecting = false;
                 socketCurrentStatus = SocketStatus.SOCKET_STATUS_CONNECTING;
@@ -204,6 +218,7 @@ public class DqWebSocketClient {
             Log.e("YM","没有用户账户，不允许建立链接！");
             return;
         }
+        Log.e("YM","build中的socketConnecting值:"+socketConnecting);
         if (socketConnecting){
             Log.e("YM","斗圈Socket正在建立链接中，不允许再次建立链接！");
             return;
@@ -266,9 +281,9 @@ public class DqWebSocketClient {
      * 取消WebSocket链接
      */
     public void cancel(){
-        if (null != webSocket){
-            webSocket.cancel();
-            webSocket.close(1000,"onClose");
+        if (null != dqWebSocket){
+            dqWebSocket.cancel();
+            dqWebSocket.close(1000,"onClose");
         }
         if (null != dqWebSocketListener){
             socketListener.clear();
@@ -279,7 +294,9 @@ public class DqWebSocketClient {
             netWorkUtil.clear();
         }
         socketConnecting = false;
-        dqWebSocketClient = null;
+        isConnectIng = false;
+//        dqWebSocketClient = null;
+//        dqWebSocket = null;
     }
 
     /**

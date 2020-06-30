@@ -322,9 +322,7 @@ public class AliOssUtil {
      * @param inserType 存储类型，可选参数 DIRECTORY_PICTURES  ,DIRECTORY_MOVIES  ,DIRECTORY_MUSIC
      **/
     public void downMusicVideoPicFromService(final String downPathUrl,final Context context,final String inserType,final OnFileDownListener onFileDownListener){
-        Log.e("YM","文件下载链接:"+downPathUrl);
         if (TextUtils.isEmpty(downPathUrl)){
-            Log.e("YM","文件下载链接为空");
             return;
         }
         Observable.just(downPathUrl).subscribeOn(Schedulers.newThread()).map(new Function<String, Uri>() {
@@ -356,11 +354,9 @@ public class AliOssUtil {
 //                            fileName = fileName.replaceAll("\"", "");
 //                        }
 //                    }
-                    Log.e("YM","文件名字11111:"+fileName);
                     if (TextUtils.isEmpty(fileName)) {
                         fileName = time + "." + prefix;
                     }
-                    Log.e("YM","文件名字22222222:"+fileName);
                     Log.e("YM","文件类型:"+inserType);
                     ContentValues contentValues = new ContentValues();
                     if (inserType.equals(DIRECTORY_PICTURES)) {

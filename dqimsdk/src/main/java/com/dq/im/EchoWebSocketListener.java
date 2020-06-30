@@ -161,7 +161,7 @@ public class EchoWebSocketListener extends WebSocketListener {
         boolean isResult = false;
         if (null != mSocket){
             isResult = mSocket.send(message);
-//            Log.e("YM","发送消息的结果:"+isResult);
+            Log.e("YM","发送消息的结果:"+isResult);
         }
         if (isResult){
             handler.removeMessages(SOCKET_HEART_BEAT);

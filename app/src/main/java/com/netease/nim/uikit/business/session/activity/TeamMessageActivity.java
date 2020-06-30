@@ -21,7 +21,9 @@ import com.dq.im.model.IMContentDataModel;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.type.ImType;
 import com.netease.nim.uikit.R;
+import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.model.session.SessionCustomization;
+import com.netease.nim.uikit.api.model.user.UserInfoObserver;
 import com.netease.nim.uikit.business.session.constant.Extras;
 import com.netease.nim.uikit.business.session.fragment.BaseChatMessageFragment;
 import com.netease.nim.uikit.business.session.fragment.ChatTeamFragment;
@@ -44,6 +46,7 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.model.sp.QCSharedPreTeamInfo;
 import com.wd.daquan.model.sp.QCSharedPrefManager;
+import com.wd.daquan.third.helper.UserInfoHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +75,7 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
     private Class<? extends Activity> backToClass;
     private ChatPresenter mPresenter;
     private DqToolbar mToolbar;
-
+    private UserInfoObserver userInfoObserver;//这个监听只保存了账号，所以和用户信息不存在冲突
     public static void start(Context context, String tid, SessionCustomization customization,
                              Class<? extends Activity> backToClass, ImMessageBaseModel anchor,IMContentDataModel sendContent) {
         Intent intent = new Intent();
@@ -115,6 +118,7 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
         initListener();
         ActivitysManager.getInstance().finishAllFilterMore(TeamMessageActivity.class, MainActivity.class);
         requestTeamInfo();
+        registerUserInfoObserver();
     }
 
     private void initCommTitle() {
@@ -135,6 +139,31 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
         mBannerDetail.setOnClickListener(this);
         MsgMgr.getInstance().attach(this);
     }
+    private void registerUserInfoObserver() {
+        if (userInfoObserver == null) {
+            userInfoObserver = new UserInfoObserver() {
+                @Override
+                public void onUserInfoChanged(List<String> accounts) {
+                    if (accounts.contains(sessionId)) {
+                        requestBuddyInfo();
+                    }
+                }
+            };
+        }
+        NimUIKit.getUserInfoObservable().registerObserver(userInfoObserver, true);
+    }
+
+    private void unregisterUserInfoObserver() {
+        if (userInfoObserver != null) {
+            NimUIKit.getUserInfoObservable().registerObserver(userInfoObserver, false);
+        }
+    }
+
+    private void requestBuddyInfo() {
+        String userTitleName = UserInfoHelper.getUserTitleName(sessionId, ImType.Team);
+        mCommTitle.setTitle(userTitleName);
+        mCommTitle.setTitleTextLength(10);
+    }
 
     @Override
     protected void onDestroy() {
@@ -142,6 +171,7 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
         if(mPresenter != null) {
             mPresenter.detachView();
         }
+        unregisterUserInfoObserver();
         MsgMgr.getInstance().detach(this);
     }
 

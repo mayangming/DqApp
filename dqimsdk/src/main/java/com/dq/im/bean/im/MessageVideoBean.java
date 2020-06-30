@@ -9,8 +9,8 @@ public class MessageVideoBean extends IMContentDataModel {
     private String description;
     private String videoPath;//视频网络路径
     private String thumbPath;//缩略图网络路径
-    private String videoLocalPath;//视频本地路径
-    private String thumbLocalPath;//缩略图本地路径
+    private String videoLocalPath = "";//视频本地路径
+    private String thumbLocalPath = "";//缩略图本地路径
     public String getDescription() {
         return description;
     }

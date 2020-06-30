@@ -271,7 +271,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                     MessageRedPackageBean messageRedPackageBean = gson.fromJson(content,MessageRedPackageBean.class);
                     redPackageRoutePager(view.getContext(),messageRedPackageBean,model);
                 }
-
+                Log.e("YM","点击文件类型:"+model.getMsgType());
                 if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
                     ArrayList<P2PMessageBaseModel> temp = (ArrayList<P2PMessageBaseModel>)chatP2PAdapter.getData();
                     Intent intent = new Intent(view.getContext(), PhotoDetailsActivity.class);
@@ -571,7 +571,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             Log.e("YM","收到消息:");
             P2PMessageBaseModel p2PMessageBaseModel = (P2PMessageBaseModel) value;
             parserOtherMsg(p2PMessageBaseModel);//处理对方消息
-            if (MessageType.SYSTEM.getValue().equals(p2PMessageBaseModel.getMsgType())){//插入数据库，因为系统消息没有发消息用户的Id
+            if (MessageType.SYSTEM.getValue().equals(p2PMessageBaseModel.getMsgType())){//不插入数据库，因为系统消息没有发消息用户的Id
                 return;
             }
             if (!sessionId.equals(p2PMessageBaseModel.getFromUserId())){//假如不是当前好友的消息,则不处理。因为首页收到个人消息后都会传到这个页面
@@ -754,7 +754,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
 //        P2PMessageBaseModel p2PMessageBaseModel = createP2PMessage(messageType,imContentDataModel,sessionId);
 //        saveMsgSuccess(p2PMessageBaseModel);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(p2PMessageBaseModel);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {
@@ -795,7 +799,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
         P2PMessageBaseModel p2PMessageBaseModel = (P2PMessageBaseModel)imMessageBaseModel;
 //        saveMsgSuccess(p2PMessageBaseModel);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(p2PMessageBaseModel);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {
@@ -837,8 +845,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             Log.e("YM","系统消息------->");
             MsgSecondType messageSendType = MsgSecondType.getMsgSecondTypeByValue(messageBaseModel.getMsgSecondType());
             switch (messageSendType){
-                case MSG_SECOND_TYPE_RED_RECEIVE:
-                    Log.e("YM","红包被领取了");
+                case MSG_SECOND_TYPE_RED_COMPLETE:
                     String content = messageBaseModel.getSourceContent();
                     ChatOfSystemMessageBean chatOfSystemMessageBean = gson.fromJson(content,ChatOfSystemMessageBean.class);
                     String couponId = chatOfSystemMessageBean.getCouponId();//红包Id
@@ -901,7 +908,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
         P2PMessageBaseModel p2PMessageBaseModel = createP2PMessage(messageType,messageRedPackageBean,sessionId);
         saveMsgSuccess(p2PMessageBaseModel);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(p2PMessageBaseModel);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            p2PMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(p2PMessageBaseModel);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,p2PMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {

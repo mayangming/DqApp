@@ -70,13 +70,12 @@ public class IMContentDataModelConvertDqImUtils {
     }
 
     /**
-     * 将斗圈消息模型转换为聊天消息模型的json结构
+     * 将斗圈消息模型转换为通用聊天消息模型的json结构
      * @param msgType
      * @param json
      * @return
      */
     public static String convertCommonContentStr(String msgType, String json){
-        Log.e("YM","文本内容:"+json);
         MessageType messageType = MessageType.typeOfValue(msgType);
         String content = json;
         IMContentDataModel imContentDataModel;

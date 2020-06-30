@@ -39,4 +39,16 @@ public class UserInfoObservable {
             }
         });
     }
+    synchronized public void notifyUserInfoChanged(final String account) {
+        List<String> accounts = new ArrayList<>();
+        accounts.add(account);
+        uiHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (UserInfoObserver observer : observers) {
+                    observer.onUserInfoChanged(accounts);
+                }
+            }
+        });
+    }
 }

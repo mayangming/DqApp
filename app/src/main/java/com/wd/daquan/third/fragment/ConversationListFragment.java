@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.type.ImType;
+import com.dq.im.type.MessageType;
 import com.dq.im.viewmodel.HomeMessageViewModel;
 import com.netease.nim.uikit.api.model.user.UserInfoObserver;
 import com.wd.daquan.R;
@@ -26,10 +27,14 @@ import com.wd.daquan.imui.adapter.HomeMessageAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
 import com.wd.daquan.imui.adapter.RecycleItemOnLongClickListener;
 import com.wd.daquan.imui.dialog.DeleteHomeMsgDialog;
+import com.wd.daquan.model.bean.Friend;
+import com.wd.daquan.model.bean.GroupInfoBean;
+import com.wd.daquan.model.bean.TeamBean;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
+import com.wd.daquan.third.reminder.ReminderManager;
 import com.wd.daquan.third.session.SessionHelper;
 
 import java.util.ArrayList;
@@ -138,6 +143,11 @@ public class ConversationListFragment extends Fragment implements QCObserver {
                 homeImBaseModes.addAll(homeImBaseModesTemp);
                 homeMessageAdapter.setData(homeImBaseModes);
                 notifyDataSetChanged();
+                int unReadNumber = 0;
+                for (HomeImBaseMode mode : homeImBaseModesTemp){
+                    unReadNumber += mode.getUnReadNumber();
+                }
+                ReminderManager.getInstance().updateSessionUnreadNum(unReadNumber);
             }
         });
     }
@@ -175,11 +185,47 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         switch (key){
             case MsgType.MT_FRIEND_REMOVE_FRIEND:
                 String userId = (String) value;
-                homeMessageViewModel.deleteForUserId(userId);
+                homeMessageViewModel.deleteForFriendId(userId);
                 break;
+            case MsgType.HOME_UPDATE_MSG://更新消息内容，比如头像、昵称
+                findHomeListIndex(value);
+                break;
+
         }
     }
 
+    /**
+     * 根据修改的内容确定列表位置，进行动态更新
+     * @param object
+     */
+    private void findHomeListIndex(Object object){
+        List<HomeImBaseMode> modes = homeMessageAdapter.getData();
+        int index = 0;
+        if (object instanceof Friend){//个人消息
+            Friend friend = (Friend) object;
+            for (HomeImBaseMode mode : modes){
+                ImType imType = ImType.typeOfValue(mode.getType());
+                if (imType == ImType.P2P){
+                   if (friend.uid.equals(mode.getFromUserId()) || friend.uid.equals(mode.getToUserId())){
+                       index = modes.indexOf(mode);
+                      break;
+                   }
+                }
+            }
+        }else if (object instanceof GroupInfoBean){//群组消息
+            GroupInfoBean friend = (GroupInfoBean) object;
+            for (HomeImBaseMode mode : modes){
+                ImType imType = ImType.typeOfValue(mode.getType());
+                if (imType == ImType.Team){
+                    if (friend.group_id.equals(mode.getGroupId())){
+                        index = modes.indexOf(mode);
+                        break;
+                    }
+                }
+            }
+        }
+        homeMessageAdapter.notifyItemChanged(index,object);
+    }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);

@@ -33,6 +33,7 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.third.helper.TeamHelper;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -108,6 +109,7 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
         }
 
         messageRedPackageBean.setRedMsgType(redPackageType);
+        messageRedPackageBean.setTarget(account);
         mPresenter.getUserCloudWallet(DqUrl.url_user_cloud_wallet,new HashMap<>());
         commTitle.setTitle("发红包");
         commTitle.getLeftIv().setOnClickListener(new View.OnClickListener() {
@@ -156,6 +158,13 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
                         Toast.makeText(view.getContext(),"红包数量不能大于群组成员数量",Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    BigDecimal amountBigDecimal = new BigDecimal(String.valueOf(amount * 100));
+                    BigDecimal amountCountBigDecimal = new BigDecimal(String.valueOf(amountCount));
+                    BigDecimal result = amountBigDecimal.divide(amountCountBigDecimal,2,BigDecimal.ROUND_HALF_UP);
+                    if (result.doubleValue() < 1){
+                        Toast.makeText(view.getContext(),"每个人分的红包金额不能少于0.01元",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (amountCount <= 0){
                         Toast.makeText(view.getContext(),"红包数量不能小于0",Toast.LENGTH_SHORT).show();
                         return;
@@ -179,7 +188,9 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
                     params.put("money",messageRedPackageBean.getMoney());
                     params.put("count",messageRedPackageBean.getCount());
                     params.put("couponPayType",messageRedPackageBean.getRedType()+"");
+                    params.put("conversationType",messageRedPackageBean.getConversationType());
                     params.put("description",messageRedPackageBean.getDescription());
+                    params.put("target",messageRedPackageBean.getTarget());
                     params.put("pwd","");
                     Set<String> ketSet = params.keySet();
                     for (String key : ketSet){
@@ -354,6 +365,8 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
                         params.put("count",messageRedPackageBean.getCount());
                         params.put("couponPayType",messageRedPackageBean.getRedType()+"");
                         params.put("description",messageRedPackageBean.getDescription());
+                        params.put("conversationType",messageRedPackageBean.getConversationType());
+                        params.put("target",messageRedPackageBean.getTarget());
                         params.put("pwd",pwd);
                         Set<String> ketSet = params.keySet();
                         for (String key : ketSet){

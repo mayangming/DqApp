@@ -9,6 +9,7 @@ import com.dq.im.db.ImRoomDatabase;
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.repository.HomeMessageRepository;
+import com.dq.im.type.ImType;
 
 import java.util.List;
 
@@ -55,20 +56,25 @@ public class HomeMessageViewModel extends AndroidViewModel {
         homeMessageRepository.deleteForServerMessageId(msgServerId);
     }
 
-    public void deleteForUserId(String userId){
+    private void deleteForUserId(String userId){
         homeMessageRepository.deleteForUserId(userId);
     }
 
     public void deleteForUserId(HomeImBaseMode homeImBaseMode){
-        String userId = ImRoomDatabase.getUserId();
-        String friendId = "";
-        if (userId.equals(homeImBaseMode.getFromUserId())){
-            friendId = homeImBaseMode.getToUserId();
-        }else {
-            friendId = homeImBaseMode.getFromUserId();
+        ImType imType = ImType.typeOfValue(homeImBaseMode.getType());
+        if (imType == ImType.P2P){
+            String userId = ImRoomDatabase.getUserId();
+            String friendId = "";
+            if (userId.equals(homeImBaseMode.getFromUserId())){
+                friendId = homeImBaseMode.getToUserId();
+            }else {
+                friendId = homeImBaseMode.getFromUserId();
+            }
+            homeMessageRepository.deleteForFriendId(friendId);
+        }else if (imType == ImType.Team){
+            homeMessageRepository.deleteForGroupId(homeImBaseMode.getGroupId());
         }
 
-        homeMessageRepository.deleteForUserId(friendId);
     }
 
     public void deleteForFriendId(String friendId){

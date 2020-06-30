@@ -123,6 +123,7 @@ public class ImParserUtils{
 //            String contentData = jsonObject.optString("sourceContent");
             String msgIdClient = jsonObject.optString("msgIdClient");
             String msgIdServer = jsonObject.optString("msgIdServer");
+            String msgSecondType = jsonObject.optString("msgSecondType");
             long createTime = jsonObject.optLong("createTime");
             messageBaseModel.setType(type);
             messageBaseModel.setGroupId(groupId);
@@ -133,6 +134,7 @@ public class ImParserUtils{
             messageBaseModel.setMsgIdClient(msgIdClient);
             messageBaseModel.setMsgIdServer(msgIdServer);
             messageBaseModel.setCreateTime(createTime);
+            messageBaseModel.setMsgSecondType(msgSecondType);
         } catch (JSONException e) {
             e.printStackTrace();
         }

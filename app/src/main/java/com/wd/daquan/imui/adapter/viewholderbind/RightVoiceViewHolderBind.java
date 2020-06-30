@@ -132,7 +132,7 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
                 mediaPlayerUtil.playVoice(uuid,messageVoiceBean.getLocalUriString());
             }else {
                 rightVoiceViewHolder.progressBar.setVisibility(View.VISIBLE);
-                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+                HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVoiceBean.getDescription(), rightVoiceViewHolder.itemView.getContext(), DIRECTORY_MUSIC, new OnFileDownListener() {
                     @Override
                     public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                         if (status == 1){

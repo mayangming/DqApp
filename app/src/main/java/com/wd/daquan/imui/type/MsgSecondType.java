@@ -8,7 +8,8 @@ public enum MsgSecondType{
     MSG_SECOND_TYPE_TRANSFER("转账消息",1),
     MSG_SECOND_TYPE_RED_PACKAGE("红包消息",2),
     MSG_SECOND_TYPE_NORMAL("普通消息",3),
-    MSG_SECOND_TYPE_RED_RECEIVE("红包被领取",4);
+    MSG_SECOND_TYPE_RED_RECEIVE("红包被领取",4),
+    MSG_SECOND_TYPE_RED_COMPLETE("红包被领完",5);
 
     public String description;
     public int type;
@@ -47,7 +48,7 @@ public enum MsgSecondType{
     public static MsgSecondType getMsgSecondTypeByValue(String type){
         MsgSecondType msgSecondType = MSG_SECOND_TYPE_UN_KNOWN;
         for (MsgSecondType temp : values()){
-            if (type.equals(temp.type)){
+            if (type.equals(String.valueOf(temp.type))){
                 msgSecondType = temp;
                 break;
             }

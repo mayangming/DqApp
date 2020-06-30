@@ -101,7 +101,11 @@ public class NetWorkUtil {
     public void clear(){
         EventBus.getDefault().unregister(this);
         if (null != context){
-            context.unregisterReceiver(netWorkStateReceiver);
+            try {
+                context.unregisterReceiver(netWorkStateReceiver);
+            }catch (Exception e){//关于广播的解绑注册这里强制使用异常进行捕获
+                e.printStackTrace();
+            }
         }
         netWorkConnectIpc = null;
     }

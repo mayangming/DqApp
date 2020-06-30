@@ -71,12 +71,15 @@ import com.wd.daquan.imui.adapter.ChaTeamAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickForChildViewListenerCompat;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
 import com.wd.daquan.imui.adapter.RecycleItemOnLongClickListener;
+import com.wd.daquan.imui.bean.ChatOfSystemMessageBean;
 import com.wd.daquan.imui.bean.VoiceBean;
 import com.wd.daquan.imui.bean.im.DqImBaseBean;
 import com.wd.daquan.imui.convert.CommonImConvertDqIm;
 import com.wd.daquan.imui.convert.DqImParserUtils;
 import com.wd.daquan.imui.dialog.MessageOptionDialog;
 import com.wd.daquan.imui.dialog.OpenRedPackageDialog;
+import com.wd.daquan.imui.type.MsgSecondType;
+import com.wd.daquan.imui.type.RedPackageStatus;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutChildType;
 import com.wd.daquan.model.bean.GroupInfoBean;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -268,7 +271,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                     redPackageRoutePager(view.getContext(),messageRedPackageBean,model);
                 }
 
-                if (MessageType.PICTURE.getValue() == model.getMsgType()){//假如是图片消息
+                if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
                     ArrayList<TeamMessageBaseModel> temp = (ArrayList<TeamMessageBaseModel>)chaTeamAdapter.getData();
                     Intent intent = new Intent(view.getContext(), PhotoDetailsActivity.class);
                     intent.putExtra(PhotoDetailsActivity.PHOTO_DATA,temp);
@@ -282,7 +285,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             public boolean onItemLongClick(View view, int position) {
                 MessageOptionDialog messageOptionDialog = new MessageOptionDialog();
                 TeamMessageBaseModel model = chaTeamAdapter.getData(position);
-                if (model.getMsgType() == MessageType.TEXT.getValue()){//文本消息
+                if (model.getMsgType().equals(MessageType.TEXT.getValue())){//文本消息
                     String content = model.getSourceContent();
                     MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
                     Bundle bundle = new Bundle();
@@ -630,6 +633,13 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         }else if (MsgType.TEAM_MESSAGE_CONTENT.equals(key)){//群组消息
             Log.e("YM","收到消息:");
             TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel) value;
+            parserOtherMsg(teamMessageBaseModel);//处理对方消息
+            if (MessageType.SYSTEM.getValue().equals(teamMessageBaseModel.getMsgType())){//不插入数据库，因为系统消息没有发消息用户的Id
+                return;
+            }
+            if (MessageType.SYSTEM.getValue().equals(teamMessageBaseModel.getMsgType())){//不插入数据库，因为系统消息没有发消息用户的Id
+                return;
+            }
             if (!sessionId.equals(teamMessageBaseModel.getGroupId())){//假如不是当前群的消息,则不处理。因为首页收到群组消息后都会传到这个页面
                 return;
             }
@@ -702,7 +712,11 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel)imMessageBaseModel;
 //        saveMsgSuccess(teamMessageBaseModel);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessageBaseModel);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(teamMessageBaseModel);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {
@@ -758,7 +772,11 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
 //        TeamMessageBaseModel teamMessageBaseModel = createTeamMessage(messageType,imContentDataModel,sessionId);
 //        saveMsgSuccess(teamMessageBaseModel);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessageBaseModel);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            teamMessageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(teamMessageBaseModel);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessageBaseModel,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {
@@ -789,6 +807,47 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
     @Override
     public String pageType() {
         return ImType.P2P.getValue();
+    }
+
+
+    /**
+     * 接收到对方消息时候进行处理,比如对方已读这些操作
+     */
+    private void parserOtherMsg(TeamMessageBaseModel messageBaseModel){
+        MessageType messageType = MessageType.typeOfValue(messageBaseModel.getMsgType());
+        if (MessageType.SYSTEM == messageType){//假如是系统消息
+            Log.e("YM","系统消息------->:"+messageBaseModel.getMsgSecondType());
+            MsgSecondType messageSendType = MsgSecondType.getMsgSecondTypeByValue(messageBaseModel.getMsgSecondType());
+            switch (messageSendType){
+                case MSG_SECOND_TYPE_RED_COMPLETE:
+                    String content = messageBaseModel.getSourceContent();
+                    ChatOfSystemMessageBean chatOfSystemMessageBean = gson.fromJson(content,ChatOfSystemMessageBean.class);
+                    String couponId = chatOfSystemMessageBean.getCouponId();//红包Id
+                    parserRedPackageOpened(couponId);
+                    break;
+            }
+        }
+    }
+    /**
+     * 根据红包Id，更改红包消息打开状态
+     * @param couponId
+     */
+    private void parserRedPackageOpened(String couponId){
+        List<TeamMessageBaseModel> messageBaseModels = chaTeamAdapter.getData();
+        for (TeamMessageBaseModel model : messageBaseModels){
+            MessageType messageType = MessageType.typeOfValue(model.getMsgType());
+            if (messageType == MessageType.RED_PACKAGE){//红包消息
+                String content = model.getSourceContent();
+                MessageRedPackageBean messageTextBean = gson.fromJson(content,MessageRedPackageBean.class);
+                if (couponId.equals(messageTextBean.getCouponId())){//假如红包ID相同的话，则改变该状态
+                    messageTextBean.setStatus(RedPackageStatus.RED_PACKAGE_RECEIVED.status);
+                    model.setContentData(messageTextBean);
+                    model.setSourceContent(gson.toJson(messageTextBean));
+                    updateMsgStatus(model);
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -822,7 +881,11 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         TeamMessageBaseModel teamMessage = createTeamMessage(messageType,messageRedPackageBean,sessionId);
         saveMsgSuccess(teamMessage);
         DqImBaseBean dqImBaseBean = commonImConvertDqIm.commonImConvertDqIm(teamMessage);
-        SocketMessageUtil.sendMessage(dqImBaseBean);
+        boolean isSuccess = SocketMessageUtil.sendMessage(dqImBaseBean);
+        if (!isSuccess){
+            teamMessage.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+            updateMsgStatus(teamMessage);
+        }
 //        ImSdkHttpUtils.postJson(URLUtil.USER_SEND_MSG,teamMessage,new HttpResultResultCallBack<HttpBaseBean>() {
 //            @Override
 //            public void onError(Call call, Exception e, int id) {
@@ -857,7 +920,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         IMContentDataModel result = messageRedPackageBean;
         ImSendMessageResultBean imSendMessageResultBean = gson.fromJson(data, ImSendMessageResultBean.class);
         imMessageBaseModel.setMsgIdServer(imSendMessageResultBean.getMsgId());
-        if (MessageType.RED_PACKAGE.getValue() == imSendMessageResultBean.getMsgType()){
+        if (MessageType.RED_PACKAGE.getValue().equals(imSendMessageResultBean.getMsgType())){
             MessageRedPackageBean redPackageBean = (MessageRedPackageBean)messageRedPackageBean;
             redPackageBean.setCouponId(imSendMessageResultBean.getCouponId());
             result = redPackageBean;

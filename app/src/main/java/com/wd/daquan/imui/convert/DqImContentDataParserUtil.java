@@ -3,27 +3,24 @@ package com.wd.daquan.imui.convert;
 import android.util.Log;
 
 import com.dq.im.bean.im.MessageCardBean;
-import com.dq.im.bean.im.MessagePhotoBean;
 import com.dq.im.bean.im.MessageRedPackageBean;
-import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.bean.im.MessageVideoBean;
 import com.dq.im.bean.im.MessageVoiceBean;
 import com.dq.im.model.IMContentDataModel;
 import com.dq.im.type.MessageType;
+import com.wd.daquan.imui.bean.ChatOfSystemMessageBean;
 import com.wd.daquan.imui.bean.im.DqMessagePhotoBean;
 import com.wd.daquan.imui.bean.im.DqMessageTextBean;
+import com.wd.daquan.imui.type.MsgSecondType;
 import com.wd.daquan.model.utils.GsonUtils;
 
 /**
  * 通用数据模型解析
  */
 public class DqImContentDataParserUtil {
-
-    public static IMContentDataModel parserImContentDataModel(String type,String json){
-        Log.e("YM","消息类型"+type);
-        Log.e("YM","消息内容"+json);
+    public static IMContentDataModel parserImContentDataModel(String msgType,String msgSecondType,String json){
         IMContentDataModel imContentDataModel = new IMContentDataModel();
-        MessageType messageType = MessageType.typeOfValue(type);
+        MessageType messageType = MessageType.typeOfValue(msgType);
         switch (messageType){
             case TEXT:
                 imContentDataModel = parserText(json);
@@ -43,8 +40,14 @@ public class DqImContentDataParserUtil {
             case RED_PACKAGE:
                 imContentDataModel = parserReadPackage(json);
                 break;
+            case SYSTEM://系统消息
+                imContentDataModel = parserSystem(msgSecondType,json);
+                break;
         }
         return imContentDataModel;
+    }
+    public static IMContentDataModel parserImContentDataModel(String type,String json){
+        return parserImContentDataModel(type,"",json);
     }
 
     private static IMContentDataModel parserText(String json){
@@ -65,4 +68,17 @@ public class DqImContentDataParserUtil {
     private static IMContentDataModel parserReadPackage(String json){
         return GsonUtils.fromJson(json, MessageRedPackageBean.class);
     }
+    private static IMContentDataModel parserSystem(String secondType,String json){
+        IMContentDataModel imContentDataModel = new IMContentDataModel();
+        MsgSecondType msgSecondType = MsgSecondType.getMsgSecondTypeByValue(secondType);
+        switch (msgSecondType){
+            case MSG_SECOND_TYPE_RED_COMPLETE:
+                imContentDataModel = GsonUtils.fromJson(json, ChatOfSystemMessageBean.class);
+                break;
+        }
+        return imContentDataModel;
+    }
+
+
+
 }

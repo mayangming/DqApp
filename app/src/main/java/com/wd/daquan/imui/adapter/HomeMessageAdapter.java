@@ -3,7 +3,6 @@ package com.wd.daquan.imui.adapter;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.da.library.tools.AESHelper;
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.type.ImType;
@@ -24,6 +22,7 @@ import com.wd.daquan.R;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.imui.adapter.viewholder.RecycleBaseViewHolder;
 import com.wd.daquan.model.bean.Friend;
+import com.wd.daquan.model.bean.GroupInfoBean;
 import com.wd.daquan.model.db.DbSubscribe;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.third.helper.TeamHelper;
@@ -59,6 +58,10 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
     public void setData(List<HomeImBaseMode> homeImBaseModes){
         this.homeImBaseModes = homeImBaseModes;
         notifyDataSetChanged();
+    }
+
+    public List<HomeImBaseMode> getData(){
+        return homeImBaseModes;
     }
 
     class HomeMessageViewHolder extends RecycleBaseViewHolder {
@@ -119,6 +122,31 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
         holder.badge.setBadgeNumber(homeImBaseMode.getUnReadNumber());
         initUserData(homeImBaseMode,holder);
     }
+
+    @Override
+    public void onBindViewHolder(@NonNull HomeMessageViewHolder holder, int position, @NonNull List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+        //局部刷新 https://blog.csdn.net/LVXIANGAN/article/details/91867671
+
+        if (!payloads.isEmpty()){
+            Object object = payloads.get(0);
+            String title = "";
+            String headPic = "";
+            if (object instanceof Friend){
+                Friend friend = (Friend) object;
+                title = UserInfoHelper.getUserDisplayName(friend.uid);
+                headPic = UserInfoHelper.getHeadPic(friend.uid);
+            }else if (object instanceof GroupInfoBean){
+                GroupInfoBean groupInfoBean = (GroupInfoBean) object;
+                title = TeamHelper.getTeamName(groupInfoBean.group_id);
+                headPic = TeamHelper.getTeamHeadPic(groupInfoBean.group_id);
+            }
+            holder.title.setText(title);
+            GlideUtils.loadHeader(context,headPic,holder.headIcon);
+        }
+
+    }
+
     @Override
     public int getItemCount() {
         return homeImBaseModes.size();

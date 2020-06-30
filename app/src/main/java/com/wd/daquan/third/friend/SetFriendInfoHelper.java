@@ -69,6 +69,18 @@ public class SetFriendInfoHelper implements Presenter.IView<DataBean> {
         mPresenter.addFriend(DqUrl.url_friend_request, hashMap);
     }
 
+    /**
+     * 添加黑名单功能
+     */
+    private void addBlack(String uid) {
+        if (mCommDialog == null) {
+            return;
+        }
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put(IConstant.UserInfo.TO_UID, uid);
+        mPresenter.addFriend(DqUrl.url_add_black, hashMap);
+    }
+
     public void showAddBlackDialog(String uid) {
         mUserId = uid;
 
@@ -89,6 +101,7 @@ public class SetFriendInfoHelper implements Presenter.IView<DataBean> {
 
             @Override
             public void onOk() {
+                addBlack(uid);
             }
         });
 
@@ -165,6 +178,8 @@ public class SetFriendInfoHelper implements Presenter.IView<DataBean> {
                 friend.whether_black = "0";
                 FriendDbHelper.getInstance().update(friend, null);
                 MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_ADD_BLACK_LIST, mUserId);
+                //以下删除的代码主要是出现在拉黑功能不完善的时候，需要把聊天的数据删掉
+                MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMOVE_FRIEND, mUserId);
             });
         } else if (DqUrl.url_delete_friend.equals(url)) {
             //删除好友

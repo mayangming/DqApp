@@ -2,6 +2,8 @@ package com.wd.daquan.imui.adapter.viewholderbind;
 
 
 import android.arch.lifecycle.LifecycleObserver;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.model.ImMessageBaseModel;
@@ -33,6 +35,10 @@ public class RightTextViewHolderBind extends BaseRightViewHolderBind<RightTextVi
     private void setP2PRightTextData(RightTextViewHolder rightTextViewHolder, P2PMessageBaseModel p2PMessageBaseModel){
         String content = p2PMessageBaseModel.getSourceContent();
         MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
+        if (null == messageTextBean || TextUtils.isEmpty(messageTextBean.getDescription())){
+            Log.e("YM","RightTextBind文本内容:"+content);
+            return;
+        }
 //        String text = AESHelper.decryptString(messageTextBean.getDescription());
         String text = AESUtil.decode(messageTextBean.getDescription());
         rightTextViewHolder.rightTextContent.setText(text);

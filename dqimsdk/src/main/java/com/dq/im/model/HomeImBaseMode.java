@@ -92,6 +92,7 @@ public class HomeImBaseMode extends ImMessageBaseModel{
         this.createTime = createTime;
     }
 
+
     @Override
     public String toString() {
         return "HomeImBaseMode{" +

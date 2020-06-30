@@ -101,15 +101,16 @@ public class ChatP2PAdapter extends ChatBaseAdapter<RecycleBaseViewHolder> {
             if (isRightUser) {
                 baseRightViewHolder = (BaseRightViewHolder) holder;
                 initRightUserData(baseRightViewHolder.rightHeadIcon, baseRightViewHolder.rightHeadIconVip);
-                updateRightUserName(baseRightViewHolder.rightUserName);
+//                updateRightUserName(baseRightViewHolder.rightUserName);
                 updateMessageStatus(baseRightViewHolder, p2PMessageBean);//右侧需要进行刷新消息发送状态
-
+                baseRightViewHolder.rightUserName.setVisibility(View.GONE);
             } else {
                 baseLeftViewHolder = (BaseLeftViewHolder) holder;
                 String friendId = getLeftFriendId(p2PMessageBean);
                 updateLeftHeadPic(friendId, baseLeftViewHolder.leftHeadIcon);
                 updateLeftVipStatus(friendId,baseLeftViewHolder.leftVipIcon);
-                updateLeftUserName(friendId,baseLeftViewHolder.leftUserName);
+//                updateLeftUserName(friendId,baseLeftViewHolder.leftUserName);
+                baseLeftViewHolder.leftUserName.setVisibility(View.GONE);
             }
         }
 

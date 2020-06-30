@@ -68,7 +68,6 @@ public class LeftVoiceChatViewHolderBind extends BaseLeftViewHolderBind<LeftVoic
         MessageVoiceBean messageVoiceBean = gson.fromJson(content,MessageVoiceBean.class);
         long second = messageVoiceBean.getDuration() / 1000;
         leftVoiceViewHolder.duration.setText(second+"s");
-
         if (0 == messageVoiceBean.getReadStatus()){
             leftVoiceViewHolder.voiceUnread.setVisibility(View.VISIBLE);
         }else {

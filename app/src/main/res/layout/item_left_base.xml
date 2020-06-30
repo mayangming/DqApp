@@ -36,19 +36,25 @@
             android:layout_alignEnd="@+id/head_container"
             android:src="@mipmap/icon_vip"/>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/item_left_user_name"
+    <LinearLayout
+        android:id="@+id/item_left_head_contain_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/item_left_head_contain"
         android:layout_toEndOf="@+id/item_left_head_contain"
-        android:layout_marginBottom="@dimen/dp_5"
-        tools:text="用户名字"/>
-    <FrameLayout
-        android:id="@+id/base_left_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_left_user_name"
-        android:layout_toEndOf="@+id/item_left_head_contain">
-    </FrameLayout>
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_5">
+        <TextView
+            android:id="@+id/item_left_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:visibility="gone"
+            tools:text="用户名字"/>
+        <FrameLayout
+            android:id="@+id/base_left_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+    </LinearLayout>
 </RelativeLayout>

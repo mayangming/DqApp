@@ -14,6 +14,7 @@ import com.da.library.constant.IConstant;
 import com.da.library.controls.custombuttom.CustomButtomDialog;
 import com.da.library.controls.custombuttom.bean.CustomButtom;
 import com.da.library.dialog.LoadingDialog;
+import com.netease.nim.uikit.api.NimUIKit;
 import com.wd.daquan.R;
 import com.wd.daquan.common.activity.DqBaseActivity;
 import com.wd.daquan.common.alioss.AliOSS;
@@ -34,6 +35,7 @@ import com.wd.daquan.model.rxbus.MsgType;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -359,7 +361,8 @@ public class SetRemarkNameActivity extends DqBaseActivity<ContactPresenter, Data
                 FriendDbHelper.getInstance().update(friend, null);
                 //更新用户备注通知
                 MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMARKS_CHANGE, userName);
-
+                MsgMgr.getInstance().sendMsg(MsgType.HOME_UPDATE_MSG, friend);//通知首页更改好友名称
+                NimUIKit.getUserInfoObservable().notifyUserInfoChanged(mUserId);
                 finish();
             }
         }else {

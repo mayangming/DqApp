@@ -101,12 +101,14 @@ public class ChaTeamAdapter extends ChatBaseAdapter<RecycleBaseViewHolder> {
                 initRightUserData(baseRightViewHolder.rightHeadIcon,baseRightViewHolder.rightHeadIconVip);
                 updateRightUserName(baseRightViewHolder.rightUserName);
                 updateMessageStatus(baseRightViewHolder,teamMessageBaseModel);//右侧需要刷新消息发送状态
+                baseRightViewHolder.rightUserName.setVisibility(View.VISIBLE);
             }else {
                 baseLeftViewHolder = (BaseLeftViewHolder) holder;
                 String friendId = getLeftFriendId(teamMessageBaseModel);
                 updateLeftHeadPic(friendId,baseLeftViewHolder.leftHeadIcon);
                 updateLeftVipStatus(friendId,baseLeftViewHolder.leftVipIcon);
                 updateLeftUserName(friendId,baseLeftViewHolder.leftUserName);
+                baseLeftViewHolder.leftUserName.setVisibility(View.VISIBLE);
             }
         }
         setMsgTime(lastTime,currentTime,baseChatViewHolder.chatTime);

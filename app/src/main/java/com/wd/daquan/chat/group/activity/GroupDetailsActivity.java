@@ -611,7 +611,7 @@ public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean
         switch (key) {
             case MsgType.MT_GROUP_SETTING_NAME://修改群昵称
                 String groupName = (String) value;
-                mTvGroupName.setText(mGroupResp.getGroup_name());
+                mTvGroupName.setText(groupName);
                 break;
             case MsgType.MT_GROUP_SETTING_MY_GROUP_INFO://我在群的信息
 //            DbMgr.getDbMgr().getHttpGroupMemberAll(groupID, new ChatInterface.GroupInfoComplete() {

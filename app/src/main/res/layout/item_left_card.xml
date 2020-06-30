@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/card_item_llyt"
-        android:layout_width="220dp"
+        android:layout_width="180dp"
         android:layout_height="100dp"
         android:background="@drawable/qc_card_bg">
 

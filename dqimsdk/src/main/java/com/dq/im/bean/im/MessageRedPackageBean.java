@@ -1,6 +1,9 @@
 package com.dq.im.bean.im;
 
+import android.util.Log;
+
 import com.dq.im.model.IMContentDataModel;
+import com.dq.im.type.ImType;
 
 /**
  * 红包模型
@@ -13,7 +16,8 @@ public class MessageRedPackageBean extends IMContentDataModel {
     private String status = "01";// 红包状态 01：未领取 02：已领取 03：已领完 04：已退回 05：已过期
     private String money = "0";//红包金额
     private String count = "1";//红包数量
-    private String fromUserId = "1";//红包数量
+    private String fromUserId = "1";
+    private String target = "";//目标ID
     private String redMsgType;//红包类型,1,个人 2:群组
     private int redType;//红包支付类型，从零钱支付还是从微信支付 1：零钱 2：微信
     public String getDescription() {
@@ -52,6 +56,16 @@ public class MessageRedPackageBean extends IMContentDataModel {
         return redMsgType;
     }
 
+    public String getConversationType() {
+        String result = redMsgType;
+        if (redMsgType.equals(ImType.P2P.getValue())){
+            result = "0";
+        }else {
+            result = "1";
+        }
+        return result;
+    }
+
     public void setRedMsgType(String redMsgType) {
         this.redMsgType = redMsgType;
     }
@@ -78,6 +92,14 @@ public class MessageRedPackageBean extends IMContentDataModel {
 
     public void setFromUserId(String fromUserId) {
         this.fromUserId = fromUserId;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     @Override
