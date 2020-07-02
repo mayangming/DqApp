@@ -1,5 +1,6 @@
 package com.wd.daquan.contacts.adapter;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,12 +8,15 @@ import android.view.ViewGroup;
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.common.constant.KeyValue;
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.TeamInviteBean;
 import com.wd.daquan.contacts.holder.TeamInviteHolder;
 import com.wd.daquan.contacts.listener.ITeamInviteListener;
 import com.wd.daquan.glide.GlideUtils;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  */
@@ -26,7 +30,6 @@ public class TeamInviteAdapter extends CommRecyclerViewAdapter<TeamInviteBean, T
                 parent, false);
         return new TeamInviteHolder(view);
     }
-
     @Override
     protected void onBindData(@NotNull TeamInviteHolder holder, int position) {
         TeamInviteBean inviteBean = getItem(position);
@@ -68,6 +71,32 @@ public class TeamInviteAdapter extends CommRecyclerViewAdapter<TeamInviteBean, T
             }
             return true;
         });
+    }
+
+    /**
+     * 增量刷新
+     */
+    @Override
+    public void onBindViewHolder(@NonNull TeamInviteHolder holder, int position, @NonNull List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+        if (!payloads.isEmpty()){
+            Object obj = payloads.get(position);
+            if (obj instanceof CommRespEntity){
+                CommRespEntity commRespEntity = (CommRespEntity) obj;
+                if(KeyValue.ZERO_STRING.equals(commRespEntity.status)){
+                    holder.mBtnLlyt.setVisibility(View.VISIBLE);
+                    holder.mStatus.setVisibility(View.GONE);
+                }else if(KeyValue.ONE_STRING.equals(commRespEntity.status)){
+                    holder.mBtnLlyt.setVisibility(View.GONE);
+                    holder.mStatus.setVisibility(View.VISIBLE);
+                    holder.mStatus.setText("已同意");
+                }else if(KeyValue.TWO_STRING.equals(commRespEntity.status)){
+                    holder.mBtnLlyt.setVisibility(View.GONE);
+                    holder.mStatus.setVisibility(View.VISIBLE);
+                    holder.mStatus.setText("已忽略");
+                }
+            }
+        }
     }
 
     public void setITeamInviteListener(ITeamInviteListener ITeamInviteListener) {

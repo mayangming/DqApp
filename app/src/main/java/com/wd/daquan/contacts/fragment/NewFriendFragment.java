@@ -200,7 +200,7 @@ public class NewFriendFragment extends BaseFragment<ContactPresenter, DataBean> 
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put(IConstant.UserInfo.REQUEST_ID, item.request_id);
         hashMap.put(IConstant.UserInfo.STATUS, status);
-        mPresenter.getFriendResponse(DqUrl.url_friend_response, hashMap);
+        mPresenter.getFriendInviteResponse(DqUrl.url_friend_response, hashMap);
     }
 
     @Override

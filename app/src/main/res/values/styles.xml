@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-<!--    &lt;!&ndash;启动时，会出现黑屏或白屏的现象，因为当布局文件尚未加载时，会先显示Window的窗口背景，黑屏或白屏即Window的窗口背景&ndash;&gt;-->
-<!--    <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--        <item name="android:windowFullscreen">true</item>-->
-<!--    </style>-->
+    <!--    &lt;!&ndash;启动时，会出现黑屏或白屏的现象，因为当布局文件尚未加载时，会先显示Window的窗口背景，黑屏或白屏即Window的窗口背景&ndash;&gt;-->
+    <!--    <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--        <item name="android:windowFullscreen">true</item>-->
+    <!--    </style>-->
     <!--启动时，会出现黑屏或白屏的现象，因为当布局文件尚未加载时，会先显示Window的窗口背景，黑屏或白屏即Window的窗口背景-->
     <style name="AppTheme.Launcher" parent="AppTheme">
         <item name="windowNoTitle">true</item>
@@ -459,5 +459,8 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:background">@null</item>
+    </style>
+    <style name="customCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/check_box_selector</item>
     </style>
 </resources>

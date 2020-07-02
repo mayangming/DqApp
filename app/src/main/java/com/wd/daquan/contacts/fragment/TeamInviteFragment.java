@@ -10,12 +10,12 @@ import android.view.View;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.common.fragment.BaseFragment;
 import com.wd.daquan.common.utils.DqUtils;
 import com.da.library.constant.IConstant;
 import com.wd.daquan.contacts.adapter.TeamInviteAdapter;
-import com.wd.daquan.contacts.bean.CommRespEntity;
 import com.wd.daquan.model.bean.TeamInviteBean;
 import com.wd.daquan.contacts.listener.ITeamInviteListener;
 import com.wd.daquan.contacts.presenter.ContactPresenter;
@@ -87,7 +87,7 @@ public class TeamInviteFragment extends BaseFragment<ContactPresenter, DataBean>
         LinkedHashMap<String,String> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put(IConstant.UserInfo.REQUEST_ID, requestId);
         linkedHashMap.put(IConstant.UserInfo.STATUS, status + "");
-        mPresenter.getFriendResponse(DqUrl.url_group_invite_response, linkedHashMap);
+        mPresenter.getTeamResponse(DqUrl.url_group_invite_response, linkedHashMap);
     }
 
     @Override
@@ -112,13 +112,28 @@ public class TeamInviteFragment extends BaseFragment<ContactPresenter, DataBean>
 
         } else if (DqUrl.url_group_invite_response.equals(url)) {
             CommRespEntity commEntity = (CommRespEntity) entity.data;
-
             if (commEntity != null && commEntity.isExamine()) {
                 showWarning(getActivity(), "该群已开启群认证，请等待管理员审核");
             }
+//            if (commEntity != null && commEntity.isExamine()) {
+//                showWarning(getActivity(), "该群已开启群认证，请等待管理员审核");
+//            }
 
-            requestData();
+//            requestData();
+            notifyItemChanged(commEntity);
         }
+    }
+
+    private void notifyItemChanged(CommRespEntity commEntity){
+        List<TeamInviteBean> list = mAdapter.getAllList();
+        int position = 0;
+        for (TeamInviteBean teamInviteBean : list){
+            if (commEntity.requestId.equals(teamInviteBean.requestId)){
+                position = list.indexOf(teamInviteBean);
+                break;
+            }
+        }
+        mAdapter.notifyItemChanged(position,commEntity);
     }
 
     private void showWarning(Activity activity, String desc) {

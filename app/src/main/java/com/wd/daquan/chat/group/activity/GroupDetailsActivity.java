@@ -59,6 +59,7 @@ import java.util.Map;
 public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean>
         implements QCObserver, CommSwitchButton.OnSwChangedListener {
 
+    private View reportItem;
     private TextView mTvGroupMemberSize;
     private TextView mTvGroupMemberOnlinestatus;
     private TextView mTvGroupName;
@@ -139,6 +140,9 @@ public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean
         mMailListSw = this.findViewById(R.id.group_detail_maillist);
         mBurnSw = this.findViewById(R.id.group_detail_burn);
 
+
+        reportItem = this.findViewById(R.id.ll_report);
+
         mBurnSw.setVisibility(View.GONE);
         mScreenShortSw.setVisibility(View.GONE);
 
@@ -155,6 +159,12 @@ public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean
         mMuteSw.setOnSwChangedListener(this);
         mMailListSw.setOnSwChangedListener(this);
         mBurnSw.setOnSwChangedListener(this);
+        reportItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.gotoComplaintActivity(v.getContext());
+            }
+        });
 
         mRlGroupMemberSize.setOnClickListener(doubleClickListener);
         findViewById(R.id.ll_group_name).setOnClickListener(doubleClickListener);
@@ -428,6 +438,7 @@ public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean
                         }
                     }
                     break;
+
             }
         }
     };

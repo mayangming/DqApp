@@ -97,6 +97,7 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
         mUserInfoSp = QCSharedPrefManager.getInstance().getKDPreferenceUserInfo();
         if (null != mTitleLayout) {
             mTitleLayout.setTitleTextColor(getResources().getColor(R.color.text_blue));
+            mTitleLayout.setRightTxtColor(R.color.color_F39825);
         }
     }
 

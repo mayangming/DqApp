@@ -652,7 +652,15 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
         DocumentFile thumbDocumentFile = DocumentFile.fromSingleUri(getContext(), mediaExtraBean.getThumbPath());
         try {
             InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
-            byte[] videoData = FileUtils.toByteArray(inputStream);
+            byte[] videoData = new byte[0];
+            try {
+                videoData = FileUtils.toByteArray(inputStream);
+            }catch (OutOfMemoryError error){
+                error.printStackTrace();
+                TToast.show(getContext(),"视频文件过大，请选择低于50兆的视频资源!");
+                return;
+            }
+
             inputStream = getContext().getContentResolver().openInputStream(mediaExtraBean.getThumbPath());
             byte[] thumbData = FileUtils.toByteArray(inputStream);
 //                uploadFile(photoData,documentFile.getName(),MessageType.VIDEO);

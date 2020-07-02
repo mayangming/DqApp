@@ -22,25 +22,21 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dd_dp44"
             android:background="@color/app_page_bg"
-            app:dqtTitle="@string/app_name"
             app:dqtShowBack="false"
             app:dqtRightTv="@string/register"/>
 
-
-        <TextView
-            android:id="@+id/tv_login_code_title"
-            android:layout_below="@+id/toolbar"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dd_dp18"
-            android:layout_margin="@dimen/dd_dp30"
-            android:text="@string/login_phone_code"
+        <ImageView
+            android:id="@+id/dq_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:ignore="SpUsage" />
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="@dimen/dd_dp30"
+            android:src="@mipmap/dq_logo"/>
 
         <LinearLayout
             android:id="@+id/ll_translation_container"
-            android:layout_below="@+id/tv_login_code_title"
+            android:layout_below="@+id/dq_logo"
             android:layout_marginTop="@dimen/dd_dp30"
             android:layout_marginLeft="@dimen/dd_dp15"
             android:layout_marginRight="@dimen/dd_dp15"
@@ -58,27 +54,23 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="@dimen/dd_dp20">
 
-
-                <TextView
+                <ImageView
                     android:id="@+id/label_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/app_txt_333333"
-                    android:textSize="@dimen/sp16"
-                    android:layout_centerVertical="true"
-                    android:text="手机号"/>
-                <View
+                    android:src="@mipmap/login_phone"
+                    android:layout_centerVertical="true"/>
+                <TextView
                     android:id="@+id/phone_vertical_line"
-                    android:layout_width="@dimen/dd_dp1"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/dd_dp10"
-                    android:layout_marginLeft="@dimen/dd_dp10"
-                    android:layout_toRightOf="@+id/label_phone"
+                    android:layout_toEndOf="@+id/label_phone"
                     android:layout_alignBottom="@+id/label_phone"
                     android:layout_alignTop="@+id/label_phone"
-                    android:layout_marginBottom="@dimen/dd_dp5"
-                    android:layout_marginTop="@dimen/dd_dp5"
-                    android:background="@color/app_txt_484848"/>
+                    android:textColor="@color/color_000000"
+                    android:textSize="@dimen/sp18"
+                    android:text="+86"/>
 
                 <EditText
                     android:id="@+id/login_code_phone_number_et"
@@ -105,26 +97,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="@dimen/dd_dp20">
 
-                <TextView
+                <ImageView
                     android:id="@+id/label_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/app_txt_333333"
                     android:textSize="@dimen/sp16"
-                    android:layout_centerVertical="true"
-                    android:text="验证码"/>
-                <View
-                    android:id="@+id/code_vertical_line"
-                    android:layout_width="@dimen/dd_dp1"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/dd_dp10"
-                    android:layout_marginLeft="@dimen/dd_dp10"
-                    android:layout_toRightOf="@+id/label_code"
-                    android:layout_alignBottom="@+id/label_code"
-                    android:layout_alignTop="@+id/label_code"
-                    android:layout_marginBottom="@dimen/dd_dp5"
-                    android:layout_marginTop="@dimen/dd_dp5"
-                    android:background="@color/app_txt_484848"/>
+                    android:src="@mipmap/login_code"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/login_code_get_code_tv"
@@ -144,7 +123,7 @@
                     android:id="@+id/login_code_code_et"
                     style="@style/LoginRegisterEditTextStyle"
                     android:layout_toLeftOf="@+id/login_code_get_code_tv"
-                    android:layout_toRightOf="@+id/code_vertical_line"
+                    android:layout_toRightOf="@+id/label_code"
                     android:hint="@string/inputCodes"
                     android:maxLength="4"
                     tools:ignore="RtlHardcoded,TextFields" />
@@ -183,6 +162,7 @@
             android:layout_below="@+id/login_code_btn">
             <CheckBox
                 android:id="@+id/user_privacy_cb"
+                android:button="@drawable/check_box_selector_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -200,16 +180,19 @@
             android:layout_below="@+id/user_protocol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dd_dp45"
+            android:layout_marginTop="@dimen/dd_dp10"
             android:gravity="center"
-            android:background="@mipmap/label_bg"
             android:layout_centerHorizontal="true">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp14"
-                android:textColor="@color/color_5680FA"
+                android:textColor="@color/color_F39825"
                 android:text="@string/login_phone_pwd"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/login_arrow"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -239,7 +222,7 @@
                     android:layout_marginLeft="@dimen/dd_dp20"
                     android:layout_marginRight="@dimen/dd_dp20"
                     android:textSize="@dimen/sp16"
-                    android:text="第三方登陆"/>
+                    android:text="其他方式登录"/>
                 <View
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dd_dp1"
@@ -251,7 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dd_dp20"
-                android:src="@drawable/we_chat_1_selector"/>
+                android:src="@mipmap/wechat_logo_circle"/>
         </LinearLayout>
 
 

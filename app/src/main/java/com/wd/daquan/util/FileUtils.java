@@ -37,7 +37,7 @@ public class FileUtils {
      * @return
      * @throws IOException
      */
-    public static byte[] toByteArray(InputStream input) throws IOException {
+    public static byte[] toByteArray(InputStream input) throws IOException,OutOfMemoryError {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         byte[] buffer = new byte[4096];
         int n = 0;

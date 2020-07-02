@@ -63,6 +63,7 @@
             android:layout_marginLeft="@dimen/dd_dp5"
             android:scaleType="centerCrop"
             android:contentDescription="@string/sex"
+            tools:src="@mipmap/icon_male"
             tools:ignore="RtlHardcoded" />
     </LinearLayout>
 

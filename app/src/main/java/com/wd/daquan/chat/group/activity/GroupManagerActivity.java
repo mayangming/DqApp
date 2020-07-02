@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kyleduo.switchbutton.SwitchButton;
+import com.suke.widget.SwitchButton;
 import com.wd.daquan.R;
 import com.wd.daquan.chat.ChatPresenter;
 import com.wd.daquan.chat.group.adapter.GroupManagerAdapter;
@@ -374,7 +374,8 @@ public class GroupManagerActivity extends DqBaseActivity<ChatPresenter, DataBean
 //    }
     private void initCommDialog(int id, View view, String desc) {
         SwitchButton switchButton = (SwitchButton) view;
-        switchButton.setCheckedNoEvent(true);
+//        switchButton.setCheckedNoEvent(true);
+        switchButton.setChecked(true);
         mCommDialog = new CommDialog(this);
         mCommDialog.setTitleVisible(false);
         mCommDialog.setDesc(desc);
@@ -386,13 +387,15 @@ public class GroupManagerActivity extends DqBaseActivity<ChatPresenter, DataBean
         mCommDialog.setDialogListener(new DialogListener() {
             @Override
             public void onCancel() {
-                switchButton.setCheckedNoEvent(true);
+//                switchButton.setCheckedNoEvent(true);
+                switchButton.setChecked(true);
 //                view.setOpened(true);
             }
 
             @Override
             public void onOk() {
-                switchButton.setCheckedNoEvent(false);
+//                switchButton.setCheckedNoEvent(false);
+                switchButton.setChecked(true);
 //                view.setOpened(false);
 //                if (id == mProtectSv.getId()) {
 //                    manageGroup(KeyValue.IS_PROTECT_GROUPUSER, KeyValue.ZERO_STRING);

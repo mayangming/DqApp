@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/item_left_video_bg"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dd_dp100"
             android:layout_height="@dimen/dd_dp200"
             android:gravity="start"/>
         <android.support.v7.widget.AppCompatImageView

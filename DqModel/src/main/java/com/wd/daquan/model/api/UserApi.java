@@ -1,6 +1,7 @@
 package com.wd.daquan.model.api;
 
 import com.wd.daquan.model.bean.CloudWithdrawRecordEntity;
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.ExchangeRecordBean;
 import com.wd.daquan.model.bean.ExchangeVipListBean;
@@ -144,4 +145,10 @@ public interface UserApi{
      */
     @POST
     Call<DataBean<String>> getCommonRequest(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 好友请求应答策略
+     */
+    @POST
+    Call<DataBean<CommRespEntity>> getFriendInvite(@Url String url, @Body RequestBody requestBody);
 }

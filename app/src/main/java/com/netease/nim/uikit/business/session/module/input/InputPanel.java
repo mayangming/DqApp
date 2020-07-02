@@ -202,9 +202,15 @@ public class InputPanel implements IEmoticonSelectedListener,
             if (recordVoiceState == RecordAudioStatus.RECORD_STOP){
                 voiceBean.localString = result.getAbsolutePath();
                 Log.e("YM","录音结束,保存的文件:"+result.getAbsolutePath());
+
                 if (voiceBean.voiceDuration < 1000){//
                     result.delete();
                     TToast.show(container.getContext(),"时间太短，发送失败！");
+                    return;
+                }
+                if (result.length() < 100){
+                    result.delete();
+                    TToast.show(container.getContext(),"录音文件太小，发送失败！");
                     return;
                 }
                 MsgMgr.getInstance().sendMsg(MsgType.CHAT_VOICE, voiceBean);

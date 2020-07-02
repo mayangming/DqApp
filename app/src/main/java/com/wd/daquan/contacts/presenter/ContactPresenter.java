@@ -6,6 +6,7 @@ import com.wd.daquan.common.presenter.BasePresenter;
 import com.wd.daquan.common.presenter.Presenter;
 import com.wd.daquan.common.utils.DqUtils;
 import com.wd.daquan.contacts.bean.MobileContactBean;
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupMemberBean;
@@ -176,6 +177,58 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
             public void onFailed(String url, int code, DataBean entity) {
                 hideLoading();
                 failed(url, code, entity);
+            }
+        });
+    }
+    /**
+     * 添加好友应答
+     */
+    public void getFriendInviteResponse(String url, Map<String, String> hashMap) {
+        showLoading();
+        RetrofitHelp.getUserApi().getFriendInvite(url, getRequestBody(hashMap)).enqueue(new DqCallBack<DataBean<CommRespEntity>>() {
+            @Override
+            public void onSuccess(String url, int code, DataBean<CommRespEntity> entity) {
+                hideLoading();
+                success(url, code, entity);
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean<CommRespEntity> entity) {
+                hideLoading();
+                failed(url, code, entity);
+            }
+        });
+    }
+    /**
+     * 群组邀请应答策略
+     */
+    public void getTeamResponse(String url, Map<String, String> hashMap) {
+        showLoading();
+//        RetrofitHelp.request(url, hashMap, new DqCallBack<DataBean<CommRespEntity>>(){
+//
+//            @Override
+//            public void onSuccess(String url, int code, DataBean<CommRespEntity> entity) {
+//                hideLoading();
+//                success(url, code, entity);
+//            }
+//
+//            @Override
+//            public void onFailed(String url, int code, DataBean<CommRespEntity> entity) {
+//                hideLoading();
+//                failed(url, code, entity);
+//            }
+//        });
+        RetrofitHelp.getGroupApi().getTeamInvite(url, getRequestBody(hashMap)).enqueue(new DqCallBack<DataBean<CommRespEntity>>() {
+            @Override
+            public void onSuccess(String url, int code, DataBean<CommRespEntity> entity) {
+                                        hideLoading();
+                        success(url, code, entity);
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean<CommRespEntity> entity) {
+                        hideLoading();
+                        failed(url, code, entity);
             }
         });
     }

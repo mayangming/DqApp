@@ -19,11 +19,12 @@
         android:layout_height="400dp"/>
     <TextView
         android:id="@+id/complain_submit"
-        android:layout_width="wrap_content"
+        style="@style/comm_corner_btn"
+        android:paddingVertical="@dimen/dd_dp10"
+        android:layout_marginHorizontal="@dimen/dd_dp30"
         android:layout_height="wrap_content"
         android:layout_below="@+id/complain_content"
         android:layout_centerHorizontal="true"
-        android:background="@mipmap/btn_normal"
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="20sp"

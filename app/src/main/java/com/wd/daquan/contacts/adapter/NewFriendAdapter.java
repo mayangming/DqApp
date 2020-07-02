@@ -1,11 +1,14 @@
 package com.wd.daquan.contacts.adapter;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
+import com.wd.daquan.common.constant.KeyValue;
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.NewFriendBean;
 import com.wd.daquan.contacts.holder.NewFriendHolder;
 import com.wd.daquan.contacts.listener.INewFriendAdapterClickListener;
@@ -13,6 +16,8 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.utils.UIUtil;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * @Author: 方志
@@ -82,6 +87,33 @@ public class NewFriendAdapter extends CommRecyclerViewAdapter<NewFriendBean, New
                 mListener.onAgreeClick(position, item);
             }
         });
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull NewFriendHolder holder, int position, @NonNull List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+        if (!payloads.isEmpty()){
+            Object obj = payloads.get(position);
+            if (obj instanceof CommRespEntity){
+                CommRespEntity commRespEntity = (CommRespEntity) obj;
+                String response_status = commRespEntity.status;
+                if ("0".equals(response_status)) {
+                    setColor(holder.agree, true);
+                    holder.agree.setText("同意");
+                } else {
+                    setColor(holder.agree, false);
+                    if ("1".equals(response_status)) {
+                        holder.agree.setText("已同意");
+                    } else if ("2".equals(response_status)) {
+                        holder.agree.setText("已拒绝");
+                    } else if ("3".equals(response_status)) {
+                        holder.agree.setText("已忽略");
+                    } else if ("4".equals(response_status)) {
+                        holder.agree.setText("已删除");
+                    }
+                }
+            }
+        }
     }
 
     void setColor(TextView view, Boolean boo) {

@@ -69,6 +69,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
      */
     private RelativeLayout mSetRemarkRl;
     private RelativeLayout mPersonalInfoRl;
+    private View reportRl;//举报与投诉
     private LinearLayout mIntoGroupWayLl;
     private TextView mIntoGroupWayTv;
 
@@ -144,6 +145,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         // item
         mSetRemarkRl = findViewById(R.id.set_remark_rl);
         mPersonalInfoRl = findViewById(R.id.rl_personal_info);
+        reportRl = findViewById(R.id.report_rl);
 //        mSendCardRl = findViewById(R.id.send_card_rl);
 //        mBlacklistRl = findViewById(R.id.add_blacklist_rl);
 //        mBlacklistTv = findViewById(R.id.tv_blacklist);
@@ -207,6 +209,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
 //        mBlacklistRl.setOnClickListener(this);
 //        mDeleteFriendRl.setOnClickListener(this);
         mSetRemarkRl.setOnClickListener(this);
+        reportRl.setOnClickListener(this);
 //        mSendCardRl.setOnClickListener(this);
         mPersonalInfoRl.setOnClickListener(this);
         mUserdetailRemarksLin.setOnClickListener(this);
@@ -278,6 +281,9 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
             case R.id.send_message_tv:
                 //发消息/添加好友
                 sendMessageOrAddFriendClick();
+                break;
+            case R.id.report_rl:
+                NavUtils.gotoComplaintActivity(this);
                 break;
         }
     }

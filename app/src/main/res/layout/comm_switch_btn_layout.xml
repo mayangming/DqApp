@@ -47,22 +47,34 @@
     <!--app:layout_constraintRight_toRightOf="parent"-->
     <!--app:layout_constraintTop_toTopOf="parent"/>-->
 
-    <com.kyleduo.switchbutton.SwitchButton
+    <!--    <com.kyleduo.switchbutton.SwitchButton-->
+    <!--        android:id="@+id/comm_switch_btn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:kswAnimationDuration="300"-->
+    <!--        app:kswBackDrawable="@drawable/ios_back_drawable"-->
+    <!--        app:kswThumbDrawable="@mipmap/ios_thumb"-->
+    <!--        app:kswThumbMarginBottom="-8dp"-->
+    <!--        app:kswThumbMarginLeft="-5dp"-->
+    <!--        app:kswThumbMarginRight="-5dp"-->
+    <!--        app:kswThumbMarginTop="-2.5dp"-->
+    <!--        app:kswThumbRangeRatio="1.4"-->
+
+    <!--        android:layout_marginRight="@dimen/dd_dp15"-->
+    <!--        android:layout_marginTop="@dimen/dd_dp3"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"/>-->
+    <com.suke.widget.SwitchButton
         android:id="@+id/comm_switch_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:kswAnimationDuration="300"
-        app:kswBackDrawable="@drawable/ios_back_drawable"
-        app:kswThumbDrawable="@mipmap/ios_thumb"
-        app:kswThumbMarginBottom="-8dp"
-        app:kswThumbMarginLeft="-5dp"
-        app:kswThumbMarginRight="-5dp"
-        app:kswThumbMarginTop="-2.5dp"
-        app:kswThumbRangeRatio="1.4"
-        android:layout_marginRight="@dimen/dd_dp15"
+        android:layout_marginEnd="@dimen/dd_dp15"
         android:layout_marginTop="@dimen/dd_dp3"
+        app:sb_show_indicator="false"
+        app:sb_checked_color="@color/color_FDBB7A"
+        app:sb_checked="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
 </LinearLayout>

@@ -38,7 +38,7 @@ public class SoundPoolUtils implements SoundPool.OnLoadCompleteListener {
         releaseSoundPool();
         createSoundPoolIfNeeded();
         if (mSoundId == DEFAULT_INVALID_SOUND_ID) {  // mSoundId is invalid ,load from res raw for once before mSoundPool is released
-            mSoundId = mSoundPool.load(context, R.raw.notification, 1); // 加载音频资源
+            mSoundId = mSoundPool.load(context, R.raw.sdk_notification, 1); // 加载音频资源
         } else {
             // reuse the loaded res
             if (mStreamID == DEFAULT_INVALID_STREAM_ID)
@@ -89,7 +89,7 @@ public class SoundPoolUtils implements SoundPool.OnLoadCompleteListener {
 
         if (mSoundPool != null) {
             if (mStreamID == DEFAULT_INVALID_STREAM_ID)
-                mStreamID = mSoundPool.play(mSoundId, mCruLeftVolume, mCurRightVolume, 16, 1, 1.0f);
+                mStreamID = mSoundPool.play(mSoundId, mCruLeftVolume, mCurRightVolume, 16, 0, 1.0f);//loop: 0不循环，-1，循环 其他值是循环次数
         }
     }
 }

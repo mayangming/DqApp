@@ -119,12 +119,11 @@
 
     <TextView
         android:id="@+id/withdraw_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dd_dp30"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_16"
-        android:background="@mipmap/btn_normal"
+        style="@style/comm_corner_btn"
         android:gravity="center"
         android:text="下一步"/>
 

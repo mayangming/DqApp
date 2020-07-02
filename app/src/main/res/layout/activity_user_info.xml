@@ -124,16 +124,25 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/report_rl"
+        style="@style/comm_sub_item_layout"
+        android:visibility="visible">
+        <TextView
+            android:id="@+id/report_tv"
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:text="举报与投诉" />
+
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/set_remark_rl"
         style="@style/comm_sub_item_layout"
         android:visibility="gone">
-
         <TextView
             android:id="@+id/set_remark_phone_tv"
             style="@style/comm_sub_title"
             android:layout_centerVertical="true"
             android:text="@string/set_remark" />
-
         <TextView
             android:id="@+id/set_remark_phone_bumber_tv"
             style="@style/comm_sub_title"
@@ -142,8 +151,8 @@
             android:layout_toRightOf="@+id/set_remark_phone_tv"
             android:textColor="@color/color_3c74ba" />
 
-    </RelativeLayout>
 
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/userdetail_remarks_lin"
         android:layout_width="match_parent"

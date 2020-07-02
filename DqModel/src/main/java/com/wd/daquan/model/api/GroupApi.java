@@ -1,5 +1,6 @@
 package com.wd.daquan.model.api;
 
+import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.CreateTeamEntity;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.GroupInfoBean;
@@ -39,5 +40,8 @@ public interface GroupApi {
 
     @POST
     Call<DataBean<GroupManagerEntity>> getTeamAdmin(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Call<DataBean<CommRespEntity>> getTeamInvite(@Url String url, @Body RequestBody requestBody);
 
 }

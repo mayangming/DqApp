@@ -39,7 +39,7 @@
         android:maxLines="1"
         android:maxEms="6"
         android:layout_marginEnd="@dimen/dd_dp10"
-        android:textColor="@color/text_blue"
+        android:textColor="@color/color_F39825"
         android:textSize="@dimen/title_text_size" />
 
     <ImageView

@@ -9,7 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.kyleduo.switchbutton.SwitchButton;
+import com.suke.widget.SwitchButton;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
 
@@ -87,6 +87,7 @@ public class CommSwitchButton extends RelativeLayout {
 
     private void initListener() {
         mSwitchButton.setOnCheckedChangeListener(mCheckedChangeListener);
+
     }
 
     public void setTitle(String title) {
@@ -115,11 +116,13 @@ public class CommSwitchButton extends RelativeLayout {
     }
 
     public void setCheckedNoEvent(boolean isChecked) {
-        mSwitchButton.setCheckedNoEvent(isChecked);
+//        mSwitchButton.setCheckedNoEvent(isChecked);
+        mSwitchButton.setChecked(isChecked);
     }
 
     public void setCheckedImmediatelyNoEvent(boolean isChecked) {
-        mSwitchButton.setCheckedImmediatelyNoEvent(isChecked);
+//        mSwitchButton.setCheckedImmediatelyNoEvent(isChecked);
+//        mSwitchButton.setChecked();
     }
 
     public void setChecked(boolean isChecked) {
@@ -135,11 +138,20 @@ public class CommSwitchButton extends RelativeLayout {
         mSwChangedListener = listener;
     }
 
-    private CompoundButton.OnCheckedChangeListener mCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+//    private CompoundButton.OnCheckedChangeListener mCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+//        @Override
+//        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//            if (mSwChangedListener != null) {
+//                mSwChangedListener.onChanged(getId(), buttonView, isChecked);
+//            }
+//        }
+//    };
+
+    private SwitchButton.OnCheckedChangeListener mCheckedChangeListener = new SwitchButton.OnCheckedChangeListener(){
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        public void onCheckedChanged(SwitchButton view, boolean isChecked) {
             if (mSwChangedListener != null) {
-                mSwChangedListener.onChanged(getId(), buttonView, isChecked);
+                mSwChangedListener.onChanged(getId(), view, isChecked);
             }
         }
     };

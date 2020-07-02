@@ -260,25 +260,39 @@
                     android:layout_weight="1"
                     android:text="@string/jinyan_notice"/>
 
-                <com.kyleduo.switchbutton.SwitchButton
-                    android:id="@+id/sw_btn_jinyan_notfaction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:kswAnimationDuration="300"
-                    app:kswBackDrawable="@drawable/ios_back_drawable"
-                    app:kswThumbDrawable="@mipmap/ios_thumb"
-                    app:kswThumbMarginBottom="-8dp"
-                    app:kswThumbMarginLeft="-5dp"
-                    app:kswThumbMarginRight="-5dp"
-                    app:kswThumbMarginTop="-2.5dp"
-                    app:kswThumbRangeRatio="1.4"/>
+<!--                <com.kyleduo.switchbutton.SwitchButton-->
+<!--                    android:id="@+id/sw_btn_jinyan_notfaction"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    app:kswAnimationDuration="300"-->
+<!--                    app:kswBackDrawable="@drawable/ios_back_drawable"-->
+<!--                    app:kswThumbDrawable="@mipmap/ios_thumb"-->
+<!--                    app:kswThumbMarginBottom="-8dp"-->
+<!--                    app:kswThumbMarginLeft="-5dp"-->
+<!--                    app:kswThumbMarginRight="-5dp"-->
+<!--                    app:kswThumbMarginTop="-2.5dp"-->
+<!--                    app:kswThumbRangeRatio="1.4"/>-->
 
                 <!--<com.netease.nim.uikit.common.ui.widget.SwitchButton-->
                 <!--android:id="@+id/sw_btn_jinyan_notfaction"-->
                 <!--android:layout_width="58dip"-->
                 <!--android:layout_height="36.67dip"-->
                 <!--android:layout_gravity="center" />-->
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/sw_btn_jinyan_notfaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dd_dp15"
+                    android:layout_marginTop="@dimen/dd_dp3"
+                    app:sb_show_indicator="false"
+                    app:sb_checked_color="@color/color_FDBB7A"
+                    app:sb_checked="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
             </LinearLayout>
 
             <com.wd.daquan.common.view.CommSwitchButton
@@ -351,6 +365,15 @@
                     android:text="@string/chatdetails_clean_message"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_report"
+                style="@style/comm_sub_item_layout"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/comm_sub_title"
+                    android:text="举报与投诉"/>
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_group_quit"
                 style="@style/comm_quit_btn"

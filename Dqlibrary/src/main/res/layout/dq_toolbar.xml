@@ -38,7 +38,7 @@
         android:paddingRight="@dimen/dd_dp10"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/color_5680FA"
+        android:textColor="@color/color_F39825"
         android:textSize="@dimen/title_text_size" />
 
     <ImageView

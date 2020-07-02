@@ -26,6 +26,7 @@ import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.da.library.utils.BigDecimalUtils;
 import com.da.library.utils.DateUtil;
+import com.dq.im.util.SoundPoolUtils;
 import com.red.libary.ipc.FallingOnClickIpc;
 import com.red.libary.weight.FallingLayout;
 import com.red.libary.weight.OpenGiftDialog;
@@ -338,6 +339,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
                 break;
             case R.id.main_turntable_lottery:
 //                showVipExchangeResultDialog();
+                SoundPoolUtils.getInstance(getContext()).playMayWait();
                 break;
             case R.id.red_package_falling_close:
                 isStopRedRain = true;

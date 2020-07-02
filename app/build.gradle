@@ -207,6 +207,7 @@ dependencies {
     //  权限检测  https://github.com/tbruyelle/RxPermissions
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     implementation files('libs/alipaySdk-20180403.jar')
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 }
 repositories {
     mavenCentral()

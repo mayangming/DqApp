@@ -30,7 +30,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    api rootProject.ext.dependencies.kyleduo_switchbutton
+//    api rootProject.ext.dependencies.kyleduo_switchbutton
     implementation rootProject.ext.dependencies.design
     api rootProject.ext.dependencies.support_v4
     api rootProject.ext.dependencies.constraint_layout

@@ -95,6 +95,10 @@ public abstract class CommRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
+    public List<T> getAllList(){
+        return allList;
+    }
+
     public void clear() {
         allList.clear();
     }
