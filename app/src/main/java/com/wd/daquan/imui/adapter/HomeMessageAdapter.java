@@ -28,6 +28,7 @@ import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.third.helper.TeamHelper;
 import com.wd.daquan.third.helper.UserInfoHelper;
 import com.wd.daquan.util.AESUtil;
+import com.wd.daquan.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +166,10 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
                 content = messageTextBean.getDescription();
 //                content = AESHelper.decryptString(content);
                 content = AESUtil.decode(content);
+                String friendId = homeImBaseMode.getFromUserId();
+                if (!friendId.equals(ModuleMgr.getCenterMgr().getUID())){//对方发的消息
+                    content = StringUtils.matcherContent(content);
+                }
             }
         }else if (MessageType.VOICE.getValue().equals(homeImBaseMode.getMsgType())){
             content = "[音频]";

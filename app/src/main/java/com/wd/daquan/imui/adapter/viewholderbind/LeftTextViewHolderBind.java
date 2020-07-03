@@ -2,6 +2,7 @@ package com.wd.daquan.imui.adapter.viewholderbind;
 
 
 import android.arch.lifecycle.LifecycleObserver;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.da.library.tools.AESHelper;
@@ -11,8 +12,13 @@ import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
 import com.google.gson.Gson;
+import com.netease.nim.uikit.business.session.emoji.AndroidEmoji;
 import com.wd.daquan.imui.adapter.viewholder.LeftTextViewHolder;
 import com.wd.daquan.util.AESUtil;
+import com.wd.daquan.util.PatternUtils;
+import com.wd.daquan.util.StringUtils;
+
+import java.util.List;
 
 /**
  * 左侧文本内容填充
@@ -38,6 +44,9 @@ public class LeftTextViewHolderBind extends BaseLeftViewHolderBind<LeftTextViewH
         MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
 //        String text = AESHelper.decryptString(messageTextBean.getDescription());
         String text = AESUtil.decode(messageTextBean.getDescription());
+        Log.e("YM","接收的消息:"+text);
+//        text = "你[0x1f600]好啊[0x1f60a]";
+        text = StringUtils.matcherContent(text);
         leftTextViewHolder.leftTextContent.setText(text);
     }
 
@@ -46,6 +55,7 @@ public class LeftTextViewHolderBind extends BaseLeftViewHolderBind<LeftTextViewH
         MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
 //        String text = AESHelper.decryptString(messageTextBean.getDescription());
         String text = AESUtil.decode(messageTextBean.getDescription());
+        text = StringUtils.matcherContent(text);
         leftTextViewHolder.leftTextContent.setText(text);
     }
 

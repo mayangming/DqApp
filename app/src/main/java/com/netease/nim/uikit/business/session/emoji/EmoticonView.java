@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -213,7 +214,6 @@ public class EmoticonView {
                     int code = AndroidEmoji.getEmojiCode(index);
                     char[] chars = Character.toChars(code);
                     String key = Character.toString(chars[0]);
-
                     for(int i = 1; i < chars.length; ++i) {
                         key = key + Character.toString(chars[i]);
                     }

@@ -90,6 +90,7 @@
 
         <activity android:name=".login.activity.StartActivity"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@style/AppTheme.LauncherBg">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

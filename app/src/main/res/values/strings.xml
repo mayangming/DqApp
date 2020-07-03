@@ -406,7 +406,7 @@
     <string name="chat_bg_bg" translatable="false">聊天背景</string>
     <string name="chat_bg_set" translatable="false">设置</string>
     <string name="about" translatable="false">关于斗圈</string>
-    <string name="complain" translatable="false">投诉建议</string>
+    <string name="complain" translatable="false">投诉与举报</string>
     <string name="about_check" translatable="false">检查新版本</string>
     <string name="about_error" translatable="false">报错</string>
     <string name="network_unavailable" translatable="false">当前网络不可用，请检查你的网络设置</string>
