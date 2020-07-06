@@ -4,8 +4,8 @@
 <!--    <item android:drawable="@drawable/nim_message_input_plus_pressed" android:state_pressed="true"/>-->
 <!--    <item android:drawable="@drawable/nim_message_input_plus_pressed" android:state_focused="true"/>-->
 <!--    <item android:drawable="@drawable/nim_message_input_plus"/>-->
-    <item android:drawable="@drawable/nim_chat_bottom_add" android:state_pressed="true"/>
-    <item android:drawable="@drawable/nim_chat_bottom_add" android:state_focused="true"/>
+    <item android:drawable="@drawable/nim_chat_bottom_add_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/nim_chat_bottom_add_pressed" android:state_focused="true"/>
     <item android:drawable="@drawable/nim_chat_bottom_add"/>
 
 </selector>

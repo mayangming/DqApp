@@ -73,6 +73,7 @@ import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
 import com.wd.daquan.imui.bean.MessageSystemBean;
 import com.wd.daquan.imui.convert.DqImParserUtils;
+import com.wd.daquan.imui.type.DqMessageSendType;
 import com.wd.daquan.mine.MainTitleLeftContainer;
 import com.wd.daquan.mine.fragment.MineFragment;
 import com.wd.daquan.model.bean.DataBean;
@@ -83,6 +84,7 @@ import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.db.helper.FriendDbHelper;
 import com.wd.daquan.model.db.helper.MemberDbHelper;
 import com.wd.daquan.model.db.helper.TeamDbHelper;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.mgr.ConfigManager;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
@@ -99,6 +101,7 @@ import com.wd.daquan.third.session.extension.RedRainSystemAttachment;
 import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.ApplicationDialog;
 import com.wd.daquan.util.IntentUtils;
+import com.wd.daquan.util.TToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -728,6 +731,19 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                     }else {
                         teamMessageViewModel.updateTeamPMessageByClientId(notificationModel);
                     }
+                    int sendStatus = notificationModel.getMessageSendStatus();
+                    DqMessageSendType dqMessageSendType = DqMessageSendType.typeOfValue(sendStatus);
+                    MessageSendType messageSendType = MessageSendType.SEND_LOADING;
+                    switch (dqMessageSendType){
+                        case SEND_SUCCESS:
+                            messageSendType = MessageSendType.SEND_SUCCESS;
+                            break;
+                        case SEND_FAIL:
+                            messageSendType = MessageSendType.SEND_FAIL;
+                            TToast.show(MainActivity.this,"被移除了群组，发送消息失败！");
+                            break;
+                    }
+                    notificationModel.setMessageSendStatus(messageSendType.getValue());
                     MsgMgr.getInstance().sendMsg(MsgType.MESSAGE_RECEIVE_CALL_BACK, notificationModel);
                 }
             }
@@ -744,6 +760,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         boolean isShowNotification;
         MessageType messageType = MessageType.typeOfValue(msgType);
         String content = "";
+        String ignore = "ignore";//忽视掉
+        MessageSystemBean messageSystemBean = GsonUtils.fromJson(teamMessageBaseModel.getSourceContent(),MessageSystemBean.class);
         switch (messageType){
             case GROUP_CREATE:
                 content = "创建群组";
@@ -756,11 +774,15 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);
                 break;
             case GROUP_KICK_OUT:
+                content = "ignore";
+                if (!ModuleMgr.getCenterMgr().getUID().equals(messageSystemBean.getOperator())){//把谁移除了群组，倘若移除群组的人和当前用户不同，则不予处理
+                    break;
+                }
                 content = "您被踢出了群组";
-                homeMessageViewModel.deleteForGroupId(teamMessageBaseModel.getGroupId());
-                teamMessageViewModel.deleteMessageForGroupId(teamMessageBaseModel.getGroupId());
-                TeamDbHelper.getInstance().delete(teamMessageBaseModel.getFromUserId());
-                MsgMgr.getInstance().sendMsg(MsgType.GROUP_REMOVE, null);
+//                homeMessageViewModel.deleteForGroupId(teamMessageBaseModel.getGroupId());
+//                teamMessageViewModel.deleteMessageForGroupId(teamMessageBaseModel.getGroupId());
+//                TeamDbHelper.getInstance().delete(teamMessageBaseModel.getFromUserId());
+//                MsgMgr.getInstance().sendMsg(MsgType.GROUP_REMOVE, null);
                 break;
             case GROUP_EXIT:
                 content = "退出了群组";
@@ -779,8 +801,10 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 break;
         }
         if (!TextUtils.isEmpty(content)){
-            showNotification(content);
             isShowNotification = true;
+            if (!ignore.equals(content)){
+                showNotification(content);
+            }
         }else {
             isShowNotification = false;
         }

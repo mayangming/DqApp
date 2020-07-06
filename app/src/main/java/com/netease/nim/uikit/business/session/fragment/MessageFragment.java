@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.da.library.tools.AESHelper;
 import com.dq.im.bean.MediaExtraBean;
 import com.dq.im.bean.im.MessageCardBean;
 import com.dq.im.bean.im.MessagePhotoBean;
@@ -37,7 +36,6 @@ import com.dq.im.model.IMContentDataModel;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
-import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
@@ -87,7 +85,6 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
 import com.wd.daquan.model.sp.QCSharedPrefManager;
-import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
@@ -1024,7 +1021,6 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                 List<P2PMessageBaseModel> messageBean = DqImParserUtils.getP2PMessageModels(content);
                 if (messageBean.size() == 0){
                     Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
-                    Log.e("YM","111111111");
                     return;
                 }
                 Collections.reverse(messageBean);
