@@ -813,8 +813,10 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     }
 
     private void showNotification(String content){
+        Intent intent = new Intent(this,MainActivity.class);
         NotificationUtil.NotificationUtilBuild notificationUtilBuild = NotificationUtil.getInstance().createBuild();
         notificationUtilBuild.context = MainActivity.this;
+        notificationUtilBuild.intent = intent;
         notificationUtilBuild.title = "系统通知";
         if (!TextUtils.isEmpty(content)){//不为空时候弹出通知
             notificationUtilBuild.content = content;
@@ -1105,6 +1107,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             String groupId = teamMessageBaseModel.getGroupId();
             notificationUtilBuild.title = TeamHelper.getTeamName(groupId);
             notificationUtilBuild.intent = IntentUtils.getTeamChat(this,groupId);
+        }else {
+            Intent intent = new Intent(this,MainActivity.class);
+            notificationUtilBuild.intent = intent;
         }
     }
 

@@ -3,6 +3,7 @@ package com.wd.daquan.imui.adapter;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
         private TextView time;
         private Badge badge;
         HomeMessageViewHolder(@NonNull View itemView) {
-           super(itemView);
+            super(itemView);
             initView();
         }
 
@@ -112,7 +113,7 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
     public void onBindViewHolder(@NonNull HomeMessageViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         HomeImBaseMode homeImBaseMode = homeImBaseModes.get(position);
-        holder.message.setText(parserContentData(homeImBaseMode));
+//        holder.message.setText(parserContentData(homeImBaseMode));
         long time;
         try {
             time = homeImBaseMode.getCreateTime();
@@ -222,6 +223,7 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
             }else {
                 homeMessageViewHolder.headOutLine.setVisibility(View.INVISIBLE);
             }
+            homeMessageViewHolder.message.setText(parserContentData(homeImBaseMode));
         }else {
             String groupId = homeImBaseMode.getGroupId();
             homeMessageViewHolder.headOutLine.setVisibility(View.INVISIBLE);
@@ -235,6 +237,14 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
 //                    homeMessageViewHolder.title.setText(groupInfoBean.group_name);
 //                }
 //            });
+            String name;
+            if (ModuleMgr.getCenterMgr().getUID().equals(homeImBaseMode.getFromUserId())){
+                name = "我:";
+            }else {
+                name = UserInfoHelper.getUserDisplayName(homeImBaseMode.getFromUserId()).concat(":");
+            }
+            String content = name.concat(parserContentData(homeImBaseMode));
+            homeMessageViewHolder.message.setText(content);
         }
     }
 
