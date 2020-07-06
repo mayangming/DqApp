@@ -1024,6 +1024,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                 List<P2PMessageBaseModel> messageBean = DqImParserUtils.getP2PMessageModels(content);
                 if (messageBean.size() == 0){
                     Toast.makeText(getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
+                    Log.e("YM","111111111");
                     return;
                 }
                 Collections.reverse(messageBean);
