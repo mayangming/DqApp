@@ -1133,6 +1133,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 content = "好友申请已经同意";
                 break;
             case GROUP_KICK_OUT://你被群组踢出了群主
+                if (!ModuleMgr.getCenterMgr().getUID().equals(messageSystemBean.getOperator())){//把谁移除了群组，倘若移除群组的人和当前用户不同，则不予处理
+                    break;
+                }
                 content = "你被踢出了群组";
                 homeMessageViewModel.deleteForGroupId(messageSystemBean.getGroupId());
                 teamMessageViewModel.deleteMessageForGroupId(messageSystemBean.getGroupId());

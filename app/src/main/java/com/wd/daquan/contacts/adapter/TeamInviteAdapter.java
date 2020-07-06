@@ -80,7 +80,7 @@ public class TeamInviteAdapter extends CommRecyclerViewAdapter<TeamInviteBean, T
     public void onBindViewHolder(@NonNull TeamInviteHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
         if (!payloads.isEmpty()){
-            Object obj = payloads.get(position);
+            Object obj = payloads.get(0);
             if (obj instanceof CommRespEntity){
                 CommRespEntity commRespEntity = (CommRespEntity) obj;
                 if(KeyValue.ZERO_STRING.equals(commRespEntity.status)){

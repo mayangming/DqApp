@@ -8,7 +8,7 @@ import com.dq.im.model.IMContentDataModel;
 public class MessageSystemBean extends IMContentDataModel {
     private String title;//消息标题
     private String description ;//消息描述
-    private String operator;// 操作人id
+    private String operator = "";// 操作人id
     private String groupId ;// 群id
     private String fromUserId;//消息来源
     private String toUserId;//消息目的地
