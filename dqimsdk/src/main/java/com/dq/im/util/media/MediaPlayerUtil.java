@@ -60,7 +60,11 @@ class MediaPlayerUtil{
         if (null == player){
             player = new MediaPlayer();
         }
-
+        if (tag.equals(lastTag) && player.isPlaying()){//假如这次跟上次点击的是同一个item,且正在播放中，则停止该次的播放
+            notifyStop(tag);
+            player.reset();
+            return;
+        }
         if (player.isPlaying()){
             player.reset();
         }
@@ -69,6 +73,7 @@ class MediaPlayerUtil{
         }catch (IOException e){
             e.printStackTrace();
         }
+        notifyStop(tag);
         playVoice(tag);
     }
     /**
