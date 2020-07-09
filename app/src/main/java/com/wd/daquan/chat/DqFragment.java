@@ -708,6 +708,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
      */
     private void showRewardAdCode(){
         //展示激励视频广告，并传入广告展示的场景
+        if (null == mttRewardVideoAd){
+            return;
+        }
         mttRewardVideoAd.showRewardVideoAd(getActivity(),TTAdConstant.RitScenes.CUSTOMIZE_SCENES,"scenes_test");
         mttRewardVideoAd = null;
     }
