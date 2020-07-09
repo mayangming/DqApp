@@ -106,6 +106,9 @@ public class FriendDbHelper extends DbThreadHelper{
                     if("0".equals(friendNote.whether_black)) {
                         continue;
                     }
+                    if("0".equals(friendNote.whether_friend)) {
+                        continue;
+                    }
                     friendList.add(setFriend(friendNote));
                 }
             }

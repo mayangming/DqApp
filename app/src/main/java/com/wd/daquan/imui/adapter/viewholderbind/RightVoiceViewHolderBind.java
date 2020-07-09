@@ -40,14 +40,10 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
     private TeamMessageViewModel teamMessageViewModel;
     private FragmentActivity activity;
     private Gson gson = new Gson();
-    private static MediaPlayer player;
     private AnimationDrawable anim;
     private MediaPlayerUtil mediaPlayerUtil;
     private String uuid;
     public RightVoiceViewHolderBind() {
-        if (null == player){
-            player = new MediaPlayer();
-        }
     }
 
     @Override

@@ -27,6 +27,7 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.db.helper.FriendDbHelper;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
@@ -304,7 +305,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
 
     private void sendMessageOrAddFriendClick() {
         if (null != mFriend) {
-            if ("0".equals(mFriend.whether_friend)) {
+            if (mFriend.isFriend()) {
                 SessionHelper.startP2PSession(getActivity(), mUserId);
                 finish();
             } else {
@@ -383,8 +384,9 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         } else {
 
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mIntoGroupWayLl.getLayoutParams();
-
+            DqLog.e("YM","好友状态:"+friend.whether_friend);
             boolean isFriend = friend.isFriend();
+            DqLog.e("YM","是不是好友:"+isFriend);
             if (isFriend) {
                 mToolbar.setRightIvVisible(true);
                 mSetRemarkRl.setVisibility(View.VISIBLE);

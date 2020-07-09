@@ -579,16 +579,17 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             saveMsgSuccess(p2PMessageBaseModel);
         }else if(MsgType.MESSAGE_RECEIVE_CALL_BACK.equals(key)){//消息发送后，服务器把消息回传给客户端的内容
             ImMessageBaseModel imMessageBaseModel = (ImMessageBaseModel)value;
-           for (P2PMessageBaseModel messageBaseModel : chatP2PAdapter.getData()){
-               if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
-                   messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
-                   messageBaseModel.setSourceContent(imMessageBaseModel.getSourceContent());
-                   messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
-                   chatP2PAdapter.updateMessageStatus(messageBaseModel);
-                   Log.e("YM","更新消息发送状态");
-                   return;
-               }
-           }
+            for (P2PMessageBaseModel messageBaseModel : chatP2PAdapter.getData()){
+                if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
+                    messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
+                    messageBaseModel.setSourceContent(imMessageBaseModel.getSourceContent());
+                    messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
+                    p2PMessageViewModel.updateP2PMessageByClientId(messageBaseModel);
+                    chatP2PAdapter.updateMessageStatus(messageBaseModel);
+                    Log.e("YM","更新消息发送状态");
+                    return;
+                }
+            }
         }else if (MsgType.TEAM_MESSAGE_CONTENT.equals(key)){//群组消息
 
         }else if (MsgType.CHAT_RED_PACKAGE.equals(key)){//发送红包的消息
@@ -598,8 +599,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             MessageRedPackageBean messageRedPackageBean = (MessageRedPackageBean) value;
             sendMessage(messageRedPackageBean,MessageType.RED_PACKAGE);
         }else if (MsgType.CHAT_PICTURE.equals(key)){
-            Uri uri = (Uri) value;
-            uploadPhoto(uri);
+            List<Uri> picturePath = (List<Uri>) value;
+//            Uri uri = picturePath.get(0);
+            for (Uri uri : picturePath){
+                uploadPhoto(uri);
+            }
         }else if (MsgType.CHAT_VIDEO.equals(key)){
             Log.e("YM","Fragment收到的消息");
             Uri uri = (Uri) value;

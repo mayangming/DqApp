@@ -183,9 +183,15 @@ public class SetFriendInfoHelper implements Presenter.IView<DataBean> {
             });
         } else if (DqUrl.url_delete_friend.equals(url)) {
             //删除好友
-            DqToast.showShort(DqApp.getStringById(R.string.delete_success));
-            FriendDbHelper.getInstance().delete(mUserId);
-            MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMOVE_FRIEND, mUserId);
+//            DqToast.showShort(DqApp.getStringById(R.string.delete_success));
+//            FriendDbHelper.getInstance().delete(mUserId);
+//            MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMOVE_FRIEND, mUserId);
+            FriendDbHelper.getInstance().getFriend(mUserId, friend -> {
+                friend.whether_friend = "0";
+                FriendDbHelper.getInstance().update(friend, null);
+                //以下删除的代码主要是出现在拉黑功能不完善的时候，需要把聊天的数据删掉
+                MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_REMOVE_FRIEND, mUserId);
+            });
         }
     }
 

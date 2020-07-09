@@ -35,7 +35,7 @@ public class Friend implements ISelect, Parcelable {
     public String nickname; //用户名
     public String sex; // 1:男 2:女
     public String dq_num; // 项目号
-    public String whether_friend; // 是否是好友关系 0 是1 否
+    public String whether_friend; // 是否是好友关系 0 不是 1 是
     public String whether_black; // 黑名单 0 是1 否
     public String screenshot_notify;
     public String burn; // 阅后即焚,时间为0关闭
@@ -108,7 +108,7 @@ public class Friend implements ISelect, Parcelable {
 
     public boolean isWhether_friend() {
 
-        return "0".equals(whether_friend);
+        return "1".equals(whether_friend);
     }
     public boolean isWhether_black() {
         return "0".equals(whether_black);
@@ -377,6 +377,6 @@ public class Friend implements ISelect, Parcelable {
     }
 
     public boolean isFriend() {
-        return "0".equals(whether_friend);
+        return "1".equals(whether_friend);
     }
 }

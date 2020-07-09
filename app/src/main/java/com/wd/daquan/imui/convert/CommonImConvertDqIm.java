@@ -9,6 +9,7 @@ import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
 import com.wd.daquan.imui.bean.im.DqImBaseBean;
 import com.wd.daquan.imui.bean.im.FirstContentBean;
+import com.wd.daquan.model.log.DqLog;
 
 /**
  * 通用Im基础斗圈特有的IM数据结构相互转换的工具类
@@ -80,6 +81,7 @@ public class CommonImConvertDqIm {
         imMessageBaseModel.setMsgIdServer(firstContentBean.getMsgIdServer());
         imMessageBaseModel.setMsgSecondType(firstContentBean.getMsgSecondType());
         imMessageBaseModel.setMsgType(firstContentBean.getMsgType()+"");
+        imMessageBaseModel.setMessageSendStatus(firstContentBean.getStatus());
         String secondType = firstContentBean.getMsgSecondType();//0 单聊 1群聊 4红包领取的消息
         if ("0".equals(firstContentBean.getMsgSecondType())){//单聊
             secondType = "1";

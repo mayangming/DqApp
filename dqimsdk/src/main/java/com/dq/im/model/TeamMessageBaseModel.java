@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  * 群组IM消息模型
  */
 
-@Entity(tableName = "team_message",primaryKeys = {"msgIdClient","groupId","fromUserId"})
+@Entity(tableName = "team_message",primaryKeys = {"msgIdClient","msgIdServer"})
 public class TeamMessageBaseModel extends ImMessageBaseModel{
 
     @ColumnInfo(name = "groupId")

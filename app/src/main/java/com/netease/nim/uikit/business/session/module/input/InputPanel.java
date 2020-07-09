@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.da.library.tools.AESHelper;
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.type.ImType;
+import com.dq.im.util.media.MediaPlayerUtil;
 import com.netease.nim.uikit.R;
 import com.netease.nim.uikit.api.model.session.SessionCustomization;
 import com.netease.nim.uikit.business.ait.AitTextChangeListener;
@@ -350,6 +351,7 @@ public class InputPanel implements IEmoticonSelectedListener,
     private boolean onTouch(View view, MotionEvent event) {
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                MediaPlayerUtil.getInstance(view.getContext()).stopVoice();//暂停掉其它郑州播放的声音
                 startRecordVoice();
                 downY = event.getRawY();
                 return true;

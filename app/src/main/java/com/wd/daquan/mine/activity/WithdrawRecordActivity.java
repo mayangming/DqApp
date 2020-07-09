@@ -27,6 +27,7 @@ import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,7 +163,7 @@ public class WithdrawRecordActivity extends DqBaseActivity<WalletCloudPresenter,
         sureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoading();
+
                 int yearSelectIndex = loopViewYear.getCurrentItem();
                 int monthSelectIndex = loopViewMonth.getCurrentItem();
                 String yearSelectValue = yearArray.get(yearSelectIndex);
@@ -173,7 +174,12 @@ public class WithdrawRecordActivity extends DqBaseActivity<WalletCloudPresenter,
                 page = 1;
                 year = Integer.valueOf(yearSelectValue);
                 month = Integer.valueOf(monthSelectValue);
+                if (compareDate(year,month)){//假如选择时间超过当前时间则给与判断
+                    DqToast.showShort("选择查询的日期不能超过当前日期！");
+                    return;
+                }
                 recordBeans.clear();
+                showLoading();
                 refreshRecord(page,rows,year,month);
                 bottomSheetDialog.dismiss();
                 titleTimeTv.setText(year+"年"+month+"月");
@@ -190,6 +196,21 @@ public class WithdrawRecordActivity extends DqBaseActivity<WalletCloudPresenter,
         bottomSheetDialog.setContentView(content);
         bottomSheetDialog.setmBottomSheetCallback((FrameLayout)(content.getParent()));
     }
+
+    /**
+     * 比较选择的时间是否比当前的时间大
+     */
+    private boolean compareDate(int sourceYear,int sourceMonth){
+        boolean result;
+        Calendar calendarSource = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
+        calendarSource.set(Calendar.YEAR, sourceYear);
+        calendarSource.set(Calendar.MONTH, sourceMonth - 1);
+        result = calendar.before(calendarSource);
+        return result;
+    }
+
+
 
     @Override
     public void onSuccess(String url, int code, DataBean entity) {

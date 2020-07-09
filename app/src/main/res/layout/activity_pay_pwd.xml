@@ -97,14 +97,12 @@
 
     <TextView
         android:id="@+id/pay_pwd_set"
-        android:layout_width="@dimen/dd_dp150"
-        android:layout_height="@dimen/dd_dp42"
+        style="@style/comm_corner_btn"
         android:textSize="@dimen/sp_16"
         android:layout_marginTop="@dimen/dd_dp20"
-        android:background="@mipmap/btn_normal_1"
         android:textColor="@color/white"
         android:gravity="center"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/dd_dp30"
         android:text="确定"/>
 
 </LinearLayout>

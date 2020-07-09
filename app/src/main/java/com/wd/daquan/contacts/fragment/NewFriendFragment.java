@@ -110,7 +110,7 @@ public class NewFriendFragment extends BaseFragment<ContactPresenter, DataBean> 
                 friend.headpic = mItem.headpic;
                 friend.nickname = mItem.nickname;
                 friend.phone = mItem.phone;
-                friend.whether_friend = "0";
+                friend.whether_friend = "1";
                 friend.whether_black = "1";
 
                 FriendDbHelper.getInstance().update(friend, null);

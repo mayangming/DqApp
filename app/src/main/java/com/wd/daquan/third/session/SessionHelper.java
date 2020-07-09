@@ -223,7 +223,7 @@ public class SessionHelper {
         actions.add(new CameraAction());
         actions.add(new VideoAction());
         actions.add(new LocalVideoAction());
-        actions.add(new RedPacketAction());
+//        actions.add(new RedPacketAction());
 
 //        if(!"1".equals(account)) {
 //            actions.add(new QcAliPayAction());

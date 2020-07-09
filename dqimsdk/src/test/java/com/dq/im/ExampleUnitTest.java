@@ -12,6 +12,13 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+//        assertEquals(4, 2 + 2);
+        int code = 0x1f603;
+        char[] chars = Character.toChars(code);
+        String key = Character.toString(chars[0]);
+        System.out.println("key:"+key);
+        for (char c : chars){
+            System.out.println("char:"+c);
+        }
     }
 }

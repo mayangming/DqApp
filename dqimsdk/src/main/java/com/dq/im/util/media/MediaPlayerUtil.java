@@ -152,4 +152,17 @@ class MediaPlayerUtil{
         ipcMap.remove(tag);
     }
 
+    /**
+     * 停止播放音频
+     */
+    public void stopVoice(){
+        if (null == player){
+            player = new MediaPlayer();
+        }
+        if (player.isPlaying()){
+            player.reset();
+        }
+        notifyStop(lastTag);
+        lastTag = "";
+    }
 }

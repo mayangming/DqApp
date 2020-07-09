@@ -81,6 +81,7 @@ import com.wd.daquan.imui.dialog.OpenRedPackageDialog;
 import com.wd.daquan.imui.type.MsgSecondType;
 import com.wd.daquan.imui.type.RedPackageStatus;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutChildType;
+import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupInfoBean;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
@@ -101,6 +102,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.internal.operators.flowable.FlowableOnErrorReturn;
 import okhttp3.Call;
 
 /**
@@ -637,6 +639,11 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         }
         if (MsgType.P2P_MESSAGE_CONTENT.equals(key)){//个人消息
 
+        }else if (MsgType.HOME_UPDATE_MSG.equals(key)){//更新内容
+            if (value instanceof Friend){
+                Friend friend = (Friend) value;
+                partRefresh(friend);
+            }
         }else if (MsgType.TEAM_MESSAGE_CONTENT.equals(key)){//群组消息
             Log.e("YM","收到消息:");
             TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel) value;
@@ -661,6 +668,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                     messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
                     messageBaseModel.setSourceContent(imMessageBaseModel.getSourceContent());
                     messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
+                    teamMessageViewModel.updateTeamPMessageByClientId(messageBaseModel);
                     chaTeamAdapter.updateMessageStatus(messageBaseModel);
                     Log.e("YM","更新消息发送状态");
                     return;
@@ -672,8 +680,13 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             MessageRedPackageBean messageRedPackageBean = (MessageRedPackageBean) value;
             sendMessage(messageRedPackageBean,MessageType.RED_PACKAGE);
         }else if (MsgType.CHAT_PICTURE.equals(key)){
-            Uri uri = (Uri) value;
-            uploadPhoto(uri);
+//            Uri uri = (Uri) value;
+//            uploadPhoto(uri);
+            List<Uri> picturePath = (List<Uri>) value;
+//            Uri uri = picturePath.get(0);
+            for (Uri uri : picturePath){
+                uploadPhoto(uri);
+            }
         }else if (MsgType.CHAT_VIDEO.equals(key)){
             Uri uri = (Uri) value;
             uploadVideo(uri);
@@ -689,6 +702,21 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         }else if (MsgType.MT_GROUP_SETTING_QUIT.equals(key)){
             TToast.show(getContext(),"已退出群聊");
             getActivity().finish();
+        }
+    }
+
+    /**
+     * 局部刷新
+     */
+    private void partRefresh(Friend friend){
+        List<TeamMessageBaseModel> models = chaTeamAdapter.getData();
+//        chaTeamAdapter.notifi
+        for (TeamMessageBaseModel teamMessageBaseModel : models){
+            if (friend.uid.equals(teamMessageBaseModel.getFromUserId())){//假如是同一个用户，则去更新数据,一般的话第一次收到消息就会更新。
+                int index = models.indexOf(teamMessageBaseModel);
+                chaTeamAdapter.notifyItemChanged(index,friend);
+                break;
+            }
         }
     }
 
@@ -951,7 +979,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                     if (MessageType.TEXT.getValue().equals(model.getMsgType())){
                         MessageTextBean messageTextBean = gson.fromJson(model.getSourceContent(),MessageTextBean.class);
                         if (null != messageTextBean){
-                          String  content = messageTextBean.getDescription();
+                            String  content = messageTextBean.getDescription();
 //                            content = AESHelper.decryptString(content);
                             String text = AESUtil.decode(content);
                         }

@@ -654,7 +654,6 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //                ImMessageBaseModel notificationModel = ImParserUtils.getBaseMessageModel(message);
                 ImMessageBaseModel notificationModel = DqImParserUtils.getBaseMessageModel(message);
                 Log.e("YM","MainActivity转换的类型:"+notificationModel.toString());
-                notificationModel.setMessageSendStatus(MessageSendType.SEND_SUCCESS.getValue());
                 if (ImType.P2P.getValue().equals(notificationModel.getType())){
                     String dqImContentJson = GsonUtils.toJson(notificationModel);
                     Log.e("YM","转换过的JSON消息格式:"+dqImContentJson);
@@ -907,7 +906,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     }
     private void insertUser(String userId){
         Friend friend = FriendDbHelper.getInstance().getFriend(userId);
-        if (null != friend){
+        DqLog.e("YM","用户ID:"+userId);
+        if (null != friend && !TextUtils.isEmpty(friend.headpic)){
             return;
         }
         if (requestUserIds.contains(userId)){
@@ -1100,8 +1100,6 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             }
             notificationUtilBuild.title = UserInfoHelper.getUserDisplayName(friendId);
             notificationUtilBuild.intent = IntentUtils.getP2PChat(this,friendId);
-            Log.e("YM","好友的昵称------>"+UserInfoHelper.getUserDisplayName(friendId));
-            Log.e("YM","好友的ID------>"+friendId);
         }else if (ImType.Team.getValue().equals(type)){
             TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel)messageBaseModel;
             String groupId = teamMessageBaseModel.getGroupId();

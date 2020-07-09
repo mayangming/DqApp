@@ -185,7 +185,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         switch (key){
             case MsgType.MT_FRIEND_REMOVE_FRIEND:
                 String userId = (String) value;
-                homeMessageViewModel.deleteForFriendId(userId);
+//                homeMessageViewModel.deleteForFriendId(userId);
                 break;
             case MsgType.HOME_UPDATE_MSG://更新消息内容，比如头像、昵称
                 findHomeListIndex(value);
@@ -200,7 +200,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
      */
     private void findHomeListIndex(Object object){
         List<HomeImBaseMode> modes = homeMessageAdapter.getData();
-        int index = 0;
+        int index = -1;
         if (object instanceof Friend){//个人消息
             Friend friend = (Friend) object;
             for (HomeImBaseMode mode : modes){
@@ -223,6 +223,9 @@ public class ConversationListFragment extends Fragment implements QCObserver {
                     }
                 }
             }
+        }
+        if (-1 == index){//没有找到数据
+            return;
         }
         homeMessageAdapter.notifyItemChanged(index,object);
     }

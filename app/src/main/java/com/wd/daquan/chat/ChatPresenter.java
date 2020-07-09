@@ -807,19 +807,19 @@ public class ChatPresenter extends BasePresenter<Presenter.IView<DataBean>> impl
     }
 
     public void getUserInfo(String url, Map<String, String> hashMap) {
-        showLoading();
+//        showLoading();
         RetrofitHelp.getUserApi().getFriend(url, getRequestBody(hashMap)).enqueue(
                 new DqCallBack<DataBean<Friend>>() {
 
                     @Override
                     public void onSuccess(String url, int code, DataBean<Friend> entity) {
-                        hideLoading();
+//                        hideLoading();
                         success(url, code, entity);
                     }
 
                     @Override
                     public void onFailed(String url, int code, DataBean<Friend> entity) {
-                        hideLoading();
+//                        hideLoading();
                         failed(url, code, entity);
                     }
                 });

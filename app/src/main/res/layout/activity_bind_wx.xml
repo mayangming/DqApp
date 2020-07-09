@@ -36,7 +36,7 @@
         android:layout_marginTop="@dimen/dd_dp50"
         android:textSize="@dimen/sp_16"
         android:textColor="@color/white"
-        android:background="@mipmap/btn_normal_1"
+        android:background="@drawable/btn_1cbf20_bg"
         android:gravity="center"
         android:visibility="gone"
         android:text="绑定"/>

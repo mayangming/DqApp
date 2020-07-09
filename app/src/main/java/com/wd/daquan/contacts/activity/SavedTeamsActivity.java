@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,7 +134,7 @@ public class SavedTeamsActivity extends DqBaseActivity<ContactPresenter, DataBea
         } else {
             mNoDataTv.setVisibility(View.VISIBLE);
         }
-        
+        Collections.reverse(mTeamList);
         mAdapter.update(mTeamList);
     }
 

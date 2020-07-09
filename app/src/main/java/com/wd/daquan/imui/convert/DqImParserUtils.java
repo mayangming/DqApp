@@ -44,6 +44,7 @@ public class DqImParserUtils {
             firstContentBean.setTarget(firstContent.optString("target",""));
             firstContentBean.setTimestamp(firstContent.optLong("timestamp",0));
             firstContentBean.setGroupId(firstContent.optString("groupId",""));
+            firstContentBean.setStatus(Integer.parseInt(firstContent.optString("status","0")));
             firstContentBean.setMsgSecondType(firstContent.optString("msgSecondType",""));
             String msgContent = firstContent.optString("content","");
             firstContentBean.setSourceContent(msgContent);

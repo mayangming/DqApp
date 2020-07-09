@@ -27,7 +27,7 @@ public class GlideUtil {
         Glide.with(context).load(netUrl).apply(normalOption(R.mipmap.ic_launcher)).into(imageView);
     }
 
-    /** 加载网络图片 */
+    /** 加载本地Uri图片 */
     public static void loadNormalImgByNet(Context context, Uri uri, ImageView imageView){
         Glide.with(context).load(uri).apply(normalOption(R.mipmap.ic_launcher)).into(imageView);
     }

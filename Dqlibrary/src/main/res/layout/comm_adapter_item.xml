@@ -120,8 +120,9 @@
             android:lines="1"
             android:maxLength="32"
             android:textColor="@color/text_title_black"
-            android:textSize="@dimen/dd_dp16"
-            android:visibility="gone"
+            android:textSize="@dimen/sp16"
+            android:visibility="visible"
+            tools:text="你好"
             tools:ignore="RtlHardcoded,SpUsage" />
 
         <!--添加按钮/已添加按钮-->

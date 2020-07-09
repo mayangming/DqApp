@@ -98,7 +98,8 @@ public class ContactsFragment extends BaseFragment<ContactPresenter, DataBean> i
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put(IConstant.Contact.WHETHER_HELPER, isExitHelp ? "1" : "0");
         hashMap.put(IConstant.Contact.SHOW_SELF, isExitSelf ? "1" : "0");
-        hashMap.put(IConstant.Contact.LAST_TIME, String.valueOf(listTime));
+//        hashMap.put(IConstant.Contact.LAST_TIME, String.valueOf(listTime));
+        hashMap.put(IConstant.Contact.LAST_TIME, "0");
         mPresenter.getContacts(DqUrl.url_friend_list, hashMap, isShowLoading);
     }
 

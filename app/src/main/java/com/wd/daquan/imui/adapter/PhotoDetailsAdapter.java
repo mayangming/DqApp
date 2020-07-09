@@ -1,6 +1,7 @@
 package com.wd.daquan.imui.adapter;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -43,7 +44,8 @@ class PhotoDetailsAdapter extends PagerAdapter{
         View content = inflater.inflate(R.layout.item_photo_details,container,false);
         ImageView photo_details = content.findViewById(R.id.photo_details);
         MessagePhotoBean messagePhotoBean = GsonUtils.fromJson(model.getSourceContent(),MessagePhotoBean.class);
-        GlideUtil.loadNormalImgByNet(container.getContext(),messagePhotoBean.getDescription(),photo_details);
+        Uri localUri = Uri.parse(messagePhotoBean.getLocalUriString());
+        GlideUtil.loadNormalImgByNet(container.getContext(),localUri,photo_details);
         container.addView(content);
         content.setOnClickListener(new View.OnClickListener() {
             @Override

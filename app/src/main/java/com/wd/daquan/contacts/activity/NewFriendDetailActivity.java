@@ -215,7 +215,7 @@ public class NewFriendDetailActivity extends DqBaseActivity<ContactPresenter, Da
                 friend.headpic = mNewFriend.headpic;
                 friend.nickname = mNewFriend.nickname;
                 friend.phone = mNewFriend.phone;
-                friend.whether_friend = "1";
+                friend.whether_friend = "0";
                 friend.whether_black = "0";
                 FriendDbHelper.getInstance().update(friend, null);
                 MsgMgr.getInstance().sendMsg(MsgType.MT_FRIEND_ADD_BLACK_LIST, "");

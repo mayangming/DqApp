@@ -154,17 +154,17 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         }else {
             redPackageContent.setVisibility(View.GONE);
         }
-        countdownView.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
-            @Override
-            public void onEnd(CountdownView cv) {//倒计时结束
-                Log.e("YM","倒计时结束");
-                if (isFont){
-                    countdownView.setVisibility(View.GONE);
-                    redRainTv.setText("进行中");
-                    startRain();
-                }
-            }
-        });
+//        countdownView.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+//            @Override
+//            public void onEnd(CountdownView cv) {//倒计时结束
+//                Log.e("YM","倒计时结束");
+//                if (isFont){
+//                    countdownView.setVisibility(View.GONE);
+//                    redRainTv.setText("进行中");
+//                    startRain();
+//                }
+//            }
+//        });
     }
 
 
@@ -188,21 +188,39 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
      * 假如有的话就发送消息，否则不发送
      */
     private void checkRedRainContent(){
-        String content = ModuleMgr.getCenterMgr().getRedRainContent();//获取红包雨内容
-
-        if(TextUtils.isEmpty(content)){
-            return;
-        }
+//        String content = ModuleMgr.getCenterMgr().getRedRainContent();//获取红包雨内容
+//
+//        if(TextUtils.isEmpty(content)){
+//            return;
+//        }
         if (isStopRedRain){
             return;
         }
-        JSONObject jsonObject = JSON.parseObject(content);
-        RedRainSystemAttachment redRainSystemAttachment = new RedRainSystemAttachment();
-        redRainSystemAttachment.fromJson(jsonObject);
-        MsgMgr.getInstance().sendMsg(MsgType.APPLICATION_RED_RAIN_START, redRainSystemAttachment);
+//        JSONObject jsonObject = JSON.parseObject(content);
+//        RedRainSystemAttachment redRainSystemAttachment = new RedRainSystemAttachment();
+//        redRainSystemAttachment.fromJson(jsonObject);
+//        MsgMgr.getInstance().sendMsg(MsgType.APPLICATION_RED_RAIN_START, redRainSystemAttachment);
+        startRain2();
     }
 
-    private void startRain(){
+    //    private void startRain(){
+//        long currentTime = System.currentTimeMillis();
+//        Log.e("YM","红包雨开始时间:"+redRainStartTime);
+//        Log.e("YM","当前时间:"+currentTime);
+////        if (currentTime < redRainStartTime || redRainStartTime == -1){
+//        if (mFallingLayout.isRedRainIng()){
+//            return;
+//        }
+//        if (redRainStartTime < currentTime && currentTime < redRainEndTime){
+//            mFallingLayout.setRedPackageCoundSpeed(300);
+//            mFallingLayout.refreshSpeed(5000);
+//            mFallingContent.setVisibility(View.VISIBLE);
+//            mFallingLayout.startRedRain();
+//            countdownView.setVisibility(View.GONE);
+//            redRainTv.setText("进行中");
+//        }
+//    }
+    private void startRain2(){
         long currentTime = System.currentTimeMillis();
         Log.e("YM","红包雨开始时间:"+redRainStartTime);
         Log.e("YM","当前时间:"+currentTime);
@@ -210,14 +228,11 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         if (mFallingLayout.isRedRainIng()){
             return;
         }
-        if (redRainStartTime < currentTime && currentTime < redRainEndTime){
-            mFallingLayout.setRedPackageCoundSpeed(300);
-            mFallingLayout.refreshSpeed(5000);
-            mFallingContent.setVisibility(View.VISIBLE);
-            mFallingLayout.startRedRain();
-            countdownView.setVisibility(View.GONE);
-            redRainTv.setText("进行中");
-        }
+        mFallingLayout.setRedPackageCoundSpeed(300);
+        mFallingLayout.refreshSpeed(5000);
+        mFallingContent.setVisibility(View.VISIBLE);
+        mFallingLayout.startRedRain();
+        redRainTv.setText("进行中");
     }
     @Override
     public void onStop() {
@@ -329,13 +344,13 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    Toast.makeText(getContext(),"本活动仅限VIP会员参见!",Toast.LENGTH_LONG).show();
 //                    return;
 //                }
-                long currentTime = System.currentTimeMillis();
-                if (redRainStartTime == -1 || (redRainStartTime > currentTime || currentTime > redRainEndTime)){//时间没到打开红包雨提示规则
-                    showRedPackageTip();
-                    return;
-                }
+//                long currentTime = System.currentTimeMillis();
+//                if (redRainStartTime == -1 || (redRainStartTime > currentTime || currentTime > redRainEndTime)){//时间没到打开红包雨提示规则
+//                    showRedPackageTip();
+//                    return;
+//                }
                 isStopRedRain = false;
-                startRain();
+                startRain2();
                 break;
             case R.id.main_turntable_lottery:
 //                showVipExchangeResultDialog();
@@ -805,7 +820,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
                     @Override
                     public void onAdClose() {
 //                        TToast.show(getContext(), "rewardVideoAd close");
-                        startRain();//广告播放完成后进行判断红包雨是否还在进行中
+                        startRain2();//广告播放完成后进行判断红包雨是否还在进行中
                     }
 
                     //视频播放完成回调

@@ -48,7 +48,7 @@
     <color name="color_d4d4d6">#d4d4d6</color>
     <color name="color_e4e3e9">#e4e3e9</color>
     <color name="color_666666">#666666</color>
-    <color name="color_F39825">#F39825</color>
+    <color name="color_F39825"></color>
 
 
     <color name="transparent">@android:color/transparent</color>

@@ -133,7 +133,7 @@ public class UserInfoHelper {
     public static boolean isFriend(String account) {
         Friend friend = FriendDbHelper.getInstance().getFriend(account);
 
-        return "0".equals(friend.whether_friend);
+        return "1".equals(friend.whether_friend);
     }
 
 }

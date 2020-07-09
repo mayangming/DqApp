@@ -3,6 +3,7 @@ package com.wd.daquan.imui.adapter;
 import android.arch.lifecycle.LifecycleObserver;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.util.DiffUtil;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +18,7 @@ import com.wd.daquan.imui.adapter.viewholder.RecycleBaseViewHolder;
 import com.wd.daquan.imui.adapter.viewholder.StrategyViewHolderContext;
 import com.wd.daquan.imui.adapter.viewholderbind.StrategyViewHolderBindContext;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutChildType;
+import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.mgr.ModuleMgr;
 
 import java.util.ArrayList;
@@ -127,9 +129,25 @@ public class ChaTeamAdapter extends ChatBaseAdapter<RecycleBaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecycleBaseViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
-
         //参考链接：https://blog.csdn.net/LVXIANGAN/article/details/91867671
-
+        if (payloads.isEmpty()){
+           return;
+        }
+        Object object = payloads.get(0);
+        Friend friend = null;
+        BaseLeftViewHolder baseLeftViewHolder = null;
+        if (object instanceof Friend){
+            friend = (Friend) object;
+        }
+        if (holder instanceof BaseLeftViewHolder){
+            baseLeftViewHolder = (BaseLeftViewHolder) holder;
+        }
+        if (null == friend || null == baseLeftViewHolder){
+            return;
+        }
+        updateLeftHeadPic(friend.uid,baseLeftViewHolder.leftHeadIcon);
+        updateLeftVipStatus(friend.uid,baseLeftViewHolder.leftVipIcon);
+        updateLeftUserName(friend.uid,baseLeftViewHolder.leftUserName);
     }
 
     private void updateMessageStatus(BaseRightViewHolder baseRightViewHolder, TeamMessageBaseModel teamMessageBaseModel){
@@ -158,5 +176,4 @@ public class ChaTeamAdapter extends ChatBaseAdapter<RecycleBaseViewHolder> {
     public int getItemViewType(int position) {
         return parserLayoutType(p2PMessageBeans.get(position));
     }
-
 }

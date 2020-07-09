@@ -8,7 +8,7 @@ import com.wd.daquan.util.AESUtil;
  * 斗圈项目中文本消息内容
  */
 public class DqMessagePhotoBean extends DqMessageBaseContent{
-    private String searchableContent = AESUtil.decode("[图片]");//图片描述
+    private String searchableContent = AESUtil.encode("[图片]");//图片描述
     private String remoteMediaUrl = "";//图片远程路径
     private int mediaType = 1;//消息类型
     private transient Uri photoUri;//图片的uri地址

@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingEnd="@dimen/dd_dp50"
+    android:paddingRight="@dimen/dd_dp50">
 
     <TextView
         android:id="@+id/item_left_text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dd_dp100"
         android:paddingBottom="@dimen/dp_10"
         android:paddingTop="@dimen/dp_10"
         android:gravity="center_vertical"

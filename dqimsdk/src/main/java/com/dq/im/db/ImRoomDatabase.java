@@ -37,7 +37,7 @@ import java.util.concurrent.Executors;
         TeamUserJoinModel.class,
         TeamMessageBaseModel.class,
         P2PMessageBaseModel.class},
-        version = 2, exportSchema = true)
+        version = 3, exportSchema = true)
 public abstract class ImRoomDatabase extends RoomDatabase {
     public static volatile String USER_ID = "";
 

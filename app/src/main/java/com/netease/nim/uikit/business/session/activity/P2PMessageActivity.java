@@ -316,7 +316,7 @@ public class P2PMessageActivity extends BaseMessageActivity implements View.OnCl
         switch (key) {
             case MsgType.MT_FRIEND_REMOVE_FRIEND:
             case MsgType.MT_FRIEND_ADD_BLACK_LIST:
-                ActivitysManager.getInstance().finish(this);
+//                ActivitysManager.getInstance().finish(this);
                 break;
             case MsgType.MT_FRIEND_ADD_FRIEND:
                 Log.e("YM","onMessage()--------->好友添加成功");

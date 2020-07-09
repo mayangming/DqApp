@@ -8,6 +8,6 @@ import android.arch.persistence.room.Entity;
  * 创建多个主键
  */
 
-@Entity(tableName = "person_message",primaryKeys = {"msgIdClient","toUserId","fromUserId"})
+@Entity(tableName = "person_message",primaryKeys = {"msgIdClient","msgIdServer"})
 public class P2PMessageBaseModel extends ImMessageBaseModel{
 }

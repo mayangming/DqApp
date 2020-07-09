@@ -43,13 +43,15 @@ public class CameraAction extends BaseAction{
     protected void selectPhoto(){
         Matisse.from(getActivity())
                 .choose(MimeType.ofImage())
-                .countable(true)
-                .maxSelectable(1)
-                .capture(true)//拍照功能暂时取消
+//                .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))//gif暂时不支持显示
+                .capture(true)
+
                 .captureStrategy(
                         new CaptureStrategy(true, BuildConfig.APPLICATION_ID+".dqprovider", "capture")
                 )
-                .maxSelectable(1)
+                .countable(true)
+                //最大选择数量为9
+                .maxSelectable(9)
                 .gridExpectedSize(
                         getContext().getResources().getDimensionPixelSize(R.dimen.grid_expected_size)
                 )
@@ -69,7 +71,8 @@ public class CameraAction extends BaseAction{
         Log.e("YM","拍照获取的数据:requestCode->"+requestCode+"-->resultCode:"+resultCode);
         if (requestCode == IntentCode.REQUEST_CODE_CHOOSE){
             List<Uri> picturePath = Matisse.obtainResult(data);//获取uri路径
-            MsgMgr.getInstance().sendMsg(MsgType.CHAT_PICTURE, picturePath.get(0));
+//            MsgMgr.getInstance().sendMsg(MsgType.CHAT_PICTURE, picturePath.get(0));
+            MsgMgr.getInstance().sendMsg(MsgType.CHAT_PICTURE, picturePath);
         }
     }
 }

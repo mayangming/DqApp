@@ -21,7 +21,6 @@ public class PhotoDetailsActivity extends BaseActivity{
     public static final String PHOTO_DATA = "photoData";//图片数据
     public static final String PHOTO_DATA_CURRENT = "photoDataCurrent";//当前图片数据
     private ViewPager photoDetailsVp;
-    private String photoUrl = "";
     private PhotoDetailsAdapter photoDetailsAdapter;
     private ArrayList<ImMessageBaseModel> imMessageBaseModels = new ArrayList<>();
     private ImMessageBaseModel currentModel;
@@ -46,7 +45,6 @@ public class PhotoDetailsActivity extends BaseActivity{
     }
 
     private void initData(){
-        photoUrl = getIntent().getStringExtra(PHOTO_URL);
         currentIndex = getIntent().getIntExtra(PHOTO_DATA_CURRENT,-1);
         imMessageBaseModels = (ArrayList<ImMessageBaseModel>)getIntent().getSerializableExtra(PHOTO_DATA);
         currentModel  = imMessageBaseModels.get(currentIndex);
