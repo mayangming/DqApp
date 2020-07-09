@@ -1,8 +1,10 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
+import android.app.Activity;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.ViewModelProviders;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
@@ -11,6 +13,7 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
+import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
@@ -20,6 +23,8 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.imui.adapter.viewholder.LeftImgViewHolder;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.GlideUtil;
+
+import java.io.File;
 
 import static android.os.Environment.DIRECTORY_PICTURES;
 
@@ -50,18 +55,53 @@ public class LeftImgViewHolderBind extends BaseLeftViewHolderBind<LeftImgViewHol
         p2PMessageViewModel  = ViewModelProviders.of(activity).get(P2PMessageViewModel.class);
         String content = p2PMessageBaseModel.getSourceContent();
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
-        Uri photoUri = Uri.parse(messagePhotoBean.getLocalUriString());
         boolean fileExists = FileUtils.fileExists(messagePhotoBean.getLocalUriString());
+        Log.e("YM","文件是否存在:"+fileExists+"--->文件路径:"+messagePhotoBean.getLocalUriString());
         if (fileExists){
-            GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),photoUri,leftImgViewHolder.leftImgContent,10);
+            if (Build.VERSION.SDK_INT>=29){//android 10
+                Uri photoUri = Uri.parse(messagePhotoBean.getLocalUriString());
+                GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),photoUri,leftImgViewHolder.leftImgContent,10);
+            }else {
+                GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),messagePhotoBean.getLocalUriString(),leftImgViewHolder.leftImgContent,10);
+            }
         }else {
-            AliOssUtil.getInstance().downMusicVideoPicFromService(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+//            AliOssUtil.getInstance().downMusicVideoPicFromService(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+//                @Override
+//                public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                    if (status == 1){
+//                        Uri uri = (Uri) object;
+//                        messagePhotoBean.setLocalUriString(uri.toString());
+//                        GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),uri,leftImgViewHolder.leftImgContent,10);
+//                        String source = gson.toJson(messagePhotoBean);
+//                        p2PMessageBaseModel.setSourceContent(source);
+//                        p2PMessageViewModel.update(p2PMessageBaseModel);
+//                    }
+//                }
+//            });
+
+            HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
                 @Override
                 public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                     if (status == 1){
-                        Uri uri = (Uri) object;
-                        messagePhotoBean.setLocalUriString(uri.toString());
-                        GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),uri,leftImgViewHolder.leftImgContent,10);
+                        String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                        if (object instanceof File){
+                            File file = (File) object;
+                            localPath = file.getAbsolutePath();
+                        }else if (object instanceof Uri){
+                            Uri uri = (Uri) object;
+                            localPath = uri.toString();
+                        }
+                        Log.e("YM","下载的图片路径:"+localPath);
+                        messagePhotoBean.setLocalUriString(localPath);
+                        if (null == activity || activity.isDestroyed()){
+                            return;
+                        }
+                        if (object instanceof File){
+                            GlideUtils.loadRound(activity,localPath,leftImgViewHolder.leftImgContent,10);
+                        }else if (object instanceof Uri){
+                            Uri uri = (Uri) object;
+                            GlideUtils.loadRound(activity,uri,leftImgViewHolder.leftImgContent,10);
+                        }
                         String source = gson.toJson(messagePhotoBean);
                         p2PMessageBaseModel.setSourceContent(source);
                         p2PMessageViewModel.update(p2PMessageBaseModel);
@@ -84,18 +124,49 @@ public class LeftImgViewHolderBind extends BaseLeftViewHolderBind<LeftImgViewHol
         String content = teamMessageBaseModel.getSourceContent();
         Log.e("YM","获取的图片json数据:"+content);
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
-        Uri photoUri = Uri.parse(messagePhotoBean.getLocalUriString());
         boolean fileExists = FileUtils.fileExists(messagePhotoBean.getLocalUriString());
         if (fileExists){
-            GlideUtil.loadNormalImgByNet(leftImgViewHolder.itemView.getContext(),photoUri,leftImgViewHolder.leftImgContent);
+//            GlideUtil.loadNormalImgByNet(leftImgViewHolder.itemView.getContext(),photoUri,leftImgViewHolder.leftImgContent);
+            if (Build.VERSION.SDK_INT>=29){//android 10
+                Uri photoUri = Uri.parse(messagePhotoBean.getLocalUriString());
+                GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),photoUri,leftImgViewHolder.leftImgContent,10);
+            }else {
+                GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),messagePhotoBean.getLocalUriString(),leftImgViewHolder.leftImgContent,10);
+            }
         }else {
-            AliOssUtil.getInstance().downMusicVideoPicFromService(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+//            AliOssUtil.getInstance().downMusicVideoPicFromService(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
+//                @Override
+//                public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                    if (status == 1){
+//                        Uri uri = (Uri) object;
+//                        messagePhotoBean.setLocalUriString(uri.toString());
+//                        GlideUtil.loadNormalImgByNet(leftImgViewHolder.itemView.getContext(),uri,leftImgViewHolder.leftImgContent);
+//                        String source = gson.toJson(messagePhotoBean);
+//                        teamMessageBaseModel.setSourceContent(source);
+//                        teamMessageViewModel.update(teamMessageBaseModel);
+//                    }
+//                }
+//            });
+            HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messagePhotoBean.getDescription(), leftImgViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {
                 @Override
                 public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
                     if (status == 1){
-                        Uri uri = (Uri) object;
-                        messagePhotoBean.setLocalUriString(uri.toString());
-                        GlideUtil.loadNormalImgByNet(leftImgViewHolder.itemView.getContext(),uri,leftImgViewHolder.leftImgContent);
+                        String localPath = "";//10.0之上是uri，10.0之下是本地路径
+                        if (object instanceof File){
+                            File file = (File) object;
+                            localPath = file.getAbsolutePath();
+                        }else if (object instanceof Uri){
+                            Uri uri = (Uri) object;
+                            localPath = uri.toString();
+                        }
+                        Log.e("YM","下载的图片路径:"+localPath);
+                        messagePhotoBean.setLocalUriString(localPath);
+                        if (object instanceof File){
+                            GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),localPath,leftImgViewHolder.leftImgContent,10);
+                        }else if (object instanceof Uri){
+                            Uri uri = (Uri) object;
+                            GlideUtils.loadRound(leftImgViewHolder.itemView.getContext(),uri,leftImgViewHolder.leftImgContent,10);
+                        }
                         String source = gson.toJson(messagePhotoBean);
                         teamMessageBaseModel.setSourceContent(source);
                         teamMessageViewModel.update(teamMessageBaseModel);

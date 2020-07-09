@@ -71,6 +71,10 @@ public class CameraAction extends BaseAction{
         Log.e("YM","拍照获取的数据:requestCode->"+requestCode+"-->resultCode:"+resultCode);
         if (requestCode == IntentCode.REQUEST_CODE_CHOOSE){
             List<Uri> picturePath = Matisse.obtainResult(data);//获取uri路径
+            List<String> picturePathStr = Matisse.obtainPathResult(data);
+//            for (String path : picturePathStr){
+//                Log.e("YM","图片的文件路径:"+path);
+//            }
 //            MsgMgr.getInstance().sendMsg(MsgType.CHAT_PICTURE, picturePath.get(0));
             MsgMgr.getInstance().sendMsg(MsgType.CHAT_PICTURE, picturePath);
         }
