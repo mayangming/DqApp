@@ -64,7 +64,6 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
         Uri photoUri = Uri.parse(messageVideoBean.getThumbLocalPath());
         boolean fileExists = FileUtils.fileExists(messageVideoBean.getThumbLocalPath());
         if (fileExists){
-//            GlideUtil.loadNormalImgByNet(rightVideoViewHolder.itemView.getContext(),photoUri,rightVideoViewHolder.rightVideoBg);
             GlideUtils.loadRound(rightVideoViewHolder.itemView.getContext(),photoUri,rightVideoViewHolder.rightVideoBg,10);
         }else {
             AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getThumbPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_PICTURES, new OnFileDownListener() {

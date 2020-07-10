@@ -5,7 +5,9 @@ import android.widget.Toast;
 
 import com.dq.im.DqWebSocketClient;
 import com.wd.daquan.DqApp;
+import com.wd.daquan.imui.bean.im.DqImBaseBean;
 import com.wd.daquan.model.utils.GsonUtils;
+import com.wd.daquan.util.message_manager.SocketMessageManager;
 
 /**
  * socket消息发送工具类
@@ -35,6 +37,10 @@ class SocketMessageUtil {
     }
 
     public static boolean sendMessage(Object params){
+        if (params instanceof DqImBaseBean){
+            DqImBaseBean dqImBaseBean = (DqImBaseBean) params;
+            SocketMessageManager.getInstance().putMessage(dqImBaseBean.getContent().getMsgIdClient());
+        }
         return sendMessage(true,params);
     }
 

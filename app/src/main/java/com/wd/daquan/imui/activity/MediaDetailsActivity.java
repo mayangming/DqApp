@@ -14,9 +14,9 @@ import java.util.Iterator;
 
 
 /**
- * 图片详情
+ * 消息中的多媒体详情
  */
-public class PhotoDetailsActivity extends BaseActivity{
+public class MediaDetailsActivity extends BaseActivity{
     public static final String PHOTO_URL = "photoUrl";//图片网络地址
     public static final String PHOTO_DATA = "photoData";//图片数据
     public static final String PHOTO_DATA_CURRENT = "photoDataCurrent";//当前图片数据
@@ -39,7 +39,7 @@ public class PhotoDetailsActivity extends BaseActivity{
     }
 
     private void initAdapter(){
-        photoDetailsAdapter = new PhotoDetailsAdapter(imMessageBaseModels);
+        photoDetailsAdapter = new PhotoDetailsAdapter(getSupportFragmentManager(),imMessageBaseModels);
         photoDetailsVp.setAdapter(photoDetailsAdapter);
         photoDetailsVp.setCurrentItem(currentIndex);
     }
@@ -51,7 +51,7 @@ public class PhotoDetailsActivity extends BaseActivity{
         Iterator<ImMessageBaseModel> iterator = imMessageBaseModels.listIterator();
         while (iterator.hasNext()){
             ImMessageBaseModel model = iterator.next();
-            if (!MessageType.PICTURE.getValue().equals(model.getMsgType())){
+            if (!(MessageType.PICTURE.getValue().equals(model.getMsgType()) || MessageType.VIDEO.getValue().equals(model.getMsgType())) ){
                 iterator.remove();
             }
         }

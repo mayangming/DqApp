@@ -231,6 +231,7 @@ public class MsgType {
     public static final String UPDATE_READ_PACKAGE_RAIN_LABEL = "redPackageRainLabel";//红包雨标识
 
     public static final String MESSAGE_RECEIVE_CALL_BACK = "messageReceiveCallBack";//消息发送后，服务器把消息回传给客户端的内容
+    public static final String MESSAGE_RECEIVE_CALL_BACK_TIMEOUT = "messageReceiveCallBackTimeOut";//消息发送后，超时
     /**
      * 更新首页消息内容，比如头像、名字
      */

@@ -3,6 +3,9 @@ package com.meetqs.qingchat;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -43,6 +46,12 @@ public class ExampleUnitTest {
 //            e.printStackTrace();
 //        }
 
-
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        for (String content : list){
+            list.remove("1");
+        }
+        System.out.println("----->内容:"+list.toString());
     }
 }

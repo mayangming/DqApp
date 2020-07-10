@@ -64,7 +64,7 @@ import com.wd.daquan.http.HttpBaseBean;
 import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
 import com.wd.daquan.http.SocketMessageUtil;
-import com.wd.daquan.imui.activity.PhotoDetailsActivity;
+import com.wd.daquan.imui.activity.MediaDetailsActivity;
 import com.wd.daquan.imui.adapter.ChatP2PAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickForChildViewListenerCompat;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
@@ -88,6 +88,7 @@ import com.wd.daquan.model.sp.QCSharedPrefManager;
 import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
+import com.wd.daquan.util.message_manager.SocketMessageManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -269,11 +270,11 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                     redPackageRoutePager(view.getContext(),messageRedPackageBean,model);
                 }
                 Log.e("YM","点击文件类型:"+model.getMsgType());
-                if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
+                if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息或者视频消息的时候
                     ArrayList<P2PMessageBaseModel> temp = (ArrayList<P2PMessageBaseModel>)chatP2PAdapter.getData();
-                    Intent intent = new Intent(view.getContext(), PhotoDetailsActivity.class);
-                    intent.putExtra(PhotoDetailsActivity.PHOTO_DATA,temp);
-                    intent.putExtra(PhotoDetailsActivity.PHOTO_DATA_CURRENT,position);
+                    Intent intent = new Intent(view.getContext(), MediaDetailsActivity.class);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA,temp);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA_CURRENT,position);
                     startActivity(intent);
                 }
 
@@ -579,6 +580,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             saveMsgSuccess(p2PMessageBaseModel);
         }else if(MsgType.MESSAGE_RECEIVE_CALL_BACK.equals(key)){//消息发送后，服务器把消息回传给客户端的内容
             ImMessageBaseModel imMessageBaseModel = (ImMessageBaseModel)value;
+            SocketMessageManager.getInstance().removeMessage(imMessageBaseModel.getMsgIdClient());
             for (P2PMessageBaseModel messageBaseModel : chatP2PAdapter.getData()){
                 if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
                     messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
@@ -587,6 +589,17 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                     p2PMessageViewModel.updateP2PMessageByClientId(messageBaseModel);
                     chatP2PAdapter.updateMessageStatus(messageBaseModel);
                     Log.e("YM","更新消息发送状态");
+                    return;
+                }
+            }
+        }else if (MsgType.MESSAGE_RECEIVE_CALL_BACK_TIMEOUT.equals(key)){
+            String clientId = value.toString();
+            for (P2PMessageBaseModel messageBaseModel : chatP2PAdapter.getData()){
+                if (clientId.equals(messageBaseModel.getMsgIdClient())){
+                    messageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+                    p2PMessageViewModel.updateP2PMessageByClientId(messageBaseModel);
+                    chatP2PAdapter.updateMessageStatus(messageBaseModel);
+                    Log.e("YM","更新消息发送状态为失败");
                     return;
                 }
             }
@@ -600,7 +613,6 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             sendMessage(messageRedPackageBean,MessageType.RED_PACKAGE);
         }else if (MsgType.CHAT_PICTURE.equals(key)){
             List<Uri> picturePath = (List<Uri>) value;
-//            Uri uri = picturePath.get(0);
             for (Uri uri : picturePath){
                 uploadPhoto(uri);
             }
@@ -866,7 +878,6 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
 
     /**
      * 根据红包Id，更改红包消息打开状态
-     * @param couponId
      */
     private void parserRedPackageOpened(String couponId){
         List<P2PMessageBaseModel> messageBaseModels = chatP2PAdapter.getData();

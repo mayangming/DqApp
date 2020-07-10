@@ -748,7 +748,7 @@
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".imui.activity.PhotoDetailsActivity" />
+        <activity android:name=".imui.activity.MediaDetailsActivity" />
         <activity android:name=".imui.activity.RedPackageDetailsActivity" />
         <activity android:name=".imui.activity.RedPackageSendActivity" />
         <activity android:name=".imui.activity.VideoDetailsActivity" android:keepScreenOn="true" />

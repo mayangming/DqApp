@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.da.library.tools.AESHelper;
 import com.dq.im.bean.MediaExtraBean;
 import com.dq.im.bean.im.MessageCardBean;
 import com.dq.im.bean.im.MessagePhotoBean;
@@ -35,9 +34,7 @@ import com.dq.im.constants.URLUtil;
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.model.IMContentDataModel;
 import com.dq.im.model.ImMessageBaseModel;
-import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
-import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
@@ -66,7 +63,7 @@ import com.wd.daquan.http.HttpBaseBean;
 import com.wd.daquan.http.HttpResultResultCallBack;
 import com.wd.daquan.http.ImSdkHttpUtils;
 import com.wd.daquan.http.SocketMessageUtil;
-import com.wd.daquan.imui.activity.PhotoDetailsActivity;
+import com.wd.daquan.imui.activity.MediaDetailsActivity;
 import com.wd.daquan.imui.adapter.ChaTeamAdapter;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickForChildViewListenerCompat;
 import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
@@ -92,6 +89,7 @@ import com.wd.daquan.model.sp.QCSharedPrefManager;
 import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
+import com.wd.daquan.util.message_manager.SocketMessageManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,7 +100,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.internal.operators.flowable.FlowableOnErrorReturn;
 import okhttp3.Call;
 
 /**
@@ -275,9 +272,9 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
 
                 if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
                     ArrayList<TeamMessageBaseModel> temp = (ArrayList<TeamMessageBaseModel>)chaTeamAdapter.getData();
-                    Intent intent = new Intent(view.getContext(), PhotoDetailsActivity.class);
-                    intent.putExtra(PhotoDetailsActivity.PHOTO_DATA,temp);
-                    intent.putExtra(PhotoDetailsActivity.PHOTO_DATA_CURRENT,position);
+                    Intent intent = new Intent(view.getContext(), MediaDetailsActivity.class);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA,temp);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA_CURRENT,position);
                     startActivity(intent);
                 }
             }
@@ -663,6 +660,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
             saveMsgSuccess(teamMessageBaseModel);
         }else if(MsgType.MESSAGE_RECEIVE_CALL_BACK.equals(key)){//消息发送后，服务器把消息回传给客户端的内容
             ImMessageBaseModel imMessageBaseModel = (ImMessageBaseModel)value;
+            SocketMessageManager.getInstance().removeMessage(imMessageBaseModel.getMsgIdClient());
             for (TeamMessageBaseModel messageBaseModel : chaTeamAdapter.getData()){
                 if (imMessageBaseModel.getMsgIdClient().equals(messageBaseModel.getMsgIdClient())){
                     messageBaseModel.setMsgIdServer(imMessageBaseModel.getMsgIdServer());
@@ -670,7 +668,18 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                     messageBaseModel.setMessageSendStatus(imMessageBaseModel.getMessageSendStatus());
                     teamMessageViewModel.updateTeamPMessageByClientId(messageBaseModel);
                     chaTeamAdapter.updateMessageStatus(messageBaseModel);
-                    Log.e("YM","更新消息发送状态");
+                    Log.e("YM","更新消息发送状态为成功");
+                    return;
+                }
+            }
+        }else if (MsgType.MESSAGE_RECEIVE_CALL_BACK_TIMEOUT.equals(key)){
+            String clientId = value.toString();
+            for (TeamMessageBaseModel messageBaseModel : chaTeamAdapter.getData()){
+                if (clientId.equals(messageBaseModel.getMsgIdClient())){
+                    messageBaseModel.setMessageSendStatus(MessageSendType.SEND_FAIL.getValue());
+                    teamMessageViewModel.updateTeamPMessageByClientId(messageBaseModel);
+                    chaTeamAdapter.updateMessageStatus(messageBaseModel);
+                    Log.e("YM","更新消息发送状态为失败");
                     return;
                 }
             }
@@ -1009,7 +1018,7 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
         map.put("createTime","");//选填，填写的话会正序查询
         map.put("fromUserId", ModuleMgr.getCenterMgr().getUID());
         map.put("toUserId",sessionId);
-        map.put("groupId","");
+        map.put("groupId",sessionId);
         map.put("endTime",time);//选填，填写的话会倒序查询
         map.put("likeMsg","");
         ImSdkHttpUtils.postJson(URLUtil.USER_MSG_LIST,map,new HttpResultResultCallBack<HttpBaseBean>() {
