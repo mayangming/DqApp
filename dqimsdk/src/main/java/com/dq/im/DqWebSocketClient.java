@@ -34,6 +34,7 @@ import okhttp3.WebSocket;
  */
 public class DqWebSocketClient {
     private static final int RETRY_CONNECT = 0;//重连
+    public static final int REGISTER_MI_SUCCESS = 1;//小米注册通知
     private OkHttpClient mOkHttpClient;
     private Request request;
     private EchoWebSocketListener socketListener;
@@ -72,6 +73,10 @@ public class DqWebSocketClient {
 //                        handler.removeMessages(RETRY_CONNECT);
 //                    }
                     break;
+                case REGISTER_MI_SUCCESS:
+                    Log.e("YM","注册UserId成功");
+                    MiPushClient.setAlias(ImProvider.context, userId, null);
+                    break;
             }
         }
     };
@@ -97,6 +102,12 @@ public class DqWebSocketClient {
     public static DqWebSocketClient getInstance2(){
         return dqWebSocketClient;
     }
+
+
+    public void sendHandlerMessage(int what,Object object){
+        handler.sendEmptyMessage(what);
+    }
+
 
     private DqWebSocketClient(String userId) {
         this.userId = userId;
@@ -324,5 +335,6 @@ public class DqWebSocketClient {
     public void registerXiaoMiSystemReceiver(String miAppId,String miAppKey){
         //初始化push推送服务
         ThirdSystemMessageManager.getInstance().registerXiaoMiSystemReceiver(miAppId,miAppKey);
+        ThirdSystemMessageManager.getInstance().registerHwSystemReceiver();
     }
 }

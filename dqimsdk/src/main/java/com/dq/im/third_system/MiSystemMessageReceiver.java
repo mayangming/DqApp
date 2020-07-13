@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Message;
 import android.util.Log;
 
+import com.dq.im.DqWebSocketClient;
 import com.dq.im.ImProvider;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -39,10 +40,10 @@ public class MiSystemMessageReceiver extends PushMessageReceiver{
         String log;
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (miPushCommandMessage.getResultCode() == ErrorCode.SUCCESS) {
-                MiPushClient.setAlias(ImProvider.context, "YM", null);
+                DqWebSocketClient.getInstance().sendHandlerMessage(DqWebSocketClient.REGISTER_MI_SUCCESS,"");
 //                mRegId = cmdArg1;
 //                log = context.getString(R.string.register_success);
-                Log.e("YM","注册成功2222222222");
+                Log.e("YM","注册成功2222222222,注册ID："+cmdArg1);
             } else {
 //                log = context.getString(R.string.register_fail);
                 Log.e("YM","注册失败2222222222");

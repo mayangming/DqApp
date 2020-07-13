@@ -3,8 +3,13 @@ package com.dq.im.third_system;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Process;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.dq.im.ImProvider;
+import com.huawei.agconnect.config.AGConnectServicesConfig;
+import com.huawei.hms.aaid.HmsInstanceId;
+import com.huawei.hms.common.ApiException;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.List;
@@ -33,11 +38,14 @@ public class ThirdSystemMessageManager{
             MiPushClient.registerPush(ImProvider.context, miAppId, miAppKey);
         }
     }
-    public void registerThirdSystemReceiver(){
+
+    public void registerHwSystemReceiver(){
+        getToken();
     }
 
+    public void registerThirdSystemReceiver(){
 
-
+    }
 
     private boolean shouldInit() {
         ActivityManager am = ((ActivityManager) ImProvider.context.getSystemService(Context.ACTIVITY_SERVICE));
@@ -51,4 +59,27 @@ public class ThirdSystemMessageManager{
         }
         return false;
     }
+
+    private void getToken() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    // read from agconnect-services.json
+                    String appId = AGConnectServicesConfig.fromContext(ImProvider.context).getString("client/app_id");
+                    String token = HmsInstanceId.getInstance(ImProvider.context).getToken(appId, "HCM");
+                    Log.i("YM", "get token:" + token);
+                    if(!TextUtils.isEmpty(token)) {
+                        sendRegTokenToServer(token);
+                    }
+                } catch (ApiException e) {
+                    Log.e("YM", "get token failed, " + e);
+                }
+            }
+        }.start();
+    }
+    private void sendRegTokenToServer(String token) {
+        Log.i("YM", "sending token to server. token:" + token);
+    }
+
 }

@@ -11,6 +11,8 @@
             android:exported="false"
             android:authorities="${applicationId}.IMprovider"
             android:name="com.dq.im.ImProvider"/>
+
+        <!--小米推送-->
         <service
             android:name="com.xiaomi.push.service.XMPushService"
             android:enabled="true"
@@ -66,5 +68,18 @@
                 <action android:name="com.xiaomi.mipush.ERROR" />
             </intent-filter>
         </receiver>
+
+
+        <!--华为推送-->
+        <service
+            android:name=".third_system.HwSystemMessageReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="push_kit_auto_init_enabled"
+            android:value="true"/>
     </application>
 </manifest>
