@@ -8,8 +8,11 @@ import android.util.Log;
 
 import com.dq.im.ImProvider;
 import com.huawei.agconnect.config.AGConnectServicesConfig;
+import com.huawei.hmf.tasks.OnCompleteListener;
+import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.common.ApiException;
+import com.huawei.hms.push.HmsMessaging;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.List;
@@ -41,6 +44,7 @@ public class ThirdSystemMessageManager{
 
     public void registerHwSystemReceiver(){
         getToken();
+        initHwBuild();
     }
 
     public void registerThirdSystemReceiver(){
@@ -82,4 +86,19 @@ public class ThirdSystemMessageManager{
         Log.i("YM", "sending token to server. token:" + token);
     }
 
+    /**
+     * 初始化华为配置
+     */
+    private void initHwBuild(){
+        HmsMessaging.getInstance(ImProvider.context).turnOnPush().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(Task<Void> task) {
+                if (task.isSuccessful()){
+                    Log.e("YM","h华为---turnOnPush Complete");
+                }else {
+                    Log.e("YM","华为异常:"+task.getException().getMessage());
+                }
+            }
+        });
+    }
 }
