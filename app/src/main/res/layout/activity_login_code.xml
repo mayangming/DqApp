@@ -31,13 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/toolbar"
-            android:layout_margin="@dimen/dd_dp30"
+            android:layout_marginTop="@dimen/dp_10"
             android:src="@mipmap/dq_logo"/>
 
         <LinearLayout
             android:id="@+id/ll_translation_container"
             android:layout_below="@+id/dq_logo"
-            android:layout_marginTop="@dimen/dd_dp30"
+            android:layout_marginTop="@dimen/dp_15"
             android:layout_marginLeft="@dimen/dd_dp15"
             android:layout_marginRight="@dimen/dd_dp15"
             android:paddingBottom="@dimen/dd_dp30"
@@ -180,15 +180,17 @@
             android:layout_below="@+id/user_protocol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dd_dp10"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
             android:layout_centerHorizontal="true">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp14"
+                android:text="@string/login_phone_pwd"
                 android:textColor="@color/color_F39825"
-                android:text="@string/login_phone_pwd"/>
+                android:textSize="@dimen/sp14" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
