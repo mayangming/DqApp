@@ -13,11 +13,13 @@ import com.dq.im.ipc.DqWebSocketListener;
 import com.dq.im.ipc.DqWebSocketMessageFilter;
 import com.dq.im.model.ImContentDeserializer;
 import com.dq.im.model.P2PMessageBaseModel;
+import com.dq.im.third_system.ThirdSystemMessageManager;
 import com.dq.im.type.SocketStatus;
 import com.dq.im.util.NetWorkUtil;
 import com.dq.im.util.SimpleNetWorkConnectCallBack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -318,5 +320,9 @@ public class DqWebSocketClient {
      */
     public void setRetryCountCurrent(int retryCountCurrent) {
         this.retryCountCurrent = retryCountCurrent;
+    }
+    public void registerXiaoMiSystemReceiver(String miAppId,String miAppKey){
+        //初始化push推送服务
+        ThirdSystemMessageManager.getInstance().registerXiaoMiSystemReceiver(miAppId,miAppKey);
     }
 }

@@ -630,6 +630,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         dqWebSocketClient = DqWebSocketClient.getInstance2();
         if (null == dqWebSocketClient){
             dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
+            dqWebSocketClient.registerXiaoMiSystemReceiver("2882303761518277651","5811827758651");
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }

@@ -31,6 +31,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * 提现记录页
@@ -225,6 +226,7 @@ public class WithdrawRecordActivity extends DqBaseActivity<WalletCloudPresenter,
                 if (1 == page && 1 == sourceType){
                     emptyView.setVisibility(View.VISIBLE);
                     smartRefreshLayout.setVisibility(View.GONE);
+                    setDefaultTime();
                 }else {
                     if (sourceType == 2){
                         titleTimeContainer.setVisibility(View.VISIBLE);
@@ -254,6 +256,23 @@ public class WithdrawRecordActivity extends DqBaseActivity<WalletCloudPresenter,
         super.onFailed(url, code, entity);
         if (DqUrl.url_user_cloud_wallet_transaction_record.equals(url)){
             smartRefreshLayout.finishLoadMore();//停止刷新
+            if (recordBeans.isEmpty()){
+                setDefaultTime();
+            }
         }
     }
+
+    private void setDefaultTime(){
+
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT+08:00"));    //获取东八区时间
+
+        //获取年
+        int year = c.get(Calendar.YEAR);
+        //获取月份，0表示1月份
+        int month = c.get(Calendar.MONTH) + 1;
+        //获取当前天数
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        titleTimeTv.setText(year+"年"+month+"月");
+    }
+
 }

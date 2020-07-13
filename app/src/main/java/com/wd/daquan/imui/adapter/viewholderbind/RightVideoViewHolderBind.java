@@ -82,48 +82,48 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
             });
         }
 //        GlideUtil.loadNormalImgByNet(rightVideoViewHolder.itemView.getContext(),messageVideoBean.getThumbPath(),rightVideoViewHolder.rightVideoBg);
-        rightVideoViewHolder.itemRightVideoContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
-                Log.e("YM","文件是否存在:"+fileExists);
-                if (fileExists){
-//                    initVoice(videoUri);
-                    playVideo(v.getContext(),messageVideoBean.getVideoLocalPath());
-                }else {
-                    rightVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
-                    rightVideoViewHolder.rightVideo.setVisibility(View.GONE);
-                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
-                        @Override
-                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
-                            if (status == 1){
-                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
-                                if (object instanceof File){
-                                    File file = (File) object;
-                                    localPath = file.getAbsolutePath();
-                                }else if (object instanceof Uri){
-                                    Uri uri = (Uri) object;
-                                    localPath = uri.toString();
-                                }
-                                messageVideoBean.setVideoLocalPath(localPath);
-                                String source = gson.toJson(messageVideoBean);
-                                p2PMessageBaseModel.setSourceContent(source);
-                                p2PMessageViewModel.update(p2PMessageBaseModel);
-                                playVideo(v.getContext(),localPath);
-                                rightVideoViewHolder.itemView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        rightVideoViewHolder.videoLoading.setVisibility(View.GONE);
-                                        rightVideoViewHolder.rightVideo.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-//                playVideo(v.getContext(),messageVideoBean.getVideoPath());
-            }
-        });
+//        rightVideoViewHolder.itemRightVideoContainer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
+//                Log.e("YM","文件是否存在:"+fileExists);
+//                if (fileExists){
+////                    initVoice(videoUri);
+//                    playVideo(v.getContext(),messageVideoBean.getVideoLocalPath());
+//                }else {
+//                    rightVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
+//                    rightVideoViewHolder.rightVideo.setVisibility(View.GONE);
+//                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//                        @Override
+//                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+//                            if (status == 1){
+//                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
+//                                if (object instanceof File){
+//                                    File file = (File) object;
+//                                    localPath = file.getAbsolutePath();
+//                                }else if (object instanceof Uri){
+//                                    Uri uri = (Uri) object;
+//                                    localPath = uri.toString();
+//                                }
+//                                messageVideoBean.setVideoLocalPath(localPath);
+//                                String source = gson.toJson(messageVideoBean);
+//                                p2PMessageBaseModel.setSourceContent(source);
+//                                p2PMessageViewModel.update(p2PMessageBaseModel);
+//                                playVideo(v.getContext(),localPath);
+//                                rightVideoViewHolder.itemView.post(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        rightVideoViewHolder.videoLoading.setVisibility(View.GONE);
+//                                        rightVideoViewHolder.rightVideo.setVisibility(View.VISIBLE);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+//                }
+////                playVideo(v.getContext(),messageVideoBean.getVideoPath());
+//            }
+//        });
     }
 
     private void setTeamRightVideoData(RightVideoViewHolder rightVideoViewHolder, TeamMessageBaseModel teamMessageBaseModel){
@@ -152,27 +152,54 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
             });
         }
 //        GlideUtil.loadNormalImgByNet(rightVideoViewHolder.itemView.getContext(),messageVideoBean.getThumbPath(),rightVideoViewHolder.rightVideoBg);
-        rightVideoViewHolder.itemRightVideoContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
-                Log.e("YM","文件是否存在:"+fileExists);
-                if (fileExists){
-//                    initVoice(videoUri);
-                    playVideo(v.getContext(),messageVideoBean.getVideoLocalPath());
-                }else {
-                    rightVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
-                    rightVideoViewHolder.rightVideo.setVisibility(View.GONE);
-//                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+//        rightVideoViewHolder.itemRightVideoContainer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
+//                Log.e("YM","文件是否存在:"+fileExists);
+//                if (fileExists){
+////                    initVoice(videoUri);
+//                    playVideo(v.getContext(),messageVideoBean.getVideoLocalPath());
+//                }else {
+//                    rightVideoViewHolder.videoLoading.setVisibility(View.VISIBLE);
+//                    rightVideoViewHolder.rightVideo.setVisibility(View.GONE);
+////                    AliOssUtil.getInstance().downMusicVideoPicFromService(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
+////                        @Override
+////                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+////                            if (status == 1){
+////                                Uri uri = (Uri) object;
+////                                messageVideoBean.setVideoLocalPath(uri.toString());
+////                                String source = gson.toJson(messageVideoBean);
+////                                teamMessageBaseModel.setSourceContent(source);
+////                                teamMessageViewModel.update(teamMessageBaseModel);
+////                                playVideo(v.getContext(),uri.toString());
+////                                rightVideoViewHolder.itemView.post(new Runnable() {
+////                                    @Override
+////                                    public void run() {
+////                                        rightVideoViewHolder.videoLoading.setVisibility(View.GONE);
+////                                        rightVideoViewHolder.rightVideo.setVisibility(View.VISIBLE);
+////                                    }
+////                                });
+////                            }
+////                        }
+////                    });
+//                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
 //                        @Override
 //                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
 //                            if (status == 1){
-//                                Uri uri = (Uri) object;
-//                                messageVideoBean.setVideoLocalPath(uri.toString());
+//                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
+//                                if (object instanceof File){
+//                                    File file = (File) object;
+//                                    localPath = file.getAbsolutePath();
+//                                }else if (object instanceof Uri){
+//                                    Uri uri = (Uri) object;
+//                                    localPath = uri.toString();
+//                                }
+//                                messageVideoBean.setVideoLocalPath(localPath);
 //                                String source = gson.toJson(messageVideoBean);
 //                                teamMessageBaseModel.setSourceContent(source);
 //                                teamMessageViewModel.update(teamMessageBaseModel);
-//                                playVideo(v.getContext(),uri.toString());
+//                                playVideo(v.getContext(),localPath);
 //                                rightVideoViewHolder.itemView.post(new Runnable() {
 //                                    @Override
 //                                    public void run() {
@@ -183,37 +210,10 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
 //                            }
 //                        }
 //                    });
-                    HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), rightVideoViewHolder.itemView.getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
-                        @Override
-                        public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
-                            if (status == 1){
-                                String localPath = "";//10.0之上是uri，10.0之下是本地路径
-                                if (object instanceof File){
-                                    File file = (File) object;
-                                    localPath = file.getAbsolutePath();
-                                }else if (object instanceof Uri){
-                                    Uri uri = (Uri) object;
-                                    localPath = uri.toString();
-                                }
-                                messageVideoBean.setVideoLocalPath(localPath);
-                                String source = gson.toJson(messageVideoBean);
-                                teamMessageBaseModel.setSourceContent(source);
-                                teamMessageViewModel.update(teamMessageBaseModel);
-                                playVideo(v.getContext(),localPath);
-                                rightVideoViewHolder.itemView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        rightVideoViewHolder.videoLoading.setVisibility(View.GONE);
-                                        rightVideoViewHolder.rightVideo.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-//                playVideo(v.getContext(),messageVideoBean.getVideoPath());
-            }
-        });
+//                }
+////                playVideo(v.getContext(),messageVideoBean.getVideoPath());
+//            }
+//        });
     }
 
     /**

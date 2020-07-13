@@ -278,6 +278,14 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
                     startActivity(intent);
                 }
 
+                if (MessageType.VIDEO.getValue().equals(model.getMsgType())){//假如是图片消息或者视频消息的时候
+                    ArrayList<P2PMessageBaseModel> temp = (ArrayList<P2PMessageBaseModel>)chatP2PAdapter.getData();
+                    Intent intent = new Intent(view.getContext(), MediaDetailsActivity.class);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA,temp);
+                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA_CURRENT,position);
+                    startActivity(intent);
+                }
+
             }
         });
         chatP2PAdapter.setRecycleItemOnLongClickListener(new RecycleItemOnLongClickListener() {
