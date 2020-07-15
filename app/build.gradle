@@ -33,6 +33,8 @@ android {
         buildConfigField("String", "VIVO_APP_ID",'"103494129"')
         buildConfigField("String", "VIVO_APP_KEY",'"65ea100c79d4f6ffc0fa995ed3be1bc6"')
         buildConfigField("String", "VIVO_APP_SECRET",'"8c264190-80df-4e6d-b203-31c815f463f0"')
+        buildConfigField("String", "OPPO_APP_KEY",'"e3d8c90c895646dda7c3d22db2e646cf"')
+        buildConfigField("String", "OPPO_APP_SECRET",'"78aa9a4f6a1c4757b34445c1436ec54c"')
     }
     buildTypes {
         release {

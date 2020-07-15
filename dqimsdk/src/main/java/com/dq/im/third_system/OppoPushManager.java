@@ -1,5 +1,6 @@
 package com.dq.im.third_system;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.dq.im.DqWebSocketClient;
@@ -30,7 +31,9 @@ public class OppoPushManager extends ThirdPushManager{
             public void onRegister(int responseCode, String registerId) {
                 Log.e("YM","OppO注册结果:"+registerId);
 //                DqWebSocketClient.getInstance().sendHandlerMessage(DqWebSocketClient.REGISTER_OPPO_SUCCESS,registerId);
-                sendMessage("OPPO",registerId);
+                if (!TextUtils.isEmpty(registerId)){
+                    sendMessage("OPPO",registerId);
+                }
             }
 
             @Override

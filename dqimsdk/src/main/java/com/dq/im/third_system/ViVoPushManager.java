@@ -37,14 +37,12 @@ public class ViVoPushManager extends ThirdPushManager{
             @Override
 
             public void onResult(TokenResult tokenResult) {
-
                 if   (tokenResult.getReturnCode() == 0) {
-
-                    Log.d("YM_VIVO", "注册成功 regID = " +   tokenResult.getToken());
+                    Log.e("YM", "(VIVO)注册成功 regID = " +   tokenResult.getToken());
 
                 } else {
 
-                    Log.d("YM_VIVO", "注册失败");
+                    Log.e("YM", "(VIVO)注册失败:"+tokenResult.getReturnCode());
 
                 }
 
@@ -91,6 +89,8 @@ public class ViVoPushManager extends ThirdPushManager{
      * @return
      */
     public boolean isSupport(){
-       return PushClient.getInstance(ImProvider.context).isSupport();
+        boolean isSupport = PushClient.getInstance(ImProvider.context).isSupport();;
+        Log.e("YM","是否支持ViVO推送:"+isSupport);
+       return isSupport;
     }
 }

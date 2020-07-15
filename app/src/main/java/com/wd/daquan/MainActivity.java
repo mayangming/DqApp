@@ -52,6 +52,7 @@ import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
 import com.dq.im.type.MessageType;
+import com.dq.im.util.Rom;
 import com.dq.im.util.SoundPoolUtils;
 import com.dq.im.util.VibratorUtil;
 import com.dq.im.util.notification.NotificationUtil;
@@ -673,9 +674,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 ViVoPushManager.getViVoPushManager().register(BuildConfig.VIVO_APP_ID,BuildConfig.VIVO_APP_KEY,BuildConfig.VIVO_APP_SECRET);
                 ViVoPushManager.getViVoPushManager().turnOnPush();
             }
-//            if (OppoPushManager.getOppoPushManager().isSupport()){
-                OppoPushManager.getOppoPushManager().register("e3d8c90c895646dda7c3d22db2e646cf","78aa9a4f6a1c4757b34445c1436ec54c");
-//            }
+            if (Rom.isOppo()){
+                OppoPushManager.getOppoPushManager().register(BuildConfig.OPPO_APP_KEY,BuildConfig.OPPO_APP_SECRET);
+            }
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }

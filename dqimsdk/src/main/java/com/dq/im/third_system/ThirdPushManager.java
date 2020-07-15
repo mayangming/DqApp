@@ -33,6 +33,7 @@ public class ThirdPushManager{
     }
 
     public void sendMessage(String modeType,String regId){
+        Log.e("YM","类型:"+modeType+"----注册信息:"+regId);
         Message message = Message.obtain();
         message.what = 1;
         message.obj = regId;
