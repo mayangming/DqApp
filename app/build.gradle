@@ -28,6 +28,8 @@ android {
         buildConfigField("String", "WX_PAY_API_KEY", rootProject.ext.third.wx_pay_api_key)
         buildConfigField("String", "WX_PAY_PACKAGE", rootProject.ext.third.wx_pay_pacakage)
         buildConfigField("boolean", "IS_DUBUG","$rootProject.ext.isDebug")
+        buildConfigField("String", "MI_APP_ID",'"2882303761518277651"')
+        buildConfigField("String", "MI_KEY",'"5811827758651"')
     }
     buildTypes {
         release {

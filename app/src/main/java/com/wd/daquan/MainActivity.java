@@ -42,6 +42,9 @@ import com.dq.im.model.TeamModel;
 import com.dq.im.model.UserModel;
 import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
+import com.dq.im.third_system.HwPushManager;
+import com.dq.im.third_system.ViVoPushManager;
+import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
 import com.dq.im.type.MessageType;
@@ -102,7 +105,7 @@ import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.ApplicationDialog;
 import com.wd.daquan.util.IntentUtils;
 import com.wd.daquan.util.TToast;
-
+import com.wd.daquan.BuildConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -630,7 +633,10 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         dqWebSocketClient = DqWebSocketClient.getInstance2();
         if (null == dqWebSocketClient){
             dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
-            dqWebSocketClient.registerXiaoMiSystemReceiver("2882303761518277651","5811827758651");
+            XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
+            HwPushManager.getHwPushManager().registerHwSystemReceiver();
+            ViVoPushManager.getViVoPushManager().register("103494129","65ea100c79d4f6ffc0fa995ed3be1bc6","8c264190-80df-4e6d-b203-31c815f463f0");
+            ViVoPushManager.getViVoPushManager().turnOnPush();
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }

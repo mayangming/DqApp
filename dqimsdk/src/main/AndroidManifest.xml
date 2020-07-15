@@ -1,11 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dq.im" >
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <permission android:name="${applicationId}.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" /> <!--这里com.xiaomi.mipushdemo改成app的包名-->
     <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" /><!--这里com.xiaomi.mipushdemo改成app的包名-->
 
+    <!-- OPPO推送 -->
+    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+    <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE"/>
     <application>
         <provider
             android:exported="false"
@@ -81,5 +85,65 @@
         <meta-data
             android:name="push_kit_auto_init_enabled"
             android:value="true"/>
+
+
+        <!--VIVO推送-->
+
+        <!--Vivo Push需要配置的service、activity-->
+
+        <service
+
+            android:name="com.vivo.push.sdk.service.CommandClientService"
+
+            android:exported="true"/>
+
+        <!--Vivo Push开放平台中应用的appid 和api key-->
+
+        <meta-data
+
+            android:name="com.vivo.push.api_key"
+
+            android:value="65ea100c79d4f6ffc0fa995ed3be1bc6"/>
+
+        <meta-data
+
+            android:name="com.vivo.push.app_id"
+
+            android:value="103494129"/>
+
+
+        <!-- push应用定义消息receiver声明 -->
+
+        <receiver android:name=".third_system.ViVoSystemMessageReceiver" >
+
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action   android:name="com.vivo.pushclient.action.RECEIVE"   />
+
+            </intent-filter>
+
+        </receiver>
+
+        <!--Oppo推送-->
+        <service
+            android:name="com.heytap.msp.push.service.CompatibleDataMessageCallbackService"
+
+            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
+            <intent-filter>
+                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE"/>
+            </intent-filter>
+        </service> <!--兼容Q以下版本-->
+
+        <service
+            android:name="com.heytap.msp.push.service.DataMessageCallbackService"
+
+            android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE">
+
+            <intent-filter>
+                <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE"/>
+
+                <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE"/>
+            </intent-filter>
+        </service> <!--兼容Q版本-->
     </application>
 </manifest>

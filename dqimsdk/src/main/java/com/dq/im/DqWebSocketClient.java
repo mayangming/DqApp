@@ -19,6 +19,8 @@ import com.dq.im.util.NetWorkUtil;
 import com.dq.im.util.SimpleNetWorkConnectCallBack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.vivo.push.IPushActionListener;
+import com.vivo.push.PushClient;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.ResourceBundle;
@@ -35,6 +37,7 @@ import okhttp3.WebSocket;
 public class DqWebSocketClient {
     private static final int RETRY_CONNECT = 0;//重连
     public static final int REGISTER_MI_SUCCESS = 1;//小米注册通知
+    public static final int REGISTER_VIVO_SUCCESS = 2;//VIVO注册通知
     private OkHttpClient mOkHttpClient;
     private Request request;
     private EchoWebSocketListener socketListener;
@@ -76,6 +79,15 @@ public class DqWebSocketClient {
                 case REGISTER_MI_SUCCESS:
                     Log.e("YM","注册UserId成功");
                     MiPushClient.setAlias(ImProvider.context, userId, null);
+                    break;
+                case REGISTER_VIVO_SUCCESS:
+
+                    PushClient.getInstance(ImProvider.context).bindAlias(userId, new IPushActionListener() {
+                        @Override
+                        public void onStateChanged(int i) {
+                            Log.e("YM","VIVO绑定别名结果:"+i);
+                        }
+                    });
                     break;
             }
         }
@@ -332,9 +344,5 @@ public class DqWebSocketClient {
     public void setRetryCountCurrent(int retryCountCurrent) {
         this.retryCountCurrent = retryCountCurrent;
     }
-    public void registerXiaoMiSystemReceiver(String miAppId,String miAppKey){
-        //初始化push推送服务
-        ThirdSystemMessageManager.getInstance().registerXiaoMiSystemReceiver(miAppId,miAppKey);
-        ThirdSystemMessageManager.getInstance().registerHwSystemReceiver();
-    }
+
 }

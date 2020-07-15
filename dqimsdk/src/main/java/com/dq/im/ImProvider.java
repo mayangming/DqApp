@@ -9,12 +9,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.dq.im.third_system.ViVoPushManager;
+
 public class ImProvider extends ContentProvider{
     public static Context context;
     @Override
     public boolean onCreate() {
         Log.e("YM","创建IM上下文");
         context = getContext();
+        ViVoPushManager.getViVoPushManager().initialize();
         return false;
     }
 
