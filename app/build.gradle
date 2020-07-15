@@ -30,6 +30,9 @@ android {
         buildConfigField("boolean", "IS_DUBUG","$rootProject.ext.isDebug")
         buildConfigField("String", "MI_APP_ID",'"2882303761518277651"')
         buildConfigField("String", "MI_KEY",'"5811827758651"')
+        buildConfigField("String", "VIVO_APP_ID",'"103494129"')
+        buildConfigField("String", "VIVO_APP_KEY",'"65ea100c79d4f6ffc0fa995ed3be1bc6"')
+        buildConfigField("String", "VIVO_APP_SECRET",'"8c264190-80df-4e6d-b203-31c815f463f0"')
     }
     buildTypes {
         release {

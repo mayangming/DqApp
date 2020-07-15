@@ -11,7 +11,9 @@ import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.common.ApiException;
 import com.huawei.hms.push.HmsMessaging;
 
-public class HwPushManager {
+import java.lang.reflect.Method;
+
+public class HwPushManager extends ThirdPushManager{
     private static HwPushManager hwPushManager;
     static {
         hwPushManager = new HwPushManager();
@@ -69,5 +71,23 @@ public class HwPushManager {
             }
         });
     }
+    /**
+     * 判断是否可以使用华为推送
+     *
+     * @return
+     */
+    public Boolean canHuaWeiPush() {
 
+        int emuiApiLevel = 0;
+        try {
+            Class cls = Class.forName("android.os.SystemProperties");
+            Method method = cls.getDeclaredMethod("get", new Class[]{String.class});
+            emuiApiLevel = Integer.parseInt((String) method.invoke(cls, new Object[]{"ro.build.hw_emui_api_level"}));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return emuiApiLevel > 5.0;
+
+    }
 }

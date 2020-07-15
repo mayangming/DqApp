@@ -14,6 +14,8 @@ import com.dq.im.ipc.DqWebSocketMessageFilter;
 import com.dq.im.model.ImContentDeserializer;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.third_system.ThirdSystemMessageManager;
+import com.dq.im.third_system.ViVoPushManager;
+import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.SocketStatus;
 import com.dq.im.util.NetWorkUtil;
 import com.dq.im.util.SimpleNetWorkConnectCallBack;
@@ -79,6 +81,7 @@ public class DqWebSocketClient {
                 case REGISTER_MI_SUCCESS:
                     Log.e("YM","注册UserId成功");
                     MiPushClient.setAlias(ImProvider.context, userId, null);
+                    XiaoMiPushManager.getXiaoMiPushManager().sendMessage("xiaomi",userId);
                     break;
                 case REGISTER_VIVO_SUCCESS:
 
@@ -86,6 +89,7 @@ public class DqWebSocketClient {
                         @Override
                         public void onStateChanged(int i) {
                             Log.e("YM","VIVO绑定别名结果:"+i);
+                            ViVoPushManager.getViVoPushManager().sendMessage("vivo",userId);
                         }
                     });
                     break;

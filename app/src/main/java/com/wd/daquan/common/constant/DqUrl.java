@@ -1007,4 +1007,8 @@ public class DqUrl {
     /********************************* end *******************************************/
 
     public static String url_user_query = "user/query_user";//查询账号
+
+
+    public static String url_user_system = "user/userSystem";//提交系统名字
+
 }

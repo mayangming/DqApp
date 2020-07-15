@@ -6,6 +6,7 @@ import android.app.Service;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -43,6 +44,8 @@ import com.dq.im.model.UserModel;
 import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
 import com.dq.im.third_system.HwPushManager;
+import com.dq.im.third_system.ThirdSystemRegisterResultIml;
+import com.dq.im.third_system.ThirdSystemType;
 import com.dq.im.third_system.ViVoPushManager;
 import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.ImType;
@@ -87,9 +90,11 @@ import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.db.helper.FriendDbHelper;
 import com.wd.daquan.model.db.helper.MemberDbHelper;
 import com.wd.daquan.model.db.helper.TeamDbHelper;
+import com.wd.daquan.model.interfaces.DqCallBack;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.mgr.ConfigManager;
 import com.wd.daquan.model.mgr.ModuleMgr;
+import com.wd.daquan.model.retrofit.RetrofitHelp;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
@@ -633,10 +638,35 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         dqWebSocketClient = DqWebSocketClient.getInstance2();
         if (null == dqWebSocketClient){
             dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
-            XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
-            HwPushManager.getHwPushManager().registerHwSystemReceiver();
-            ViVoPushManager.getViVoPushManager().register("103494129","65ea100c79d4f6ffc0fa995ed3be1bc6","8c264190-80df-4e6d-b203-31c815f463f0");
-            ViVoPushManager.getViVoPushManager().turnOnPush();
+            XiaoMiPushManager.getXiaoMiPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+                @Override
+                public void registerResult(String thirdType, String regId) {
+                    uploadThirdRegisterMessage(ThirdSystemType.XIAO_MI,regId);
+                }
+            });
+            HwPushManager.getHwPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+                @Override
+                public void registerResult(String thirdType, String regId) {
+                    uploadThirdRegisterMessage(ThirdSystemType.HUA_WEI,regId);
+                }
+            });
+            ViVoPushManager.getViVoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+                @Override
+                public void registerResult(String thirdType, String regId) {
+                    uploadThirdRegisterMessage(ThirdSystemType.VIVO,regId);
+                }
+            });
+            if (XiaoMiPushManager.getXiaoMiPushManager().isSupport()){
+                XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
+            }
+            if (HwPushManager.getHwPushManager().canHuaWeiPush()){
+                HwPushManager.getHwPushManager().registerHwSystemReceiver();
+            }
+            if (ViVoPushManager.getViVoPushManager().isSupport()){
+                ViVoPushManager.getViVoPushManager().register(BuildConfig.VIVO_APP_ID,BuildConfig.VIVO_APP_KEY,BuildConfig.VIVO_APP_SECRET);
+                ViVoPushManager.getViVoPushManager().turnOnPush();
+            }
+
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }
@@ -855,6 +885,27 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 上传第三方信息
+     */
+    private void uploadThirdRegisterMessage(String thirdModeType,String regId){
+        Map<String,String> params = new HashMap<>();
+        params.put("userId",ModuleMgr.getCenterMgr().getUID());
+        params.put("system", thirdModeType);
+        params.put("usertoken",regId);
+        RetrofitHelp.request(DqUrl.url_user_system, params, new DqCallBack() {
+            @Override
+            public void onSuccess(String url, int code, DataBean entity) {
+                Log.e("YM","请求结果(成功):"+entity.toString());
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean entity) {
+                Log.e("YM","请求结果(失败):"+entity.toString());
+            }
+        });
     }
 
     /**

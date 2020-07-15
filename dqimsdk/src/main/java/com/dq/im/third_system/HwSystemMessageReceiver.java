@@ -27,11 +27,12 @@ public class HwSystemMessageReceiver extends HmsMessageService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         Log.e("YM","华为消息更新的Token:"+s);
+        HwPushManager.getHwPushManager().sendMessage(ThirdSystemType.HUA_WEI,s);
     }
 
     /**
      * 服务端更新Token失败回调
-     * @param s
+     * @param e
      */
     @Override
     public void onTokenError(Exception e) {

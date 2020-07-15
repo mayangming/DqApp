@@ -14,7 +14,7 @@ import com.vivo.push.ups.VUpsManager;
 /**
  * VIVO推送
  */
-public class ViVoPushManager{
+public class ViVoPushManager extends ThirdPushManager{
     private static ViVoPushManager viVoPushManager;
     static {
         viVoPushManager = new ViVoPushManager();
@@ -86,4 +86,11 @@ public class ViVoPushManager{
         });
     }
 
+    /**
+     * 是否支持ViVo推送
+     * @return
+     */
+    public boolean isSupport(){
+       return PushClient.getInstance(ImProvider.context).isSupport();
+    }
 }
