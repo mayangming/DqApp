@@ -1,5 +1,8 @@
 package com.dq.im.third_system;
 
+import android.util.Log;
+
+import com.dq.im.DqWebSocketClient;
 import com.dq.im.ImProvider;
 import com.heytap.msp.push.HeytapPushManager;
 import com.heytap.msp.push.callback.ICallBackResultService;
@@ -7,7 +10,7 @@ import com.heytap.msp.push.callback.ICallBackResultService;
 /**
  * Oppo推送通知
  */
-public class OppoPushManager {
+public class OppoPushManager extends ThirdPushManager{
     private static OppoPushManager oppoPushManager;
     static {
         oppoPushManager = new OppoPushManager();
@@ -20,12 +23,14 @@ public class OppoPushManager {
         return oppoPushManager;
     }
 
-    public void init(){
+    public void register(String appKey,String appSecret){
         HeytapPushManager.init(ImProvider.context, true);
-        HeytapPushManager.register(ImProvider.context, "e3d8c90c895646dda7c3d22db2e646cf", "e3d8c90c895646dda7c3d22db2e646cf", new ICallBackResultService(){
+        HeytapPushManager.register(ImProvider.context, appKey, appSecret, new ICallBackResultService(){
             @Override
-            public void onRegister(int i, String s) {
-
+            public void onRegister(int responseCode, String registerId) {
+                Log.e("YM","OppO注册结果:"+registerId);
+//                DqWebSocketClient.getInstance().sendHandlerMessage(DqWebSocketClient.REGISTER_OPPO_SUCCESS,registerId);
+                sendMessage("OPPO",registerId);
             }
 
             @Override
@@ -49,6 +54,14 @@ public class OppoPushManager {
             }
         });//setPushCallback接口也可设置callback
         HeytapPushManager.requestNotificationPermission();
+    }
+
+    /**
+     * 判断Oppo推送是否支持
+     * @return
+     */
+    public boolean isSupport(){
+        return HeytapPushManager.isSupportPush();
     }
 
 }

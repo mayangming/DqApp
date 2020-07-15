@@ -40,6 +40,7 @@ public class DqWebSocketClient {
     private static final int RETRY_CONNECT = 0;//重连
     public static final int REGISTER_MI_SUCCESS = 1;//小米注册通知
     public static final int REGISTER_VIVO_SUCCESS = 2;//VIVO注册通知
+    public static final int REGISTER_OPPO_SUCCESS = 3;//OPPO注册通知
     private OkHttpClient mOkHttpClient;
     private Request request;
     private EchoWebSocketListener socketListener;
@@ -92,6 +93,9 @@ public class DqWebSocketClient {
                             ViVoPushManager.getViVoPushManager().sendMessage("vivo",userId);
                         }
                     });
+                    break;
+                case REGISTER_OPPO_SUCCESS:
+                    
                     break;
             }
         }

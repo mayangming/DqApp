@@ -44,6 +44,7 @@ import com.dq.im.model.UserModel;
 import com.dq.im.parser.ImParserUtils;
 import com.dq.im.parser.ImTransformUtils;
 import com.dq.im.third_system.HwPushManager;
+import com.dq.im.third_system.OppoPushManager;
 import com.dq.im.third_system.ThirdSystemRegisterResultIml;
 import com.dq.im.third_system.ThirdSystemType;
 import com.dq.im.third_system.ViVoPushManager;
@@ -656,6 +657,12 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                     uploadThirdRegisterMessage(ThirdSystemType.VIVO,regId);
                 }
             });
+            OppoPushManager.getOppoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+                @Override
+                public void registerResult(String thirdType, String regId) {
+                    uploadThirdRegisterMessage(ThirdSystemType.OPPO,regId);
+                }
+            });
             if (XiaoMiPushManager.getXiaoMiPushManager().isSupport()){
                 XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
             }
@@ -666,7 +673,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 ViVoPushManager.getViVoPushManager().register(BuildConfig.VIVO_APP_ID,BuildConfig.VIVO_APP_KEY,BuildConfig.VIVO_APP_SECRET);
                 ViVoPushManager.getViVoPushManager().turnOnPush();
             }
-
+//            if (OppoPushManager.getOppoPushManager().isSupport()){
+                OppoPushManager.getOppoPushManager().register("e3d8c90c895646dda7c3d22db2e646cf","78aa9a4f6a1c4757b34445c1436ec54c");
+//            }
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }

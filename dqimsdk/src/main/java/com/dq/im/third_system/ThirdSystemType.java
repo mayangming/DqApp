@@ -7,5 +7,5 @@ public @interface ThirdSystemType {
     String XIAO_MI = "MI";
     String HUA_WEI = "HW";
     String VIVO = "VV";
-    String OPPO = "Oppo";
+    String OPPO = "OPPO";
 }
