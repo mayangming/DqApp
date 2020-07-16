@@ -18,8 +18,8 @@ import java.util.Iterator;
  */
 public class MediaDetailsActivity extends BaseActivity{
     public static final String PHOTO_URL = "photoUrl";//图片网络地址
-    public static final String PHOTO_DATA = "photoData";//图片数据
-    public static final String PHOTO_DATA_CURRENT = "photoDataCurrent";//当前图片数据
+    public static final String MEDIA_DATA = "mediaData";//图片数据
+    public static final String MEDIA_DATA_CURRENT = "mediaDataCurrent";//当前图片数据
     private ViewPager photoDetailsVp;
     private PhotoDetailsAdapter photoDetailsAdapter;
     private ArrayList<ImMessageBaseModel> imMessageBaseModels = new ArrayList<>();
@@ -45,8 +45,8 @@ public class MediaDetailsActivity extends BaseActivity{
     }
 
     private void initData(){
-        currentIndex = getIntent().getIntExtra(PHOTO_DATA_CURRENT,-1);
-        imMessageBaseModels = (ArrayList<ImMessageBaseModel>)getIntent().getSerializableExtra(PHOTO_DATA);
+        currentIndex = getIntent().getIntExtra(MEDIA_DATA_CURRENT,-1);
+        imMessageBaseModels = (ArrayList<ImMessageBaseModel>)getIntent().getSerializableExtra(MEDIA_DATA);
         currentModel  = imMessageBaseModels.get(currentIndex);
         Iterator<ImMessageBaseModel> iterator = imMessageBaseModels.listIterator();
         while (iterator.hasNext()){

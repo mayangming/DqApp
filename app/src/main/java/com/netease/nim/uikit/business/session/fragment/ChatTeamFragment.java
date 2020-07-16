@@ -273,8 +273,15 @@ public class ChatTeamFragment extends BaseChatMessageFragment implements ModuleP
                 if (MessageType.PICTURE.getValue().equals(model.getMsgType())){//假如是图片消息
                     ArrayList<TeamMessageBaseModel> temp = (ArrayList<TeamMessageBaseModel>)chaTeamAdapter.getData();
                     Intent intent = new Intent(view.getContext(), MediaDetailsActivity.class);
-                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA,temp);
-                    intent.putExtra(MediaDetailsActivity.PHOTO_DATA_CURRENT,position);
+                    intent.putExtra(MediaDetailsActivity.MEDIA_DATA,temp);
+                    intent.putExtra(MediaDetailsActivity.MEDIA_DATA_CURRENT,position);
+                    startActivity(intent);
+                }
+                if (MessageType.VIDEO.getValue().equals(model.getMsgType())){//假如是视频消息的时候
+                    ArrayList<TeamMessageBaseModel> temp = (ArrayList<TeamMessageBaseModel>)chaTeamAdapter.getData();
+                    Intent intent = new Intent(view.getContext(), MediaDetailsActivity.class);
+                    intent.putExtra(MediaDetailsActivity.MEDIA_DATA,temp);
+                    intent.putExtra(MediaDetailsActivity.MEDIA_DATA_CURRENT,position);
                     startActivity(intent);
                 }
             }

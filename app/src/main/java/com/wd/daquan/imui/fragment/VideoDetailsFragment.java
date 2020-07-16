@@ -20,6 +20,7 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.wd.daquan.R;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.GlideUtil;
@@ -45,8 +46,8 @@ public class VideoDetailsFragment extends BaseFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initData();
         initView(view);
+        initData();
     }
 
     private void initData(){
@@ -54,6 +55,7 @@ public class VideoDetailsFragment extends BaseFragment{
         imMessageBaseModel = (ImMessageBaseModel)bundle.getSerializable(DATA);
         messageVideoBean = GsonUtils.fromJson(imMessageBaseModel.getSourceContent(),MessageVideoBean.class);
         boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
+        DqLog.e("YM","文件是否存在:"+fileExists+"---->文件地址:"+messageVideoBean.getVideoLocalPath());
         if (fileExists){
             initVideoView(messageVideoBean.getVideoLocalPath());
         }else {
@@ -72,9 +74,11 @@ public class VideoDetailsFragment extends BaseFragment{
 
     private void initVideoView(String localPath){
         if (null == getContext()){
+            Log.e("YM","上下文为null:");
             return;
         }
         if (null == videoDetails){//有时候页面回收会触发程序控件回收
+            Log.e("YM","videoDetails为null:");
             return;
         }
         //设置有进度条可以拖动快进
@@ -120,6 +124,7 @@ public class VideoDetailsFragment extends BaseFragment{
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        DqLog.e("YM","是否显示视频控制栏-------->"+isVisibleToUser);
         if (isVisibleToUser){
             if (null != localMediaController){
                 localMediaController.show();
@@ -127,8 +132,18 @@ public class VideoDetailsFragment extends BaseFragment{
         }else {
             if (null != localMediaController){
                 localMediaController.hide();
-                videoDetails.stopPlayback();
+                videoDetails.pause();
             }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (null != localMediaController){
+            localMediaController.hide();
+//                videoDetails.stopPlayback();
+            videoDetails.stopPlayback();
         }
     }
 }
