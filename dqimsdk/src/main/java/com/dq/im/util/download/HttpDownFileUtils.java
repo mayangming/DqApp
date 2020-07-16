@@ -9,6 +9,8 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.dq.im.constants.Constants;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -544,6 +546,7 @@ public class HttpDownFileUtils {
      * @param insertType 存储类型，可选参数 DIRECTORY_PICTURES  ,DIRECTORY_MOVIES  ,DIRECTORY_MUSIC
      **/
     private void downMusicVideoPicFromService(final String downPathUrl,final Context context,final String insertType,final OnFileDownListener onFileDownListener){
+//      https://dq-oss.oss-cn-beijing.aliyuncs.com/QQ%E8%A7%86%E9%A2%91_20200716.mp4
         Observable.just(downPathUrl).subscribeOn(Schedulers.newThread()).map(new Function<String, Uri>() {
             @Override
             public Uri apply(String s){
@@ -557,7 +560,8 @@ public class HttpDownFileUtils {
                     int code = conn.getResponseCode();
                     String prefix = downPathUrl.substring(downPathUrl.lastIndexOf(".") + 1);
                     Log.e("YM","文件后缀:"+prefix);
-                    String fileName = downPathUrl.substring(downPathUrl.lastIndexOf("/") + 1);;
+//                    String fileName = downPathUrl.substring(downPathUrl.lastIndexOf("/") + 1);;
+                    String fileName = Constants.VIDEO.concat(System.currentTimeMillis()+"");
 
                     if (isEmpty(fileName)) {
                         fileName = time + "." + prefix;
@@ -582,6 +586,7 @@ public class HttpDownFileUtils {
                         //只是往 MediaStore 里面插入一条新的记录，MediaStore 会返回给我们一个空的 Content Uri
                         //接下来问题就转化为往这个 Content Uri 里面写入
                         uri = context.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, contentValues);
+                        Log.e("YM","生成的Uri是否为null:"+(null == uri));
                     } else if (insertType.equals(DIRECTORY_MUSIC)) {
                         contentValues.put(MediaStore.Audio.Media.MIME_TYPE, getMIMEType(fileName));
                         contentValues.put(MediaStore.Audio.Media.DISPLAY_NAME, fileName);
@@ -653,6 +658,7 @@ public class HttpDownFileUtils {
 
                     @Override
                     public void onError(Throwable e) {
+                        e.printStackTrace();
                         Log.e(TAG,"错误信息:"+e.getMessage());
                     }
 

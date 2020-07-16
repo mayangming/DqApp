@@ -95,9 +95,11 @@ public class VideoDetailsFragment extends BaseFragment{
      * 下载视频
      */
     private void downloadVideo(){
+        DqLog.e("YM","---->下载的视频连接:"+messageVideoBean.getVideoPath());
         HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
             @Override
             public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
+                Log.e("YM","下载状态结果:"+status);
                 if (status == 1){
                     String localPath = "";//10.0之上是uri，10.0之下是本地路径
                     if (object instanceof File){
