@@ -1,5 +1,6 @@
 package com.netease.nim.uikit.business.session.activity;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -14,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.da.library.tools.ActivitysManager;
+import com.wd.daquan.imui.type.SourceType;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
 import com.netease.nim.uikit.api.model.session.SessionCustomization;
 import com.netease.nim.uikit.business.session.constant.Extras;
@@ -88,9 +90,16 @@ public abstract class BaseMessageActivity extends UI {
         sessionId = getIntent().getStringExtra(Extras.EXTRA_ACCOUNT);
         customization = (SessionCustomization) getIntent().getSerializableExtra(Extras.EXTRA_CUSTOMIZATION);
         messageFragment = (BaseChatMessageFragment) switchContent(fragment());
-
+        String sourceType = getIntent().getStringExtra(Extras.EXTRA_SOURCE);
+        clearNotification(sourceType);
     }
-
+    private void clearNotification(String sourceType){
+        if (!SourceType.SOURCE_TYPE_NOTIFICATION.equals(sourceType)){
+            return;
+        }
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
     public String getSessionId() {
         return sessionId;
     }

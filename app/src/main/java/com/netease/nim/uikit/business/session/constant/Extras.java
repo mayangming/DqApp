@@ -28,6 +28,7 @@ public interface Extras {
     String EXTRA_ACCOUNT = "account";
     String EXTRA_TYPE = "type";
     String EXTRA_ANCHOR = "anchor";
+    String EXTRA_SOURCE = "source";//0: 通知栏
 
     String EXTRA_CUSTOMIZATION = "customization";
     String EXTRA_BACK_TO_CLASS = "backToClass";

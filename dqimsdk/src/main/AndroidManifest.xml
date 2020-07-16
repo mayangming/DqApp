@@ -15,7 +15,6 @@
             android:exported="false"
             android:authorities="${applicationId}.IMprovider"
             android:name="com.dq.im.ImProvider"/>
-
         <!--小米推送-->
         <service
             android:name="com.xiaomi.push.service.XMPushService"

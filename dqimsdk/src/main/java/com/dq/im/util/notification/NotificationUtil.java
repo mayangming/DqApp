@@ -81,7 +81,7 @@ public class NotificationUtil{
         }
 
         NotificationCompat.Builder notificationCompatBuilder = new NotificationCompat.Builder( build.context, build.channelId);
-        notificationCompatBuilder.setAutoCancel(true);
+        notificationCompatBuilder.setAutoCancel(false);
         notificationCompatBuilder.setContentTitle(build.title);
         notificationCompatBuilder.setContentText(build.content);
         notificationCompatBuilder.setSmallIcon(R.mipmap.qc_logo);

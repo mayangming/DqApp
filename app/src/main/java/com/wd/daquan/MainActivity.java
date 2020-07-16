@@ -2,11 +2,12 @@ package com.wd.daquan;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -52,6 +53,7 @@ import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
 import com.dq.im.type.MessageType;
+import com.wd.daquan.imui.type.SourceType;
 import com.dq.im.util.Rom;
 import com.dq.im.util.SoundPoolUtils;
 import com.dq.im.util.VibratorUtil;
@@ -61,6 +63,7 @@ import com.dq.im.viewmodel.HomeMessageViewModel;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
+import com.netease.nim.uikit.business.session.constant.Extras;
 import com.netease.nim.uikit.support.permission.MPermission;
 import com.netease.nim.uikit.support.permission.annotation.OnMPermissionDenied;
 import com.netease.nim.uikit.support.permission.annotation.OnMPermissionGranted;
@@ -112,7 +115,7 @@ import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.ApplicationDialog;
 import com.wd.daquan.util.IntentUtils;
 import com.wd.daquan.util.TToast;
-import com.wd.daquan.BuildConfig;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -196,6 +199,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         startSocket();
         initVibratorUtil();
         requestLogin(ModuleMgr.getCenterMgr().getUID());
+        parserIntent();
     }
 
     private void initViewModel(){
@@ -203,6 +207,18 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         teamMessageViewModel = ViewModelProviders.of(this).get(TeamMessageViewModel.class);
         homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
         p2PMessageViewModel = ViewModelProviders.of(this).get(P2PMessageViewModel.class);
+    }
+
+    private void parserIntent(){
+        String sourceType = getIntent().getStringExtra(Extras.EXTRA_SOURCE);
+        clearNotification(sourceType);
+    }
+    private void clearNotification(String sourceType){
+        if (!SourceType.SOURCE_TYPE_NOTIFICATION.equals(sourceType)){
+            return;
+        }
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
     }
 
     /**
@@ -1167,12 +1183,16 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
                 friendId = messageBaseModel.getFromUserId();
             }
             notificationUtilBuild.title = UserInfoHelper.getUserDisplayName(friendId);
-            notificationUtilBuild.intent = IntentUtils.getP2PChat(this,friendId);
+            Intent intent = IntentUtils.getP2PChat(this,friendId);
+            intent.putExtra(Extras.EXTRA_SOURCE,SourceType.SOURCE_TYPE_NOTIFICATION);
+            notificationUtilBuild.intent = intent;
         }else if (ImType.Team.getValue().equals(type)){
             TeamMessageBaseModel teamMessageBaseModel = (TeamMessageBaseModel)messageBaseModel;
             String groupId = teamMessageBaseModel.getGroupId();
             notificationUtilBuild.title = TeamHelper.getTeamName(groupId);
-            notificationUtilBuild.intent = IntentUtils.getTeamChat(this,groupId);
+            Intent intent = IntentUtils.getTeamChat(this,groupId);
+            intent.putExtra(Extras.EXTRA_SOURCE, SourceType.SOURCE_TYPE_NOTIFICATION);
+            notificationUtilBuild.intent = intent;
         }else {
             Intent intent = new Intent(this,MainActivity.class);
             notificationUtilBuild.intent = intent;

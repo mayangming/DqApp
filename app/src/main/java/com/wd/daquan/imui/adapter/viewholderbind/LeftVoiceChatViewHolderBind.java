@@ -182,6 +182,8 @@ public class LeftVoiceChatViewHolderBind extends BaseLeftViewHolderBind<LeftVoic
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop(){
         mediaPlayerUtil.onStop();
+        anim.stop();
+        anim.selectDrawable(0);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
