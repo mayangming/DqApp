@@ -1,6 +1,7 @@
 package com.wd.daquan.imui.fragment;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.wd.daquan.R;
+import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.util.FileUtils;
@@ -34,8 +36,11 @@ import static android.os.Environment.DIRECTORY_MOVIES;
  */
 public class VideoDetailsFragment extends BaseFragment{
     public static String DATA = "model";
-    private ImMessageBaseModel imMessageBaseModel;//
+    private ImMessageBaseModel imMessageBaseModel;
     private VideoView videoDetails;
+    private ImageView videoPreview;//预览图
+    private View videoPreviewContainer;//视频预览容器
+    private View videoDetailsPlay;//播放按钮
     private MessageVideoBean messageVideoBean;
     private MediaController localMediaController;
     @Nullable
@@ -55,7 +60,8 @@ public class VideoDetailsFragment extends BaseFragment{
         imMessageBaseModel = (ImMessageBaseModel)bundle.getSerializable(DATA);
         messageVideoBean = GsonUtils.fromJson(imMessageBaseModel.getSourceContent(),MessageVideoBean.class);
         boolean fileExists = FileUtils.fileExists(messageVideoBean.getVideoLocalPath());
-        DqLog.e("YM","文件是否存在:"+fileExists+"---->文件地址:"+messageVideoBean.getVideoLocalPath());
+        DqLog.e("YM","VideoDetailsFragment文件是否存在:"+fileExists+"---->文件地址:"+messageVideoBean.getVideoLocalPath());
+        GlideUtils.loadRound(getContext(),messageVideoBean.getThumbPath(),videoPreview,10);
         if (fileExists){
             initVideoView(messageVideoBean.getVideoLocalPath());
         }else {
@@ -67,7 +73,24 @@ public class VideoDetailsFragment extends BaseFragment{
      * 初始化控件
      */
     private void initView(View view){
+        videoPreviewContainer = view.findViewById(R.id.video_details_bg_container);
+        videoDetailsPlay = view.findViewById(R.id.video_details_play);
         videoDetails = view.findViewById(R.id.video_details);
+        videoPreview = view.findViewById(R.id.video_details_bg);
+        videoDetailsPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                videoDetails.start();
+                videoPreviewContainer.setVisibility(View.GONE);
+                videoDetails.setVisibility(View.VISIBLE);
+            }
+        });
+        videoPreviewContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
@@ -95,11 +118,9 @@ public class VideoDetailsFragment extends BaseFragment{
      * 下载视频
      */
     private void downloadVideo(){
-        DqLog.e("YM","---->下载的视频连接:"+messageVideoBean.getVideoPath());
         HttpDownFileUtils.getInstance().downFileFromServiceToPublicDir(messageVideoBean.getVideoPath(), getContext(), DIRECTORY_MOVIES, new OnFileDownListener() {
             @Override
             public void onFileDownStatus(int status, Object object, int proGress, long currentDownProGress, long totalProGress) {
-                Log.e("YM","下载状态结果:"+status);
                 if (status == 1){
                     String localPath = "";//10.0之上是uri，10.0之下是本地路径
                     if (object instanceof File){

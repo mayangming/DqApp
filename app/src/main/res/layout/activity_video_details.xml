@@ -12,6 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
+    <FrameLayout
+        android:id="@+id/video_details_bg_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/video_details_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/video_details_play"
+            android:layout_width="@dimen/dd_dp50"
+            android:layout_height="@dimen/dd_dp50"
+            android:gravity="end"
+            android:layout_gravity="center"
+            android:src="@mipmap/im_video_play_icon"/>
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>
