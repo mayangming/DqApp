@@ -40,7 +40,7 @@ public class HwPushManager extends ThirdPushManager{
                     // read from agconnect-services.json
                     String appId = AGConnectServicesConfig.fromContext(ImProvider.context).getString("client/app_id");
                     String token = HmsInstanceId.getInstance(ImProvider.context).getToken(appId, "HCM");
-                    Log.i("YM", "get token:" + token);
+                    Log.e("YM", "get token:" + token);
                     if(!TextUtils.isEmpty(token)) {
                         sendRegTokenToServer(token);
                     }
@@ -52,6 +52,7 @@ public class HwPushManager extends ThirdPushManager{
     }
     private void sendRegTokenToServer(String token) {
         Log.i("YM", "sending token to server. token:" + token);
+        HwPushManager.getHwPushManager().sendMessage(ThirdSystemType.HUA_WEI,token);
     }
 
 
