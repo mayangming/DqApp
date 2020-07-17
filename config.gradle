@@ -12,8 +12,8 @@ ext {
             applicationId    : "com.wd.daquan",
             minSdkVersion    : 19,
             targetSdkVersion : 29,
-            versionCode      : 102016,
-            versionName      : "1.02.16",
+            versionCode      : 102018,
+            versionName      : "1.02.18",
 
             /**
              * JDK版本

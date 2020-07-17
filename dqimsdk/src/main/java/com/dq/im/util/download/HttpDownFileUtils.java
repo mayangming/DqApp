@@ -560,9 +560,8 @@ public class HttpDownFileUtils {
                     int code = conn.getResponseCode();
                     String prefix = downPathUrl.substring(downPathUrl.lastIndexOf(".") + 1);
                     Log.e("YM","文件后缀:"+prefix);
-//                    String fileName = downPathUrl.substring(downPathUrl.lastIndexOf("/") + 1);;
-                    String fileName = Constants.VIDEO.concat(System.currentTimeMillis()+"").concat(".").concat(prefix);
-
+                    String fileName = downPathUrl.substring(downPathUrl.lastIndexOf("/") + 1);;
+//                    String fileName = Constants.VIDEO.concat(System.currentTimeMillis()+"").concat(".").concat(prefix);
                     if (isEmpty(fileName)) {
                         fileName = time + "." + prefix;
                     }

@@ -30,6 +30,7 @@ import com.dq.im.bean.im.MessageRedPackageBean;
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.bean.im.MessageVideoBean;
 import com.dq.im.bean.im.MessageVoiceBean;
+import com.dq.im.constants.Constants;
 import com.dq.im.constants.URLUtil;
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.model.IMContentDataModel;
@@ -646,7 +647,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             byte[] photoData = FileUtils.toByteArray(inputStream);
             P2PMessageBaseModel p2PMessageBaseModel = createP2PMessage(MessageType.PICTURE,uri.toString(),"",sessionId);
             saveMsgSuccess(p2PMessageBaseModel);
-            uploadFile(uri.toString(),photoData,documentFile.getName(),MessageType.PICTURE,p2PMessageBaseModel);
+            uploadFile(uri.toString(),photoData,Constants.getImgName().concat(FileUtils.getFileSuffix(documentFile.getName())),MessageType.PICTURE,p2PMessageBaseModel);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -688,13 +689,13 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
             List<UpLoadBean> upLoadBeans = new ArrayList<>();
             UpLoadBean videoBean = new UpLoadBean();
             videoBean.setType(1);
-            videoBean.setFileName(videoDocumentFile.getName());
+            videoBean.setFileName(Constants.getVideoName().concat(FileUtils.getFileSuffix(videoDocumentFile.getName())));
             videoBean.setFileData(videoData);
             videoBean.setLocalPath(uri.toString());
             upLoadBeans.add(videoBean);//加载视频信息
             UpLoadBean thumbBean = new UpLoadBean();
             thumbBean.setType(2);
-            thumbBean.setFileName(thumbDocumentFile.getName());
+            thumbBean.setFileName(Constants.getImgName().concat(FileUtils.getFileSuffix(thumbDocumentFile.getName())));
             thumbBean.setFileData(thumbData);
             thumbBean.setLocalPath(mediaExtraBean.getThumbPath().toString());
             upLoadBeans.add(thumbBean);//加载缩略图信息

@@ -190,4 +190,15 @@ public class FileUtils {
         Log.e("YM","文件路径:"+uri.toString());
         return uri;
     }
+    /**
+     * 获取文件名字的后缀
+     * @param fileName
+     * @return
+     */
+    public static String getFileSuffix(String fileName){
+        String result = fileName;
+        int lastIndex = result.lastIndexOf(".");
+        result = result.substring(lastIndex);
+        return result;
+    }
 }

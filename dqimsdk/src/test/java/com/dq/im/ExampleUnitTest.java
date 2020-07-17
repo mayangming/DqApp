@@ -13,12 +13,25 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
 //        assertEquals(4, 2 + 2);
-        int code = 0x1f603;
-        char[] chars = Character.toChars(code);
-        String key = Character.toString(chars[0]);
-        System.out.println("key:"+key);
-        for (char c : chars){
-            System.out.println("char:"+c);
-        }
+//        int code = 0x1f603;
+//        char[] chars = Character.toChars(code);
+//        String key = Character.toString(chars[0]);
+//        System.out.println("key:"+key);
+//        for (char c : chars){
+//            System.out.println("char:"+c);
+//        }
+        String suffix = getFileSuffix("test.txt");
+        System.out.println("后缀名字:"+suffix);
+    }
+    /**
+     * 获取文件名字的后缀
+     * @param fileName
+     * @return
+     */
+    public static String getFileSuffix(String fileName){
+        String result = fileName;
+        int lastIndex = result.lastIndexOf(".");
+        result = result.substring(lastIndex);
+        return result;
     }
 }
