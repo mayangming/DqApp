@@ -656,46 +656,10 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         dqWebSocketClient = DqWebSocketClient.getInstance2();
         if (null == dqWebSocketClient){
             dqWebSocketClient = DqWebSocketClient.createSocketInstance(ModuleMgr.getCenterMgr().getUID());
-            XiaoMiPushManager.getXiaoMiPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
-                @Override
-                public void registerResult(String thirdType, String regId) {
-                    uploadThirdRegisterMessage(ThirdSystemType.XIAO_MI,regId);
-                }
-            });
-            HwPushManager.getHwPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
-                @Override
-                public void registerResult(String thirdType, String regId) {
-                    uploadThirdRegisterMessage(ThirdSystemType.HUA_WEI,regId);
-                }
-            });
-            ViVoPushManager.getViVoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
-                @Override
-                public void registerResult(String thirdType, String regId) {
-                    uploadThirdRegisterMessage(ThirdSystemType.VIVO,regId);
-                }
-            });
-            OppoPushManager.getOppoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
-                @Override
-                public void registerResult(String thirdType, String regId) {
-                    uploadThirdRegisterMessage(ThirdSystemType.OPPO,regId);
-                }
-            });
-            if (XiaoMiPushManager.getXiaoMiPushManager().isSupport()){
-                XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
-            }
-            if (HwPushManager.getHwPushManager().canHuaWeiPush()){
-                HwPushManager.getHwPushManager().registerHwSystemReceiver();
-            }
-            if (ViVoPushManager.getViVoPushManager().isSupport()){
-                ViVoPushManager.getViVoPushManager().register(BuildConfig.VIVO_APP_ID,BuildConfig.VIVO_APP_KEY,BuildConfig.VIVO_APP_SECRET);
-                ViVoPushManager.getViVoPushManager().turnOnPush();
-            }
-            if (Rom.isOppo()){
-                OppoPushManager.getOppoPushManager().register(BuildConfig.OPPO_APP_KEY,BuildConfig.OPPO_APP_SECRET);
-            }
         }else {
             dqWebSocketClient.switchUserId(ModuleMgr.getCenterMgr().getUID());
         }
+        initThirdSystemPush();
         dqWebSocketClient.setDqWebSocketListener(new DqWebSocketListener() {
             @Override
             public void connectFail(String fileConnect) {
@@ -812,6 +776,50 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         });
         dqWebSocketClient.build();
     }
+
+    /**
+     * 初始化第三方厂商推送
+     */
+    private void initThirdSystemPush(){
+        XiaoMiPushManager.getXiaoMiPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+            @Override
+            public void registerResult(String thirdType, String regId) {
+                uploadThirdRegisterMessage(ThirdSystemType.XIAO_MI,regId);
+            }
+        });
+        HwPushManager.getHwPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+            @Override
+            public void registerResult(String thirdType, String regId) {
+                uploadThirdRegisterMessage(ThirdSystemType.HUA_WEI,regId);
+            }
+        });
+        ViVoPushManager.getViVoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+            @Override
+            public void registerResult(String thirdType, String regId) {
+                uploadThirdRegisterMessage(ThirdSystemType.VIVO,regId);
+            }
+        });
+        OppoPushManager.getOppoPushManager().setThirdSystemRegisterResultIml(new ThirdSystemRegisterResultIml() {
+            @Override
+            public void registerResult(String thirdType, String regId) {
+                uploadThirdRegisterMessage(ThirdSystemType.OPPO,regId);
+            }
+        });
+        if (XiaoMiPushManager.getXiaoMiPushManager().isSupport()){
+            XiaoMiPushManager.getXiaoMiPushManager().registerXiaoMiSystemReceiver(BuildConfig.MI_APP_ID,BuildConfig.MI_KEY);
+        }
+        if (HwPushManager.getHwPushManager().canHuaWeiPush()){
+            HwPushManager.getHwPushManager().registerHwSystemReceiver();
+        }
+        if (ViVoPushManager.getViVoPushManager().isSupport()){
+            ViVoPushManager.getViVoPushManager().register(BuildConfig.VIVO_APP_ID,BuildConfig.VIVO_APP_KEY,BuildConfig.VIVO_APP_SECRET);
+            ViVoPushManager.getViVoPushManager().turnOnPush();
+        }
+        if (Rom.isOppo()){
+            OppoPushManager.getOppoPushManager().register(BuildConfig.OPPO_APP_KEY,BuildConfig.OPPO_APP_SECRET);
+        }
+    }
+
 
     /**
      * 是否弹出通知

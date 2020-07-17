@@ -2,6 +2,7 @@ package com.dq.im.third_system;
 
 import android.util.Log;
 
+import com.dq.im.DqWebSocketClient;
 import com.dq.im.ImProvider;
 import com.vivo.push.IPushActionListener;
 import com.vivo.push.PushClient;
@@ -39,7 +40,7 @@ public class ViVoPushManager extends ThirdPushManager{
             public void onResult(TokenResult tokenResult) {
                 if   (tokenResult.getReturnCode() == 0) {
                     Log.e("YM", "(VIVO)注册成功 regID = " +   tokenResult.getToken());
-
+                    DqWebSocketClient.getInstance().sendHandlerMessage(DqWebSocketClient.REGISTER_VIVO_SUCCESS,tokenResult.getToken());
                 } else {
 
                     Log.e("YM", "(VIVO)注册失败:"+tokenResult.getReturnCode());
