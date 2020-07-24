@@ -2,6 +2,7 @@ package com.wd.daquan.explore
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.da.library.view.DqToolbar
 import com.wd.daquan.R
@@ -56,7 +57,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
     override fun onClick(v: View?) {
         when (v?.id){
             explore_my_area_ll.id -> {
-                dynamic_unread.visibility = View.GONE
+                dynamic_unread_container.visibility = View.GONE
                 NavUtils.gotoFriendAreaActivity(activity)
             }
             explore_scan_ll.id ->
@@ -75,6 +76,8 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                 val userDynamicList = entity.data as List<FindUserDynamicDescBean>
                 if(userDynamicList.isNotEmpty()){
                     val userDynamic = userDynamicList[0]
+                    DqLog.e("YM","新消息的ID:${userDynamic.userId}")
+                    DqLog.e("YM","本地保存消息的ID:${ModuleMgr.getCenterMgr().lastDynamicUid}")
                     if (ModuleMgr.getCenterMgr().lastDynamicUid != userDynamic.userId){
                         dynamic_unread_container.visibility = View.VISIBLE
                         GlideUtils.loadRound(context, userDynamic.userHeadPic, dynamic_unread, 5)
