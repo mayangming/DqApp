@@ -113,6 +113,7 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
     }
 
     override fun initData() {
+        showLoading()
         getDynamicMessageList()
         findUserDynamic()
     }
@@ -153,6 +154,10 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
 
     override fun onClick(v: View?) {
         super.onClick(v)
+
+        if (bottomSelectPhotoFragment.isAdded) {//解决方法就是添加这行代码，如果已经添加了，就移除掉然后再show，就不会出现Fragment already added的错误了。
+            supportFragmentManager.beginTransaction().remove(bottomSelectPhotoFragment).commit();
+        }
         when(v?.id){
             area_bg.id ->{
                 tempFlag = 0
@@ -259,6 +264,11 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
                 if(userDynamicList.isNotEmpty()){
                     updateDynamicList(userDynamicList,pageNum > 1)
                 }
+
+                if(pageNum == 1){
+                    dismissLoading()
+                }
+
                 pageNum++
             }
 

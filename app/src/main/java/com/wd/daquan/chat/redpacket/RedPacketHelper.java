@@ -83,6 +83,11 @@ public class RedPacketHelper implements Presenter.IView<DataBean>, Serializable 
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+
+    }
+
+    @Override
     public void dismissLoading() {
 
     }

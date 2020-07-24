@@ -110,6 +110,8 @@ class PayPwdHelper() : Presenter.IView<DataBean<Any>> {
     override fun showLoading() {
     }
 
+    override fun showLoading(tipMessage: String?) {
+    }
     override fun dismissLoading() {
     }
 

@@ -94,6 +94,11 @@ public class RedPacketAuthHelper implements Presenter.IView<DataBean> {
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+
+    }
+
+    @Override
     public void dismissLoading() {
 
     }

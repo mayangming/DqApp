@@ -342,6 +342,11 @@ public class P2PMessageActivity extends BaseMessageActivity implements View.OnCl
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+
+    }
+
+    @Override
     public void dismissLoading() {
 
     }

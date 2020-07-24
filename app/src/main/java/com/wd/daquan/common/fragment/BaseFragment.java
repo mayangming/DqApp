@@ -77,6 +77,11 @@ public abstract class BaseFragment<P extends Presenter.IPresenter, T> extends Fr
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+        LoadingDialog.show(getActivity(), tipMessage);
+    }
+
+    @Override
     public void dismissLoading() {
         LoadingDialog.closeLoadingDialog();
     }

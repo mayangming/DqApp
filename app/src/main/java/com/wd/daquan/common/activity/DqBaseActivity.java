@@ -197,6 +197,11 @@ public abstract class DqBaseActivity<P extends Presenter.IPresenter, T> extends 
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+        LoadingDialog.show(this, tipMessage);
+    }
+
+    @Override
     public void dismissLoading() {
         LoadingDialog.closeLoadingDialog();
     }

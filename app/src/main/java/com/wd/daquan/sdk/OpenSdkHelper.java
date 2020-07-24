@@ -168,6 +168,12 @@ public class OpenSdkHelper implements Presenter.IView<DataBean>{
     public void showLoading() {
 
     }
+
+    @Override
+    public void showLoading(String tipMessage) {
+
+    }
+
     /**
      * 分享统计
      * */

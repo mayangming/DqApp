@@ -46,6 +46,10 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
     }
 
     override fun initData() {
+        getNewDynamicNews()
+    }
+
+    private fun getNewDynamicNews(){
         val params = hashMapOf<String, String>()
         params["searchUserId"] = ModuleMgr.getCenterMgr().uid
         params["searchType"] = SearchType.ALL.searchType
@@ -92,6 +96,13 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
 
     override fun onFailed(url: String?, code: Int, entity: DataBean<Any>?) {
         super.onFailed(url, code, entity)
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser){
+            getNewDynamicNews()
+        }
     }
 
 }

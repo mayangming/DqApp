@@ -358,6 +358,11 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
     }
 
     @Override
+    public void showLoading(String tipMessage) {
+
+    }
+
+    @Override
     public void dismissLoading() {
 
     }

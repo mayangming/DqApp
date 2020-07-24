@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.support.v4.provider.DocumentFile
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.View
 import com.dq.im.constants.Constants
 import com.dq.im.util.oss.AliOssUtil
@@ -23,6 +24,8 @@ import com.wd.daquan.explore.type.DynamicSendPhotoType
 import com.wd.daquan.imui.constant.IntentCode
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
+import com.wd.daquan.model.log.DqLog
+import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.util.FileUtils
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -35,8 +38,9 @@ import java.io.InputStream
  * 动态发布页
  */
 class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>() {
-    var pics :ArrayList<Uri> ?= null
+    var pics : ArrayList<Uri> ?= null
     var dynamicSendAdapter: DynamicSendAdapter ?= null
+    private var isSending = false //动态是否在发送中
     companion object{
         const val ACTION_PICS :String = "actionPics"
         const val ACTION_DYNAMIC_RESPONSE :String = "actionDynamicsResponse"
@@ -80,8 +84,27 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
 
     override fun onClick(v: View?) {
         super.onClick(v)
+        if (isSending){
+            return
+        }
         when(v){
-            dynamic_send_title.rightIv -> createUploadPhotos()
+            dynamic_send_title.rightIv ->{
+                isSending = true
+                dynamic_send_title.rightIv.isEnabled = false
+                showLoading("正在发布动态...")
+                pics = dynamicSendAdapter?.photos?.filter {
+                    it.dynamicSendPhotoType == DynamicSendPhotoType.NORMAL
+                }?.map {
+                    it.uri
+                } as ArrayList<Uri>
+
+                if (pics.isNullOrEmpty()){
+                    sendDynamic(arrayListOf())
+                }else{
+                    createUploadPhotos()
+                }
+
+            }
         }
     }
 
@@ -173,6 +196,9 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         if (null == entity) return
         when(url){
             DqUrl.url_dynamic_saveUserDynamicDesc ->{
+                isSending = false
+                dynamic_send_title.rightIv.isEnabled = true
+                dismissLoading()
                 val dynamicBean = entity.data as FindUserDynamicDescBean
                 intent.putExtra(ACTION_DYNAMIC_RESPONSE,dynamicBean)
                 setResult(Activity.RESULT_OK,intent)
@@ -183,6 +209,15 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
 
     override fun onFailed(url: String?, code: Int, entity: DataBean<Any>?) {
         super.onFailed(url, code, entity)
+        dismissLoading()
+        when(url) {
+            DqUrl.url_dynamic_saveUserDynamicDesc -> {
+                isSending = false
+                DqToast.showCenterShort("动态发送失败")
+                dismissLoading()
+                dynamic_send_title.rightIv.isEnabled = true
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

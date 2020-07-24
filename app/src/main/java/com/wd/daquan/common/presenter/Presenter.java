@@ -10,6 +10,8 @@ public interface Presenter {
     interface IView<T> {
         void showLoading();
 
+        void showLoading(String tipMessage);
+
         void dismissLoading();
 
         void onFailed(String url, int code, T entity);
