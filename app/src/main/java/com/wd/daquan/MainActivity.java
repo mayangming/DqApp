@@ -53,6 +53,7 @@ import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageSendType;
 import com.dq.im.type.MessageType;
+import com.wd.daquan.explore.ExploreFragment;
 import com.wd.daquan.imui.type.SourceType;
 import com.dq.im.util.Rom;
 import com.dq.im.util.SoundPoolUtils;
@@ -146,6 +147,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     //    private NewsFragment mDiscoverFragment = null;
 //    private ShoppingFragment mShoppingFragment = null;
     private MineFragment mMineFragment = null;
+    private ExploreFragment exploreFragment = null;
 
     private DragPointView mQingchatUnread = null;
     private DragPointView mContactUnread = null;
@@ -282,9 +284,11 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         mMineFragment = new MineFragment();
 //        mDiscoverFragment = new NewsFragment();
 //        mShoppingFragment = new ShoppingFragment();
+        exploreFragment = new ExploreFragment();
         mFragmentList.clear();
         mFragmentList.add(mDqFragment);
         mFragmentList.add(mContactsFragment);
+        mFragmentList.add(exploreFragment);
 //        mFragmentList.add(mDiscoverFragment);
 //        mFragmentList.add(mShoppingFragment);
         mFragmentList.add(mMineFragment);
@@ -312,7 +316,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     public void initListener() {
         findViewById(R.id.seal_chat).setOnClickListener(this);
         findViewById(R.id.seal_contact_list).setOnClickListener(this);
-//        findViewById(R.id.seal_discover).setOnClickListener(this);
+        findViewById(R.id.seal_discover).setOnClickListener(this);
         findViewById(R.id.seal_me).setOnClickListener(this);
 
         mQingchatUnread.setDragListencer(this);
@@ -338,11 +342,11 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         } else if (R.id.seal_contact_list == id) {
             mViewPager.setCurrentItem(1, false);
         }
-//        else if (R.id.seal_discover == id) {
-//            mViewPager.setCurrentItem(2, false);
-//        }
-        else if (R.id.seal_me == id) {
+        else if (R.id.seal_discover == id) {
             mViewPager.setCurrentItem(2, false);
+        }
+        else if (R.id.seal_me == id) {
+            mViewPager.setCurrentItem(3, false);
             mMineRed.setVisibility(View.GONE);
         }
 
@@ -494,18 +498,19 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //                mCommTitle.getLeftIv().setVisibility(View.GONE);
 //                mCommTitle.setRightImageResource(R.mipmap.qc_comm_add);
                 break;
-//            case 2:
+            case 2:
 //                mCommTitle.setTitle(getString(R.string.main_tab_discover));
 //                mCommTitle.getRightIv().setVisibility(View.GONE);
-//                mTextDiscover.setSelected(true);
-//                break;
+                mViewPager.setCurrentItem(2, false);
+                mTextDiscover.setSelected(true);
+                break;
 //            case 2:
 ////                mCommTitle.setTitle("资讯");
 ////                mCommTitle.getRightIv().setVisibility(View.GONE);
 ////                mCommTitle.getLeftIv().setVisibility(View.GONE);
 //                mTextDiscover.setSelected(true);
 //                break;
-            case 2:
+            case 3:
 //                mCommTitle.setTitle(getString(R.string.main_tab_mine));
 //                mCommTitle.getRightIv().setVisibility(View.GONE);
 //                mCommTitle.getLeftIv().setVisibility(View.GONE);

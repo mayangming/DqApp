@@ -1,6 +1,7 @@
 package com.wd.daquan.model.mgr;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.wd.daquan.model.bean.UnreadNotifyEntity;
 import com.wd.daquan.model.log.DqLog;
@@ -59,6 +60,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
     private String im_token = "";
     private String token = "";
 
+    private String lastDynamicUid = "";//上次动态的朋友圈用户Id
 
     /**
      * 获取UID
@@ -69,6 +71,16 @@ public class CenterMgr implements ModuleBase, QCObserver{
             uid = getKDPreferenceUserInfo().getString(EBSharedPrefUser.uid, "");
         }
         return uid;
+    }
+    /**
+     * 获取上次动态的朋友圈Id
+     * @return
+     */
+    public String getLastDynamicUid() {
+        if (TextUtils.isEmpty(lastDynamicUid)) {
+            lastDynamicUid = getKDPreferenceUserInfo().getString(EBSharedPrefUser.lastDynamicUid, "");
+        }
+        return lastDynamicUid;
     }
 
     /**
@@ -129,6 +141,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
         token = null;
         im_token = null;
         dq_num = null;
+        lastDynamicUid = null;
     }
 
 
@@ -189,6 +202,14 @@ public class CenterMgr implements ModuleBase, QCObserver{
 
     public void saveTeamInvite(String value) {
         getKDPreferenceUserInfo().saveString(getUID() + EBSharedPrefUser.TEAM_INVITE, value);
+    }
+
+    /**
+     * 上次动态的朋友圈用户Id
+     * @param value
+     */
+    public void saveLastDynamicUid(String value) {
+        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.lastDynamicUid, value);
     }
 
     public boolean enableTeamInvite() {

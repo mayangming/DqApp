@@ -41,6 +41,7 @@ import com.wd.daquan.model.bean.GroupMemberBean;
 import com.wd.daquan.model.db.DbSubscribe;
 import com.wd.daquan.model.db.helper.MemberDbHelper;
 import com.wd.daquan.model.db.helper.TeamDbHelper;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
@@ -225,9 +226,12 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
         }
 
         mGroupInfo = groupInfo;
-
-        mCommTitle.setTitle(groupInfo.getGroup_name());
-        mCommTitle.getCommTitleNum().setText("(" + groupInfo.group_member_num + ")");
+        DqLog.e("YM___群名:"+groupInfo.getGroup_name());
+        DqLog.e("YM___群成员数量:"+groupInfo.group_member_num);
+        if (!TextUtils.isEmpty(groupInfo.getGroup_name())){
+            mCommTitle.setTitle(groupInfo.getGroup_name());
+            mCommTitle.getCommTitleNum().setText("(" + groupInfo.group_member_num + ")");
+        }
 
 //        if (!TextUtils.isEmpty(groupInfo.banner_url) && !TextUtils.isEmpty(mGroupInfo.banner_title)) {
 //            int bannerId = mSharedPreTeamInfo.getInt(getBannerKey(), 0);
@@ -361,10 +365,11 @@ public class TeamMessageActivity extends BaseMessageActivity implements View.OnC
     @Override
     public void onFailed(String url, int code, DataBean entity) {
         if(DqUrl.url_select_group.equals(url)) {
-           if(code == KeyValue.Code.DISMISS_GROUP_ERR) {
-               TeamDbHelper.getInstance().delete(sessionId);
-               MemberDbHelper.getInstance().delete(sessionId);
+           if(code == KeyValue.Code.DISMISS_GROUP_ERR) {//群解散不再移除群消息
+//               TeamDbHelper.getInstance().delete(sessionId);
+//               MemberDbHelper.getInstance().delete(sessionId);
                mCommTitle.setRightGone();
+               mCommTitle.getCommTitleNum().setText("(群组已解散)");
                fragment.setTeam(null);
            }else {
               TeamDbHelper.getInstance().getTeam(sessionId, new DbSubscribe<GroupInfoBean>() {

@@ -265,7 +265,23 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
      */
     public void setRemarkName(String url, Map<String, String> hashMap) {
 
-        getFriendResponse(url, hashMap);
+//        getFriendResponse(url, hashMap);
+
+        showLoading();
+        RetrofitHelp.getUserApi().setRemarkName(url, getRequestBody(hashMap)).enqueue(
+                new DqCallBack<DataBean>() {
+                    @Override
+                    public void onSuccess(String url, int code, DataBean entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
+
+                    @Override
+                    public void onFailed(String url, int code, DataBean entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
     }
 
     /***

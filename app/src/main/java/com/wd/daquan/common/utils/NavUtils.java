@@ -79,6 +79,10 @@ import com.wd.daquan.contacts.activity.SearchAddFriendActivity;
 import com.wd.daquan.contacts.activity.SearchFriendActivity;
 import com.wd.daquan.contacts.activity.SetRemarkNameActivity;
 import com.wd.daquan.contacts.activity.UserInfoActivity;
+import com.wd.daquan.explore.FriendAreaActivity;
+import com.wd.daquan.explore.activity.DynamicMediaDetailsActivity;
+import com.wd.daquan.explore.activity.DynamicSendActivity;
+import com.wd.daquan.imui.constant.IntentCode;
 import com.wd.daquan.login.activity.BindPhoneActivity;
 import com.wd.daquan.login.activity.DownAppActivity;
 import com.wd.daquan.login.activity.ForgetLoginPasswordActivity;
@@ -161,6 +165,7 @@ import com.wd.daquan.third.session.extension.QcTransferAttachment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -224,6 +229,12 @@ public class NavUtils {
     //Vip页面
     public static void gotoVipActivity(Context activity) {
         Intent intent = new Intent(activity, VipActivity.class);
+        activity.startActivity(intent);
+        AnimUtils.enterAnimForActivity(activity);
+    }
+    //朋友圈页面
+    public static void gotoFriendAreaActivity(Context activity) {
+        Intent intent = new Intent(activity, FriendAreaActivity.class);
         activity.startActivity(intent);
         AnimUtils.enterAnimForActivity(activity);
     }
@@ -1647,6 +1658,24 @@ public class NavUtils {
     //钱包 红包明细
     public static void gotoRedTransationListActivity(Activity context) {
         Intent intent = new Intent(context, RedTransationListActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    //钱包 红包明细
+    public static void gotoDynamicSendActivity(Activity context, ArrayList<Uri> photos) {
+        Intent intent = new Intent(context, DynamicSendActivity.class);
+        intent.putExtra(DynamicSendActivity.ACTION_PICS,photos);
+        context.startActivityForResult(intent, IntentCode.REQUEST_DYNAMIC_SEND);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+
+    //查看多媒体详情
+    public static void gotoDynamicMediaDetailsActivity(Activity context, List<String> mediaData, int currentIndex) {
+        Intent intent = new Intent(context, DynamicMediaDetailsActivity.class);
+        intent.putExtra(DynamicMediaDetailsActivity.MEDIA_DATA,(Serializable) mediaData);
+        intent.putExtra(DynamicMediaDetailsActivity.MEDIA_DATA_CURRENT,currentIndex);
         context.startActivity(intent);
         AnimUtils.enterAnimForActivity(context);
     }

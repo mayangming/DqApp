@@ -10,6 +10,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.View;
 
 import com.da.library.constant.DirConstants;
@@ -201,7 +202,7 @@ public class PersonalAvatarSettingActivity extends DqBaseActivity<MinePresenter,
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] paramArrayOfInt) {
         super.onRequestPermissionsResult(requestCode, permissions, paramArrayOfInt);
-
+        Log.e("YM","头像requestCode:"+requestCode);
         if (requestCode == KeyValue.ZERO) {
             if (!DqUtils.verifyPermissions(paramArrayOfInt)) {
                 DialogUtils.showSettingQCNumDialog(PersonalAvatarSettingActivity.this, "", getString(R.string.add_authority),
@@ -267,6 +268,7 @@ public class PersonalAvatarSettingActivity extends DqBaseActivity<MinePresenter,
                 if (activity == null) {
                     return;
                 }
+                Log.e("YM","拍照");
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, KeyValue.HeadPortrait.TYPE_PICTURE);

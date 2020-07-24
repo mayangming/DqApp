@@ -137,7 +137,7 @@ public class NewFriendDetailActivity extends DqBaseActivity<ContactPresenter, Da
             Map<String, String> hashMap = new HashMap<>();
             hashMap.put(IConstant.UserInfo.REQUEST_ID, mNewFriend.request_id);
             hashMap.put(IConstant.UserInfo.STATUS, "1");
-            mPresenter.getFriendResponse(DqUrl.url_friend_response, hashMap);
+            mPresenter.getFriendInviteResponse(DqUrl.url_friend_response, hashMap);
         }
     }
 

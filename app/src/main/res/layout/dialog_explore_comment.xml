@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_000000"
+            android:textSize="@dimen/sp16"
+            android:layout_margin="@dimen/dd_dp21"
+            android:layout_gravity="center_horizontal"
+            android:text="提示"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/app_txt_999999"
+            android:layout_marginBottom="@dimen/dd_dp21"
+            android:text="确定删除吗？"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_E4E4E4"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dd_dp11"
+            android:layout_marginHorizontal="@dimen/dp_10">
+            <TextView
+                android:id="@+id/explore_del_comment_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dd_dp40"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/color_000000"
+                android:text="取消"/>
+            <TextView
+                android:id="@+id/explore_del_comment_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dd_dp40"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/color_007AFF"
+                android:text="删除"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

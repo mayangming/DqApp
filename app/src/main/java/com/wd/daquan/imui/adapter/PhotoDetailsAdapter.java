@@ -123,12 +123,11 @@ public class PhotoDetailsAdapter extends FragmentPagerAdapter{
         if (MessageType.PICTURE.getValue().equals(imMessageBaseModel.getMsgType())){
             fragment = new PhotoDetailsFragment();
             bundle.putSerializable(PhotoDetailsFragment.DATA,imMessageBaseModel);
-            fragment.setArguments(bundle);
         }else {
             fragment = new VideoDetailsFragment();
             bundle.putSerializable(VideoDetailsFragment.DATA,imMessageBaseModel);
-            fragment.setArguments(bundle);
         }
+        fragment.setArguments(bundle);
         return fragment;
     }
 

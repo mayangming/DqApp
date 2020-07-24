@@ -1,6 +1,7 @@
 package com.wd.daquan.model.retrofit;
 
 import com.wd.daquan.model.api.DqBaseApi;
+import com.wd.daquan.model.api.DynamicApi;
 import com.wd.daquan.model.api.GroupApi;
 import com.wd.daquan.model.api.SdkApi;
 import com.wd.daquan.model.api.UserApi;
@@ -46,6 +47,13 @@ public class RetrofitHelp {
     }
 
     /**
+     * 朋友圈接口
+     */
+    public static DynamicApi getDynamicApi() {
+        return RetrofitClient.getInstance().getRetrofit().create(DynamicApi.class);
+    }
+
+    /**
      * 请求数据， 无bean结构
      */
     public static void request(String url, Map<String, String> hashMap, DqCallBack callback) {
@@ -66,6 +74,20 @@ public class RetrofitHelp {
         RequestBean bean = getRequestBean();
         if(hashMap != null) {
             bean.setParams(hashMap);
+        }
+        String json = GsonUtils.toJson(bean.getParams());
+        //Log.e("dq", "json : " + json);
+        return RequestBody.create(JSON, json);
+    }
+    /**
+     * 普通纯json参数请求
+     * @param hashMap 请求参数
+     * @return RequestBody
+     */
+    public static RequestBody getRequestBodyByObject(Map<String, Object> hashMap) {
+        RequestBean bean = getRequestBean();
+        if(hashMap != null) {
+            bean.setParamsByObj(hashMap);
         }
         String json = GsonUtils.toJson(bean.getParams());
         //Log.e("dq", "json : " + json);
@@ -118,6 +140,7 @@ public class RetrofitHelp {
     public static RequestBean getRequestBean() {
         RequestBean bean = new RequestBean();
         bean.uid = ModuleMgr.getCenterMgr().getUID();
+        bean.userId = ModuleMgr.getCenterMgr().getUID();
         bean.token = ModuleMgr.getCenterMgr().getToken();
         return bean;
     }

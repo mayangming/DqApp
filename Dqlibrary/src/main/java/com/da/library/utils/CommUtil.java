@@ -9,6 +9,8 @@ import android.widget.EditText;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 /**
  * Created by Kind on 2019/4/16.
  */
@@ -49,7 +51,7 @@ public class CommUtil {
      * @param context
      */
     public static void forceOpen(Context context) {
-        ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).
+        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE)).
                 toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
@@ -59,12 +61,22 @@ public class CommUtil {
      */
     public static void showSoftKeyboard(EditText editText){
         if (editText == null)return;
-        InputMethodManager imm = (InputMethodManager)editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager)editText.getContext().getSystemService(INPUT_METHOD_SERVICE);
         if(imm != null){
             imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
+    /**
+     * 显示键盘
+     *
+     * @param et 输入焦点
+     */
+    public static void showInput(final EditText et) {
+        et.requestFocus();
+        InputMethodManager imm = (InputMethodManager) et.getContext().getSystemService(INPUT_METHOD_SERVICE);
+        imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
+    }
     /**
      * 强制关闭键盘
      * @param activity
@@ -72,7 +84,7 @@ public class CommUtil {
     public static void forceClose(Activity activity) {
         View view = activity.getWindow().peekDecorView();
         if (view != null) {
-            InputMethodManager inputmanger = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager inputmanger = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
             if(inputmanger != null){
                 inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }

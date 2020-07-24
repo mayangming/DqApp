@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
@@ -59,7 +60,19 @@ public class RetrofitClient {
         //HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory();
 //        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 //        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .cache(cache)
+////                .addInterceptor(new BaseInterceptor(headers))
+//                .addInterceptor(new CacheInterceptor())
+//                .addInterceptor(getLoggingInterceptor())
+////                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+//                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+//                .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+//                .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+//                .connectionPool(new ConnectionPool(4, 10, TimeUnit.SECONDS))
+//                // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里4个，和每个保持时间为10s
+//                .build();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .cache(cache)
 //                .addInterceptor(new BaseInterceptor(headers))
                 .addInterceptor(new CacheInterceptor())
@@ -68,11 +81,12 @@ public class RetrofitClient {
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .connectionPool(new ConnectionPool(4, 10, TimeUnit.SECONDS))
-                // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里4个，和每个保持时间为10s
+                .connectionPool(new ConnectionPool(4, 10, TimeUnit.SECONDS));
+        // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里4个，和每个保持时间为10s
+        OkHttpClient okHttpClient = RetrofitUrlManager.getInstance().with(builder)
                 .build();
-
-
+        // You can change BaseUrl at any time while App is running (The interface that declared the Domain-Name header)
+        RetrofitUrlManager.getInstance().putDomain("DqSdk", BuildConfig.SERVER_SDK);
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())

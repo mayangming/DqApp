@@ -245,15 +245,15 @@ public class SetFriendInfoHelper implements Presenter.IView<DataBean> {
 
             @Override
             public void onOk() {
-                setInfo(DqUrl.url_delete_friend);
+                delFriend(DqUrl.url_delete_friend);
             }
         });
     }
 
-    private void setInfo(String url) {
+    private void delFriend(String url) {
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put(IConstant.UserInfo.TO_UID, mUserId);
-        mPresenter.setFriendInfo(url, hashMap);
+        mPresenter.delFriend(url, hashMap);
     }
 
     private FriendListener mFriendListener;

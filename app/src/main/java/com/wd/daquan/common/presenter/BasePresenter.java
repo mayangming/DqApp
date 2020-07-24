@@ -2,6 +2,8 @@ package com.wd.daquan.common.presenter;
 
 
 import com.wd.daquan.model.bean.DataBean;
+import com.wd.daquan.model.bean.Friend;
+import com.wd.daquan.model.interfaces.DqCallBack;
 import com.wd.daquan.model.retrofit.RetrofitHelp;
 
 import java.io.File;
@@ -79,6 +81,10 @@ public class BasePresenter<V extends Presenter.IView<DataBean>> implements Prese
         return RetrofitHelp.getRequestBody(hashMap);
     }
 
+    protected RequestBody getRequestBodyByObject(Map<String, Object> hashMap) {
+        return RetrofitHelp.getRequestBodyByObject(hashMap);
+    }
+
     protected RequestBody getRequestBodyByFromData(Map<String, String> hashMap) {
         return RetrofitHelp.getRequestBodyByFromData(hashMap);
     }
@@ -90,4 +96,28 @@ public class BasePresenter<V extends Presenter.IView<DataBean>> implements Prese
     public Map<String, Object> getParams() {
         return RetrofitHelp.getRequestBean().getParams();
     }
+
+    /**
+     * 通用请求
+     */
+    public void commonRequest(String url, Map<String, String> hashMap) {
+        showLoading();
+        RetrofitHelp.getUserApi().getCommonRequest(url, getRequestBody(hashMap)).enqueue(
+                new DqCallBack<DataBean<String>>() {
+
+                    @Override
+                    public void onSuccess(String url, int code, DataBean<String> entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
+
+                    @Override
+                    public void onFailed(String url, int code, DataBean<String> entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
+    }
+
+
 }

@@ -12,6 +12,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "SERVER", rootProject.ext.third.server)
+        buildConfigField("String", "SERVER_SDK", rootProject.ext.third.server_sdk)
         buildConfigField("String", "SERVER_OPEN", rootProject.ext.third.server_open)
 
     }
@@ -55,6 +56,7 @@ dependencies {
     api rootProject.ext.dependencies.converter_gson
     api rootProject.ext.dependencies.retrofit
     api rootProject.ext.dependencies.adapter_rxjava
+    api rootProject.ext.dependencies.retrofit_url_manager
     api 'org.greenrobot:greendao:3.2.2'
     // add library
     //git地址：https://github.com/yuweiguocn/GreenDaoUpgradeHelper

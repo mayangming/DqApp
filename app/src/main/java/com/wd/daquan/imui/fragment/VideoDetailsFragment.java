@@ -1,9 +1,6 @@
 package com.wd.daquan.imui.fragment;
 
-import android.app.Activity;
-import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import com.dq.im.bean.im.MessagePhotoBean;
 import com.dq.im.bean.im.MessageVideoBean;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.util.download.HttpDownFileUtils;
@@ -25,7 +21,6 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.util.FileUtils;
-import com.wd.daquan.util.GlideUtil;
 
 import java.io.File;
 

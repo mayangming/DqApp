@@ -18,4 +18,9 @@ public class IntentCode {
      * 红包发送页面
      */
     public static final int REQUEST_RED_PACKAGE_SEND = 25;
+
+    /**
+     * 动态发送状态请求码
+     */
+    public static final int REQUEST_DYNAMIC_SEND = 26;
 }

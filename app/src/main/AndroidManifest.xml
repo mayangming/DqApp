@@ -753,6 +753,14 @@
         <activity android:name=".imui.activity.RedPackageSendActivity" />
         <activity android:name=".imui.activity.VideoDetailsActivity" android:keepScreenOn="true" />
 
+        <activity android:name=".explore.FriendAreaActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".explore.activity.DynamicSendActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.DynamicMediaDetailsActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- ======穿山甲广告 start========= -->
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"

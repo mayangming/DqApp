@@ -1011,4 +1011,22 @@ public class DqUrl {
 
     public static String url_user_system = "user/userSystem";//提交系统名字
 
+
+    /******************************** 朋友圈 start ****************************************/
+
+    public static String url_dynamic_findUserDynamic = "dynamic/findUserDynamic";//获取朋友圈配置
+    public static String url_dynamic_updateUserDynamic = "dynamic/updateUserDynamic";//更新朋友圈配置
+    public static String url_dynamic_saveUserDynamicDesc = "dynamic/saveUserDynamicDesc";//保存朋友圈内容
+    public static String url_dynamic_updateUserDynamicDesc = "dynamic/updateUserDynamicDesc";//更新朋友圈内容
+    public static String url_dynamic_findUserDynamicDesc = "dynamic/findUserDynamicDesc";//获取朋友圈列表
+    public static String url_dynamic_saveUserDynamicLike = "dynamic/saveUserDynamicLike";//点赞朋友圈
+    public static String url_dynamic_delUserDynamicLike = "dynamic/delUserDynamicLike";//取消点赞朋友圈
+    public static String url_dynamic_saveUserDynamicComment = "dynamic/saveUserDynamicComment";//评论朋友圈
+    public static String url_dynamic_delUserDynamicComment = "dynamic/delUserDynamicComment";//删除评论
+    public static String url_dynamic_delUserDynamic = "dynamic/delUserDynamic";//删除朋友圈内容
+
+    /******************************** 朋友圈 end ****************************************/
+
+
+
 }

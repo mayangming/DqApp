@@ -28,14 +28,14 @@ public class MediaDetailsActivity extends BaseActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_details);
+        setContentView(R.layout.activity_media_details);
         initView();
         initData();
         initAdapter();
     }
 
     private void initView(){
-        photoDetailsVp = findViewById(R.id.photo_details_vp);
+        photoDetailsVp = findViewById(R.id.media_details_vp);
     }
 
     private void initAdapter(){

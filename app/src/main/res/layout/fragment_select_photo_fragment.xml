@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/bottom_select_photo_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置图片"
+        android:textColor="@color/color_007AFF"
+        android:gravity="center"
+        android:textSize="@dimen/sp16"
+        android:background="@color/white"
+        android:paddingVertical="@dimen/dp_10"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_8"
+        android:background="@color/color_F3F4F5"/>
+
+    <TextView
+        android:id="@+id/bottom_select_photo_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textColor="@color/color_000000"
+        android:gravity="center"
+        android:textSize="@dimen/sp16"
+        android:background="@color/white"
+        android:paddingVertical="@dimen/dp_10"/>
+</LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.dq.im.bean.im.MessagePhotoBean;
 import com.dq.im.model.ImMessageBaseModel;
 import com.wd.daquan.R;
+import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.util.GlideUtil;
 
@@ -60,6 +61,15 @@ public class PhotoDetailsFragment extends BaseFragment{
             public void onClick(View v) {
                 Activity activity = (Activity) v.getContext();
                 activity.finish();
+            }
+        });
+        photo_details.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (Build.VERSION.SDK_INT < 29) {//android 10
+                    DqToast.showShort("图片已保存至"+messagePhotoBean.getLocalUriString());
+                }
+                return true;
             }
         });
     }

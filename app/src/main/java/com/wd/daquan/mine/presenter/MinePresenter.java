@@ -200,19 +200,33 @@ public class MinePresenter<V extends Presenter.IView<DataBean>> extends BasePres
      */
     public void setUserSwitch(String url, Map<String, String> hashMap) {
         showLoading();
-        RetrofitHelp.request(url, hashMap, new DqCallBack() {
-            @Override
-            public void onSuccess(String url, int code, DataBean entity) {
-                hideLoading();
-                success(url, code, entity);
-            }
+//        RetrofitHelp.request(url, hashMap, new DqCallBack() {
+//            @Override
+//            public void onSuccess(String url, int code, DataBean entity) {
+//                hideLoading();
+//                success(url, code, entity);
+//            }
+//
+//            @Override
+//            public void onFailed(String url, int code, DataBean entity) {
+//                hideLoading();
+//                success(url, code, entity);
+//            }
+//        });
+        RetrofitHelp.getUserApi().userSwitch(url, getRequestBody(hashMap)).enqueue(
+                new DqCallBack<DataBean>() {
+                    @Override
+                    public void onSuccess(String url, int code, DataBean entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
 
-            @Override
-            public void onFailed(String url, int code, DataBean entity) {
-                hideLoading();
-                success(url, code, entity);
-            }
-        });
+                    @Override
+                    public void onFailed(String url, int code, DataBean entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
     }
 
     /**

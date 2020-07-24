@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_5">
+
+    <TextView
+        android:id="@+id/item_area_review_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp16"
+        android:textColor="@color/app_txt_666666"
+        tools:text="我回复你:恢复的数据恢复的数据恢复的数据恢复的数据恢复的数据恢复的数据"/>
+
+</LinearLayout>

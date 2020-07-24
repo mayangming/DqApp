@@ -38,6 +38,27 @@ public class FriendPresenter extends BasePresenter<Presenter.IView<DataBean>> {
                     }
                 });
     }
+    /**
+     * 删除好友
+     */
+    public void delFriend(String url, Map<String, String> hashMap) {
+        showLoading();
+        RetrofitHelp.getUserApi().delFriend(url, getRequestBody(hashMap)).enqueue(
+                new DqCallBack<DataBean>() {
+
+                    @Override
+                    public void onSuccess(String url, int code, DataBean entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
+
+                    @Override
+                    public void onFailed(String url, int code, DataBean entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
+    }
 
     public void setFriendInfo(String url, Map<String, String> hashMap) {
         //网络层

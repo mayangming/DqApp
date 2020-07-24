@@ -3,7 +3,7 @@ ext {
     supportVersion = '28.0.0'
 
     app = [
-       "name"    :    "douquan"
+            "name"    :    "douquan"
     ]
 
     android = [
@@ -89,8 +89,11 @@ ext {
 
             converter_gson              : 'com.squareup.retrofit2:converter-gson:2.4.0',
             retrofit                    : 'com.squareup.retrofit2:retrofit:2.6.1',
+//          retrofit切换基础url:  https://github.com/JessYanCoding/RetrofitUrlManager
+            retrofit_url_manager        : 'me.jessyan:retrofit-url-manager:1.4.0',
             adapter_rxjava              : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
             logging_intercept           : "com.github.ihsanbal:LoggingInterceptor:3.0.0",
+
     ]
 
     /******************************************************************
@@ -111,7 +114,9 @@ ext {
             "server_open"       : '"http://39.106.158.176:8086/"',
 //            "server_open"       : '"http://192.168.72.207:8086/"',
             "server"            : '"http://39.106.158.176:9010/"',
-//            "server"            : '"http://192.168.72.207:9010/"',
+            "server_sdk"            : '"http://39.106.158.176:8086/"',
+//            "server"            : '"http://192.168.72.41:9010/"',
+//            "server_sdk"            : '"http://192.168.72.41:8086/"',
 //            "server"            : '"http://192.168.72.228:9010/"',
 //            "server"            : '"http://192.168.72.197:9010/"',
 //            "server"            : '"http://192.168.72.44:9010/"',
@@ -125,12 +130,13 @@ ext {
     ]
 
     release = [
-               /*************************************************************
-                * 正式环境
-                */
+            /*************************************************************
+             * 正式环境
+             */
             "server_open"       : '"http://39.106.158.176:8086/"',
             "server"            : '"http://api.dq.ink:9010/"',
 //            "server"            : '"http://123.56.182.161:9010/"',
+            "server_sdk"            : '"http://api.dq.ink:8086/"',
             "umeng_key"         : '"5d7effde570df3464b000635"',
             "umeng_channel"     : '"douquan"',
             "yx_appkey"         : '"4dedc739cca5284c389482a8e31139be"',

@@ -3,11 +3,10 @@
 
     <string name="main_tab_chat" translatable="false">斗圈</string>
     <string name="main_tab_contacts" translatable="false">通讯录</string>
-    <string name="main_tab_discover" translatable="false">发现</string>
+    <string name="main_tab_discover" translatable="false">探索</string>
     <string name="main_tab_news" translatable="false">资讯</string>
     <string name="main_tab_shopping" translatable="false">商城</string>
     <string name="main_tab_mine" translatable="false">我的</string>
-
 
     <!-- 提示语 -->
     <string name="tip_is_loading" translatable="false">正在努力加载中...</string>
@@ -1019,7 +1018,7 @@
     <string name="vip_exchange_time" translatable="false">您已成功兑换%1$sVIP会员</string>
     <string name="vip_exchange_count" translatable="false">本次兑换消耗%1$d个兑换人数</string>
 
-
+    <string name="my_area_title" translatable="false">我的圈子</string>
 
 
 </resources>

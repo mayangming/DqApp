@@ -23,6 +23,8 @@ public class RequestBean {
 
     public String uid = "";
 
+    public String userId = "";
+
     public String token = "";
 
     // 请求参数
@@ -45,6 +47,10 @@ public class RequestBean {
 
         if (!TextUtils.isEmpty(uid)) {
             mParamObj.put("uid", uid);
+        }
+
+        if (!TextUtils.isEmpty(userId)) {
+            mParamObj.put("userId", userId);
         }
 
         if (!TextUtils.isEmpty(token)) {

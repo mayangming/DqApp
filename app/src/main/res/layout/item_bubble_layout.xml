@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/explore_review_pop_bg"
+    android:paddingHorizontal="@dimen/dp_10"
+    android:paddingVertical="@dimen/dp_5">
+
+    <LinearLayout
+        android:id="@+id/bubble_ding_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/dd_dp24">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ding_white"
+            android:layout_marginEnd="@dimen/dd_dp6"/>
+        <TextView
+            android:id="@+id/bubble_ding_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="赞"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bubble_review_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/review_white"
+            android:layout_marginEnd="@dimen/dd_dp6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论"
+            android:textSize="@dimen/sp14"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

@@ -168,6 +168,7 @@
         android:layout_marginTop="@dimen/dd_dp10"
         android:id="@+id/main_title_left_scan"
         style="@style/mine_item_layout"
+        android:visibility="gone"
         android:gravity="center_vertical">
 
         <ImageView
