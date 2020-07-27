@@ -26,29 +26,29 @@ public interface GroupApi {
      * 创建群组
      */
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<CreateTeamEntity>> createTeam(@Url String url, @Body RequestBody requestBody);
     /**
      * 查询群组信息
      */
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<GroupInfoBean>> getGroupInfo(@Url String url, @Body RequestBody requestBody);
 
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<List<TeamBean>>> getTeamList(@Url String url, @Body RequestBody requestBody);
 
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<List<TeamInviteBean>>> getInviteTeamList(@Url String url, @Body RequestBody requestBody);
 
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<GroupManagerEntity>> getTeamAdmin(@Url String url, @Body RequestBody requestBody);
 
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<CommRespEntity>> getTeamInvite(@Url String url, @Body RequestBody requestBody);
 
 }

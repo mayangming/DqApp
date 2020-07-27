@@ -18,6 +18,7 @@ import com.wd.daquan.imui.type.MsgSecondType;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutParentType;
 import com.wd.daquan.imui.type.chat_layout.ChatLayoutTreeManager;
 import com.wd.daquan.imui.type.chat_layout.TreeNodeIml;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.third.helper.UserInfoHelper;
 

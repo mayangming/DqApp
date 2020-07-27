@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.wd.daquan.R
 import com.wd.daquan.common.constant.DqUrl
+import com.wd.daquan.explore.type.ExploreOperatorType
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
-import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
 import com.wd.daquan.model.interfaces.DqCallBack
 import com.wd.daquan.model.retrofit.RetrofitHelp
 import kotlinx.android.synthetic.main.dialog_explore_comment.*
@@ -19,12 +19,16 @@ import kotlinx.android.synthetic.main.dialog_explore_comment.*
  */
 class DialogExploreComment : AppCompatDialogFragment(){
 
-    var userDynamicCommentDataListBean  = UserDynamicCommentDataListBean()
-
+    private var commentId  = ""//评论Id
+    var dynamicId  = ""//动态Id
+    var sourceType = ExploreOperatorType.TYPE_COMMENT.type //弹框类型
     var delCommentListener: ((FindUserDynamicDescBean) -> Unit?) ?= null
+    var delDynamicListener: ((FindUserDynamicDescBean) -> Unit?) ?= null
 
     companion object{
-        const val ACTION_DEL_COMMENT_BEAN = "actionDelCommentBean"
+        const val ACTION_COMMENT_ID = "actionCommentId"
+        const val ACTION_DYNAMIC_ID = "actionDynamicId"
+        const val ACTION_TYPE = "actionType"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,11 +47,17 @@ class DialogExploreComment : AppCompatDialogFragment(){
     }
 
     private fun initData(){
-        userDynamicCommentDataListBean = arguments?.getSerializable(ACTION_DEL_COMMENT_BEAN) as UserDynamicCommentDataListBean
+        commentId = arguments?.getString(ACTION_COMMENT_ID) ?: ""
+        dynamicId = arguments?.getString(ACTION_DYNAMIC_ID) ?: ""
+        sourceType = arguments?.getInt(ACTION_TYPE) ?: -1
     }
 
     fun setOnDelCommentListener(delCommentListener : (FindUserDynamicDescBean) -> Unit){
         this.delCommentListener = delCommentListener
+    }
+
+    fun setOnDelDynamicListener(delDynamicListener : (FindUserDynamicDescBean) -> Unit){
+        this.delDynamicListener = delDynamicListener
     }
 
     private fun onClick(view :View){
@@ -57,15 +67,19 @@ class DialogExploreComment : AppCompatDialogFragment(){
             }
             explore_del_comment_del -> {
                 dismiss()
-                delComment()
+                when(sourceType){
+                    ExploreOperatorType.TYPE_COMMENT.type ->   delComment()
+                    ExploreOperatorType.TYPE_DYNAMIC.type ->   delDynamic(dynamicId)
+                }
+
             }
         }
     }
 
     private fun delComment(){
         val params = hashMapOf<String,String>()
-        params["dynamicId"] = userDynamicCommentDataListBean.dynamicId.toString()
-        params["commentId"] = userDynamicCommentDataListBean.commentId.toString()
+        params["dynamicId"] = dynamicId
+        params["commentId"] = commentId
         delUserDynamicComment(DqUrl.url_dynamic_delUserDynamicComment,params)
     }
 
@@ -83,6 +97,25 @@ class DialogExploreComment : AppCompatDialogFragment(){
             override fun onFailed(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
 //                        hideLoading();
 //                exploreAreaCallBack?.onFail()
+            }
+        })
+    }
+
+    /**
+     * 删除动态
+     */
+    private fun delDynamic(dynamicId :String){
+        val params = hashMapOf<String,String>()
+        params["dynamicId"] = dynamicId
+        RetrofitHelp.getDynamicApi().delUserDynamic(DqUrl.url_dynamic_delUserDynamic, RetrofitHelp.getRequestBody(params)).enqueue(object : DqCallBack<DataBean<FindUserDynamicDescBean>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
+//                        hideLoading();
+                val dynamicBean = entity.data as FindUserDynamicDescBean
+                delDynamicListener?.invoke(dynamicBean)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
+//                        hideLoading();
             }
         })
     }

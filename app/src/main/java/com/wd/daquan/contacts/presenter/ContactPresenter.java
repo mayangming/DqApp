@@ -43,23 +43,23 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
 
 
         RetrofitHelp.getUserApi().getFriendList(url, getRequestBody(hashMap)).enqueue(
-            new DqCallBack<DataBean<List<Friend>>>() {
-                @Override
-                public void onSuccess(String url, int code, DataBean<List<Friend>> entity) {
-                    if(isShowLoading) {
-                        hideLoading();
+                new DqCallBack<DataBean<List<Friend>>>() {
+                    @Override
+                    public void onSuccess(String url, int code, DataBean<List<Friend>> entity) {
+                        if(isShowLoading) {
+                            hideLoading();
+                        }
+                        success(url, code, entity);
                     }
-                    success(url, code, entity);
-                }
 
-                @Override
-                public void onFailed(String url, int code, DataBean<List<Friend>> entity) {
-                    if(isShowLoading) {
-                        hideLoading();
+                    @Override
+                    public void onFailed(String url, int code, DataBean<List<Friend>> entity) {
+                        if(isShowLoading) {
+                            hideLoading();
+                        }
+                        failed(url, code, entity);
                     }
-                    failed(url, code, entity);
-                }
-        });
+                });
     }
 
     /***
@@ -101,20 +101,20 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
     private void requestFriend(String url, Map<String, String> hashMap) {
         showLoading();
         RetrofitHelp.getUserApi().getFriend(url, getRequestBody(hashMap)).enqueue(
-            new DqCallBack<DataBean<Friend>>() {
+                new DqCallBack<DataBean<Friend>>() {
 
-                @Override
-                public void onSuccess(String url, int code, DataBean<Friend> entity) {
-                    hideLoading();
-                    success(url, code, entity);
-                }
+                    @Override
+                    public void onSuccess(String url, int code, DataBean<Friend> entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
 
-                @Override
-                public void onFailed(String url, int code, DataBean<Friend> entity) {
-                    hideLoading();
-                    failed(url, code, entity);
-                }
-            });
+                    @Override
+                    public void onFailed(String url, int code, DataBean<Friend> entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
     }
 
     /**
@@ -221,14 +221,14 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
         RetrofitHelp.getGroupApi().getTeamInvite(url, getRequestBody(hashMap)).enqueue(new DqCallBack<DataBean<CommRespEntity>>() {
             @Override
             public void onSuccess(String url, int code, DataBean<CommRespEntity> entity) {
-                                        hideLoading();
-                        success(url, code, entity);
+                hideLoading();
+                success(url, code, entity);
             }
 
             @Override
             public void onFailed(String url, int code, DataBean<CommRespEntity> entity) {
-                        hideLoading();
-                        failed(url, code, entity);
+                hideLoading();
+                failed(url, code, entity);
             }
         });
     }
@@ -303,18 +303,18 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
         showLoading();
         RetrofitHelp.getGroupApi().getTeamList(url, getRequestBody(hashMap)).enqueue(
                 new DqCallBack<DataBean<List<TeamBean>>>() {
-            @Override
-            public void onSuccess(String url, int code, DataBean<List<TeamBean>> entity) {
-                hideLoading();
-                success(url, code, entity);
-            }
+                    @Override
+                    public void onSuccess(String url, int code, DataBean<List<TeamBean>> entity) {
+                        hideLoading();
+                        success(url, code, entity);
+                    }
 
-            @Override
-            public void onFailed(String url, int code, DataBean<List<TeamBean>> entity) {
-                hideLoading();
-                failed(url, code, entity);
-            }
-        });
+                    @Override
+                    public void onFailed(String url, int code, DataBean<List<TeamBean>> entity) {
+                        hideLoading();
+                        failed(url, code, entity);
+                    }
+                });
     }
 
     /**
@@ -355,16 +355,16 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
     public void getTeamInviteList(String url) {
         RetrofitHelp.getGroupApi().getInviteTeamList(url, getRequestBody(null))
                 .enqueue(new DqCallBack<DataBean<List<TeamInviteBean>>>() {
-            @Override
-            public void onSuccess(String url, int code, DataBean<List<TeamInviteBean>> entity) {
-                success(url, code, entity);
-            }
+                    @Override
+                    public void onSuccess(String url, int code, DataBean<List<TeamInviteBean>> entity) {
+                        success(url, code, entity);
+                    }
 
-            @Override
-            public void onFailed(String url, int code, DataBean<List<TeamInviteBean>> entity) {
-                failed(url, code, entity);
-            }
-        });
+                    @Override
+                    public void onFailed(String url, int code, DataBean<List<TeamInviteBean>> entity) {
+                        failed(url, code, entity);
+                    }
+                });
     }
     /** 发送短信 */
     public void senInvitationSms(String url,Map<String,String> params){
@@ -377,6 +377,27 @@ public class ContactPresenter extends BasePresenter<Presenter.IView<DataBean>> {
 
             @Override
             public void onFailed(String url, int code, DataBean entity) {
+                hideLoading();
+                failed(url, code, entity);
+            }
+        });
+    }
+
+    /**
+     * 获取朋友圈的图片
+     * @param url
+     * @param params
+     */
+    public void findUserDynamicPic(String url,Map<String,String> params){
+        RetrofitHelp.getDynamicApi().findUserDynamicPic(url,RetrofitHelp.getRequestBody(params)).enqueue(new DqCallBack<DataBean<List<String>>>(){
+            @Override
+            public void onSuccess(String url, int code, DataBean<List<String>> entity) {
+                hideLoading();
+                success(url, code, entity);
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean<List<String>> entity) {
                 hideLoading();
                 failed(url, code, entity);
             }

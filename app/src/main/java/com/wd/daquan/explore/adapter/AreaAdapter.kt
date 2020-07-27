@@ -11,16 +11,18 @@ import com.netease.nim.uikit.common.util.sys.TimeUtil
 import com.wd.daquan.R
 import com.wd.daquan.common.constant.DqUrl
 import com.wd.daquan.common.utils.NavUtils
+import com.wd.daquan.explore.dialog.DialogExploreComment
 import com.wd.daquan.explore.fragment.ExploreAreaBottomFragment
 import com.wd.daquan.explore.popupwindow.CustomPopupWindow
+import com.wd.daquan.explore.type.ExploreOperatorType
 import com.wd.daquan.explore.viewholder.AreaViewHolder
 import com.wd.daquan.glide.GlideUtils
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
+import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
 import com.wd.daquan.model.bean.UserDynamicLikeDataListBean
 import com.wd.daquan.model.interfaces.DqCallBack
-import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
 import com.wd.daquan.model.retrofit.RetrofitHelp
 import com.wd.daquan.model.retrofit.RetrofitHelp.getRequestBody
@@ -140,9 +142,13 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
 
         holder.areaDynamicDelTv.visibility = if (ModuleMgr.getCenterMgr().uid == dynamicDescBean.userId) View.VISIBLE else View.GONE
         holder.areaDynamicDelTv.setOnClickListener{
-            delDynamic(dynamicDescBean.dynamicId)
+            dialogExploreOperator(dynamicDescBean.dynamicId.toString())
         }
         holder.areaHeadContainer.setOnClickListener {
+            NavUtils.gotoUserInfoActivity(context, dynamicDescBean.userId,ImType.P2P.value)
+        }
+
+        holder.userName.setOnClickListener {
             NavUtils.gotoUserInfoActivity(context, dynamicDescBean.userId,ImType.P2P.value)
         }
     }
@@ -183,6 +189,26 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
             }
         })
         return popupWindow
+    }
+
+    /**
+     * 操作对话框
+     */
+    private fun dialogExploreOperator(dynamicId: String){
+        val act = context as FragmentActivity
+        val dialogExploreComment = DialogExploreComment()
+        val bundle = Bundle()
+        bundle.putString(DialogExploreComment.ACTION_DYNAMIC_ID,dynamicId)
+        bundle.putInt(DialogExploreComment.ACTION_TYPE, ExploreOperatorType.TYPE_DYNAMIC.type)
+        dialogExploreComment.arguments = bundle
+        dialogExploreComment.show(act.supportFragmentManager,"delComment")
+        dialogExploreComment.setOnDelDynamicListener {
+            val index = getNotifyDataSetChangedIndex(it)
+            if (-1 != index){
+                userDynamicDescBeanList.removeAt(index)
+                notifyDataSetChanged()
+            }
+        }
     }
 
     /**
@@ -266,28 +292,6 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
         return position;
     }
 
-    /**
-     * 删除动态
-     */
-    private fun delDynamic(dynamicId :Long){
-        val params = hashMapOf<String,String>()
-        params["dynamicId"] = dynamicId.toString()
-        RetrofitHelp.getDynamicApi().delUserDynamic(DqUrl.url_dynamic_delUserDynamic, getRequestBody(params)).enqueue(object : DqCallBack<DataBean<FindUserDynamicDescBean>>(){
-            override fun onSuccess(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
-//                        hideLoading();
-                val dynamicBean = entity.data as FindUserDynamicDescBean
-                val index = getNotifyDataSetChangedIndex(dynamicBean)
-                if (-1 == index) return
-//                notifyItemChanged(index,dynamicBean)
-                userDynamicDescBeanList.removeAt(index)
-                notifyDataSetChanged()
-            }
-
-            override fun onFailed(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
-//                        hideLoading();
-            }
-        })
-    }
 
     inner class ExploreCommentResultCallBack : ExploreAreaBottomFragment.ExploreAreaCallBack{
         override fun onSuccess(dynamicDescBean: FindUserDynamicDescBean) {

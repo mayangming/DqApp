@@ -16,6 +16,7 @@ import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.bean.SaveUserDynamicLikeBean
 import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
 import com.wd.daquan.model.interfaces.DqCallBack
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.retrofit.RetrofitHelp
 import kotlinx.android.synthetic.main.fragment_explore_area_review.*
@@ -71,6 +72,7 @@ class ExploreAreaBottomFragment : BottomSheetDialogFragment(){
         val tempBean = arguments?.getSerializable(DYNAMIC_COMMENT_BEAN)
         tempBean?.let {
             dynamicCommentBean = it as UserDynamicCommentDataListBean
+            review_input_edt.hint = "回复${dynamicCommentBean?.userNick}:"
         }
     }
 
@@ -87,7 +89,7 @@ class ExploreAreaBottomFragment : BottomSheetDialogFragment(){
         val params = hashMapOf<String,String>()
         params["dynamicId"] = dynamicBean.dynamicId.toString()
         params["desc"] = review_input_edt.text.toString()
-        params["type"] = if (null == dynamicCommentBean) ReviewCommentType.COMMENT.type else  ReviewCommentType.REVIEW.type
+        params["type"] = if (null == dynamicCommentBean) ReviewCommentType.COMMENT.type else ReviewCommentType.REVIEW.type
         dynamicCommentBean?.let {
             params["friendId"] = it.userId
             params["toCommentId"] = it.commentId.toString()

@@ -74,4 +74,11 @@ public interface DynamicApi {
      */
     @POST
     Call<DataBean<FindUserDynamicDescBean>> delUserDynamic(@Url String url, @Body RequestBody requestBody);
+
+
+    /**
+     * 获取指定数量的朋友圈图片
+     */
+    @POST
+    Call<DataBean<List<String>>> findUserDynamicPic(@Url String url, @Body RequestBody requestBody);
 }

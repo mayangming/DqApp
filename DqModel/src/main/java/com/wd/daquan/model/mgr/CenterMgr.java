@@ -61,6 +61,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
     private String token = "";
 
     private String lastDynamicUid = "";//上次动态的朋友圈用户Id
+    private long lastDynamicTime = 0;//上次朋友圈动态的时间
 
     /**
      * 获取UID
@@ -84,6 +85,23 @@ public class CenterMgr implements ModuleBase, QCObserver{
     }
 
     /**
+     * 获取上次动态的朋友圈动态阅读状态
+     * @return
+     */
+    public int getLastDynamicReadStatus() {
+        return getKDPreferenceUserInfo().getInt(EBSharedPrefUser.lastDynamicReadStatus, 0);
+    }
+
+    /**
+     * 获取上次朋友圈动态的时间
+     * @return
+     */
+    public long getLastDynamicTime() {
+        lastDynamicTime = getKDPreferenceUserInfo().getLong(EBSharedPrefUser.lastDynamicTime, 0);
+        return lastDynamicTime;
+    }
+
+    /**
      * 获取云信运行token
      * @return
      */
@@ -99,7 +117,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
      * @return
      */
     public String getJrmfToken() {
-            return getKDPreferenceUserInfo().getString(EBSharedPrefUser.JRMF_TOKEN, "");
+        return getKDPreferenceUserInfo().getString(EBSharedPrefUser.JRMF_TOKEN, "");
     }
 
     /**
@@ -115,7 +133,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
      * 设置引导页权限同意的状态
      */
     public void putAgreeProtocolStatus(boolean isAgree) {
-           getKDPreferenceUserInfo().saveBoolean(EBSharedPrefUser.IS_AGREE_PROTOCOL, isAgree);
+        getKDPreferenceUserInfo().saveBoolean(EBSharedPrefUser.IS_AGREE_PROTOCOL, isAgree);
     }
     /**
      * 获取引导页权限同意的状态
@@ -127,7 +145,7 @@ public class CenterMgr implements ModuleBase, QCObserver{
      * 获取红包雨内容
      */
     public void putRedRainContent(String redRainContent) {
-           getKDPreferenceUserInfo().saveString(EBSharedPrefUser.RED_RAIN_CONTENT, redRainContent);
+        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.RED_RAIN_CONTENT, redRainContent);
     }
     /**
      * 获取红包雨内容
@@ -210,6 +228,22 @@ public class CenterMgr implements ModuleBase, QCObserver{
      */
     public void saveLastDynamicUid(String value) {
         getKDPreferenceUserInfo().saveString(EBSharedPrefUser.lastDynamicUid, value);
+    }
+
+    /**
+     * 保存上一次朋友圈动态的时间
+     * @param value
+     */
+    public void saveLastDynamicTime(Long value) {
+        getKDPreferenceUserInfo().saveLong(EBSharedPrefUser.lastDynamicTime, value);
+    }
+
+    /**
+     * 上次朋友圈的阅读状态
+     * @param value
+     */
+    public void saveLastDynamicReadStatus(int value) {
+        getKDPreferenceUserInfo().saveInt(EBSharedPrefUser.lastDynamicReadStatus, value);
     }
 
     public boolean enableTeamInvite() {

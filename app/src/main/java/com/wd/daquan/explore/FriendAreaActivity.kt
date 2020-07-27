@@ -10,8 +10,7 @@ import android.util.Log
 import android.view.View
 import com.da.library.listener.DialogListener
 import com.dq.im.constants.Constants
-import com.dq.im.model.ImMessageBaseModel
-import com.dq.im.type.MessageType
+import com.dq.im.type.ImType
 import com.dq.im.util.oss.AliOssUtil
 import com.dq.im.util.oss.SimpleUpLoadListener
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -26,6 +25,7 @@ import com.wd.daquan.common.utils.NavUtils
 import com.wd.daquan.explore.activity.DynamicSendActivity
 import com.wd.daquan.explore.adapter.AreaAdapter
 import com.wd.daquan.explore.fragment.ExplorePhotoBottomFragment
+import com.wd.daquan.explore.itemdecoration.DividerItemDecoration
 import com.wd.daquan.explore.presenter.FriendAreaPresenter
 import com.wd.daquan.explore.type.SearchType
 import com.wd.daquan.glide.GlideUtils
@@ -35,6 +35,7 @@ import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.bean.UserDynamicBean
 import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.mgr.ModuleMgr
+import com.wd.daquan.third.helper.UserInfoHelper
 import com.wd.daquan.util.FileUtils
 import com.zhihu.matisse.Matisse
 import kotlinx.android.synthetic.main.activity_friend_area.*
@@ -49,6 +50,8 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
     private var tempFlag = 0 //0 换背景 1发布动态
     private var pageNum = 1 //当前页码
     private var pageSize = 10 //每页显示的条数
+    private var friendId:String ?= null;//查询朋友圈好友的Id
+    private var searchType = SearchType.ALL;//搜索类型
     private val bottomSelectPhotoFragment : ExplorePhotoBottomFragment by lazy {
         initBottomSelectPhotoFragment()
     }
@@ -57,6 +60,8 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
     companion object{
         const val REPLACE_BG = 0
         const val SEND_DYNAMIC = 1
+        const val SEARCH_TYPE = "searchType"
+        const val USER_ID = "userId"
     }
 
 
@@ -71,8 +76,8 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
         initSmartRefreshLayout()
         initRecycleView()
         initAdapter()
-
         area_bg.setOnClickListener(this::onClick)
+        area_user_head.setOnClickListener(this::onClick)
     }
 
     private fun initTitle(){
@@ -82,6 +87,8 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
         friend_area_title.setRightVisible(View.VISIBLE)
         friend_area_title.rightIv.setOnClickListener(this)
     }
+
+
 
     /**
      * 初始化朋友圈列表
@@ -93,6 +100,7 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
     private fun initAdapter(){
         areaAdapter = AreaAdapter()
         area_record.adapter = areaAdapter
+        area_record.addItemDecoration(DividerItemDecoration(this))
     }
 
     /**
@@ -113,9 +121,16 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
     }
 
     override fun initData() {
+        friendId = intent.getStringExtra(USER_ID)
+        searchType = intent.getSerializableExtra(SEARCH_TYPE) as SearchType
         showLoading()
         getDynamicMessageList()
         findUserDynamic()
+        area_user_name.text = UserInfoHelper.getUserDisplayName(friendId)
+//        GlideUtils.loadRound(this, ModuleMgr.getCenterMgr().avatar, area_user_head,5)
+        DqLog.e("YM","头像连接:${UserInfoHelper.getHeadPic(friendId)}")
+        GlideUtils.loadRound(this,  UserInfoHelper.getHeadPic(friendId), area_user_head,5)
+
     }
 
     /**
@@ -145,8 +160,8 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
 
     private fun getDynamicMessageList(){
         val params = hashMapOf<String, String>()
-        params["searchUserId"] = ModuleMgr.getCenterMgr().uid
-        params["searchType"] = SearchType.ALL.searchType
+        params["searchUserId"] = friendId ?: ModuleMgr.getCenterMgr().uid
+        params["searchType"] = searchType.searchType
         params["pageNum"] = pageNum.toString()
         params["pageSize"] = pageSize.toString()
         mPresenter.getNewDynamicMessage(DqUrl.url_dynamic_findUserDynamicDesc,params)
@@ -158,21 +173,23 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
         if (bottomSelectPhotoFragment.isAdded) {//解决方法就是添加这行代码，如果已经添加了，就移除掉然后再show，就不会出现Fragment already added的错误了。
             supportFragmentManager.beginTransaction().remove(bottomSelectPhotoFragment).commit();
         }
-        when(v?.id){
-            area_bg.id ->{
+        when(v){
+            area_bg ->{
                 tempFlag = 0
                 val bundle = Bundle()
                 bundle.putInt(ExplorePhotoBottomFragment.SOURCE_TYPE,tempFlag)
                 bottomSelectPhotoFragment.arguments = bundle
                 bottomSelectPhotoFragment.show(supportFragmentManager,"")
             }
-
-            friend_area_title.rightIv.id ->{
+            friend_area_title.rightIv ->{
                 tempFlag = 1
                 val bundle = Bundle()
                 bundle.putInt(ExplorePhotoBottomFragment.SOURCE_TYPE,tempFlag)
                 bottomSelectPhotoFragment.arguments = bundle
                 bottomSelectPhotoFragment.show(supportFragmentManager,"")
+            }
+            area_user_head -> {
+                NavUtils.gotoUserInfoActivity(this, ModuleMgr.getCenterMgr().uid, ImType.P2P.value)
             }
         }
     }

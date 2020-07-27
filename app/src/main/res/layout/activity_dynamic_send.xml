@@ -20,6 +20,7 @@
         android:textSize="@dimen/sp16"
         android:textColor="@color/app_txt_999999"
         android:padding="@dimen/dp_10"
+        android:maxLength="200"
         android:background="@color/white"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dynamic_send_rv"

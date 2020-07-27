@@ -2,6 +2,8 @@ package com.wd.daquan.contacts.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,8 +24,11 @@ import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.constant.KeyValue;
 import com.wd.daquan.common.utils.DqUtils;
 import com.wd.daquan.common.utils.NavUtils;
+import com.wd.daquan.contacts.adapter.UserDetailsPicsAdapter;
 import com.wd.daquan.contacts.presenter.ContactPresenter;
+import com.wd.daquan.explore.type.SearchType;
 import com.wd.daquan.glide.GlideUtils;
+import com.wd.daquan.imui.adapter.RecycleItemOnClickListener;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.db.helper.FriendDbHelper;
@@ -68,6 +73,8 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
     /**
      * item
      */
+    private View areaPicsLl;//朋友圈列表
+    private View remarkDivider;//备注间隔线
     private RelativeLayout mSetRemarkRl;
     private RelativeLayout mPersonalInfoRl;
     private View reportRl;//举报与投诉
@@ -83,6 +90,8 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
     private View mUserdetailRemarksLin;
     private TextView mUserdetailRemarksTv;
     private ImageView mUserdetailRemarksImg;
+    private RecyclerView areaPicsRv;//朋友圈图片列表
+
     /**
      * 群组开启保护模式显示
      */
@@ -106,6 +115,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
     private DqToolbar mToolbar;
     private SetFriendInfoHelper mInfoHelper;
 
+    private UserDetailsPicsAdapter userDetailsPicsAdapter;
 
     @Override
     protected ContactPresenter createPresenter() {
@@ -144,6 +154,8 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         mUserdetailRemarksTv = findViewById(R.id.userdetail_remarks_tv);
 
         // item
+        areaPicsLl = findViewById(R.id.user_info_area_pics_ll);
+        remarkDivider = findViewById(R.id.remark_divider);
         mSetRemarkRl = findViewById(R.id.set_remark_rl);
         mPersonalInfoRl = findViewById(R.id.rl_personal_info);
         reportRl = findViewById(R.id.report_rl);
@@ -156,6 +168,8 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
 
         mSendMessageTv = findViewById(R.id.send_message_tv);
         mTipsTv = findViewById(R.id.user_detail_tips_tv);
+        areaPicsRv = findViewById(R.id.user_info_area_pics_rv);
+        initAreaPics();
     }
 
     @Override
@@ -166,8 +180,21 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         if(isCard = true) {
             resourceType = "2";
         }
-
         mInfoHelper = new SetFriendInfoHelper(this);
+        getUserAreaPics();
+    }
+
+    private void initAreaPics(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+        areaPicsRv.setLayoutManager(linearLayoutManager);
+        userDetailsPicsAdapter = new UserDetailsPicsAdapter();
+        areaPicsRv.setAdapter(userDetailsPicsAdapter);
+        userDetailsPicsAdapter.setRecycleItemOnClickListener(new RecycleItemOnClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                NavUtils.gotoFriendAreaActivity(view.getContext(),mUserId,SearchType.PERSON);
+            }
+        });
     }
 
     private void getUserInfoFormNet() {
@@ -214,6 +241,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
 //        mSendCardRl.setOnClickListener(this);
         mPersonalInfoRl.setOnClickListener(this);
         mUserdetailRemarksLin.setOnClickListener(this);
+        areaPicsLl.setOnClickListener(this);
         MsgMgr.getInstance().attach(this);
     }
 
@@ -286,6 +314,10 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
             case R.id.report_rl:
                 NavUtils.gotoComplaintActivity(this);
                 break;
+            case R.id.user_info_area_pics_ll:
+                DqLog.e("YM","用户Id:"+mUserId);
+                NavUtils.gotoFriendAreaActivity(this,mUserId,SearchType.PERSON);
+                break;
         }
     }
 
@@ -323,6 +355,9 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         } else if (DqUrl.url_select_group_member.equals(url)) {//获取群指定个人信息
             //加载群组数据
             loadGroupUserInfo(entity);
+        }else if (DqUrl.url_dynamic_findUserDynamicPic.equals(url)){//加载朋友圈图片
+            List<String> pics = (List<String>) entity.data;
+            userDetailsPicsAdapter.addData(pics);
         }
     }
 
@@ -376,6 +411,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         boolean isProtect = !isCard && !TextUtils.isEmpty(friend.is_protect_groupuser) && !"0".equals(friend.is_protect_groupuser);
 
         if (ModuleMgr.getCenterMgr().getUID().equals(friend.uid)) {
+            remarkDivider.setVisibility(View.GONE);
             mSetRemarkRl.setVisibility(View.GONE);
             mChuiniuNumTv.setVisibility(View.VISIBLE);
             mSendMessageTv.setVisibility(View.GONE);
@@ -389,6 +425,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
             DqLog.e("YM","是不是好友:"+isFriend);
             if (isFriend) {
                 mToolbar.setRightIvVisible(true);
+                remarkDivider.setVisibility(View.VISIBLE);
                 mSetRemarkRl.setVisibility(View.VISIBLE);
                 mSendMessageTv.setVisibility(View.VISIBLE);
                 mSendMessageTv.setText(getResources().getString(R.string.send_message));
@@ -397,6 +434,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
             } else {
                 mToolbar.setRightIvVisible(false);
                 mSetRemarkRl.setVisibility(View.VISIBLE);
+                remarkDivider.setVisibility(View.VISIBLE);
                 boolean otherMaster = "2".equals(friend.getTarget_master()) || "1".equals(friend.getTarget_master());
                 // (群主、管理员) || 未开启群保护则显示添加好友
                 boolean ownMaster = "1".equals(friend.getOwn_master()) || "2".equals(friend.getOwn_master());
@@ -497,6 +535,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
 
     @SuppressLint("SetTextI18n")
     private void showPhoneDesc(String descriptions, List<String> phones, String card) {
+        remarkDivider.setVisibility(View.GONE);
         mSetRemarkRl.setVisibility(View.GONE);
         mUserdetailRemarksLin.setVisibility(View.GONE);
         String phoneNumber = "";
@@ -507,6 +546,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         //全部为空
         if (TextUtils.isEmpty(descriptions) && TextUtils.isEmpty(card) && TextUtils.isEmpty(phoneNumber)) {
             mSetRemarkRl.setVisibility(View.VISIBLE);
+            remarkDivider.setVisibility(View.VISIBLE);
             mUserdetailRemarksLin.setVisibility(View.GONE);
             return;
         }
@@ -514,6 +554,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         //备注，图片，电话全有
         if (!TextUtils.isEmpty(descriptions) && (!TextUtils.isEmpty(card) || !TextUtils.isEmpty(phoneNumber))) {
             mSetRemarkRl.setVisibility(View.VISIBLE);
+            remarkDivider.setVisibility(View.VISIBLE);
             mUserdetailRemarksLin.setVisibility(View.VISIBLE);
 
             mRemarkPhoneTv.setText(getString(R.string.telephone_number));
@@ -528,6 +569,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         //只有电话有内容
         if (!TextUtils.isEmpty(phoneNumber) && (TextUtils.isEmpty(card) || TextUtils.isEmpty(descriptions))) {
             mSetRemarkRl.setVisibility(View.VISIBLE);
+            remarkDivider.setVisibility(View.VISIBLE);
             mUserdetailRemarksLin.setVisibility(View.GONE);
 
             mRemarkPhoneTv.setText(getString(R.string.telephone_number));
@@ -538,6 +580,7 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
         //只有备注或图片有内容
         if (TextUtils.isEmpty(phoneNumber) && (!TextUtils.isEmpty(card) || !TextUtils.isEmpty(descriptions))) {
             mSetRemarkRl.setVisibility(View.GONE);
+            remarkDivider.setVisibility(View.GONE);
             mUserdetailRemarksLin.setVisibility(View.VISIBLE);
 
             mUserdetailRemarksNameTv.setText(getString(R.string.describe) + "\t\t\t\t\t\t");
@@ -621,4 +664,17 @@ public class UserInfoActivity extends DqBaseActivity<ContactPresenter, DataBean>
             SessionHelper.startP2PSession(getActivity(), mUserId);
         }
     }
+
+    /**
+     * 获取朋友圈图片
+     */
+    private void getUserAreaPics(){
+        Map<String,String> params = new HashMap<>();
+        params.put("searchUserId",mUserId);
+        params.put("searchType",SearchType.ALL.getSearchType());
+        params.put("pageSize","4");
+        params.put("pageNum","1");
+        mPresenter.findUserDynamicPic(DqUrl.url_dynamic_findUserDynamicPic,params);
+    }
+
 }

@@ -11,6 +11,7 @@ import com.wd.daquan.common.fragment.BaseFragment
 import com.wd.daquan.common.utils.DqUtils
 import com.wd.daquan.common.utils.NavUtils
 import com.wd.daquan.explore.presenter.ExplorePresenter
+import com.wd.daquan.explore.type.DynamicReadStatus
 import com.wd.daquan.explore.type.SearchType
 import com.wd.daquan.glide.GlideUtils
 import com.wd.daquan.model.bean.DataBean
@@ -62,7 +63,8 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         when (v?.id){
             explore_my_area_ll.id -> {
                 dynamic_unread_container.visibility = View.GONE
-                NavUtils.gotoFriendAreaActivity(activity)
+                ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.READED.status)
+                NavUtils.gotoFriendAreaActivity(activity,ModuleMgr.getCenterMgr().uid,SearchType.ALL)
             }
             explore_scan_ll.id ->
                 if (DqUtils.checkPermissions(activity, *needPermissions)) {
@@ -80,15 +82,30 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                 val userDynamicList = entity.data as List<FindUserDynamicDescBean>
                 if(userDynamicList.isNotEmpty()){
                     val userDynamic = userDynamicList[0]
-                    DqLog.e("YM","新消息的ID:${userDynamic.userId}")
-                    DqLog.e("YM","本地保存消息的ID:${ModuleMgr.getCenterMgr().lastDynamicUid}")
-                    if (ModuleMgr.getCenterMgr().lastDynamicUid != userDynamic.userId){
-                        dynamic_unread_container.visibility = View.VISIBLE
-                        GlideUtils.loadRound(context, userDynamic.userHeadPic, dynamic_unread, 5)
-                        ModuleMgr.getCenterMgr().saveLastDynamicUid(userDynamic.userId)
-                    }else{
+                    DqLog.e("YM","上次保存的值:${ModuleMgr.getCenterMgr().lastDynamicUid}")
+                    DqLog.e("YM","这一次的值:${userDynamic.userId}")
+                    DqLog.e("YM","本系统的值:${ModuleMgr.getCenterMgr().uid}")
+
+                    if (ModuleMgr.getCenterMgr().lastDynamicUid == ModuleMgr.getCenterMgr().uid){
                         dynamic_unread_container.visibility = View.GONE
+                        return
                     }
+
+                    if (ModuleMgr.getCenterMgr().lastDynamicTime > userDynamic.createTime){
+                        dynamic_unread_container.visibility = View.GONE
+                        return
+                    }
+
+                    if(ModuleMgr.getCenterMgr().lastDynamicReadStatus == DynamicReadStatus.READED.status){
+                        dynamic_unread_container.visibility = View.GONE
+                        return
+                    }
+
+                    dynamic_unread_container.visibility = View.VISIBLE
+                    GlideUtils.loadRound(context, userDynamic.userHeadPic, dynamic_unread, 5)
+                    ModuleMgr.getCenterMgr().saveLastDynamicUid(userDynamic.userId)
+                    ModuleMgr.getCenterMgr().saveLastDynamicTime(userDynamic.createTime)
+                    ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.UNREAD.status)
                 }
             }
         }

@@ -82,6 +82,7 @@ import com.wd.daquan.contacts.activity.UserInfoActivity;
 import com.wd.daquan.explore.FriendAreaActivity;
 import com.wd.daquan.explore.activity.DynamicMediaDetailsActivity;
 import com.wd.daquan.explore.activity.DynamicSendActivity;
+import com.wd.daquan.explore.type.SearchType;
 import com.wd.daquan.imui.constant.IntentCode;
 import com.wd.daquan.login.activity.BindPhoneActivity;
 import com.wd.daquan.login.activity.DownAppActivity;
@@ -233,8 +234,10 @@ public class NavUtils {
         AnimUtils.enterAnimForActivity(activity);
     }
     //朋友圈页面
-    public static void gotoFriendAreaActivity(Context activity) {
+    public static void gotoFriendAreaActivity(Context activity, String friendId, SearchType searchType) {
         Intent intent = new Intent(activity, FriendAreaActivity.class);
+        intent.putExtra(FriendAreaActivity.USER_ID,friendId);
+        intent.putExtra(FriendAreaActivity.SEARCH_TYPE,searchType);
         activity.startActivity(intent);
         AnimUtils.enterAnimForActivity(activity);
     }

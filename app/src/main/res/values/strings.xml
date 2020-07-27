@@ -268,14 +268,14 @@
     <string name="mine_alipay_red" translatable="false">支付宝红包</string>
     <string name="collection" translatable="false">收藏</string>
     <string name="setting" translatable="false">设置</string>
-    <string name="vip" translatable="false">Vip会员</string>
+    <string name="vip" translatable="false">VIP会员</string>
     <string name="wallet_cloud" translatable="false">斗圈零钱</string>
     <string name="wallet_withdraw" translatable="false">提现</string>
     <string name="wallet_withdraw_result" translatable="false">提现结果</string>
     <string name="wallet_pay_pwd" translatable="false">支付密码</string>
     <string name="wallet_withdraw_record" translatable="false">提现记录</string>
     <string name="wallet_bind_wx" translatable="false">绑定微信</string>
-    <string name="vip_exchange" translatable="false">Vip会员兑换</string>
+    <string name="vip_exchange" translatable="false">VIP会员兑换</string>
     <string name="mine_help" translatable="false">帮助</string>
     <string name="mine_feedback" translatable="false">意见反馈</string>
     <string name="qrcode_user_portrait" translatable="false">用户头像</string>

@@ -112,4 +112,21 @@ public class UserDynamicCommentDataListBean implements Serializable {
     public void setFriendHead(String friendHead) {
         this.friendHead = friendHead;
     }
+
+    @Override
+    public String toString() {
+        return "UserDynamicCommentDataListBean{" +
+                "commentId=" + commentId +
+                ", dynamicId=" + dynamicId +
+                ", userId='" + userId + '\'' +
+                ", friendId='" + friendId + '\'' +
+                ", desc='" + desc + '\'' +
+                ", createTime=" + createTime +
+                ", type='" + type + '\'' +
+                ", userNick='" + userNick + '\'' +
+                ", userHead='" + userHead + '\'' +
+                ", friendNick='" + friendNick + '\'' +
+                ", friendHead='" + friendHead + '\'' +
+                '}';
+    }
 }

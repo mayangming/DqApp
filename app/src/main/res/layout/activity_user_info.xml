@@ -122,7 +122,26 @@
         </LinearLayout>
 
     </RelativeLayout>
-
+    <LinearLayout
+        android:id="@+id/user_info_area_pics_ll"
+        style="@style/comm_sub_item_layout"
+        android:visibility="visible"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/comm_sub_title"
+            android:layout_centerVertical="true"
+            android:text="朋友圈" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/user_info_area_pics_rv"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_E4E4E4"/>
     <RelativeLayout
         android:id="@+id/report_rl"
         style="@style/comm_sub_item_layout"
@@ -132,8 +151,12 @@
             style="@style/comm_sub_title"
             android:layout_centerVertical="true"
             android:text="举报与投诉" />
-
     </RelativeLayout>
+    <View
+        android:id="@+id/remark_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_E4E4E4"/>
     <RelativeLayout
         android:id="@+id/set_remark_rl"
         style="@style/comm_sub_item_layout"

@@ -265,6 +265,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         mFallingContent = getLayoutInflater().inflate(R.layout.falling_layout,rootView,false);
         mFallingLayout = mFallingContent.findViewById(R.id.red_package_falling);
         mFallingClose = mFallingContent.findViewById(R.id.red_package_falling_close);
+        mFallingLayout.setdWidth(200);
+        mFallingLayout.setdHeight(400);
+
         rootView.addView(mFallingContent);
         mFallingLayout.setFallingOnClickIpc(new FallingOnClickIpc() {
             @Override

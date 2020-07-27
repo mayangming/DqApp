@@ -71,6 +71,14 @@ class ExplorePhotoBottomFragment : BottomSheetDialogFragment(){
 
     private fun initData(){
         sourceType = arguments!!.getInt(SOURCE_TYPE,0)
+        when(sourceType){
+            FriendAreaActivity.REPLACE_BG -> {
+                bottom_select_photo_confirm.text = "设置背景图片"
+            }
+            FriendAreaActivity.SEND_DYNAMIC ->{
+                bottom_select_photo_confirm.text = "从相册中选择"
+            }
+        }
     }
 
     /**

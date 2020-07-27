@@ -18,6 +18,7 @@ import com.wd.daquan.R
 import com.wd.daquan.common.utils.NavUtils
 import com.wd.daquan.explore.dialog.DialogExploreComment
 import com.wd.daquan.explore.fragment.ExploreAreaBottomFragment
+import com.wd.daquan.explore.type.ExploreOperatorType
 import com.wd.daquan.explore.type.ReviewCommentType
 import com.wd.daquan.explore.viewholder.AreaReviewViewHolder
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
@@ -69,9 +70,6 @@ class AreaReviewAdapter() : RecycleBaseAdapter<AreaReviewViewHolder>() {
         }else{
             initSpannableReview(holder.itemAreaReviewContent,dynamicCommentDataListBean)
         }
-//        holder.itemAreaReviewContent.setOnClickListener {
-//            exploreAreaBottomFragment(dynamicCommentDataListBean)
-//        }
         holder.itemAreaReviewContent.setOnLongClickListener {
             if(dynamicCommentDataListBean.userId == ModuleMgr.getCenterMgr().uid){
                 dialogExploreComment(dynamicCommentDataListBean)
@@ -140,7 +138,9 @@ class AreaReviewAdapter() : RecycleBaseAdapter<AreaReviewViewHolder>() {
         val act = context as FragmentActivity
         val dialogExploreComment = DialogExploreComment()
         val bundle = Bundle()
-        bundle.putSerializable(DialogExploreComment.ACTION_DEL_COMMENT_BEAN,dynamicCommentDataListBean)
+        bundle.putString(DialogExploreComment.ACTION_COMMENT_ID,dynamicCommentDataListBean.commentId.toString())
+        bundle.putString(DialogExploreComment.ACTION_DYNAMIC_ID,dynamicCommentDataListBean.dynamicId.toString())
+        bundle.putInt(DialogExploreComment.ACTION_TYPE, ExploreOperatorType.TYPE_COMMENT.type)
         dialogExploreComment.arguments = bundle
         dialogExploreComment.show(act.supportFragmentManager,"delComment")
         dialogExploreComment.setOnDelCommentListener {
@@ -153,12 +153,10 @@ class AreaReviewAdapter() : RecycleBaseAdapter<AreaReviewViewHolder>() {
      */
     inner class ExploreReviewCommentResultCallBack : ExploreAreaBottomFragment.ExploreAreaCallBack{
         override fun onSuccess(dynamicDescBean: FindUserDynamicDescBean) {
-            DqToast.showCenterShort("回复评论成功~")
             exploreAreaCallBack?.onSuccess(dynamicDescBean)
         }
 
         override fun onFail() {
-            DqToast.showCenterShort("回复评论失败~")
             exploreAreaCallBack?.onFail()
         }
     }

@@ -1024,6 +1024,7 @@ public class DqUrl {
     public static String url_dynamic_saveUserDynamicComment = "dynamic/saveUserDynamicComment";//评论朋友圈
     public static String url_dynamic_delUserDynamicComment = "dynamic/delUserDynamicComment";//删除评论
     public static String url_dynamic_delUserDynamic = "dynamic/delUserDynamic";//删除朋友圈内容
+    public static String url_dynamic_findUserDynamicPic = "dynamic/findUserDynamicPic";//获取指定数量的图片
 
     /******************************** 朋友圈 end ****************************************/
 
