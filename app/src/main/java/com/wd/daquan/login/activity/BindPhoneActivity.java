@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.utils.DqUtils;
@@ -19,6 +20,7 @@ import com.da.library.constant.IConstant;
 import com.wd.daquan.model.bean.LoginBean;
 import com.wd.daquan.login.helper.LoginHelper;
 import com.da.library.tools.MD5;
+import com.wd.daquan.util.PhoneUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,6 +98,16 @@ public class BindPhoneActivity extends BaseLoginActivity implements CaptchaImgDi
             case R.id.bind_phone_get_code_tv:
 //                //获取验证码
 //                getVerificationCode();
+                String phoneNumber = mPhoneNumberEt.getText().toString();
+                if (TextUtils.isEmpty(phoneNumber)){
+                    DqToast.showShort("请输入手机号!");
+                    return;
+                }
+                phoneNumber = phoneNumber.replace(" ","");
+                if (!PhoneUtils.isMobileNO(phoneNumber)){
+                    DqToast.showShort("请输入符合规则的手机号!");
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString(CaptchaImgDialog.PHONE_NUMBER, mPhoneNumberEt.getText().toString());
                 captchaImgDialog.setArguments(bundle);

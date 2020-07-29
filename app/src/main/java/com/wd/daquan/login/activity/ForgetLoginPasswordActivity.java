@@ -1,12 +1,14 @@
 package com.wd.daquan.login.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.da.library.constant.IConstant;
 import com.da.library.tools.MD5;
+import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.utils.DqUtils;
@@ -14,6 +16,7 @@ import com.wd.daquan.imui.dialog.CaptchaImgDialog;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
+import com.wd.daquan.util.PhoneUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,6 +92,16 @@ public class ForgetLoginPasswordActivity extends BaseLoginActivity implements Ca
         super.onClick(v);
         switch (v.getId()) {
             case R.id.forget_password_get_code_tv:
+                String phoneNumber = mPhoneNumberEt.getText().toString();
+                if (TextUtils.isEmpty(phoneNumber)){
+                    DqToast.showShort("请输入手机号!");
+                    return;
+                }
+                phoneNumber = phoneNumber.replace(" ","");
+                if (!PhoneUtils.isMobileNO(phoneNumber)){
+                    DqToast.showShort("请输入符合规则的手机号!");
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString(CaptchaImgDialog.PHONE_NUMBER,mPhoneNumberEt.getText().toString());
                 captchaImgDialog.setArguments(bundle);

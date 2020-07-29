@@ -161,12 +161,11 @@ public class CaptchaImgDialog extends BaseDialog {
     }
 
     private void verifyImageCode(int xWidth){
-        String phoneNumber = ModuleMgr.getCenterMgr().getPhoneNumber();
-        String key = IConstant.Login.CHATDQ + phoneNumber;
+        String key = IConstant.Login.CHATDQ + phone;
         String token_key = MD5.encrypt(key).toLowerCase();
         HashMap<String,String> paramsRetrofit = new HashMap<>();
         paramsRetrofit.put("xWidth", xWidth+"");
-        paramsRetrofit.put("userId",phoneNumber);
+        paramsRetrofit.put("userId",phone);
         paramsRetrofit.put(IConstant.Login.TOKEN_KEY, token_key);
         RetrofitHelp.getUserApi().verifyImageCode(DqUrl.url_get_verifyImageCode,RetrofitHelp.getRequestBodyByFromData(paramsRetrofit)).enqueue(new DqCallBack<DataBean>(){
             @Override

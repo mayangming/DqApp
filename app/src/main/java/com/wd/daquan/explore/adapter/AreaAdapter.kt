@@ -80,12 +80,13 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
         holder.dynamicWord.text = dynamicDescBean.desc
         holder.dynamicTimeTv.text = TimeUtil.getTimeShowString(dynamicDescBean.createTime, false)
         GlideUtils.loadRound(context, dynamicDescBean.userHeadPic, holder.areaHeadIcon, 5)
+
         holder.dynamicReviewIv.setOnClickListener {
             if (popupWindow.isShow()){
                 popupWindow.dismiss()
             }else{
                 popupWindow.userDynamicDescBean = dynamicDescBean
-                popupWindow.showAsDropDown(it,-400,-mShowMorePopupWindowHeight)
+                popupWindow.showAsDropDown(it,30,-mShowMorePopupWindowHeight)
             }
 
         }

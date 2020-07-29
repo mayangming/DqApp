@@ -1,13 +1,16 @@
 package com.wd.daquan.explore.popupwindow
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.PopupWindow
 import android.widget.TextView
 import com.wd.daquan.R
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.bean.UserDynamicLikeDataListBean
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.mgr.ModuleMgr
 
 /**
@@ -51,7 +54,11 @@ class CustomPopupWindow(private val layoutInflater: LayoutInflater) {
         isFocusable = true;//要先让popupwindow获得焦点，才能正确获取popupwindow的状态
     }
     fun showAsDropDown(anchor :View, xoff :Int, yoff : Int){
-        popupWindow.showAsDropDown(anchor,xoff,yoff)
+        popupWindow.contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+        val popW = popupWindow.contentView.measuredWidth
+        val resultW = - xoff - popW
+        DqLog.e("YM---->结果宽度:${resultW}  弹窗宽度:${popW} 偏移值:${xoff}")
+        popupWindow.showAsDropDown(anchor,resultW,yoff)
     }
 
     fun isShow() = popupWindow.isShowing
@@ -75,6 +82,14 @@ class CustomPopupWindow(private val layoutInflater: LayoutInflater) {
            isLiked = false
        }
 
+    }
+
+    private fun getWindowW(context :Context): Int{
+        val wm: WindowManager = context
+                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val width: Int = wm.defaultDisplay.width
+        val height: Int = wm.defaultDisplay.height
+        return width;
     }
 
     fun setOnCustomPopupWindowCallBack(customPopupWindowCallBack :CustomPopupWindowCallBack){

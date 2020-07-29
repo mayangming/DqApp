@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.da.library.listener.ICommListDialogListener;
 import com.da.library.widget.CommonListDialog;
+import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.wd.daquan.R;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.imui.dialog.CaptchaImgDialog;
+import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
+import com.wd.daquan.util.PhoneUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,16 @@ public class LoginCodeQuickActivity extends BaseLoginActivity implements  Captch
                 finish();
                 break;
             case R.id.login_again_get_code_tv:
+                String phoneNumber = mPhoneNumberEt.getText().toString();
+                if (TextUtils.isEmpty(phoneNumber)){
+                    DqToast.showShort("请输入手机号!");
+                    return;
+                }
+                phoneNumber = phoneNumber.replace(" ","");
+                if (!PhoneUtils.isMobileNO(phoneNumber)){
+                    DqToast.showShort("请输入符合规则的手机号!");
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString(CaptchaImgDialog.PHONE_NUMBER,mPhoneNumberEt.getText().toString());
                 captchaImgDialog.setArguments(bundle);

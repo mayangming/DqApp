@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.da.library.constant.IConstant;
+import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
@@ -23,7 +24,9 @@ import com.wd.daquan.login.helper.WXLoginHelper;
 import com.wd.daquan.login.listener.WXLoginListener;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.LoginBean;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
+import com.wd.daquan.util.PhoneUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -139,6 +142,17 @@ public class RegisterActivity extends BaseLoginActivity implements WXLoginListen
 //                startActivity(new Intent(this, LoginPasswordActivity.class));
 //                break;
             case R.id.register_get_code_tv:
+                String phoneNumber = mPhoneNumberEt.getText().toString();
+                if (TextUtils.isEmpty(phoneNumber)){
+                    DqToast.showShort("请输入手机号!");
+                    return;
+                }
+                phoneNumber = phoneNumber.replace(" ","");
+                DqLog.e("YM,手机号为:"+phoneNumber);
+                if (!PhoneUtils.isMobileNO(phoneNumber)){
+                    DqToast.showShort("请输入符合规则的手机号!");
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putString(CaptchaImgDialog.PHONE_NUMBER,mPhoneNumberEt.getText().toString());
                 captchaImgDialog.setArguments(bundle);
