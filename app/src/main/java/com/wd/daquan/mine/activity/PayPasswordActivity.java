@@ -88,6 +88,7 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
 
     private void initDialog(){
         captchaImgDialog = new CaptchaImgDialog();
+        captchaImgDialog.setOperator(this);
     }
     /**
      * 获取验证码
@@ -106,7 +107,6 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
         //点击验证码时候就开始倒计时：不论是否接口请求成功，因为接口请求时间很长
         mCountDownTimerUtils = new CountDownTimerUtils(phoneCodeBtn, 60000, 1000, this);
         mCountDownTimerUtils.start();
-
     }
 
     /**
@@ -183,8 +183,11 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
     }
 
     @Override
-    public void sure(String value) {
+    public void sure() {
         //获取验证码
-        getVerificationCode(value);
+//        getVerificationCode(value);
+        //点击验证码时候就开始倒计时：不论是否接口请求成功，因为接口请求时间很长
+        mCountDownTimerUtils = new CountDownTimerUtils(phoneCodeBtn, 60000, 1000, this);
+        mCountDownTimerUtils.start();
     }
 }

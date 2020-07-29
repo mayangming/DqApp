@@ -35,9 +35,14 @@ public class ReminderManager {
         populate(items);
     }
 
-    // interface
+    // 设置未读消息数
     public final void updateSessionUnreadNum(int unreadNum) {
         updateUnreadMessageNum(unreadNum, false, ReminderId.SESSION);
+    }
+
+    // 减少未读消息数为多少
+    public final void reduceSessionUnreadNum(int unreadNum) {
+        reduceUnreadMessageNum(unreadNum, ReminderId.SESSION);
     }
 
     public final void updateSessionDeltaUnreadNum(int delta) {
@@ -87,6 +92,24 @@ public class ReminderManager {
         } else {
             num = unreadNum;
         }
+
+        item.setUnread(num);
+        item.setIndicator(false);
+
+        for (UnreadNumChangedCallback cb : unreadNumChangedCallbacks) {
+            cb.onUnreadNumChanged(item);
+        }
+    }
+
+    private final void reduceUnreadMessageNum(int unreadNum,int reminderId) {
+        ReminderItem item = items.get(reminderId);
+        if (item == null) {
+            return;
+        }
+
+        int num = item.getUnread();
+
+        num -= unreadNum;
 
         item.setUnread(num);
         item.setIndicator(false);

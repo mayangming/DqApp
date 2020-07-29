@@ -44,6 +44,13 @@ public abstract class HomeImBaseDao {
     @Query("UPDATE home_message SET unReadNumber = :unReadNum WHERE groupId = :groupId")
     public abstract void updateTeamUnReadNumber(String groupId, int unReadNum);
 
+    /**
+     * 清空所有未读消息数
+     * @param unReadNum 未读消息数
+     */
+    @Query("UPDATE home_message SET unReadNumber = :unReadNum")
+    public abstract void updateAllUnReadNumber(int unReadNum);
+
 
     @Query("UPDATE home_message SET msgIdServer = :serverId ,messageSendStatus = :messageSendStatus,sourceContent = :sourceContent WHERE msgIdClient = :clientId")
     public abstract void updateHomeMessageByClientId(String clientId,String serverId,int messageSendStatus,String sourceContent);

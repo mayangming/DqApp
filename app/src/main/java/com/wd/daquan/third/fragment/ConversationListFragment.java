@@ -3,9 +3,11 @@ package com.wd.daquan.third.fragment;
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -30,12 +32,15 @@ import com.wd.daquan.imui.dialog.DeleteHomeMsgDialog;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupInfoBean;
 import com.wd.daquan.model.bean.TeamBean;
+import com.wd.daquan.model.log.DqLog;
+import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.third.reminder.ReminderManager;
 import com.wd.daquan.third.session.SessionHelper;
+import com.wd.daquan.view.CenterLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +65,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
     private HomeMessageAdapter homeMessageAdapter;
     private HomeMessageViewModel homeMessageViewModel;
     private List<HomeImBaseMode> homeImBaseModes = new ArrayList<>();
+    int scrollTargetIndex = 0;//上次滑动定位的未读消息位置
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -71,9 +77,23 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         queryHomeMessage();
         MsgMgr.getInstance().attach(this);
     }
+    private CenterLayoutManager linearLayoutManager;
     protected void initVerticalRecycleView(RecyclerView recyclerView){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext(),RecyclerView.VERTICAL,false);
+        linearLayoutManager = new CenterLayoutManager(recyclerView.getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING)
+                    scrollTargetIndex = 0;
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
         registerForContextMenu(recyclerView);
     }
     @Override
@@ -87,7 +107,22 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         emptyBg.setVisibility(empty ? View.VISIBLE : View.GONE);
         emptyHint.setHint("还没有会话，在通讯录中找个人聊聊吧！");
     }
+    public void goChatUnReadMessage(){
+        boolean isHasUnReadMessage = false;
+        if (null != homeImBaseModes && !homeImBaseModes.isEmpty()){//假如集合不为空
+            for (int i = scrollTargetIndex; i < homeImBaseModes.size(); i++){
+                HomeImBaseMode model = homeImBaseModes.get(i);
+                if (model.getUnReadNumber() > 0){
+                    isHasUnReadMessage = true;
+                    scrollTargetIndex = i;
+                    break;
+                }
+            }
+            if (isHasUnReadMessage)
+                linearLayoutManager.smoothScrollToPosition(recyclerView,new RecyclerView.State(),scrollTargetIndex);
 
+        }
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -118,8 +153,8 @@ public class ConversationListFragment extends Fragment implements QCObserver {
             @Override
             public boolean onItemLongClick(View view, int position) {
 //               homeMessageViewModel.deleteForServerMessageId(homeImBaseModes.get(position).getMsgIdServer());
-               Bundle bundle = new Bundle();
-               bundle.putSerializable(DeleteHomeMsgDialog.MSG,homeImBaseModes.get(position));
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(DeleteHomeMsgDialog.MSG,homeImBaseModes.get(position));
                 DeleteHomeMsgDialog deleteHomeMsgDialog = new DeleteHomeMsgDialog();
                 deleteHomeMsgDialog.setArguments(bundle);
                 deleteHomeMsgDialog.show(getChildFragmentManager(),"");
@@ -137,6 +172,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
         homeMessageViewModel.getAllMessage().observe(getViewLifecycleOwner(), new android.arch.lifecycle.Observer<List<HomeImBaseMode>>() {
             @Override
             public void onChanged(@Nullable List<HomeImBaseMode> homeImBaseModesTemp) {
+                scrollTargetIndex = 0;
                 Log.e("YM","首页数据数量:"+homeImBaseModesTemp.size());
                 Log.e("YM","首页数据内容:"+homeImBaseModesTemp.toString());
                 homeImBaseModes.clear();
@@ -206,10 +242,10 @@ public class ConversationListFragment extends Fragment implements QCObserver {
             for (HomeImBaseMode mode : modes){
                 ImType imType = ImType.typeOfValue(mode.getType());
                 if (imType == ImType.P2P){
-                   if (friend.uid.equals(mode.getFromUserId()) || friend.uid.equals(mode.getToUserId())){
-                       index = modes.indexOf(mode);
-                      break;
-                   }
+                    if (friend.uid.equals(mode.getFromUserId()) || friend.uid.equals(mode.getToUserId())){
+                        index = modes.indexOf(mode);
+                        break;
+                    }
                 }
             }
         }else if (object instanceof GroupInfoBean){//群组消息

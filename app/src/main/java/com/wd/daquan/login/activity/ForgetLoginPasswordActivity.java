@@ -146,8 +146,8 @@ public class ForgetLoginPasswordActivity extends BaseLoginActivity implements Ca
     }
 
     @Override
-    public void sure(String value) {
-        //获取验证码
-        getVerificationCode(mPhoneNumberEt, "",value);
+    public void sure() {
+//        getVerificationCode(mPhoneNumberEt, "",value);
+        startCountDownTimer();
     }
 }

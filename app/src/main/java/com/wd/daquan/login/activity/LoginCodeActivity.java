@@ -237,8 +237,8 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     }
 
     @Override
-    public void sure(String value) {
+    public void sure() {
         //获取验证码
-        getVerificationCode(mPhoneNumberEt, LOGIN_TYPE,value);
+        startCountDownTimer();
     }
 }

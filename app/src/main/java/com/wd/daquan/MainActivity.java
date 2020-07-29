@@ -338,7 +338,12 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     public void onClick(View v) {
         int id = v.getId();
         if (R.id.seal_chat == id) {
-            mViewPager.setCurrentItem(0, false);
+            int currentItemIndex = mViewPager.getCurrentItem();
+            if (0 == currentItemIndex){
+                goChatUnReadMessage();
+            }else {
+                mViewPager.setCurrentItem(0, false);
+            }
         } else if (R.id.seal_contact_list == id) {
             mViewPager.setCurrentItem(1, false);
         }
@@ -358,6 +363,12 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 //        }
     }
 
+    /**
+     * 跳转到未读消息条目
+     */
+    private void goChatUnReadMessage(){
+        mDqFragment.goChatUnReadMessage();
+    }
 
     @Override
     protected void onDestroy() {
@@ -595,6 +606,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
 
     @Override
     public void onDragOut() {
+        homeMessageViewModel.updateAllUnReadNumber(0);
     }
 
     @Override

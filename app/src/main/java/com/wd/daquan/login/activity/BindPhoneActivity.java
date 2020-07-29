@@ -181,9 +181,9 @@ public class BindPhoneActivity extends BaseLoginActivity implements CaptchaImgDi
     }
 
     @Override
-    public void sure(String value) {
+    public void sure() {
         //获取验证码
-        getVerificationCode(value);
+//        getVerificationCode(value);
     }
 //    private void synchronousWxData(final LoginBean loginBean) {
 //

@@ -213,7 +213,7 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         when(url) {
             DqUrl.url_dynamic_saveUserDynamicDesc -> {
                 isSending = false
-                DqToast.showCenterShort("动态发送失败")
+                DqToast.showCenterShort(entity?.content)
                 dismissLoading()
                 dynamic_send_title.rightIv.isEnabled = true
             }

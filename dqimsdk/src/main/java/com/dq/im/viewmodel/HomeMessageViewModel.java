@@ -48,6 +48,10 @@ public class HomeMessageViewModel extends AndroidViewModel {
     public void updateTeamUnReadNumber(String groupId, int unReadNum){
         homeMessageRepository.updateTeamUnReadNumber(groupId,unReadNum);
     }
+
+    public void updateAllUnReadNumber(int unReadNum){
+        homeMessageRepository.updateAllUnReadNumber(unReadNum);
+    }
     public void updateHomeMessageByClientId(ImMessageBaseModel imMessageBaseModel){
         homeMessageRepository.updateHomeMessageByClientId(imMessageBaseModel);
     }

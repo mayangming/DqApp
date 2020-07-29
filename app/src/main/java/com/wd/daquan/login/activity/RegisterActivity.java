@@ -248,8 +248,9 @@ public class RegisterActivity extends BaseLoginActivity implements WXLoginListen
     }
 
     @Override
-    public void sure(String value) {
+    public void sure() {
         //QcToastUtil.showToast(this, "获取验证码");
-        getVerificationCode(mPhoneNumberEt, REGISTER_TYPE,value);
+//        getVerificationCode(mPhoneNumberEt, REGISTER_TYPE,value);
+        startCountDownTimer();
     }
 }

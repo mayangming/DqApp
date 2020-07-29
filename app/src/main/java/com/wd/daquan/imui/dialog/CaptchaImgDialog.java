@@ -1,25 +1,37 @@
 package com.wd.daquan.imui.dialog;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.da.library.constant.IConstant;
+import com.da.library.tools.MD5;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.glide.GlideUtils;
+import com.wd.daquan.model.bean.CaptchaBean;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.interfaces.DqCallBack;
+import com.wd.daquan.model.log.DqLog;
+import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.retrofit.RetrofitHelp;
 import com.wd.daquan.util.TToast;
 
@@ -30,9 +42,10 @@ import java.util.HashMap;
  */
 public class CaptchaImgDialog extends BaseDialog {
     public static final String PHONE_NUMBER = "phoneNumber";
-    private ImageView captchaImg;//图形验证码
-    private EditText captchaEdt;//图形验证码输入框
-    private TextView btnCancel,btnSure,replaceCaptchaImg;
+    private ImageView captchaMask;//缺失的滑块
+    private ImageView captchaBg;//滑块全图
+    private TextView btnCancel,btnSure;
+    private AppCompatSeekBar captchaSeek;
     private String phone;
     private String captchaValue;//获取的验证码
     @Override
@@ -65,14 +78,30 @@ public class CaptchaImgDialog extends BaseDialog {
     }
 
     private void initView(View view){
-        captchaImg = view.findViewById(R.id.captcha_img);
-        captchaEdt = view.findViewById(R.id.captcha_edt);
+        captchaBg = view.findViewById(R.id.captcha_img);
+        captchaMask = view.findViewById(R.id.captcha_mask);
+        captchaSeek = view.findViewById(R.id.captcha_seek);
         btnCancel = view.findViewById(R.id.btn_cancel);
         btnSure = view.findViewById(R.id.btn_sure);
-        replaceCaptchaImg = view.findViewById(R.id.replace_captcha_img);
         btnCancel.setOnClickListener(this::onClick);
         btnSure.setOnClickListener(this::onClick);
-        replaceCaptchaImg.setOnClickListener(this::onClick);
+        captchaSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                updateCaptchMaskLocation(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                DqLog.e("YM--->停止滑动:停留位置:"+seekBar.getProgress());
+                verifyImageCode(seekBar.getProgress());
+            }
+        });
 
     }
 
@@ -81,16 +110,16 @@ public class CaptchaImgDialog extends BaseDialog {
             case R.id.btn_cancel:
                 dismiss();
                 break;
-            case R.id.replace_captcha_img:
-                getCaptchaImg();
-                break;
+//            case R.id.replace_captcha_img:
+//                getCaptchaImg();
+//                break;
             case R.id.btn_sure:
-                captchaValue = captchaEdt.getText().toString();
+//                captchaValue = captchaEdt.getText().toString();
                 if (TextUtils.isEmpty(captchaValue)){//数据为空的时候取消图形验证码的框
                     Toast.makeText(getContext(),"图形验证码不能为空!",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                operator.sure(captchaValue);
+//                operator.sure(captchaValue);
                 dismiss();
                 break;
         }
@@ -104,35 +133,94 @@ public class CaptchaImgDialog extends BaseDialog {
         Log.e("YM","获取验证码数据,手机号--->phone:"+phone);
         HashMap<String,String> paramsRetrofit = new HashMap<>();
         paramsRetrofit.put("phone", phone);
-        RetrofitHelp.getUserApi().getCommonRequest(DqUrl.url_get_captcha_img,RetrofitHelp.getRequestBodyByFromData(paramsRetrofit)).enqueue(new DqCallBack<DataBean<String>>(){
+        paramsRetrofit.put("userId",phone);
+        RetrofitHelp.getUserApi().captchaImg(DqUrl.url_get_getImageVerifyCode,RetrofitHelp.getRequestBodyByFromData(paramsRetrofit)).enqueue(new DqCallBack<DataBean<CaptchaBean>>(){
             @Override
-            public void onSuccess(String url, int code, DataBean<String> entity) {
+            public void onSuccess(String url, int code, DataBean<CaptchaBean> entity) {
                 Log.e("YM","获取的数据结果"+entity.toString());
                 if (0 != entity.result){
                     TToast.show(getContext(),entity.content);
-                    dismiss();
+//                    dismiss();
                     return;
                 }
-                String imgUrl = entity.data;
-                Log.e("YM","获取的数据结果"+imgUrl);
-                updateUI(imgUrl);
+                CaptchaBean captchaBean = entity.data;
+                Log.e("YM","获取的数据结果"+captchaBean.toString());
+                updateUI(captchaBean);
             }
 
             @Override
-            public void onFailed(String url, int code, DataBean<String> entity) {
+            public void onFailed(String url, int code, DataBean<CaptchaBean> entity) {
                 Log.e("YM","获取的数据失败:"+entity.toString());
                 if (0 != entity.result){
                     TToast.show(getContext(),entity.content);
-                    dismiss();
+//                    dismiss();
                     return;
                 }
             }
         });
     }
 
-    private void updateUI(String imgUrl){
+    private void verifyImageCode(int xWidth){
+        String phoneNumber = ModuleMgr.getCenterMgr().getPhoneNumber();
+        String key = IConstant.Login.CHATDQ + phoneNumber;
+        String token_key = MD5.encrypt(key).toLowerCase();
+        HashMap<String,String> paramsRetrofit = new HashMap<>();
+        paramsRetrofit.put("xWidth", xWidth+"");
+        paramsRetrofit.put("userId",phoneNumber);
+        paramsRetrofit.put(IConstant.Login.TOKEN_KEY, token_key);
+        RetrofitHelp.getUserApi().verifyImageCode(DqUrl.url_get_verifyImageCode,RetrofitHelp.getRequestBodyByFromData(paramsRetrofit)).enqueue(new DqCallBack<DataBean>(){
+            @Override
+            public void onSuccess(String url, int code, DataBean entity) {
+                Log.e("YM","获取的数据结果"+entity.toString());
+                if (0 == entity.result){
+//                    TToast.show(getContext(),entity.data.toString());
+                    dismiss();
+                    operator.sure();
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean entity) {
+                Log.e("YM","获取的数据失败:"+entity.toString());
+                if (0 != entity.result){
+                    TToast.show(getContext(),entity.content);
+                    return;
+                }
+            }
+        });
+    }
+
+    /**
+     * 修改滑块的位置
+     */
+    private void updateCaptchMaskLocation(int x){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) captchaMask.getLayoutParams();
+        layoutParams.leftMargin = x;
+        captchaMask.setLayoutParams(layoutParams);
+    }
+
+    private void updateUI(CaptchaBean captchaBean){
 //        GlideUtil.loadNormalImgByNet(getContext(),imgUrl,captchaImg);
-        GlideUtils.loadRound(getContext(),imgUrl,captchaImg,10);
+
+        ViewGroup.MarginLayoutParams oriLayoutParams = (ViewGroup.MarginLayoutParams) captchaBg.getLayoutParams();
+        oriLayoutParams.height = captchaBean.getOriImageHeight();
+        oriLayoutParams.width = captchaBean.getOriImageWidth();
+        captchaBg.setLayoutParams(oriLayoutParams);
+
+        ViewGroup.MarginLayoutParams tempLayoutParams = (ViewGroup.MarginLayoutParams) captchaMask.getLayoutParams();
+        tempLayoutParams.height = captchaBean.getTemplateHeight();
+        tempLayoutParams.width = captchaBean.getTemplateWidth();
+        tempLayoutParams.topMargin = captchaBean.getyHeight();
+        captchaMask.setLayoutParams(tempLayoutParams);
+
+        ViewGroup.MarginLayoutParams seekLayoutParams = (ViewGroup.MarginLayoutParams) captchaSeek.getLayoutParams();
+        seekLayoutParams.width = captchaBean.getOriImageWidth();
+        captchaSeek.setLayoutParams(seekLayoutParams);
+        captchaSeek.setMax(captchaBean.getOriImageWidth() - captchaBean.getTemplateWidth());
+
+        GlideUtils.load(getContext(),captchaBean.getBigImage(),captchaBg);
+        GlideUtils.load(getContext(),captchaBean.getSmallImage(),captchaMask);
     }
 
     private Operator operator;
@@ -143,7 +231,7 @@ public class CaptchaImgDialog extends BaseDialog {
 
     public interface Operator{
         void cancel();
-        void sure(String value);
+        void sure();
     }
 
 }

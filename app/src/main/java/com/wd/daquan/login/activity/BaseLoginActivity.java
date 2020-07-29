@@ -152,31 +152,37 @@ public class BaseLoginActivity extends DqBaseActivity<LoginPresenter, DataBean> 
         }
     }
 
-    /**
-     * 获取验证码
-     */
-    protected void getVerificationCode(TextView textView, String type,String captcha) {
-        if (null != textView) {
-            String number = textView.getText().toString().replace(" ", "");
-            if (DqUtils.validatePhoneNumber(number)) {
-                String key = IConstant.Login.CHATDQ + number;
-                String token_key = MD5.encrypt(key).toLowerCase();
-                //Log.e("fz", "key : " + key + "token_key ： " + token_key);
-
-                Map<String, String> hashMap = new HashMap<>();
-                hashMap.put(IConstant.Login.PHONE, number);
-                if (!TextUtils.isEmpty(type)) {
-                    hashMap.put(IConstant.Login.TYPE, type);
-                }
-                hashMap.put(IConstant.Login.TOKEN_KEY, token_key);
-                hashMap.put(IConstant.Login.CAPTCHA, captcha);
-                countDownTimerUtils = new CountDownTimerUtils(mGetCodeTv, IConstant.TIME_60000,
-                        IConstant.TIME_1000, this);
-                countDownTimerUtils.start();
-                mPresenter.getVerificationCode(DqUrl.url_get_phone_msg, hashMap);
-            }
-        }
+    protected void startCountDownTimer(){
+        countDownTimerUtils = new CountDownTimerUtils(mGetCodeTv, IConstant.TIME_60000,
+                IConstant.TIME_1000, this);
+        countDownTimerUtils.start();
     }
+
+//    /**
+//     * 获取验证码
+//     */
+//    protected void getVerificationCode(TextView textView, String type,String captcha) {
+//        if (null != textView) {
+//            String number = textView.getText().toString().replace(" ", "");
+//            if (DqUtils.validatePhoneNumber(number)) {
+//                String key = IConstant.Login.CHATDQ + number;
+//                String token_key = MD5.encrypt(key).toLowerCase();
+//                //Log.e("fz", "key : " + key + "token_key ： " + token_key);
+//
+//                Map<String, String> hashMap = new HashMap<>();
+//                hashMap.put(IConstant.Login.PHONE, number);
+//                if (!TextUtils.isEmpty(type)) {
+//                    hashMap.put(IConstant.Login.TYPE, type);
+//                }
+//                hashMap.put(IConstant.Login.TOKEN_KEY, token_key);
+//                hashMap.put(IConstant.Login.CAPTCHA, captcha);
+//                countDownTimerUtils = new CountDownTimerUtils(mGetCodeTv, IConstant.TIME_60000,
+//                        IConstant.TIME_1000, this);
+//                countDownTimerUtils.start();
+//                mPresenter.getVerificationCode(DqUrl.url_get_phone_msg, hashMap);
+//            }
+//        }
+//    }
 
     /**
      * 登录

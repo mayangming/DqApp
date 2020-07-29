@@ -111,6 +111,7 @@ class ExploreAreaBottomFragment : BottomSheetDialogFragment(){
             override fun onFailed(url: String?, code: Int, entity: DataBean<FindUserDynamicDescBean>) {
 //                        hideLoading();
                 exploreAreaCallBack?.onFail()
+                DqToast.showCenterShort(entity.content)
             }
         })
     }

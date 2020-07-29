@@ -94,6 +94,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     private TTAdNative mTTAdNative;
     private TTRewardVideoAd mttRewardVideoAd;
     private boolean isStopRedRain = true;//是否手动停掉红包雨
+    private ConversationListFragment fragment;
     @Override
     public void setContentView() {
         setContentView(R.layout.qc_qingchat_fragment);
@@ -178,6 +179,12 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //        MsgMgr.getInstance().sendMsg(MsgType.APPLICATION_RED_RAIN_START, redRainSystemAttachment);
 //        startRain();
         checkRedRainContent();
+    }
+
+    public void goChatUnReadMessage(){
+        if (null != fragment){
+            fragment.goChatUnReadMessage();
+        }
     }
 
     /**
@@ -310,7 +317,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
     // 将最近联系人列表fragment动态集成进来。 开发者也可以使用在xml中配置的方式静态集成。
     private void addRecentContactsFragment() {
-        ConversationListFragment fragment = new ConversationListFragment();
+        fragment = new ConversationListFragment();
         MainActivity activity = (MainActivity) getActivity();
         assert activity != null;
         FragmentManager fm = activity.getSupportFragmentManager();

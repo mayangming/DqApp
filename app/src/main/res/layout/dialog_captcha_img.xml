@@ -9,7 +9,7 @@
         android:id="@+id/captcha_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请输入图形验证码"
+        android:text="滑动滑块进行校验"
         android:layout_marginTop="@dimen/dp_20"
         android:textColor="@color/color_black_ff666666"
         android:textSize="@dimen/sp_20"
@@ -17,7 +17,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/captcha_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,36 +27,31 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
+
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/captcha_img"
-            android:layout_width="@dimen/dd_dp150"
-            android:layout_height="@dimen/dd_dp50" />
-        <TextView
-            android:id="@+id/replace_captcha_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/captcha_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/captcha_seek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_12"
-            android:textColor="@color/color_FF49649D"
-            android:layout_margin="@dimen/dp_10"
-            android:layout_gravity="center"
-            android:text="换一个"/>
-        <EditText
-            android:id="@+id/captcha_edt"
-            android:layout_width="@dimen/dd_dp100"
-            android:layout_height="@dimen/dd_dp50"
-            android:padding="@dimen/dp_10"
-            android:lines="1"
-            android:saveEnabled="false"
-            android:maxLength="4"
-            android:inputType="number"
-            android:background="@drawable/captcha_code_edt_bg"/>
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_below="@+id/captcha_img"/>
 
-    </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/captcha_operator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_20"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/captcha_ll"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">

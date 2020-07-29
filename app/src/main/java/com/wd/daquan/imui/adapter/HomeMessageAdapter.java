@@ -15,6 +15,7 @@ import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.type.ImType;
 import com.dq.im.type.MessageType;
 import com.dq.im.util.TimeUtils;
+import com.dq.im.viewmodel.HomeMessageViewModel;
 import com.dq.im.viewmodel.TeamViewModel;
 import com.dq.im.viewmodel.UserViewModel;
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ import com.wd.daquan.model.db.DbSubscribe;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.third.helper.TeamHelper;
 import com.wd.daquan.third.helper.UserInfoHelper;
+import com.wd.daquan.third.reminder.ReminderManager;
 import com.wd.daquan.util.AESUtil;
 import com.wd.daquan.util.StringUtils;
 
@@ -45,11 +47,13 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
     private Fragment fragment;
     private UserViewModel userViewModel;
     private TeamViewModel teamViewModel;
+    private HomeMessageViewModel homeMessageViewModel;
     private Gson gson = new Gson();
     public HomeMessageAdapter(Fragment fragment) {
         this.fragment = fragment;
         userViewModel = ViewModelProviders.of(fragment).get(UserViewModel.class);
         teamViewModel = ViewModelProviders.of(fragment).get(TeamViewModel.class);
+        homeMessageViewModel = ViewModelProviders.of(fragment).get(HomeMessageViewModel.class);
     }
 
     public HomeMessageAdapter(List<HomeImBaseMode> homeImBaseModes) {
@@ -93,7 +97,15 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
                 @Override
                 public void onDragStateChanged(int dragState, Badge badge, View targetView) {
                     if (dragState == STATE_SUCCEED) {
-                        Toast.makeText(context, String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                        int position = getAdapterPosition();
+                        HomeImBaseMode model = homeImBaseModes.get(position);
+                        ImType type = ImType.typeOfValue(model.getType());
+                        ReminderManager.getInstance().reduceSessionUnreadNum(model.getUnReadNumber());
+                        if (type == ImType.Team){
+                            homeMessageViewModel.updateTeamUnReadNumber(model.getGroupId(),0);
+                        }else if (type == ImType.P2P){
+                            homeMessageViewModel.updateTeamUnReadNumber(model.getFromUserId(),0);
+                        }
                     }
                 }
             });

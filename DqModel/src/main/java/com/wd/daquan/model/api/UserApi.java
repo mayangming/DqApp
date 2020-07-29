@@ -1,5 +1,6 @@
 package com.wd.daquan.model.api;
 
+import com.wd.daquan.model.bean.CaptchaBean;
 import com.wd.daquan.model.bean.CloudWithdrawRecordEntity;
 import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
@@ -177,4 +178,18 @@ public interface UserApi{
     @POST
 //    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean> userSwitch(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 获取图形验证码
+     */
+    @POST
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    Call<DataBean<CaptchaBean>> captchaImg(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 校验图形验证码
+     */
+    @POST
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    Call<DataBean> verifyImageCode(@Url String url, @Body RequestBody requestBody);
 }

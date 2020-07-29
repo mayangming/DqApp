@@ -53,6 +53,12 @@ public class HomeMessageRepository {
             homeImBaseDao.updateTeamUnReadNumber(groupId,unReadNum);
         });
     }
+
+    public void updateAllUnReadNumber( int unReadNum){
+        ImRoomDatabase.databaseWriteExecutor.execute(() -> {
+            homeImBaseDao.updateAllUnReadNumber(unReadNum);
+        });
+    }
     public void updateHomeMessageByClientId(ImMessageBaseModel imMessageBaseModel){
         ImRoomDatabase.databaseWriteExecutor.execute(() -> {
             homeImBaseDao.updateHomeMessageByClientId(imMessageBaseModel.getMsgIdClient(),imMessageBaseModel.getMsgIdServer(),imMessageBaseModel.getMessageSendStatus(),imMessageBaseModel.getSourceContent());

@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wd.daquan.R
+import com.wd.daquan.explore.dialog.PhotoOperatorDialog
 import com.wd.daquan.glide.GlideUtils
-import com.wd.daquan.model.log.DqToast
 import kotlinx.android.synthetic.main.item_photo_details.*
 
 /**
@@ -36,6 +36,7 @@ class DynamicMediaPhotoDetailsFragment : BaseFragment(){
 
     private fun initView(){
         photo_details.setOnClickListener(this::onClick)
+        photo_details.setOnLongClickListener(this::onLongClick)
     }
 
     private fun initData(){
@@ -50,6 +51,19 @@ class DynamicMediaPhotoDetailsFragment : BaseFragment(){
                 act.finish()
             }
         }
+    }
+
+    private fun onLongClick(view: View): Boolean{
+        when(view){
+            photo_details -> {
+                val photoOperatorDialog = PhotoOperatorDialog()
+                val bundle = Bundle()
+                bundle.putString(PhotoOperatorDialog.ACTION_PHOTO,photoUrl)
+                photoOperatorDialog.arguments = bundle
+                photoOperatorDialog.show(fragmentManager,"operatorDialog")
+            }
+        }
+        return true
     }
 
 }

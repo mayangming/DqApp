@@ -16,7 +16,7 @@
         android:id="@+id/dynamic_send_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="这一刻的心情"
+        android:hint="这一刻的心情(最多输入200字！)"
         android:textSize="@dimen/sp16"
         android:textColor="@color/app_txt_999999"
         android:padding="@dimen/dp_10"

@@ -150,8 +150,9 @@ public class LoginCodeQuickActivity extends BaseLoginActivity implements  Captch
     }
 
     @Override
-    public void sure(String value) {
+    public void sure() {
         //获取验证码
-        getVerificationCode(mPhoneNumberTv, LOGIN_TYPE,value);
+//        getVerificationCode(mPhoneNumberTv, LOGIN_TYPE,value);
+        startCountDownTimer();
     }
 }

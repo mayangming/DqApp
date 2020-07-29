@@ -59,6 +59,15 @@ public class DqUrl {
      * 获取图形验证码
      */
     public static String url_get_captcha_img = "user/get_captcha_img";
+
+    /**
+     * 获取图形验证码
+     */
+    public static String url_get_getImageVerifyCode = "user/getImageVerifyCode";
+    /**
+     * 校验图形验证码
+     */
+    public static String url_get_verifyImageCode = "user/verifyImageCode";
     /**
      * 注册
      */
