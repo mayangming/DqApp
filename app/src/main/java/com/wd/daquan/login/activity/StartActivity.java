@@ -8,8 +8,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -28,6 +28,7 @@ import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.sdk.bean.SdkShareBean;
+import com.wd.daquan.util.system.SystemUtils;
 
 public class StartActivity extends AppCompatActivity {
     private Handler handler = new Handler();
@@ -41,6 +42,10 @@ public class StartActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (!SystemUtils.isEmulator(StartActivity.this)){
+                    DqToast.showShort("检查到您的设备违规,将限制您的所有功能使用!");
+                    return;
+                }
                 initOtherAppData();
                 finish();
             }

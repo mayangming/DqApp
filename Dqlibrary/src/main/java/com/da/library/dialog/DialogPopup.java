@@ -1,9 +1,9 @@
 package com.da.library.dialog;
 
 import android.content.DialogInterface;
-import android.support.annotation.CallSuper;
-import android.support.annotation.StyleRes;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.CallSuper;
+import androidx.annotation.StyleRes;
+import androidx.fragment.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;

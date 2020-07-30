@@ -1,6 +1,6 @@
 package com.wd.daquan.chat.group.adapter.holder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.wd.daquan.chat.group.bean.SearchChatBean;

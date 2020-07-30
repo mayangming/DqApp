@@ -10,9 +10,10 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
-import android.support.v4.provider.DocumentFile;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.documentfile.provider.DocumentFile;
 
 import com.dq.im.ImProvider;
 import com.wd.daquan.DqApp;

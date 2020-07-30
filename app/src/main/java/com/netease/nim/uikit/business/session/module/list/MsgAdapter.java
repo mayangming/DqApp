@@ -1,7 +1,7 @@
 package com.netease.nim.uikit.business.session.module.list;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.dq.im.model.ImMessageBaseModel;

@@ -1,6 +1,6 @@
 package com.da.library.listener;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.wd.daquan.model.interfaces.ISelect;
 

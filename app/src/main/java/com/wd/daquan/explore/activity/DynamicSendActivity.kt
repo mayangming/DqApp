@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
-import android.support.v4.provider.DocumentFile
-import android.support.v7.widget.GridLayoutManager
+import androidx.documentfile.provider.DocumentFile
+import androidx.recyclerview.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
 import com.dq.im.constants.Constants
@@ -121,7 +121,7 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
     }
 
     private fun initRecycleView(){
-        dynamic_send_rv.layoutManager = GridLayoutManager(this,3)
+        dynamic_send_rv.layoutManager = GridLayoutManager(this, 3)
         dynamicSendAdapter = DynamicSendAdapter().apply {
             setOnAddPhotoListener {//添加图片的回调
                 val maxSelectCount = 9 - getPhotoCount()
@@ -164,7 +164,7 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         pics?.let {
             val upLoadBeanList = arrayListOf<UpLoadBean>()
             for (uri in it){
-                val documentFile = DocumentFile.fromSingleUri(this, uri)
+                val documentFile = androidx.documentfile.provider.DocumentFile.fromSingleUri(this, uri)
                 val inputStream: InputStream? = contentResolver.openInputStream(uri)
                 val photoData = FileUtils.toByteArray(inputStream)
                 val uploadBean = UpLoadBean()

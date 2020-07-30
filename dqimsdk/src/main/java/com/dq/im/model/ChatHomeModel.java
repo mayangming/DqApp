@@ -1,8 +1,8 @@
 package com.dq.im.model;
 
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 
 /**
  * 首页聊天数据的内容

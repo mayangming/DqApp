@@ -1,6 +1,6 @@
 package com.wd.daquan.explore.viewholder
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.view.View
 import android.widget.ImageView
 import com.wd.daquan.R

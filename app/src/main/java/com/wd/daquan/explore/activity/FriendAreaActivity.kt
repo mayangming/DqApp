@@ -1,11 +1,10 @@
-package com.wd.daquan.explore
+package com.wd.daquan.explore.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.provider.DocumentFile
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.da.library.listener.DialogListener
@@ -22,7 +21,6 @@ import com.wd.daquan.common.constant.KeyValue
 import com.wd.daquan.common.utils.DialogUtils
 import com.wd.daquan.common.utils.DqUtils
 import com.wd.daquan.common.utils.NavUtils
-import com.wd.daquan.explore.activity.DynamicSendActivity
 import com.wd.daquan.explore.adapter.AreaAdapter
 import com.wd.daquan.explore.fragment.ExplorePhotoBottomFragment
 import com.wd.daquan.explore.itemdecoration.DividerItemDecoration
@@ -94,7 +92,7 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
      * 初始化朋友圈列表
      */
     private fun initRecycleView(){
-        area_record.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        area_record.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun initAdapter(){
@@ -224,7 +222,7 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
      */
     private fun upLoadBg(uri: Uri){
         GlideUtils.load(this, uri, area_bg,R.mipmap.area_head_bg,R.mipmap.area_head_bg)
-        val documentFile = DocumentFile.fromSingleUri(this, uri)
+        val documentFile = androidx.documentfile.provider.DocumentFile.fromSingleUri(this, uri)
         try {
             val inputStream: InputStream? = contentResolver.openInputStream(uri)
             val photoData = FileUtils.toByteArray(inputStream)

@@ -1,9 +1,9 @@
 package com.wd.daquan.explore.viewholder
 
-import android.support.annotation.NonNull
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -22,17 +22,17 @@ class AreaViewHolder(@NonNull itemView : View) : RecycleBaseViewHolder(itemView)
     var areaHeadIcon: ImageView = itemView.findViewById(R.id.area_head_icon)
     var areaHeadContainer: View = itemView.findViewById(R.id.area_head_contain)
     var areaDynamicDelTv: TextView = itemView.findViewById(R.id.area_dynamic_del_tv)
-    var dynamicPhotoRv : RecyclerView ?= null
-    var areaReviewRv : RecyclerView ?= null
+    var dynamicPhotoRv : RecyclerView?= null
+    var areaReviewRv : RecyclerView?= null
     override fun initView() {
         super.initView()
         dynamicPhotoRv = itemView.findViewById(R.id.area_dynamic_photo_rv)
         areaReviewRv = itemView.findViewById(R.id.area_review_rv)
         dynamicPhotoRv?.apply {
-            layoutManager = GridLayoutManager(context,3)
+            layoutManager = GridLayoutManager(context, 3)
         }
         areaReviewRv?.apply {
-            layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
     }
 }

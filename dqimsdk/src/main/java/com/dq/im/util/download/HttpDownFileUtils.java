@@ -6,10 +6,8 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.Log;
-
-import com.dq.im.constants.Constants;
 
 import java.io.BufferedInputStream;
 import java.io.File;

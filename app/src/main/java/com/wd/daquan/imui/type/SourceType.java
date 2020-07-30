@@ -1,6 +1,6 @@
 package com.wd.daquan.imui.type;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 @StringDef({SourceType.SOURCE_TYPE_NOTIFICATION})
 public @interface SourceType {

@@ -1,13 +1,13 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModelProviders;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -30,7 +30,6 @@ import java.io.File;
 import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_MUSIC;
-import static android.os.Environment.DIRECTORY_PICTURES;
 
 /**
  * 右侧音频内容填充

@@ -1,18 +1,15 @@
 package com.wd.daquan.explore.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
-import android.util.Log
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wd.daquan.BuildConfig
 import com.wd.daquan.R
-import com.wd.daquan.explore.FriendAreaActivity
+import com.wd.daquan.explore.activity.FriendAreaActivity
 import com.wd.daquan.imui.constant.IntentCode
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -31,7 +28,7 @@ class ExplorePhotoBottomFragment : BottomSheetDialogFragment(){
         const val SOURCE_TYPE = "sourceType"
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
     }
 

@@ -2,7 +2,7 @@ package com.wd.daquan.explore.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,9 +34,7 @@ class ExploreAreaBottomFragment : BottomSheetDialogFragment(){
         const val DYNAMIC_COMMENT_BEAN = "dynamicCommentBean"
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_explore_area_review, container, false)
@@ -61,7 +59,7 @@ class ExploreAreaBottomFragment : BottomSheetDialogFragment(){
     override fun onStart() {
         super.onStart()
         //去除背景
-        val window = dialog.window;
+        val window = dialog?.window;
         val windowParams = window?.attributes;
         windowParams?.dimAmount = 0.0f;
         window?.attributes = windowParams;

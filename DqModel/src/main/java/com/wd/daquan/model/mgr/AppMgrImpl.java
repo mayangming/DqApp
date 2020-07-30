@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.wd.daquan.model.ModelConfig;
 import com.wd.daquan.model.sp.EBSharedPrefUser;

@@ -1,11 +1,10 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.app.Activity;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 
 import com.dq.im.bean.im.MessagePhotoBean;
@@ -15,14 +14,12 @@ import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
 import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
-import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.imui.adapter.viewholder.LeftImgViewHolder;
 import com.wd.daquan.util.FileUtils;
-import com.wd.daquan.util.GlideUtil;
 
 import java.io.File;
 

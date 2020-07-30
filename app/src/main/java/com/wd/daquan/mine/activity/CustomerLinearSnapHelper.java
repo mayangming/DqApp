@@ -1,6 +1,6 @@
 package com.wd.daquan.mine.activity;
 
-import android.support.v7.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.LinearSnapHelper;
 
 /**
  * 自定义SnapHelper

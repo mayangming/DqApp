@@ -21,12 +21,13 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -44,8 +45,8 @@ import com.da.library.R;
  * <p>
  * To use the component, simply add it to your view hierarchy. Then in your
  * {@link android.app.Activity} or {@link android.app.Fragment}, {@link
- * android.support.v4.app.Fragment} call
- * {@link #setViewPager(android.support.v4.view.ViewPager)} providing it the ViewPager this layout
+ * Fragment} call
+ * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout
  * is being used for.
  * <p>
  * The colors can be customized in two ways. The first and simplest is to provide an array of
@@ -256,7 +257,7 @@ public class SmartTabLayout extends HorizontalScrollView {
 
     /**
      * Set the color used for styling the tab text. This will need to be called prior to calling
-     * {@link #setViewPager(android.support.v4.view.ViewPager)} otherwise it will not get set
+     * {@link #setViewPager(ViewPager)} otherwise it will not get set
      *
      * @param color to use for tab text
      */
@@ -266,7 +267,7 @@ public class SmartTabLayout extends HorizontalScrollView {
 
     /**
      * Sets the colors used for styling the tab text. This will need to be called prior to calling
-     * {@link #setViewPager(android.support.v4.view.ViewPager)} otherwise it will not get set
+     * {@link #setViewPager(ViewPager)} otherwise it will not get set
      *
      * @param colors ColorStateList to use for tab text
      */

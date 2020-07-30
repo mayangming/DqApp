@@ -1,6 +1,6 @@
 package com.wd.daquan.model.mgr;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import com.wd.daquan.model.bean.Draft;
 import com.wd.daquan.model.db.helper.DraftDbHelper;

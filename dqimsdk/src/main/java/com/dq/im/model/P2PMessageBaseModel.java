@@ -1,7 +1,7 @@
 package com.dq.im.model;
 
 
-import android.arch.persistence.room.Entity;
+import androidx.room.Entity;
 
 /**
  * 个人IM消息模型

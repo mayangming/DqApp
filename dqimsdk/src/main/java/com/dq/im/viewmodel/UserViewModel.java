@@ -1,8 +1,8 @@
 package com.dq.im.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.dq.im.model.GroupTeamUserModel;
 import com.dq.im.model.UserModel;

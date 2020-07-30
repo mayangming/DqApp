@@ -1,6 +1,6 @@
 package com.da.library.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.da.library.listener.IOnItemClickSelectListener;
 import com.wd.daquan.model.interfaces.ISelect;

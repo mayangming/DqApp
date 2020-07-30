@@ -1,7 +1,7 @@
 package com.wd.daquan.chat.group.adapter;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.wd.daquan.R;

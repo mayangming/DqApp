@@ -1,6 +1,6 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.arch.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleObserver;
 
 import com.wd.daquan.imui.adapter.viewholder.BaseChatViewHolder;
 

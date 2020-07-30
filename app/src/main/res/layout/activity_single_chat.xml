@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:dqtTitle="@string/single_chat_details"/>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true">
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white">
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -128,5 +128,5 @@
                     android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

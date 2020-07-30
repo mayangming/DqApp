@@ -1,6 +1,6 @@
 package com.wd.daquan.model.mgr;
 
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import com.wd.daquan.model.rxbus.ModuleBase;
 
 /**

@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 

@@ -1,16 +1,14 @@
 package com.wd.daquan.chat.group.adapter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
-import com.da.library.adapter.CommBaseSelectAdapter;
 import com.wd.daquan.chat.group.adapter.holder.TeamListHolder;
-import com.wd.daquan.chat.group.bean.TeamListEntity;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.bean.TeamBean;
 

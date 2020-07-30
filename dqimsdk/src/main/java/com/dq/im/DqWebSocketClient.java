@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -13,7 +13,6 @@ import com.dq.im.ipc.DqWebSocketListener;
 import com.dq.im.ipc.DqWebSocketMessageFilter;
 import com.dq.im.model.ImContentDeserializer;
 import com.dq.im.model.P2PMessageBaseModel;
-import com.dq.im.third_system.ThirdSystemMessageManager;
 import com.dq.im.third_system.ViVoPushManager;
 import com.dq.im.third_system.XiaoMiPushManager;
 import com.dq.im.type.SocketStatus;

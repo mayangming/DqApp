@@ -131,7 +131,7 @@
             style="@style/comm_sub_title"
             android:layout_centerVertical="true"
             android:text="朋友圈" />
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_info_area_pics_rv"
             android:layout_marginTop="@dimen/dp_5"
             android:layout_marginBottom="@dimen/dp_5"

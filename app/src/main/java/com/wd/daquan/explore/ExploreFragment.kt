@@ -2,7 +2,6 @@ package com.wd.daquan.explore
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.da.library.view.DqToolbar
 import com.wd.daquan.R
@@ -44,6 +43,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
     override fun initListener() {
         explore_my_area_ll.setOnClickListener(this)
         explore_scan_ll.setOnClickListener(this)
+        explore_money_ll.setOnClickListener(this)
     }
 
     override fun initData() {
@@ -60,16 +60,19 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
     }
 
     override fun onClick(v: View?) {
-        when (v?.id){
-            explore_my_area_ll.id -> {
+        when (v){
+            explore_my_area_ll -> {
                 dynamic_unread_container.visibility = View.GONE
                 ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.READED.status)
                 NavUtils.gotoFriendAreaActivity(activity,ModuleMgr.getCenterMgr().uid,SearchType.ALL)
             }
-            explore_scan_ll.id ->
+            explore_scan_ll ->
                 if (DqUtils.checkPermissions(activity, *needPermissions)) {
                     NavUtils.gotoScanQRCodeActivity(activity)
                 }
+            explore_money_ll -> {
+
+            }
             else ->  DqToast.showCenterShort("")
         }
     }
@@ -82,10 +85,6 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                 val userDynamicList = entity.data as List<FindUserDynamicDescBean>
                 if(userDynamicList.isNotEmpty()){
                     val userDynamic = userDynamicList[0]
-                    DqLog.e("YM","上次保存的值:${ModuleMgr.getCenterMgr().lastDynamicUid}")
-                    DqLog.e("YM","这一次的值:${userDynamic.userId}")
-                    DqLog.e("YM","本系统的值:${ModuleMgr.getCenterMgr().uid}")
-
                     if (ModuleMgr.getCenterMgr().lastDynamicUid == ModuleMgr.getCenterMgr().uid){
                         dynamic_unread_container.visibility = View.GONE
                         return

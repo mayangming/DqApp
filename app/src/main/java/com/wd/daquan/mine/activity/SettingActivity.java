@@ -1,7 +1,7 @@
 package com.wd.daquan.mine.activity;
 
 import android.app.Dialog;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;

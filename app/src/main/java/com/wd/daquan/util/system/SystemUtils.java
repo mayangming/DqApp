@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Process;
 import android.text.TextUtils;
 
+import com.wd.daquan.model.log.DqToast;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -147,5 +149,42 @@ public class SystemUtils {
 
     public static boolean isEmpty(Collection var0) {
         return var0 == null || var0.isEmpty();
+    }
+
+    //    /**
+//     * 是否是模拟器
+//     * @param context
+//     * @return
+//     */
+//    public static boolean isEmulator(Context context){
+//        boolean isEmulator = false;
+//        if(Android_ID_Utils.notHasBlueTooth()
+//                ||Android_ID_Utils.notHasLightSensorManager(context)
+//                ||Android_ID_Utils.isFeatures()
+//                ||Android_ID_Utils.checkIsNotRealPhone()
+//                ||Android_ID_Utils.checkPipes()){
+//            DqToast.showShort("是模拟器");
+//            isEmulator = true;
+//        }
+//        return isEmulator;
+//    }
+    public static boolean isEmulator(Context context){
+        String result="";
+        try{
+            String[] args = {"/system/bin/cat", "/proc/cpuinfo"};
+            ProcessBuilder cmd = new ProcessBuilder(args);
+
+            java.lang.Process process = cmd.start();
+            StringBuffer sb = new StringBuffer();
+            String readLine="";
+            BufferedReader responseReader = new BufferedReader(new InputStreamReader(process.getInputStream(),"utf-8"));
+            while ((readLine = responseReader.readLine()) != null) {
+                sb.append(readLine);
+            }
+            responseReader.close();
+            result=sb.toString().toLowerCase();
+        } catch(IOException ex){
+        }
+        return (!result.contains("arm")) || (result.contains("intel")) || (result.contains("amd"));
     }
 }

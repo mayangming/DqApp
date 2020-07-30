@@ -1,6 +1,6 @@
 package com.wd.daquan.common.alioss;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.wd.daquan.common.bean.AliOssResp;

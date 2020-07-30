@@ -65,6 +65,25 @@
         <ImageView
             android:layout_marginRight="@dimen/dd_dp10"
             style="@style/comm_arrow_right"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="@dimen/dd_dp10"
+        android:id="@+id/explore_money_ll"
+        style="@style/mine_item_layout"
+        android:gravity="center_vertical">
+
+        <ImageView
+            style="@style/mine_item_icon"
+            android:src="@mipmap/explore_money"/>
+
+        <TextView
+            style="@style/mine_item_text"
+            android:layout_marginLeft="20dp"
+            android:text="@string/mine_money"
+            android:layout_marginStart="20dp" />
+        <ImageView
+            android:layout_marginRight="@dimen/dd_dp10"
+            style="@style/comm_arrow_right"/>
     </LinearLayout>
 </LinearLayout>

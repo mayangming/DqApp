@@ -12,8 +12,8 @@ ext {
             applicationId    : "com.wd.daquan",
             minSdkVersion    : 19,
             targetSdkVersion : 29,
-            versionCode      : 102018,
-            versionName      : "1.02.18",
+            versionCode      : 102019,
+            versionName      : "1.02.19",
 
             /**
              * JDK版本
@@ -35,21 +35,24 @@ ext {
             /*********************************************************
              * Android 系统自带
              */
-            multidex                : 'com.android.support:multidex:1.0.3',
-            support_v4              : "com.android.support:support-v4:${supportVersion}",
-            appcompat_v7            : "com.android.support:appcompat-v7:${supportVersion}",
-            recyclerview_v7         : "com.android.support:recyclerview-v7:${supportVersion}",
-            design                  : "com.android.support:design:${supportVersion}",
-            constraint_layout       : 'com.android.support.constraint:constraint-layout:1.1.3',
-            support_compat          : "com.android.support:support-compat:${supportVersion}",
-            glide                   : 'com.github.bumptech.glide:glide:4.9.0',
-            glide_compiler          : 'com.github.bumptech.glide:compiler:4.9.0',
-            glide_okhttp3           : 'com.github.bumptech.glide:okhttp3-integration:4.8.0',
+            multidex                : 'androidx.multidex:multidex:2.0.0',
+            swiperefreshlayout      : 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0',
+            documentfile            : 'androidx.documentfile:documentfile:1.0.1',
+//            support_v4              : 'androidx.legacy:legacy-support-v4:1.0.0',
+            appcompat                 : 'androidx.appcompat:appcompat:1.0.0',
+            recyclerview            : 'androidx.recyclerview:recyclerview:1.0.0',
+            design                  : 'com.google.android.material:material:1.0.0',
+            constraint_layout       : 'androidx.constraintlayout:constraintlayout:1.1.3',
+//            support_compat          : "com.android.support:support-compat:${supportVersion}",
+            glide                   : 'com.github.bumptech.glide:glide:4.11.0',
+            glide_compiler          : 'com.github.bumptech.glide:compiler:4.11.0',
+            glide_okhttp3           : 'com.github.bumptech.glide:okhttp3-integration:4.11.0',
             rxandroid               : 'io.reactivex.rxjava2:rxandroid:2.0.1',
             rxjava                  : 'io.reactivex.rxjava2:rxjava:2.0.5',
             okhttp                  : 'com.squareup.okhttp3:okhttp:3.10.0',
             gson                    : 'com.google.code.gson:gson:2.8.4',
-            annotations             : "com.android.support:support-annotations:${supportVersion}",
+//            annotations             : "com.android.support:support-annotations:${supportVersion}",
+            annotations             : "androidx.annotation:annotation:1.0.0",
             kotlin_config           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
 
             /*********************************************************
@@ -115,8 +118,8 @@ ext {
 //            "server_open"       : '"http://192.168.72.207:8086/"',
             "server"            : '"http://39.106.158.176:9010/"',
             "server_sdk"            : '"http://39.106.158.176:8086/"',
-//            "server"            : '"http://192.168.72.41:9010/"',
-//            "server_sdk"            : '"http://192.168.72.41:8086/"',
+//            "server"            : '"http://192.168.72.197:9010/"',
+//            "server_sdk"            : '"http://192.168.72.197:8086/"',
 //            "server"            : '"http://192.168.72.228:9010/"',
 //            "server"            : '"http://192.168.72.197:9010/"',
 //            "server"            : '"http://192.168.72.44:9010/"',

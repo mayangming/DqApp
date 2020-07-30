@@ -7,8 +7,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.content.FileProvider;
-import android.support.v4.os.EnvironmentCompat;
+import androidx.core.content.FileProvider;
+import androidx.core.os.EnvironmentCompat;
 
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;

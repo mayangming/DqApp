@@ -3,7 +3,7 @@ package com.wd.daquan.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 public class HiddenService extends Service {

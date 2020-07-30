@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/dd_dp10"
     android:background="@drawable/rect_bg_ffd500">
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/guide_open_vip_close_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/dd_dp30"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/guide_open_vip_logo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:text="更多"/>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_bottom_more_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

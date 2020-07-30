@@ -16,8 +16,9 @@ import android.os.Environment;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore.Images.Media;
-import android.support.v4.content.FileProvider;
-import android.support.v4.util.ArrayMap;
+
+import androidx.collection.ArrayMap;
+import androidx.core.content.FileProvider;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;

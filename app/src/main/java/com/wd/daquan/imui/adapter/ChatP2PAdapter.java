@@ -1,8 +1,8 @@
 package com.wd.daquan.imui.adapter;
 
-import android.arch.lifecycle.LifecycleObserver;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 

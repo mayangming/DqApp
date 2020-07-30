@@ -1,6 +1,6 @@
 package com.wd.daquan.contacts.listener;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.wd.daquan.model.bean.Friend;
 

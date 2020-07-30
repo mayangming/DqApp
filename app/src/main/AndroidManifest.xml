@@ -753,7 +753,7 @@
         <activity android:name=".imui.activity.RedPackageSendActivity" />
         <activity android:name=".imui.activity.VideoDetailsActivity" android:keepScreenOn="true" />
 
-        <activity android:name=".explore.FriendAreaActivity"
+        <activity android:name=".explore.activity.FriendAreaActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".explore.activity.DynamicSendActivity"
             android:screenOrientation="portrait"/>

@@ -2,7 +2,7 @@ package com.wd.daquan.login.activity;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;

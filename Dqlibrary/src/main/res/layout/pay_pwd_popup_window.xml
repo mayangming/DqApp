@@ -128,7 +128,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="@dimen/dd_dp50"
             android:id="@+id/pay_key_board_recycler_view"
             android:layout_width="match_parent"

@@ -2,7 +2,7 @@ package com.da.library.utils;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;

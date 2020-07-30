@@ -16,9 +16,10 @@ import android.media.ExifInterface;
 import android.os.Build.VERSION;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.view.WindowManager;
+
+import androidx.collection.LruCache;
 
 import com.wd.daquan.DqApp;
 import com.wd.daquan.common.utils.CNLog;

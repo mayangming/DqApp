@@ -1,7 +1,7 @@
 package com.dq.im.type;
 
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 /**
  * Socket链接状态

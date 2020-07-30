@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.huawei.agconnect'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -176,6 +176,8 @@ dependencies {
     api rootProject.ext.dependencies.rxandroid
     api rootProject.ext.dependencies.rxscreenshot_detector
     api rootProject.ext.dependencies.rxlifecycle_components
+    api rootProject.ext.dependencies.swiperefreshlayout
+    implementation rootProject.ext.dependencies.documentfile
     api project(':CNCarema')
     api project(':CNImagePicker')
     api project(':uikit')

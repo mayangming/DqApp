@@ -1,14 +1,14 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModelProviders;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v4.app.FragmentActivity;
+
+import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -21,13 +21,11 @@ import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.media.MediaPlayerIpc;
 import com.dq.im.util.media.MediaPlayerUtil;
-import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
 import com.wd.daquan.imui.adapter.viewholder.LeftVoiceViewHolder;
 import com.wd.daquan.util.FileUtils;
-import com.wd.daquan.util.TToast;
 
 import java.io.File;
 import java.util.UUID;

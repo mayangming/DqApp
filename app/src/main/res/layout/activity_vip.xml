@@ -59,7 +59,7 @@
                     android:textColor="@color/app_txt_333333"
                     android:textSize="@dimen/sp_14"
                     tools:text="我是会员"/>
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/vip_icon"
                     android:layout_width="@dimen/dd_dp19"
                     android:layout_height="@dimen/dd_dp19"
@@ -255,7 +255,7 @@
                         android:textColor="@color/app_txt_666666"/>
                 </LinearLayout>
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/vip_card_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,7 +1,7 @@
 package com.wd.daquan.chat.group.activity;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextUtils;

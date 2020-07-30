@@ -1,7 +1,7 @@
 package com.wd.daquan.imui.type.chat_layout;
 
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 @IntDef({ChatLayoutParentType.LEFT,ChatLayoutParentType.RIGHT,ChatLayoutParentType.SYSTEM,ChatLayoutParentType.UN_KNOWN})
 public @interface ChatLayoutParentType {

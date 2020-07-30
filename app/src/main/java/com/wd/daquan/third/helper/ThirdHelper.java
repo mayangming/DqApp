@@ -2,8 +2,8 @@ package com.wd.daquan.third.helper;
 
 import android.Manifest;
 import android.media.MediaScannerConnection;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import android.text.TextUtils;
 
 import com.wd.daquan.DqApp;

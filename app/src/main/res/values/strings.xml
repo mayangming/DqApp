@@ -260,6 +260,7 @@
 
     <!--我的-->
     <string name="mine_scan" translatable="false">扫一扫</string>
+    <string name="mine_money" translatable="false">赚钱</string>
     <string name="mine_vip" translatable="false">我的会员</string>
     <string name="mine_share" translatable="false">分享给朋友</string>
     <string name="mine_qr" translatable="false">我的二维码</string>

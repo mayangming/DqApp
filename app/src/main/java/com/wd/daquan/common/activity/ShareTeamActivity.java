@@ -1,7 +1,7 @@
 package com.wd.daquan.common.activity;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.da.library.listener.IOnItemClickListener;
 import com.dq.im.type.ImType;

@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         buildConfigField("String", "SERVER", rootProject.ext.third.server)
         buildConfigField("String", "SERVER_SDK", rootProject.ext.third.server_sdk)
         buildConfigField("String", "SERVER_OPEN", rootProject.ext.third.server_open)
@@ -41,8 +41,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api rootProject.ext.dependencies.appcompat_v7
-    api rootProject.ext.dependencies.recyclerview_v7
+    api rootProject.ext.dependencies.appcompat
+    api rootProject.ext.dependencies.recyclerview
     api rootProject.ext.dependencies.baseRecyclerView
     api rootProject.ext.dependencies.rxjava
     api rootProject.ext.dependencies.rxandroid

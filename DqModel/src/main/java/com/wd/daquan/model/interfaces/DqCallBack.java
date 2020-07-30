@@ -1,6 +1,6 @@
 package com.wd.daquan.model.interfaces;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.wd.daquan.model.BuildConfig;

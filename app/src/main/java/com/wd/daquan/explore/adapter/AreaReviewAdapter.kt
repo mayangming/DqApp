@@ -1,8 +1,8 @@
 package com.wd.daquan.explore.adapter
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.core.content.ContextCompat
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextPaint

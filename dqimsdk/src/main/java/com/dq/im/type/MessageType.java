@@ -1,6 +1,6 @@
 package com.dq.im.type;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.dq.im.bean.im.MessageCardBean;
 import com.dq.im.bean.im.MessagePhotoBean;

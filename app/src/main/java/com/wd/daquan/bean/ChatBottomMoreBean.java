@@ -1,7 +1,7 @@
 package com.wd.daquan.bean;
 
 
-import android.support.annotation.IdRes;
+import androidx.annotation.IdRes;
 
 /**
  * 聊天页面底部更多的布局item

@@ -1,8 +1,8 @@
 package com.wd.daquan.mine;
 
 import android.Manifest;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;

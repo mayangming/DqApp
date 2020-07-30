@@ -1,14 +1,12 @@
 package com.wd.daquan.third.fragment;
 
 import android.app.Activity;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSmoothScroller;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -21,7 +19,6 @@ import android.widget.TextView;
 
 import com.dq.im.model.HomeImBaseMode;
 import com.dq.im.type.ImType;
-import com.dq.im.type.MessageType;
 import com.dq.im.viewmodel.HomeMessageViewModel;
 import com.netease.nim.uikit.api.model.user.UserInfoObserver;
 import com.wd.daquan.R;
@@ -31,9 +28,6 @@ import com.wd.daquan.imui.adapter.RecycleItemOnLongClickListener;
 import com.wd.daquan.imui.dialog.DeleteHomeMsgDialog;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupInfoBean;
-import com.wd.daquan.model.bean.TeamBean;
-import com.wd.daquan.model.log.DqLog;
-import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
@@ -169,7 +163,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
     }
 
     private void queryHomeMessage(){
-        homeMessageViewModel.getAllMessage().observe(getViewLifecycleOwner(), new android.arch.lifecycle.Observer<List<HomeImBaseMode>>() {
+        homeMessageViewModel.getAllMessage().observe(getViewLifecycleOwner(), new androidx.lifecycle.Observer<List<HomeImBaseMode>>() {
             @Override
             public void onChanged(@Nullable List<HomeImBaseMode> homeImBaseModesTemp) {
                 scrollTargetIndex = 0;

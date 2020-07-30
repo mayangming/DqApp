@@ -6,7 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;

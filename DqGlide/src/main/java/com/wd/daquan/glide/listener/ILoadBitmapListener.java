@@ -1,7 +1,7 @@
 package com.wd.daquan.glide.listener;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 
 /**

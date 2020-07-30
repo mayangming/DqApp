@@ -1,8 +1,8 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.arch.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleObserver;
 import android.content.Context;
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
 import android.view.View;
 
 import com.dq.im.model.ImMessageBaseModel;

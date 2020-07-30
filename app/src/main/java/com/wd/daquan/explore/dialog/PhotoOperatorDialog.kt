@@ -3,7 +3,7 @@ package com.wd.daquan.explore.dialog
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.support.design.widget.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

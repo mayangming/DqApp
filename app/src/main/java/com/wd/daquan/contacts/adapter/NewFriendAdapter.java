@@ -1,13 +1,12 @@
 package com.wd.daquan.contacts.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
-import com.wd.daquan.common.constant.KeyValue;
 import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.NewFriendBean;
 import com.wd.daquan.contacts.holder.NewFriendHolder;

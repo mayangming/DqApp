@@ -1,7 +1,7 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 
-import android.arch.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleObserver;
 import android.text.TextUtils;
 import android.util.Log;
 

@@ -1,7 +1,7 @@
 package com.wd.daquan.glide.listener;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.GlideException;
 

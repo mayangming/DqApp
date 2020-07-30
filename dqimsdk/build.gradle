@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.huawei.agconnect'
 //apply plugin: 'com.novoda.bintray-release'
 android {
@@ -41,10 +41,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation files('libs\\MiPush_SDK_Client_3_7_6.jar')
-    implementation files('libs\\com.heytap.msp-push-2.1.0.aar')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation files('libs/MiPush_SDK_Client_3_7_6.jar')
+    implementation files('libs/com.heytap.msp-push-2.1.0.aar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -62,22 +62,22 @@ dependencies {
      * ROOM数据库
      * */
 //    annotationProcessor 'androidx.room:room-compiler:2.2.5'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1-rc1'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
 //    implementation 'androidx.room:room-runtime:2.2.5'
-    implementation 'android.arch.persistence.room:runtime:1.1.1-rc1'
+    implementation 'androidx.room:room-runtime:2.2.5'
     androidTestImplementation "androidx.room:room-testing:2.2.5"
     // Lifecycle components
 //    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    api "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:viewmodel:1.1.1"
-    implementation "android.arch.lifecycle:livedata:1.1.1"
-    implementation "com.android.support:support-annotations:28.0.0"
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
 
 //    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0"
 //    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 //    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
-    implementation 'android.arch.lifecycle:common-java8:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 //  github地址：  https://github.com/WhiteDG/EasySP
     api 'com.white:easysp:1.0.0'
 
@@ -85,7 +85,7 @@ dependencies {
 //  配置参考  https://blog.csdn.net/bencheng06/article/details/88244171
     api 'com.aliyun.dpa:oss-android-sdk:2.9.3'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     //其它已存在的依赖不要删除

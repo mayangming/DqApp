@@ -25,8 +25,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
-import android.support.v4.os.EnvironmentCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.os.EnvironmentCompat;
 import android.util.Log;
 
 import com.zhihu.matisse.internal.entity.CaptureStrategy;

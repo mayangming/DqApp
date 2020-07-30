@@ -1,7 +1,9 @@
 package com.netease.nim.uikit.business.session.fragment;
 
 import android.app.Activity;
-import android.arch.lifecycle.ViewModelProviders;
+
+import androidx.documentfile.provider.DocumentFile;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,12 +12,12 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.provider.DocumentFile;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -91,6 +93,8 @@ import com.wd.daquan.util.FileUtils;
 import com.wd.daquan.util.TToast;
 import com.wd.daquan.util.message_manager.SocketMessageManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -157,7 +161,7 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     }
 
     @Override
-    public void onAttachFragment(Fragment childFragment) {
+    public void onAttachFragment(@NotNull Fragment childFragment) {
         super.onAttachFragment(childFragment);
         if (childFragment instanceof OpenRedPackageDialog){
             OpenRedPackageDialog openRedPackageDialog = (OpenRedPackageDialog) childFragment;

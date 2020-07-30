@@ -1,24 +1,19 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 
-import android.arch.lifecycle.LifecycleObserver;
-import android.text.TextUtils;
+import androidx.lifecycle.LifecycleObserver;
+
 import android.util.Log;
 
-import com.da.library.tools.AESHelper;
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
 import com.google.gson.Gson;
-import com.netease.nim.uikit.business.session.emoji.AndroidEmoji;
 import com.wd.daquan.imui.adapter.viewholder.LeftTextViewHolder;
 import com.wd.daquan.util.AESUtil;
-import com.wd.daquan.util.PatternUtils;
 import com.wd.daquan.util.StringUtils;
-
-import java.util.List;
 
 /**
  * 左侧文本内容填充

@@ -1,33 +1,25 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.content.Intent;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.net.Uri;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.View;
+import androidx.fragment.app.FragmentActivity;
 
 import com.dq.im.bean.im.MessageVideoBean;
 import com.dq.im.model.ImMessageBaseModel;
 import com.dq.im.model.P2PMessageBaseModel;
 import com.dq.im.model.TeamMessageBaseModel;
 import com.dq.im.type.ImType;
-import com.dq.im.util.download.HttpDownFileUtils;
 import com.dq.im.util.download.OnFileDownListener;
 import com.dq.im.util.oss.AliOssUtil;
 import com.dq.im.viewmodel.P2PMessageViewModel;
 import com.dq.im.viewmodel.TeamMessageViewModel;
 import com.google.gson.Gson;
 import com.wd.daquan.glide.GlideUtils;
-import com.wd.daquan.imui.activity.VideoDetailsActivity;
 import com.wd.daquan.imui.adapter.viewholder.LeftVideoViewHolder;
 import com.wd.daquan.util.FileUtils;
 
-import java.io.File;
-
-import static android.os.Environment.DIRECTORY_MOVIES;
 import static android.os.Environment.DIRECTORY_PICTURES;
 
 /**

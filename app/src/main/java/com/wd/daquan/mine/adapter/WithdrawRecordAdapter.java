@@ -1,7 +1,7 @@
 package com.wd.daquan.mine.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 
 import com.da.library.adapter.CommRecyclerViewAdapter;

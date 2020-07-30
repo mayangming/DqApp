@@ -1,7 +1,7 @@
 package com.wd.daquan.imui.type.chat_layout;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 

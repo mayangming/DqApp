@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:title="@string/wallet_open"/>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -177,6 +177,6 @@
                 android:layout_marginTop="@dimen/dd_dp20"
                 android:text="@string/confirm" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

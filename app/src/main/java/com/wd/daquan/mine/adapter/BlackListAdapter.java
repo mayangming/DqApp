@@ -1,13 +1,12 @@
 package com.wd.daquan.mine.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.model.bean.Friend;
-import com.wd.daquan.third.helper.UserInfoHelper;
 
 import org.jetbrains.annotations.NotNull;
 

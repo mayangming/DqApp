@@ -1,7 +1,7 @@
 package com.wd.daquan.util;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.da.library.tools.ActivitysManager;
 import com.wd.daquan.common.utils.ForegroundCallbacks;

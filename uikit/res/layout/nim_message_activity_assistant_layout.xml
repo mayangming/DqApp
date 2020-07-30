@@ -5,7 +5,7 @@
     android:layout_height="@dimen/message_bottom_function_viewpager_height"
     android:background="@color/color_fafafa"
     android:orientation="vertical">
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/conversationGroupAssistViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

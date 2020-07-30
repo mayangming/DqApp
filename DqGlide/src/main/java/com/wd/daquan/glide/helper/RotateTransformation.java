@@ -2,7 +2,7 @@ package com.wd.daquan.glide.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;

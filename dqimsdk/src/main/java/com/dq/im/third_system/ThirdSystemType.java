@@ -1,6 +1,6 @@
 package com.dq.im.third_system;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 @StringDef({ThirdSystemType.XIAO_MI,ThirdSystemType.HUA_WEI,ThirdSystemType.VIVO,ThirdSystemType.OPPO})
 public @interface ThirdSystemType {

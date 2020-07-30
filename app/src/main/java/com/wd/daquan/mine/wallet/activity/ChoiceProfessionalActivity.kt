@@ -1,7 +1,7 @@
 package com.wd.daquan.mine.wallet.activity
 
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wd.daquan.R
 import com.wd.daquan.common.constant.KeyValue
 import com.wd.daquan.mine.wallet.adapter.KotlinAdapter

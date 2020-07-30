@@ -2,7 +2,7 @@ package com.da.library.controls.recyclerholder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.IdRes;
+import androidx.annotation.IdRes;
 import android.view.View;
 import com.chad.library.adapter.base.BaseViewHolder;
 

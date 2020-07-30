@@ -1,7 +1,7 @@
 package com.dq.im.model;
 
 
-import android.arch.persistence.room.Embedded;
+import androidx.room.Embedded;
 
 /**
  * 群组聊天数据模型

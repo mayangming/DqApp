@@ -1,7 +1,7 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 
-import android.arch.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleObserver;
 
 import com.dq.im.bean.im.MessageTextBean;
 import com.dq.im.model.ImMessageBaseModel;

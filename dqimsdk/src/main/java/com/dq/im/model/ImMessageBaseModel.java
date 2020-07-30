@@ -1,8 +1,8 @@
 package com.dq.im.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Ignore;
-import android.support.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Ignore;
+import androidx.annotation.NonNull;
 
 import com.dq.im.type.MessageSendType;
 

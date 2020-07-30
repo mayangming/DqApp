@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.Settings;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.text.TextUtils;
 
 import com.da.library.constant.IConstant;
@@ -79,7 +79,7 @@ import com.wd.daquan.contacts.activity.SearchAddFriendActivity;
 import com.wd.daquan.contacts.activity.SearchFriendActivity;
 import com.wd.daquan.contacts.activity.SetRemarkNameActivity;
 import com.wd.daquan.contacts.activity.UserInfoActivity;
-import com.wd.daquan.explore.FriendAreaActivity;
+import com.wd.daquan.explore.activity.FriendAreaActivity;
 import com.wd.daquan.explore.activity.DynamicMediaDetailsActivity;
 import com.wd.daquan.explore.activity.DynamicSendActivity;
 import com.wd.daquan.explore.type.SearchType;

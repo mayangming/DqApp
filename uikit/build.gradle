@@ -68,7 +68,7 @@ dependencies {
     //    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
 
 
-    api rootProject.ext.dependencies.appcompat_v7
+    api rootProject.ext.dependencies.appcompat
     api rootProject.ext.dependencies.overscroll
     api rootProject.ext.dependencies.ShortcutBadger
 

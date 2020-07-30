@@ -1,9 +1,9 @@
 package com.wd.daquan.explore.adapter
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.wd.daquan.explore.fragment.DynamicMediaPhotoDetailsFragment
 
 /**
@@ -20,7 +20,7 @@ class DynamicMediaAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount() = mediaList.size
 
-    private fun createFragment(mediaData :String) :Fragment{
+    private fun createFragment(mediaData :String) : Fragment {
         val fragment: Fragment
         val bundle = Bundle()
         bundle.putString(DynamicMediaPhotoDetailsFragment.ACTION_PHOTO_URL,mediaData)

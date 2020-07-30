@@ -2,17 +2,15 @@ package com.wd.daquan.contacts.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
 import com.wd.daquan.common.activity.DqBaseActivity;
 import com.wd.daquan.common.constant.DqUrl;
@@ -31,11 +29,7 @@ import com.da.library.listener.ITextChangedListener;
 import com.da.library.widget.CommSearchEditText;
 import com.da.library.widget.CommTitle;
 import com.da.library.widget.SideBar;
-import com.wd.daquan.model.interfaces.DqCallBack;
 import com.wd.daquan.model.log.DqToast;
-import com.wd.daquan.model.retrofit.RetrofitHelp;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collections;

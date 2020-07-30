@@ -3,11 +3,8 @@ package com.dq.im.third_system;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.os.Process;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.dq.im.ImProvider;
 import com.xiaomi.mipush.sdk.MiPushClient;

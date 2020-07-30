@@ -2,7 +2,7 @@ package com.meetqs.qingchat.imagepicker.config;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.StyleRes;
+import androidx.annotation.StyleRes;
 
 import com.meetqs.qingchat.imagepicker.R;
 import com.meetqs.qingchat.imagepicker.entity.LocalMedia;

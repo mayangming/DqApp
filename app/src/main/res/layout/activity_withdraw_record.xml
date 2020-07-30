@@ -75,7 +75,7 @@
         app:srlPrimaryColor="#00000000"
         app:srlEnablePreviewInEditMode="true">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/withdraw_record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/withdraw_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -114,5 +114,5 @@
             android:textColor="@color/app_txt_999999"
             app:layout_constraintHorizontal_bias="0.5" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
