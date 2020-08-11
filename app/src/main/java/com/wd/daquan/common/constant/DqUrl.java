@@ -302,6 +302,10 @@ public class DqUrl {
      */
     public static String url_privacy_agreement = SERVER_OFFICIAL + "Privacy_Agreement.html";
     /**
+     * 新人须知 https://www.meetsn.com/wap/protocol/service
+     */
+    public static String url_new_user_tip = SERVER_OFFICIAL + "dq_xrxz.html";
+    /**
      * 生产环境联系我们
      */
     public static String uri_contact_us = SERVER_OFFICIAL + "wap/help/page?catid=32";
@@ -1037,6 +1041,17 @@ public class DqUrl {
 
     /******************************** 朋友圈 end ****************************************/
 
+    /***************************** 赚钱功能 start **************************************/
 
+    public static String url_task_screening = "task/task_screening";//任务筛选
+    public static String url_task_list = "task/task_list";//任务排序
+    public static String url_task_mine = "task/task_mine";//我的任务
+    public static String url_task_registration = "task/task_registration";//任务报名
+    public static String url_task_refresh = "task/task_refresh";//任务更新
+    public static String url_task_detail = "task/task_detail";//任务详情
+    public static String url_task_type = "task/task_type";//任务分类
+    public static String url_task_classification = "task/task_classification";//任务类型
+
+    /***************************** 赚钱功能 end **************************************/
 
 }

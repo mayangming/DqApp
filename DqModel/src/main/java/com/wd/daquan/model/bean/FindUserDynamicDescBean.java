@@ -36,7 +36,7 @@ public class FindUserDynamicDescBean implements Serializable {
     private String userHeadPic;
     private String searchUserId;
     private int searchType;
-    private ArrayList<String> pics;
+    private ArrayList<String> pics = new ArrayList<>();
     private ArrayList<UserDynamicCommentDataListBean> userDynamicCommentDataList;
     private ArrayList<UserDynamicLikeDataListBean> userDynamicLikeDataList;
 

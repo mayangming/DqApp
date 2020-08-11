@@ -49,6 +49,7 @@ public class EBSharedPrefUser extends BaseSharedPreference {
     public static final String lastDynamicUid = "lastDynamicUid";//上次动态的朋友圈用户Id
     public static final String lastDynamicTime = "lastDynamicTime";//上次动态的时间
     public static final String lastDynamicReadStatus = "lastDynamicReadStatus";//上次动态阅读状态 0 未读 1已读
+    public static final String isShowMakeMoneyTip = "isShowMakeMoneyTip";//是否显示赚钱的新手须知
 
     // 公众号
     public static final String QINGTALK_NUM = "dq_num";

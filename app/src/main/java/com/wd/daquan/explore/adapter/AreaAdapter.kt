@@ -23,6 +23,7 @@ import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
 import com.wd.daquan.model.bean.UserDynamicLikeDataListBean
 import com.wd.daquan.model.interfaces.DqCallBack
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.mgr.ModuleMgr
 import com.wd.daquan.model.retrofit.RetrofitHelp
 import com.wd.daquan.model.retrofit.RetrofitHelp.getRequestBody
@@ -101,7 +102,10 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
         }
         val areaPhotoAdapter: AreaPhotoAdapter = AreaPhotoAdapter()
         holder.dynamicPhotoRv?.adapter = areaPhotoAdapter
-        areaPhotoAdapter.photos = dynamicDescBean.pics
+        DqLog.e("YM----------->朋友圈动态ID:${dynamicDescBean.dynamicId}")
+        dynamicDescBean.pics?.let {
+            areaPhotoAdapter.photos = it
+        }
 
         val areaReviewAdapter: AreaReviewAdapter = AreaReviewAdapter()
         areaReviewAdapter.dynamicsBean = dynamicDescBean

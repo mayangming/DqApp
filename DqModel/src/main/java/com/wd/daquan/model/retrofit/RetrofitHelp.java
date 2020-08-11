@@ -4,6 +4,7 @@ import com.wd.daquan.model.api.DqBaseApi;
 import com.wd.daquan.model.api.DynamicApi;
 import com.wd.daquan.model.api.GroupApi;
 import com.wd.daquan.model.api.SdkApi;
+import com.wd.daquan.model.api.TaskApi;
 import com.wd.daquan.model.api.UserApi;
 import com.wd.daquan.model.bean.RequestBean;
 import com.wd.daquan.model.interfaces.DqCallBack;
@@ -51,6 +52,13 @@ public class RetrofitHelp {
      */
     public static DynamicApi getDynamicApi() {
         return RetrofitClient.getInstance().getRetrofit().create(DynamicApi.class);
+    }
+
+    /**
+     * 任务接口
+     */
+    public static TaskApi getTaskApi() {
+        return RetrofitClient.getInstance().getRetrofit().create(TaskApi.class);
     }
 
     /**

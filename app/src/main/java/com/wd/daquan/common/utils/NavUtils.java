@@ -82,7 +82,11 @@ import com.wd.daquan.contacts.activity.UserInfoActivity;
 import com.wd.daquan.explore.activity.FriendAreaActivity;
 import com.wd.daquan.explore.activity.DynamicMediaDetailsActivity;
 import com.wd.daquan.explore.activity.DynamicSendActivity;
+import com.wd.daquan.explore.activity.MakeMoneyActivity;
+import com.wd.daquan.explore.activity.TaskDetailsActivity;
+import com.wd.daquan.explore.activity.TaskMineActivity;
 import com.wd.daquan.explore.type.SearchType;
+import com.wd.daquan.imui.activity.VideoDetailsActivity;
 import com.wd.daquan.imui.constant.IntentCode;
 import com.wd.daquan.login.activity.BindPhoneActivity;
 import com.wd.daquan.login.activity.DownAppActivity;
@@ -1665,7 +1669,7 @@ public class NavUtils {
         AnimUtils.enterAnimForActivity(context);
     }
 
-    //钱包 红包明细
+    //发送朋友圈动态
     public static void gotoDynamicSendActivity(Activity context, ArrayList<Uri> photos) {
         Intent intent = new Intent(context, DynamicSendActivity.class);
         intent.putExtra(DynamicSendActivity.ACTION_PICS,photos);
@@ -1683,6 +1687,37 @@ public class NavUtils {
         AnimUtils.enterAnimForActivity(context);
     }
 
+    //赚钱页面
+    public static void gotoMakeMoneyActivity(Activity context) {
+        Intent intent = new Intent(context, MakeMoneyActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    //任务详情页面
+    public static void gotoTaskDetailsActivity(Context context,String taskId) {
+        Intent intent = new Intent(context, TaskDetailsActivity.class);
+        intent.putExtra(TaskDetailsActivity.KEY_TASK_ID,taskId);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    public static void playVideo(Context context,String videoUrl){
+        Intent intent = new Intent(context, VideoDetailsActivity.class);
+        intent.putExtra(VideoDetailsActivity.VIDEO_PATH_ACTION,videoUrl);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 跳转到任务管理页面
+     * @param context
+     */
+    public static void gotoTaskMineActivity(Context context){
+        Intent intent = new Intent(context, TaskMineActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
 
 }
 

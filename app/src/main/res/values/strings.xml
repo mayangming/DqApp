@@ -222,6 +222,7 @@
     <string name="synchronous" translatable="false">同步</string>
     <string name="register_agreement" translatable="false">用户注册协议</string>
     <string name="user_service_agreement" translatable="false">用户服务协议</string>
+    <string name="new_user_tip" translatable="false">新人须知</string>
     <string name="set_success" translatable="false">设置成功</string>
     <string name="replace_personal_info_error" translatable="false">修改信息失败</string>
     <string name="perfect" translatable="false">根据国家法规的要求,你需要进行身份信息完善,才能继续使用该功能</string>
@@ -1020,6 +1021,7 @@
     <string name="vip_exchange_count" translatable="false">本次兑换消耗%1$d个兑换人数</string>
 
     <string name="my_area_title" translatable="false">我的圈子</string>
+    <string name="complaint_phone" translatable="false">19800350603</string>
 
 
 </resources>

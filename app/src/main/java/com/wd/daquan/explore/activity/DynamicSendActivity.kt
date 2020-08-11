@@ -125,37 +125,13 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         dynamicSendAdapter = DynamicSendAdapter().apply {
             setOnAddPhotoListener {//添加图片的回调
                 val maxSelectCount = 9 - getPhotoCount()
-                selectPhoto(maxSelectCount)
+                selectPhoto(maxSelectCount,this@DynamicSendActivity)
             }
         }
         dynamic_send_rv.adapter = dynamicSendAdapter
         dynamic_send_rv.addItemDecoration(SpacesItemDecoration(20))
     }
 
-    /**
-     * 选择图片
-     */
-    private fun selectPhoto(maxInt: Int) {
-        Matisse.from(activity)
-                .choose(MimeType.ofImage()) //                .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))//gif暂时不支持显示
-                .capture(true)
-                .captureStrategy(
-                        CaptureStrategy(true, BuildConfig.APPLICATION_ID + ".dqprovider", "capture")
-                )
-                .countable(true) //最大选择数量为9
-                .maxSelectable(maxInt)
-                .gridExpectedSize(
-                        resources.getDimensionPixelSize(R.dimen.grid_expected_size)
-                )
-                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                .thumbnailScale(0.85f)
-                .imageEngine(GlideEngine())
-                .showSingleMediaType(true)
-                .originalEnable(true)
-                .maxOriginalSize(10)
-                .autoHideToolbarOnSingleTap(true)
-                .forResult(IntentCode.REQUEST_CODE_CHOOSE)
-    }
 
     /**
      * 创建上传集合
@@ -164,10 +140,13 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         pics?.let {
             val upLoadBeanList = arrayListOf<UpLoadBean>()
             for (uri in it){
-                val documentFile = androidx.documentfile.provider.DocumentFile.fromSingleUri(this, uri)
+                val documentFile = DocumentFile.fromSingleUri(this, uri)
                 val inputStream: InputStream? = contentResolver.openInputStream(uri)
                 val photoData = FileUtils.toByteArray(inputStream)
                 val uploadBean = UpLoadBean()
+
+                DqLog.e("YM--->文件是否为空:${null == documentFile}")
+                DqLog.e("YM--->文件名字:${documentFile?.name}")
                 uploadBean.fileName = Constants.getImgName() + FileUtils.getFileSuffix(documentFile?.name)
                 uploadBean.localPath = uri.toString()
                 uploadBean.fileData = photoData

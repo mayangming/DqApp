@@ -24,6 +24,7 @@ import com.wd.daquan.explore.viewholder.AreaReviewViewHolder
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
 
@@ -96,6 +97,7 @@ class AreaReviewAdapter() : RecycleBaseAdapter<AreaReviewViewHolder>() {
     }
 
     private fun initSpannableReview(text: TextView,dynamicCommentDataListBean: UserDynamicCommentDataListBean = UserDynamicCommentDataListBean()){
+        DqLog.e("YM--------->评论ID:${dynamicCommentDataListBean.commentId},------->评论类型:${dynamicCommentDataListBean.type}")
         val content = "${dynamicCommentDataListBean.userNick} 回复 ${dynamicCommentDataListBean.friendNick}: ${dynamicCommentDataListBean.desc}"
         val startIndex1 = content.indexOf(dynamicCommentDataListBean.userNick)
         val endIndex1 = startIndex1 + dynamicCommentDataListBean.userNick.length

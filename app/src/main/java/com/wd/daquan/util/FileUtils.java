@@ -197,6 +197,9 @@ public class FileUtils {
      * @return
      */
     public static String getFileSuffix(String fileName){
+        if (TextUtils.isEmpty(fileName)){
+            fileName = "example.png";
+        }
         String result = fileName;
         int lastIndex = result.lastIndexOf(".");
         result = result.substring(lastIndex);

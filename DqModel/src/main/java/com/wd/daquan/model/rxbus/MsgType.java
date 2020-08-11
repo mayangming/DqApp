@@ -236,4 +236,6 @@ public class MsgType {
      * 更新首页消息内容，比如头像、名字
      */
     public static final String HOME_UPDATE_MSG = "updateHomeMessage";
+
+    public static final String TASK_OBJ = "taskObj";//任务刷新标志
 }

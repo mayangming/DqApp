@@ -2,10 +2,13 @@ package com.wd.daquan.imui.activity;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.wd.daquan.R;
+import com.wd.daquan.model.log.DqLog;
 
 
 /**
@@ -15,8 +18,9 @@ public class VideoDetailsActivity extends BaseActivity{
     public static final String VIDEO_PATH_ACTION = "videoPathAction";
     private VideoView videoDetails;
     private String videoPath = "";//文件网络路径
-//    private Uri videoPath;//文件网络路径
-
+    //    private Uri videoPath;//文件网络路径
+    private View videoBgContainer;
+    private View videoStart;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,11 @@ public class VideoDetailsActivity extends BaseActivity{
 
     private void initView(){
         videoDetails = findViewById(R.id.video_details);
+        videoBgContainer = findViewById(R.id.video_details_bg_container);
+        videoStart = findViewById(R.id.video_details_play);
+        videoBgContainer.setVisibility(View.GONE);
+        videoDetails.setVisibility(View.VISIBLE);
+//        videoStart.setOnClickListener(this::onClick);
     }
 
     private void initData(){
@@ -40,10 +49,21 @@ public class VideoDetailsActivity extends BaseActivity{
         MediaController localMediaController = new MediaController(this);
         videoDetails.setMediaController(localMediaController);
 //        Uri.
+        DqLog.e("YM-------->视频地址:"+videoPath);
         videoDetails.setVideoPath(videoPath);
 //        videoDetails.setVideoURI(videoPath);
         videoDetails.start();
     }
+
+//    private void onClick(View view){
+//        switch (view.getId()){
+//            case R.id.video_details_play:
+//                videoBgContainer.setVisibility(View.GONE);
+//                videoDetails.setVisibility(View.VISIBLE);
+//                videoDetails.start();
+//                break;
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

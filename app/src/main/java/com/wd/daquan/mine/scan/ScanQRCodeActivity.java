@@ -331,30 +331,12 @@ public class ScanQRCodeActivity extends DqBaseActivity<MinePresenter, DataBean> 
 
     @Override
     public void onMessage(String key, Object value) {
-        Log.e("YM","扫码onMessage");
         if(MsgType.MT_QR_CODE.equals(key)) {
             String result = (String) value;
+            Log.e("YM","扫码onMessage的结果:"+result);
             if(qrcodeHelper != null) {
                 qrcodeHelper.distinguishQrcode(getActivity(), result);
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

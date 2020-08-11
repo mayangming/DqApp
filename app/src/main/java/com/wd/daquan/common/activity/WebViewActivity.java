@@ -19,6 +19,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -69,7 +70,12 @@ public class WebViewActivity extends DqBaseActivity implements View.OnClickListe
         mCommTitle = findViewById(R.id.webviewTitle);
 //        mWv = findViewById(R.id.webviewWV);
         mWv = DqApp.getInstance().getWebView();
+        WebSettings webSettings = mWv.getSettings();
+        webSettings.setBuiltInZoomControls(false);
+        webSettings.setSupportZoom(false);
+        webSettings.setDisplayZoomControls(false);
         webViewRoot.addView(mWv);
+
     }
 
     @Override

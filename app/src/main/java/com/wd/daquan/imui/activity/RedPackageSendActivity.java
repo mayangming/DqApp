@@ -408,7 +408,7 @@ public class RedPackageSendActivity extends DqBaseActivity<RedPackagePresenter, 
                 sendRedPackageBtn.setBackgroundResource(R.drawable.red_package_btn_bg_efefef);
                 sendRedPackageBtn.setEnabled(false);
             }else {
-                sendRedPackageBtn.setBackgroundResource(R.drawable.red_package_btn_bg_f8f8f8);
+                sendRedPackageBtn.setBackgroundResource(R.drawable.red_package_btn_bg_f23939);
                 sendRedPackageBtn.setEnabled(true);
             }
         }

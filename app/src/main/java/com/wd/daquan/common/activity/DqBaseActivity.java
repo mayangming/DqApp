@@ -2,12 +2,14 @@ package com.wd.daquan.common.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +27,14 @@ import com.da.library.widget.CommTitle;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
 import com.netease.nim.uikit.common.fragment.TFragment;
 import com.umeng.analytics.MobclickAgent;
+import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.presenter.Presenter;
+import com.wd.daquan.imui.constant.IntentCode;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -368,5 +376,55 @@ public abstract class DqBaseActivity<P extends Presenter.IPresenter, T> extends 
         if(mTitleDqLayout != null && v.getId() == mTitleDqLayout.getBackIv().getId()) {
             finish();
         }
+    }
+
+
+    /**
+     * 选择图片
+     */
+    protected void selectPhoto(int maxInt,Activity activity) {
+        Matisse.from(activity)
+                .choose(MimeType.ofImage()) //                .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))//gif暂时不支持显示
+                .capture(true)
+                .captureStrategy(
+                       new CaptureStrategy(true, BuildConfig.APPLICATION_ID + ".dqprovider", "capture")
+                )
+                .countable(true) //最大选择数量为9
+                .maxSelectable(maxInt)
+                .gridExpectedSize(
+                        getResources().getDimensionPixelSize(R.dimen.grid_expected_size)
+                )
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine())
+                .showSingleMediaType(true)
+                .originalEnable(true)
+                .maxOriginalSize(10)
+                .autoHideToolbarOnSingleTap(true)
+                .forResult(IntentCode.REQUEST_CODE_CHOOSE);
+    }
+    /**
+     * 选择图片
+     */
+    protected void selectPhoto(int maxInt, Fragment fragment) {
+        Matisse.from(fragment)
+                .choose(MimeType.ofImage()) //                .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))//gif暂时不支持显示
+                .capture(true)
+                .captureStrategy(
+                        new CaptureStrategy(true, BuildConfig.APPLICATION_ID + ".dqprovider", "capture")
+                )
+                .countable(true) //最大选择数量为9
+                .maxSelectable(maxInt)
+                .gridExpectedSize(
+                        getResources().getDimensionPixelSize(R.dimen.grid_expected_size)
+                )
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine())
+                .showSingleMediaType(true)
+                .originalEnable(true)
+                .maxOriginalSize(10)
+                .autoHideToolbarOnSingleTap(true)
+                .forResult(IntentCode.REQUEST_CODE_CHOOSE);
     }
 }

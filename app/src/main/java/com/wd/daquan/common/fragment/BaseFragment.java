@@ -21,6 +21,7 @@ import com.wd.daquan.common.presenter.Presenter;
  * @description: todo ...
  */
 public abstract class BaseFragment<P extends Presenter.IPresenter, T> extends Fragment implements Presenter.IView<T> {
+    private long fragmentId = -1;
 
     public P mPresenter = null;
 
@@ -104,5 +105,13 @@ public abstract class BaseFragment<P extends Presenter.IPresenter, T> extends Fr
     }
     public void updateShareTransition() {
 
+    }
+
+    public long getFragmentId() {
+        return fragmentId;
+    }
+
+    public void setFragmentId(long fragmentId) {
+        this.fragmentId = fragmentId;
     }
 }

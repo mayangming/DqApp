@@ -21,7 +21,6 @@
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/white</item>
         <item name="android:background">@color/white</item>
-
     </style>
 
     <!--联系人界面ITEM-->
@@ -462,5 +461,8 @@
     </style>
     <style name="customCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/check_box_selector</item>
+    </style>
+    <style name="circleCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/check_box_selector_circle</item>
     </style>
 </resources>

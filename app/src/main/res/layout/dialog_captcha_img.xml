@@ -42,7 +42,12 @@
             android:id="@+id/captcha_seek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:splitTrack="false"
+            android:background="@null"
             android:layout_marginTop="@dimen/dp_20"
+            android:progressDrawable="@drawable/seek_captcha"
+            android:thumb="@drawable/seekbar_thumb"
+            android:thumbOffset="@dimen/dp_20"
             android:layout_below="@+id/captcha_img"/>
 
     </RelativeLayout>

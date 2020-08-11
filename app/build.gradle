@@ -177,7 +177,9 @@ dependencies {
     api rootProject.ext.dependencies.rxscreenshot_detector
     api rootProject.ext.dependencies.rxlifecycle_components
     api rootProject.ext.dependencies.swiperefreshlayout
+    implementation rootProject.ext.dependencies.drawerlayout
     implementation rootProject.ext.dependencies.documentfile
+    implementation rootProject.ext.dependencies.viewpager2
     api project(':CNCarema')
     api project(':CNImagePicker')
     api project(':uikit')
@@ -191,7 +193,7 @@ dependencies {
     implementation project(':recorderlib')
     api rootProject.ext.dependencies.kotlin_config
     api rootProject.ext.dependencies.banner
-    implementation files('libs\\pinyin4j-2.5.0.jar')
+    implementation files('libs/pinyin4j-2.5.0.jar')
     //    implementation project(path: ':jrmfbaselib')
     //    implementation project(path: ':jrmfwalletlib')
     //    implementation project(path: ':jrmfrplib')
@@ -208,8 +210,8 @@ dependencies {
     implementation files('libs/umeng-analytics-8.1.4.jar')
     implementation files('libs/umeng-common-2.1.8.jar')
     //其它已存在的依赖不要删除
-    implementation 'com.huawei.hms:push:4.0.2.300'
-    // github地址：   https://github.com/qstumn/BadgeView
+    implementation 'com.huawei.hms:push:4.0.4.301'
+    //红点提示 github地址：   https://github.com/qstumn/BadgeView
     implementation 'q.rorbin:badgeview:1.1.3'
     //  录制mp3的库 github地址: https://github.com/zhaolewei/ZlwAudioRecorder
     //    implementation 'com.github.zhaolewei:ZlwAudioRecorder:v1.07'
@@ -217,6 +219,10 @@ dependencies {
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     implementation files('libs/alipaySdk-20180403.jar')
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06'
 }
 repositories {
     mavenCentral()

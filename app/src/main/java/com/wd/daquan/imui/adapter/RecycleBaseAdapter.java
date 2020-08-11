@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.wd.daquan.imui.adapter.viewholder.RecycleBaseViewHolder;
 
+import java.util.List;
+
 
 /**
  * 基础的RecycleViewAdapter基类

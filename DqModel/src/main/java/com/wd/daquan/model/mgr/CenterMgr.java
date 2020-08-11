@@ -490,4 +490,14 @@ public class CenterMgr implements ModuleBase, QCObserver{
     public boolean getJrmfState() {
         return  getKDPreferenceUserInfo().getBoolean(JRMF_USER_IS_EXIT, false);
     }
+
+
+    public void saveIsShowMakeMoneyTip(boolean isShowTip){
+        getKDPreferenceUserInfo().saveBoolean(EBSharedPrefUser.isShowMakeMoneyTip, isShowTip);
+    }
+
+    public boolean isShowMakeMoneyTip(){
+        return  getKDPreferenceUserInfo().getBoolean(EBSharedPrefUser.isShowMakeMoneyTip, true);
+    }
+
 }

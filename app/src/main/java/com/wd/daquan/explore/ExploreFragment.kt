@@ -2,6 +2,7 @@ package com.wd.daquan.explore
 
 import android.Manifest
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import com.da.library.view.DqToolbar
 import com.wd.daquan.R
@@ -15,10 +16,10 @@ import com.wd.daquan.explore.type.SearchType
 import com.wd.daquan.glide.GlideUtils
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
-import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
 import kotlinx.android.synthetic.main.explore_fragment.*
+import q.rorbin.badgeview.QBadgeView
 
 /**
  * 探索功能页面
@@ -32,9 +33,16 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
 
     override fun createPresenter() = ExplorePresenter()
 
-    override fun initView(view: View?, savedInstanceState: Bundle?) {
-        mToolbar = view!!.findViewById(R.id.toolbar)
+    override fun initView(viewExplore: View?, savedInstanceState: Bundle?) {
+        mToolbar = viewExplore!!.findViewById(R.id.toolbar)
         initTitle()
+        QBadgeView(context).run {
+            bindTarget(my_explore).badgeNumber = 5
+            badgeGravity = Gravity.CENTER or Gravity.END
+            setBadgeTextSize(12f,true)
+            setGravityOffset(2f,0f,true)
+            hide(true)
+        }
     }
 
     fun initTitle(){
@@ -71,7 +79,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                     NavUtils.gotoScanQRCodeActivity(activity)
                 }
             explore_money_ll -> {
-
+                NavUtils.gotoMakeMoneyActivity(activity)
             }
             else ->  DqToast.showCenterShort("")
         }

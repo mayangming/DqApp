@@ -1,8 +1,12 @@
 package com.wd.daquan.login.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,6 +14,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -74,6 +80,9 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
 //            finish();
 //            return;
 //        }
+        setStatusBarColor(Color.WHITE,this);
+        // 设置沉浸式字体颜色
+        ImmersiveManage.setStatusFontColor(getWindow(), Color.WHITE);
         DqApp.getInstance().setChatTextSize(0);
         super.onCreate(savedInstanceState);
     }
@@ -147,7 +156,18 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
     protected void initData() {
 
     }
-
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarColor(int statusColor, Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            //取消设置Window半透明的Flag
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //添加Flag把状态栏设为可绘制模式
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //设置状态栏为透明
+            window.setStatusBarColor(statusColor);
+        }
+    }
     private void initSplash(){
         splashIndicator.setVisibility(View.VISIBLE);
         SplashFragment splashFragment1 = new SplashFragment();

@@ -127,43 +127,43 @@
             android:name=".login.activity.SplashActivity"
 
             android:screenOrientation="portrait">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--            <intent-filter android:label="@string/app_name">-->
-<!--            &lt;!&ndash; 系统分享&ndash;&gt;-->
-<!--                <action android:name="android.intent.action.SEND" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <data android:mimeType="*/*" />-->
-<!--            </intent-filter>-->
-<!--            <intent-filter>-->
-<!--                &lt;!&ndash; SDK分享&ndash;&gt;-->
-<!--                <data-->
-<!--                    android:host="dqshare"-->
-<!--                    android:scheme="dqchat" />-->
-<!--                <action android:name="android.intent.action.VIEW" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <category android:name="android.intent.category.BROWSABLE" />-->
-<!--            </intent-filter>-->
-<!--            <intent-filter>-->
-<!--                &lt;!&ndash; SDK登录&ndash;&gt;-->
-<!--                <data-->
-<!--                    android:host="dqlogin"-->
-<!--                    android:scheme="dqchat" />-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+            <!--            <intent-filter android:label="@string/app_name">-->
+            <!--            &lt;!&ndash; 系统分享&ndash;&gt;-->
+            <!--                <action android:name="android.intent.action.SEND" />-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <data android:mimeType="*/*" />-->
+            <!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                &lt;!&ndash; SDK分享&ndash;&gt;-->
+            <!--                <data-->
+            <!--                    android:host="dqshare"-->
+            <!--                    android:scheme="dqchat" />-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+            <!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                &lt;!&ndash; SDK登录&ndash;&gt;-->
+            <!--                <data-->
+            <!--                    android:host="dqlogin"-->
+            <!--                    android:scheme="dqchat" />-->
 
-<!--                <action android:name="android.intent.action.VIEW" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <category android:name="android.intent.category.BROWSABLE" />-->
-<!--            </intent-filter>-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+            <!--            </intent-filter>-->
         </activity>
         <!--
              APP key, 可以在这里设置，也可以在 SDKOptions 中提供。
             如果 SDKOptions 中提供了，取 SDKOptions 中的值。云信app_key:4c10a79a17f0bb0c89541757ae70349d
         -->
-<!--        <meta-intentUrl-->
-<!--            android:name="com.netease.nim.appKey"-->
-<!--            android:value="4c10a79a17f0bb0c89541757ae70349d" />-->
+        <!--        <meta-intentUrl-->
+        <!--            android:name="com.netease.nim.appKey"-->
+        <!--            android:value="4c10a79a17f0bb0c89541757ae70349d" />-->
 
         <activity
             android:name=".MainActivity"
@@ -759,6 +759,14 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".explore.activity.DynamicMediaDetailsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.MakeMoneyActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.TaskDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".explore.activity.TaskMineActivity"
             android:screenOrientation="portrait"/>
 
         <!-- ======穿山甲广告 start========= -->

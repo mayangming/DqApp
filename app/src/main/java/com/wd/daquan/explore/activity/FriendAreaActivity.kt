@@ -54,7 +54,6 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>() 
         initBottomSelectPhotoFragment()
     }
 
-
     companion object{
         const val REPLACE_BG = 0
         const val SEND_DYNAMIC = 1
