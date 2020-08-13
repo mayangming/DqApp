@@ -21,7 +21,6 @@ public class ThirdPushManager{
                     regId = msg.obj.toString();
                     break;
             }
-            Log.e("YM","接收消息,是否为null:"+(null == thirdSystemRegisterResultIml));
             if (null != thirdSystemRegisterResultIml){
                 thirdSystemRegisterResultIml.registerResult(ThirdSystemType.XIAO_MI, regId);
             }

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.dq.im.config.HttpConfig;
 import com.dq.im.ipc.DqWebSocketListener;
 import com.dq.im.ipc.DqWebSocketMessageFilter;
 import com.dq.im.model.ImContentDeserializer;
@@ -144,7 +145,7 @@ public class DqWebSocketClient {
 //        Request request = requestBuild.url("ws://echo.websocket.org").build();
 
 //        String socketServer = "ws://192.168.72.115:6999?userId="+ userId;
-        String socketServer = ResourceBundle.getBundle("appConfig").getString("webSocketServer") + userId;
+        String socketServer = HttpConfig.getInstance().getHTTP_SERVER() + userId;
         Log.e("YM","链接的socket地址:"+socketServer);
         request = new Request.Builder().url(socketServer).build();
 //        Request request = new Request.Builder().url("ws://echo.websocket.org").build();

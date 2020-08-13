@@ -754,7 +754,8 @@
         <activity android:name=".imui.activity.VideoDetailsActivity" android:keepScreenOn="true" />
 
         <activity android:name=".explore.activity.FriendAreaActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
         <activity android:name=".explore.activity.DynamicSendActivity"
             android:screenOrientation="portrait"/>
 
@@ -767,6 +768,9 @@
         <activity android:name=".explore.activity.TaskDetailsActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".explore.activity.TaskMineActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.UnReadMsgActivity"
             android:screenOrientation="portrait"/>
 
         <!-- ======穿山甲广告 start========= -->

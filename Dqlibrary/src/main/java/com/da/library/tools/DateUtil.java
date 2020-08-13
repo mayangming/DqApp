@@ -20,9 +20,11 @@ import java.util.List;
 public class DateUtil {
 
     public static final long ONE_DATY_TMIE = 24 * 60 * 60 * 1000;
-    //private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
+    private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final SimpleDateFormat dateHourMinuteFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat dateHourFormat = new SimpleDateFormat("yyyyMMddHH");
+    private static final SimpleDateFormat dateFormatAboutPoint = new SimpleDateFormat("yyyy.MM.dd");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     private static Calendar mCalendar = null;
@@ -47,6 +49,26 @@ public class DateUtil {
     public static String timeToString(long time){
         Date date = new Date(time);
         return dateHourMinuteFormat.format(date);
+    }
+    /**
+     * 毫秒转化指定格式字符串
+     * @param time 号码
+     * @param format 格式
+     * @return String
+     */
+    public static String timeToString(long time,String format){
+        SimpleDateFormat datetimeFormat = new SimpleDateFormat(format);
+        Date date = new Date(time);
+        return datetimeFormat.format(date);
+    }
+    /**
+     * 毫秒转化字符串时间戳
+     * @param time 号码
+     * @return String
+     */
+    public static String timeToStringAboutPoint(long time){
+        Date date = new Date(time);
+        return dateFormatAboutPoint.format(date);
     }
 
     /**

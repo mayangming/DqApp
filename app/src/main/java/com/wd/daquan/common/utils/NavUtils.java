@@ -85,6 +85,7 @@ import com.wd.daquan.explore.activity.DynamicSendActivity;
 import com.wd.daquan.explore.activity.MakeMoneyActivity;
 import com.wd.daquan.explore.activity.TaskDetailsActivity;
 import com.wd.daquan.explore.activity.TaskMineActivity;
+import com.wd.daquan.explore.activity.UnReadMsgActivity;
 import com.wd.daquan.explore.type.SearchType;
 import com.wd.daquan.imui.activity.VideoDetailsActivity;
 import com.wd.daquan.imui.constant.IntentCode;
@@ -242,6 +243,15 @@ public class NavUtils {
         Intent intent = new Intent(activity, FriendAreaActivity.class);
         intent.putExtra(FriendAreaActivity.USER_ID,friendId);
         intent.putExtra(FriendAreaActivity.SEARCH_TYPE,searchType);
+        activity.startActivity(intent);
+        AnimUtils.enterAnimForActivity(activity);
+    }
+    //从未读消息页面过来
+    public static void gotoFriendAreaActivity(Context activity, String friendId, SearchType searchType,String dynamicId) {
+        Intent intent = new Intent(activity, FriendAreaActivity.class);
+        intent.putExtra(FriendAreaActivity.USER_ID,friendId);
+        intent.putExtra(FriendAreaActivity.SEARCH_TYPE,searchType);
+        intent.putExtra(FriendAreaActivity.DYNAMIC_ID,dynamicId);
         activity.startActivity(intent);
         AnimUtils.enterAnimForActivity(activity);
     }
@@ -1715,6 +1725,16 @@ public class NavUtils {
      */
     public static void gotoTaskMineActivity(Context context){
         Intent intent = new Intent(context, TaskMineActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 跳转到未读消息页面
+     * @param context
+     */
+    public static void gotoUnReadMsgActivity(Context context){
+        Intent intent = new Intent(context, UnReadMsgActivity.class);
         context.startActivity(intent);
         AnimUtils.enterAnimForActivity(context);
     }

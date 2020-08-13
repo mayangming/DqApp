@@ -22,7 +22,7 @@ public class DqUrl {
     /**
      * 第三方分享到APP使用域名
      */
-    public static final String SERVER_OPEN = BuildConfig.SERVER_OPEN;
+    public static String SERVER_OPEN = BuildConfig.SERVER_OPEN;
 
     /**
      * App内部使用域名
@@ -1038,6 +1038,10 @@ public class DqUrl {
     public static String url_dynamic_delUserDynamicComment = "dynamic/delUserDynamicComment";//删除评论
     public static String url_dynamic_delUserDynamic = "dynamic/delUserDynamic";//删除朋友圈内容
     public static String url_dynamic_findUserDynamicPic = "dynamic/findUserDynamicPic";//获取指定数量的图片
+    public static String url_dynamic_findUserDynamicMsg = "dynamic/findUserDynamicMsg";//获取朋友圈未读消息列表
+    public static String url_dynamic_findUserDynamicMsgSum = "dynamic/findUserDynamicMsgSum";//获取朋友圈未读消息数
+    public static String url_dynamic_delUserDynamicMsg = "dynamic/delUserDynamicMsg";//清空朋友圈未读消息
+    public static String url_dynamic_userDynamicMsgMongoDao = "dynamic/userDynamicMsgMongoDao";//标记朋友圈未读消息
 
     /******************************** 朋友圈 end ****************************************/
 

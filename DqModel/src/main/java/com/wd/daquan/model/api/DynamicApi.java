@@ -1,5 +1,7 @@
 package com.wd.daquan.model.api;
 
+import com.wd.daquan.model.bean.AreaUnReadBean;
+import com.wd.daquan.model.bean.AreaUnReadSimpleBean;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.FindUserDynamicDescBean;
 import com.wd.daquan.model.bean.SaveUserDynamicCommentBean;
@@ -75,10 +77,28 @@ public interface DynamicApi {
     @POST
     Call<DataBean<FindUserDynamicDescBean>> delUserDynamic(@Url String url, @Body RequestBody requestBody);
 
-
     /**
      * 获取指定数量的朋友圈图片
      */
     @POST
     Call<DataBean<List<String>>> findUserDynamicPic(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 获取指定数量的朋友圈图片
+     */
+    @POST
+    Call<DataBean<ArrayList<AreaUnReadBean>>> findUserDynamicMsg(@Url String url, @Body RequestBody requestBody);
+
+
+    /**
+     * 获取指定数量的朋友圈图片
+     */
+    @POST
+    Call<DataBean<AreaUnReadSimpleBean>> findUserDynamicMsgSum(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 清空朋友圈未读消息
+     */
+    @POST
+    Call<DataBean> delUserDynamicMsg(@Url String url, @Body RequestBody requestBody);
 }

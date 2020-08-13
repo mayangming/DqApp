@@ -18,9 +18,12 @@ import android.view.WindowManager;
 
 import com.da.library.constant.IConstant;
 import com.da.library.tools.FileUtils;
+import com.dq.im.config.HttpConfig;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
+import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.bean.ShareBean;
+import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.login.helper.LoginHelper;
 import com.wd.daquan.model.log.DqLog;
@@ -30,6 +33,8 @@ import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.sdk.bean.SdkShareBean;
 import com.wd.daquan.util.system.SystemUtils;
 
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
+
 public class StartActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private int mFlag = 0;
@@ -38,6 +43,7 @@ public class StartActivity extends AppCompatActivity {
         setStatusBarColor(Color.WHITE,this);
         // 设置沉浸式字体颜色
         ImmersiveManage.setStatusFontColor(getWindow(), Color.WHITE);
+        setDebugModel();
         super.onCreate(savedInstanceState);
         handler.postDelayed(new Runnable() {
             @Override
@@ -51,6 +57,33 @@ public class StartActivity extends AppCompatActivity {
             }
         }, 2000);
 
+    }
+
+    /**
+     * 设置debug模式
+     */
+    private void setDebugModel(){
+        if (BuildConfig.IS_DUBUG){
+            setHttpProxy();
+        }
+    }
+
+    /**
+     * 设置全局域名
+     */
+    private void setHttpProxy(){
+        String httpProxy = ModuleMgr.getCenterMgr().getHttpProxy();
+        if (TextUtils.isEmpty(httpProxy)){
+            return;
+        }
+        String httpUrl = "http://".concat(httpProxy).concat(":9010/");
+        DqUrl.SERVER_OPEN = "http://".concat(httpProxy).concat(":8086/");
+        // 全局 BaseUrl 的优先级低于 Domain-Name header 中单独配置的,其他未配置的接口将受全局 BaseUrl 的影响
+        RetrofitUrlManager.getInstance().setGlobalDomain(httpUrl);
+        String webSocket = "ws://".concat(httpProxy).concat(":7999?userId=");
+        String appServer = "http://".concat(httpProxy).concat(":8096/");
+        HttpConfig.getInstance().setHTTP_SERVER(webSocket);
+        HttpConfig.getInstance().setHTTP_SERVER_SDK(appServer);
     }
     /**
      * 前往注册、登录主页

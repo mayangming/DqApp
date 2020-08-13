@@ -2,9 +2,11 @@ package com.wd.daquan.explore.presenter
 
 import com.wd.daquan.common.presenter.BasePresenter
 import com.wd.daquan.common.presenter.Presenter.IView
+import com.wd.daquan.model.bean.AreaUnReadSimpleBean
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
 import com.wd.daquan.model.interfaces.DqCallBack
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.retrofit.RetrofitHelp
 
 /**
@@ -26,6 +28,24 @@ class ExplorePresenter : BasePresenter<IView<DataBean<Any>>>(){
             }
 
             override fun onFailed(url: String?, code: Int, entity: DataBean<ArrayList<FindUserDynamicDescBean>>) {
+
+//                        hideLoading();
+                failed(url, code, entity)
+            }
+        })
+    }
+    /**
+     * 获取朋友圈未读消息数据
+     */
+    fun findUserDynamicMsgSum(url :String, hashMap :Map<String, String>){
+        RetrofitHelp.getDynamicApi().findUserDynamicMsgSum(url, getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<AreaUnReadSimpleBean>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<AreaUnReadSimpleBean>) {
+
+//                        hideLoading();
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<AreaUnReadSimpleBean>) {
 
 //                        hideLoading();
                 failed(url, code, entity)

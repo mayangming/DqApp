@@ -102,7 +102,6 @@ class AreaAdapter() : RecycleBaseAdapter<AreaViewHolder>() {
         }
         val areaPhotoAdapter: AreaPhotoAdapter = AreaPhotoAdapter()
         holder.dynamicPhotoRv?.adapter = areaPhotoAdapter
-        DqLog.e("YM----------->朋友圈动态ID:${dynamicDescBean.dynamicId}")
         dynamicDescBean.pics?.let {
             areaPhotoAdapter.photos = it
         }

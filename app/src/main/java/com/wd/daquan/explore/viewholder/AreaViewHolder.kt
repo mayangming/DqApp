@@ -11,6 +11,9 @@ import android.widget.TextView
 import com.wd.daquan.R
 import com.wd.daquan.imui.adapter.viewholder.RecycleBaseViewHolder
 
+/**
+ * 朋友圈的列表Model1
+ */
 class AreaViewHolder(@NonNull itemView : View) : RecycleBaseViewHolder(itemView){
     val userName: TextView = itemView.findViewById(R.id.area_user_name)
     val dynamicWord: TextView = itemView.findViewById(R.id.area_dynamic_word_tv)

@@ -14,19 +14,26 @@ import com.wd.daquan.explore.presenter.ExplorePresenter
 import com.wd.daquan.explore.type.DynamicReadStatus
 import com.wd.daquan.explore.type.SearchType
 import com.wd.daquan.glide.GlideUtils
+import com.wd.daquan.model.bean.AreaUnReadSimpleBean
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
+import com.wd.daquan.model.rxbus.QCObserver
+import kotlinx.android.synthetic.main.activity_friend_area.*
 import kotlinx.android.synthetic.main.explore_fragment.*
+import q.rorbin.badgeview.Badge
 import q.rorbin.badgeview.QBadgeView
 
 /**
  * 探索功能页面
  */
-class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.OnClickListener{
+class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.OnClickListener, QCObserver {
     private lateinit var mToolbar: DqToolbar
-
+    lateinit var badgeView: Badge
     var needPermissions = arrayOf(Manifest.permission.CAMERA)
 
     override fun getLayoutId() = R.layout.explore_fragment
@@ -34,17 +41,22 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
     override fun createPresenter() = ExplorePresenter()
 
     override fun initView(viewExplore: View?, savedInstanceState: Bundle?) {
+        MsgMgr.getInstance().attach(this)
         mToolbar = viewExplore!!.findViewById(R.id.toolbar)
         initTitle()
-        QBadgeView(context).run {
-            bindTarget(my_explore).badgeNumber = 5
+        badgeView = QBadgeView(context).run {
+            hide(true)
+            bindTarget(my_explore).badgeNumber = 1
             badgeGravity = Gravity.CENTER or Gravity.END
             setBadgeTextSize(12f,true)
             setGravityOffset(2f,0f,true)
-            hide(true)
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        MsgMgr.getInstance().detach(this)
+    }
     fun initTitle(){
         mToolbar.backIv.visibility = View.GONE
     }
@@ -56,6 +68,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
 
     override fun initData() {
         getNewDynamicNews()
+        findUserDynamicMsgSum()
     }
 
     private fun getNewDynamicNews(){
@@ -65,6 +78,14 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         params["pageNum"] = "1"
         params["pageSize"] = "1"
         presenter.getNewDynamicMessage(DqUrl.url_dynamic_findUserDynamicDesc,params)
+    }
+
+    /**
+     * 获取朋友圈未读消息数量
+     */
+    private fun findUserDynamicMsgSum(){
+        val params = hashMapOf<String, String>()
+        presenter.findUserDynamicMsgSum(DqUrl.url_dynamic_findUserDynamicMsgSum,params)
     }
 
     override fun onClick(v: View?) {
@@ -82,6 +103,14 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                 NavUtils.gotoMakeMoneyActivity(activity)
             }
             else ->  DqToast.showCenterShort("")
+        }
+    }
+
+    override fun onMessage(key: String?, value: Any?) {
+        when(key){
+            MsgType.CLEAR_UNREAD_AREA -> {
+                badgeView.hide(true)
+            }
         }
     }
 
@@ -115,6 +144,16 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                     ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.UNREAD.status)
                 }
             }
+            DqUrl.url_dynamic_findUserDynamicMsgSum -> {
+                val bean = entity.data as AreaUnReadSimpleBean
+                if (bean.count <= 0){
+                    badgeView.hide(true)
+                    return
+                }
+                badgeView.hide(false)
+                badgeView.badgeNumber = bean.count
+
+            }
         }
     }
 
@@ -126,6 +165,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser){
             getNewDynamicNews()
+            findUserDynamicMsgSum()
         }
     }
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_16">
+
+    <ImageView
+        android:id="@+id/area_unread_avatar"
+        android:layout_width="@dimen/dd_dp48"
+        android:layout_height="@dimen/dd_dp48"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/area_unread_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_49649D"
+        android:textSize="@dimen/sp16"
+        android:layout_marginStart="@dimen/dp_16"
+        app:layout_constraintTop_toTopOf="@+id/area_unread_avatar"
+        app:layout_constraintStart_toEndOf="@+id/area_unread_avatar"
+        tools:text="姓名"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintTop_toBottomOf="@+id/area_unread_name"
+        app:layout_constraintStart_toEndOf="@+id/area_unread_avatar">
+        <ImageView
+            android:id="@+id/area_unread_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ding_blue"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/area_comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_333333"
+            tools:text="这条评论已经删除"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/area_unread_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_txt_999999"
+        android:textSize="@dimen/sp10"
+        android:text="昨天18：12"
+        android:layout_marginStart="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/area_unread_avatar"
+        app:layout_constraintStart_toEndOf="@+id/area_unread_avatar"/>
+
+    <ImageView
+        android:id="@+id/area_unread_img"
+        android:layout_width="@dimen/dd_dp56"
+        android:layout_height="@dimen/dd_dp56"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_E4E4E4"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/area_unread_avatar"
+        app:layout_constraintStart_toStartOf="@+id/area_unread_name"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

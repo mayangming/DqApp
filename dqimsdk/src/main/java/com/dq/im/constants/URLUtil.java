@@ -1,6 +1,8 @@
 package com.dq.im.constants;
 
 
+import com.dq.im.config.HttpConfig;
+
 import java.util.ResourceBundle;
 
 public class URLUtil {
@@ -87,7 +89,8 @@ public class URLUtil {
     }
 
     public static String getServer(){
-        return ResourceBundle.getBundle("appConfig").getString("appServer");
+//        return ResourceBundle.getBundle("appConfig").getString("appServer");
+        return HttpConfig.getInstance().getHTTP_SERVER_SDK();
     }
 
 }

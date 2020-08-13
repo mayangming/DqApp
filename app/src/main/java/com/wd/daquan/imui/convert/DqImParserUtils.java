@@ -49,7 +49,6 @@ public class DqImParserUtils {
             String msgContent = firstContent.optString("content","");
             firstContentBean.setSourceContent(msgContent);
             firstContentBean.setContent(DqImContentDataParserUtil.parserImContentDataModel(firstContentBean.getMsgType()+"",firstContentBean.getMsgSecondType(),firstContent.getString("content")));
-            Log.e("YM","获取firstContent数据:"+firstContentBean.toString());
 //            if (!TextUtils.isEmpty(msgIdServer)){//假如外层的msgServer不为null的时候，进行赋值
             firstContentBean.setMsgIdServer(msgIdServer);
 //            }

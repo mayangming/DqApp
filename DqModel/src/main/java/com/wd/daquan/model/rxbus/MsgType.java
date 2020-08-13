@@ -238,4 +238,6 @@ public class MsgType {
     public static final String HOME_UPDATE_MSG = "updateHomeMessage";
 
     public static final String TASK_OBJ = "taskObj";//任务刷新标志
+
+    public static final String CLEAR_UNREAD_AREA = "clearUnReadDynamic";//清空朋友圈内容
 }

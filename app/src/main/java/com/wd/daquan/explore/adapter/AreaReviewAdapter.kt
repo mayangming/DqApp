@@ -97,7 +97,6 @@ class AreaReviewAdapter() : RecycleBaseAdapter<AreaReviewViewHolder>() {
     }
 
     private fun initSpannableReview(text: TextView,dynamicCommentDataListBean: UserDynamicCommentDataListBean = UserDynamicCommentDataListBean()){
-        DqLog.e("YM--------->评论ID:${dynamicCommentDataListBean.commentId},------->评论类型:${dynamicCommentDataListBean.type}")
         val content = "${dynamicCommentDataListBean.userNick} 回复 ${dynamicCommentDataListBean.friendNick}: ${dynamicCommentDataListBean.desc}"
         val startIndex1 = content.indexOf(dynamicCommentDataListBean.userNick)
         val endIndex1 = startIndex1 + dynamicCommentDataListBean.userNick.length

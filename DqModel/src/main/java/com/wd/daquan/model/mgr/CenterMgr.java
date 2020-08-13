@@ -500,4 +500,12 @@ public class CenterMgr implements ModuleBase, QCObserver{
         return  getKDPreferenceUserInfo().getBoolean(EBSharedPrefUser.isShowMakeMoneyTip, true);
     }
 
+    public void saveHttpProxy(String httpProxy){
+        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.httpProxy, httpProxy);
+    }
+
+    public String getHttpProxy(){
+        return getKDPreferenceUserInfo().getString(EBSharedPrefUser.httpProxy,"");
+    }
+
 }

@@ -2,9 +2,7 @@ package com.wd.daquan.explore.presenter
 
 import com.wd.daquan.common.presenter.BasePresenter
 import com.wd.daquan.common.presenter.Presenter
-import com.wd.daquan.model.bean.DataBean
-import com.wd.daquan.model.bean.FindUserDynamicDescBean
-import com.wd.daquan.model.bean.UserDynamicBean
+import com.wd.daquan.model.bean.*
 import com.wd.daquan.model.interfaces.DqCallBack
 import com.wd.daquan.model.retrofit.RetrofitHelp
 
@@ -66,6 +64,61 @@ class FriendAreaPresenter : BasePresenter<Presenter.IView<DataBean<Any>>>(){
             }
 
             override fun onFailed(url: String?, code: Int, entity: DataBean<UserDynamicBean>) {
+
+//                        hideLoading();
+                failed(url, code, entity)
+            }
+        })
+    }
+
+    /**
+     * 获取朋友圈未读消息列表
+     */
+    fun findUserDynamicMsg(url :String, hashMap :Map<String, String>){
+        RetrofitHelp.getDynamicApi().findUserDynamicMsg(url, getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<ArrayList<AreaUnReadBean>>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<ArrayList<AreaUnReadBean>>) {
+
+//                        hideLoading();
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<ArrayList<AreaUnReadBean>>) {
+
+//                        hideLoading();
+                failed(url, code, entity)
+            }
+        })
+    }
+    /**
+     * 获取朋友圈未读消息数据
+     */
+    fun findUserDynamicMsgSum(url :String, hashMap :Map<String, String>){
+        RetrofitHelp.getDynamicApi().findUserDynamicMsgSum(url, getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<AreaUnReadSimpleBean>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<AreaUnReadSimpleBean>) {
+
+//                        hideLoading();
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<AreaUnReadSimpleBean>) {
+
+//                        hideLoading();
+                failed(url, code, entity)
+            }
+        })
+    }
+    /**
+     * 清空朋友圈未读消息数据
+     */
+    fun delUserDynamicMsg(url :String, hashMap :Map<String, String>){
+        RetrofitHelp.getDynamicApi().delUserDynamicMsg(url, getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<Any>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<Any>) {
+
+//                        hideLoading();
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<Any>) {
 
 //                        hideLoading();
                 failed(url, code, entity)

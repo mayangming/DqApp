@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.da.library.utils.BigDecimalUtils;
 import com.da.library.utils.DateUtil;
+import com.dq.im.config.HttpConfig;
 import com.dq.im.util.SoundPoolUtils;
 import com.red.libary.ipc.FallingOnClickIpc;
 import com.red.libary.weight.FallingLayout;
@@ -61,6 +64,7 @@ import com.wd.daquan.util.TToast;
 import java.util.List;
 
 import cn.iwgang.countdownview.CountdownView;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 /**
  */
@@ -68,6 +72,11 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
     //    同时在线的其他端的信息
 //    private List<OnlineClient> onlineClients;
+
+    private Button debugSure;
+    private View debugRoot;
+    private EditText debugHttpInput;
+
     private View redPackageContent;//活动布局
     private View mNotifyBar;
     private View mMultiportBar;
@@ -117,10 +126,16 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         if(getView() == null) {
             return;
         }
+        debugSure = getView().findViewById(R.id.sure);
+        debugRoot = getView().findViewById(R.id.debug_root);
+        debugHttpInput = getView().findViewById(R.id.debug_http_input);
         TextView title = getView().findViewById(R.id.toolbar_title);
         String titleContent = DqApp.getStringById(R.string.app_name);
         if (BuildConfig.IS_DUBUG){
             titleContent =  titleContent.concat("测试版");
+            debugRoot.setVisibility(View.VISIBLE);
+        }else {
+            debugRoot.setVisibility(View.GONE);
         }
         title.setText(titleContent);
         mTitleLeftExtra = getView().findViewById(R.id.toolbar_left_extra);
@@ -258,7 +273,10 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         MsgMgr.getInstance().attach(this);
         redPackageRain.setOnClickListener(this);
         turntableLottery.setOnClickListener(this);
-
+//        debugSure = getView().findViewById(R.id.sure);
+//        debugRoot = getView().findViewById(R.id.debug_root);
+//        debugHttpInput = getView().findViewById(R.id.debug_http_input);
+        debugSure.setOnClickListener(this);
     }
 
     /**
@@ -368,7 +386,26 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
                 mFallingLayout.stopRedRain();
                 mFallingContent.setVisibility(View.GONE);
                 break;
+            case R.id.sure:
+                setHttpProxy();
+                break;
         }
+    }
+
+    /**
+     * 设置全局域名
+     */
+    private void setHttpProxy(){
+        String httpProxy = debugHttpInput.getText().toString();
+        String httpUrl = "http://".concat(httpProxy).concat(":9010/");
+        DqUrl.SERVER_OPEN = "http://".concat(httpProxy).concat(":8086/");
+        // 全局 BaseUrl 的优先级低于 Domain-Name header 中单独配置的,其他未配置的接口将受全局 BaseUrl 的影响
+        RetrofitUrlManager.getInstance().setGlobalDomain(httpUrl);
+        String webSocket = "ws://".concat(httpProxy).concat(":7999?userId=");
+        String appServer = "http://".concat(httpProxy).concat(":8096/");
+        HttpConfig.getInstance().setHTTP_SERVER(webSocket);
+        HttpConfig.getInstance().setHTTP_SERVER_SDK(appServer);
+        ModuleMgr.getCenterMgr().saveHttpProxy(httpProxy);
     }
 
     private void showVipExchangeResultDialog(){
