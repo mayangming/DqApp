@@ -79,11 +79,17 @@ import com.wd.daquan.contacts.activity.SearchAddFriendActivity;
 import com.wd.daquan.contacts.activity.SearchFriendActivity;
 import com.wd.daquan.contacts.activity.SetRemarkNameActivity;
 import com.wd.daquan.contacts.activity.UserInfoActivity;
+import com.wd.daquan.explore.activity.ApplyRefundActivity;
 import com.wd.daquan.explore.activity.FriendAreaActivity;
 import com.wd.daquan.explore.activity.DynamicMediaDetailsActivity;
 import com.wd.daquan.explore.activity.DynamicSendActivity;
 import com.wd.daquan.explore.activity.MakeMoneyActivity;
+import com.wd.daquan.explore.activity.RefundResultActivity;
+import com.wd.daquan.explore.activity.RefundDetailsActivity;
+import com.wd.daquan.explore.activity.ReleaseTaskCompleteActivity;
+import com.wd.daquan.explore.activity.SendTaskActivity;
 import com.wd.daquan.explore.activity.TaskDetailsActivity;
+import com.wd.daquan.explore.activity.SendTaskManagerActivity;
 import com.wd.daquan.explore.activity.TaskMineActivity;
 import com.wd.daquan.explore.activity.UnReadMsgActivity;
 import com.wd.daquan.explore.type.SearchType;
@@ -1728,7 +1734,6 @@ public class NavUtils {
         context.startActivity(intent);
         AnimUtils.enterAnimForActivity(context);
     }
-
     /**
      * 跳转到未读消息页面
      * @param context
@@ -1739,5 +1744,72 @@ public class NavUtils {
         AnimUtils.enterAnimForActivity(context);
     }
 
+    /**
+     * 跳转到发布管理页面
+     * @param context
+     */
+    public static void gotoSendTaskManagerActivity(Context context){
+        Intent intent = new Intent(context, SendTaskManagerActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 跳转到发布广告页面
+     * @param context
+     */
+    public static void gotoSendTaskActivity(Context context){
+        gotoSendTaskActivity(context,"");
+    }
+    /**
+     * 跳转到发布广告页面
+     * @param context
+     */
+    public static void gotoSendTaskActivity(Context context,String taskId){
+        Intent intent = new Intent(context, SendTaskActivity.class);
+        intent.putExtra(SendTaskActivity.KEY_TASK_ID,taskId);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 跳转到完成任务的详情
+     * @param context
+     */
+    public static void gotoReleaseTaskCompleteActivity(Context context,String taskId){
+        Intent intent = new Intent(context, ReleaseTaskCompleteActivity.class);
+        intent.putExtra(ReleaseTaskCompleteActivity.KEY_TASK_ID,taskId);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+    /**
+     * 跳转到退款详情
+     * @param context
+     */
+    public static void gotoRefundDetailsActivity(Context context,String taskId){
+        Intent intent = new Intent(context, RefundDetailsActivity.class);
+        intent.putExtra(RefundDetailsActivity.KEY_TASK_ID,taskId);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+    /**
+     * 跳转到退款页面
+     * @param context
+     */
+    public static void gotoApplyRefundActivity(Context context,String taskId){
+        Intent intent = new Intent(context, ApplyRefundActivity.class);
+        intent.putExtra(ApplyRefundActivity.KEY_TASK_ID,taskId);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+    /**
+     * 跳转到退款成功页面
+     * @param context
+     */
+    public static void gotoRefundActivity(Context context){
+        Intent intent = new Intent(context, RefundResultActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
 }
 

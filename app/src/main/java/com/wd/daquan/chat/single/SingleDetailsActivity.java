@@ -1,7 +1,8 @@
 package com.wd.daquan.chat.single;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
+
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
@@ -118,8 +119,8 @@ public class SingleDetailsActivity extends DqBaseActivity<ChatPresenter, DataBea
         uid = getIntent().getStringExtra("uid");
         mFriend = getIntent().getParcelableExtra("friend");
 
-        p2PMessageViewModel = ViewModelProviders.of(this).get(P2PMessageViewModel.class);
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
+        p2PMessageViewModel = new ViewModelProvider(this).get(P2PMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
         if (mFriend == null) {
             mFriend = FriendDbHelper.getInstance().getFriend(uid);
             setData();

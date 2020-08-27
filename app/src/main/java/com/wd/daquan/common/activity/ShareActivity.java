@@ -1,7 +1,7 @@
 package com.wd.daquan.common.activity;
 
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,7 +52,7 @@ public class ShareActivity extends ShareBaseActivity {
         super.initData();
         initTitle();
         initAdapter();
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
         requestMessages();
     }
 

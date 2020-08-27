@@ -1053,9 +1053,21 @@ public class DqUrl {
     public static String url_task_registration = "task/task_registration";//任务报名
     public static String url_task_refresh = "task/task_refresh";//任务更新
     public static String url_task_detail = "task/task_detail";//任务详情
-    public static String url_task_type = "task/task_type";//任务分类
+    public static String url_task_type = "task/task_type";//任务厂商分类
     public static String url_task_classification = "task/task_classification";//任务类型
 
     /***************************** 赚钱功能 end **************************************/
 
+    /**************************** 发布任务功能 start **********************************/
+    public static String url_task_getUserTask = "task/getUserTask";//获取我发布的所有任务
+    public static String url_task_userTaskSelect = "task/userTaskSelect";//根据任务Id查询任务详情
+    public static String url_task_createTask = "task/createTask";//创建任务
+    public static String url_task_changeTask = "task/changeTask";//修改任务
+    public static String url_task_changeTime = "task/changeTime";//修改时间
+    public static String url_task_changeStatus = "task/changeStatus";//改变任务状态(提交任务或者撤回任务)
+    public static String url_task_createTaskOrder = "wxpay/createTaskOrder";//付款状态
+    public static String url_task_checkTask = "task/checkTask";//检查任务完成情况
+    public static String url_task_drawback = "task/drawback";//退款
+    public static String url_task_refundMoney = "task/refundMoney";//获取退款的金额信息
+    /**************************** 发布任务功能 end **********************************/
 }

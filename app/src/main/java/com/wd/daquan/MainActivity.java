@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.Service;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.media.SoundPool;
@@ -15,6 +14,7 @@ import android.os.Vibrator;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.text.TextUtils;
@@ -205,10 +205,10 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     }
 
     private void initViewModel(){
-        ViewModelProviders.of(this).get(ApplicationViewModel.class).initRoomDataBase(ModuleMgr.getCenterMgr().getUID());
-        teamMessageViewModel = ViewModelProviders.of(this).get(TeamMessageViewModel.class);
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
-        p2PMessageViewModel = ViewModelProviders.of(this).get(P2PMessageViewModel.class);
+        new ViewModelProvider(this).get(ApplicationViewModel.class).initRoomDataBase(ModuleMgr.getCenterMgr().getUID());
+        teamMessageViewModel = new ViewModelProvider(this).get(TeamMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
+        p2PMessageViewModel = new ViewModelProvider(this).get(P2PMessageViewModel.class);
     }
 
     private void parserIntent(){
@@ -324,7 +324,7 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         registerObserver();
 
         MsgMgr.getInstance().attach(this);
-        mDqFragment.setNavigationClickListener(() -> mDrawerLayout.openDrawer(Gravity.START));
+        mDqFragment.setNavigationClickListener(() -> mDrawerLayout.openDrawer(Gravity.LEFT));
     }
 
     @Override

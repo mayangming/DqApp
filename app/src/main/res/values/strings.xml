@@ -223,6 +223,7 @@
     <string name="register_agreement" translatable="false">用户注册协议</string>
     <string name="user_service_agreement" translatable="false">用户服务协议</string>
     <string name="new_user_tip" translatable="false">新人须知</string>
+    <string name="release_guide" translatable="false">发布规则</string>
     <string name="set_success" translatable="false">设置成功</string>
     <string name="replace_personal_info_error" translatable="false">修改信息失败</string>
     <string name="perfect" translatable="false">根据国家法规的要求,你需要进行身份信息完善,才能继续使用该功能</string>
@@ -262,6 +263,7 @@
     <!--我的-->
     <string name="mine_scan" translatable="false">扫一扫</string>
     <string name="mine_money" translatable="false">赚钱</string>
+    <string name="mine_fabu" translatable="false">发布</string>
     <string name="mine_vip" translatable="false">我的会员</string>
     <string name="mine_share" translatable="false">分享给朋友</string>
     <string name="mine_qr" translatable="false">我的二维码</string>

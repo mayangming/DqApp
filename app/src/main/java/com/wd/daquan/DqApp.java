@@ -99,7 +99,6 @@ public class DqApp extends Application {
 //            CrashReport.initCrashReport(getApplicationContext(), "3a5883212b", BuildConfig.IS_DUBUG);
             CrashReport.initCrashReport(getApplicationContext(), "c30355c0b0", BuildConfig.IS_DUBUG);
             initWebView();
-            com.huawei.hms.support.common.ActivityMgr.INST.init(this);
             new Thread(new Runnable() {//放在子线程中初始化，因为临时token需要请求接口
                 @Override
                 public void run() {

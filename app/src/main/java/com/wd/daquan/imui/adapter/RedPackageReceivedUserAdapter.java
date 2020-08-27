@@ -1,6 +1,6 @@
 package com.wd.daquan.imui.adapter;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import android.view.View;
@@ -34,7 +34,7 @@ public class RedPackageReceivedUserAdapter extends RecycleBaseAdapter<RedPackage
 
     public RedPackageReceivedUserAdapter(FragmentActivity activity) {
         this.fragmentActivity = activity;
-        userViewModel = ViewModelProviders.of(activity).get(UserViewModel.class);
+        userViewModel = new ViewModelProvider(activity).get(UserViewModel.class);
     }
 
     public void setData(List<CouponBean> userModels){

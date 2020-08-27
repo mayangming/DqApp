@@ -80,6 +80,7 @@
     <color name="color_fff23939">#fff23939</color>
     <color name="color_ff999999">#ff999999</color>
     <color name="color_fff39825">#fff39825</color>
+    <color name="color_fff1e4">#fff1e4</color>
 
     <color name="color_ababab">#ababab</color>
     <color name="color_C0000000">#C0000000</color>
@@ -92,6 +93,8 @@
     <color name="color_E0E0E0">#E0E0E0</color>
     <color name="color_383838">#383838</color>
     <color name="color_B49808">#B49808</color>
+    <color name="color_1DC121">#1DC121</color>
+    <color name="color_EDEDED">#EDEDED</color>
 
     <color name="app_txt_333333">#333333</color>
     <color name="app_txt_666666">#666666</color>

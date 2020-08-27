@@ -1,10 +1,10 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Build;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 
@@ -48,7 +48,7 @@ public class RightImgViewHolderBind extends BaseRightViewHolderBind<RightImgView
     }
 
     private void setP2PRightImgData(RightImgViewHolder rightImgViewHolder, P2PMessageBaseModel p2PMessageBaseModel){
-        p2PMessageViewModel  = ViewModelProviders.of(activity).get(P2PMessageViewModel.class);
+        p2PMessageViewModel  = new ViewModelProvider(activity).get(P2PMessageViewModel.class);
         String content = p2PMessageBaseModel.getSourceContent();
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
 //        DocumentFile videoDocumentFile = DocumentFile.fromSingleUri(rightImgViewHolder.itemView.getContext(), photoUri);
@@ -121,7 +121,7 @@ public class RightImgViewHolderBind extends BaseRightViewHolderBind<RightImgView
     }
 
     private void setTeamRightImgData(RightImgViewHolder rightImgViewHolder, TeamMessageBaseModel teamMessageBaseModel){
-        teamMessageViewModel = ViewModelProviders.of(activity).get(TeamMessageViewModel.class);
+        teamMessageViewModel = new ViewModelProvider(activity).get(TeamMessageViewModel.class);
         String content = teamMessageBaseModel.getSourceContent();
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
         boolean fileExists = FileUtils.fileExists(messagePhotoBean.getLocalUriString());

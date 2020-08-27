@@ -16,10 +16,8 @@ import com.wd.daquan.explore.adapter.MakeMoneyTaskAdapter
 import com.wd.daquan.explore.presenter.MakeMoneyPresenter
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.MakeMoneyTaskBean
-import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.view.RecycleViewDivider
 import kotlinx.android.synthetic.main.fragment_make_money_task.*
-import kotlinx.android.synthetic.main.fragment_make_money_task.make_money_refreshLayout
 
 /**
  * 赚钱中的任务分页

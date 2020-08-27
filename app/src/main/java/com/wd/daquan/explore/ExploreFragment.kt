@@ -64,6 +64,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         explore_my_area_ll.setOnClickListener(this)
         explore_scan_ll.setOnClickListener(this)
         explore_money_ll.setOnClickListener(this)
+        explore_fabu_ll.setOnClickListener(this)
     }
 
     override fun initData() {
@@ -101,6 +102,9 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
                 }
             explore_money_ll -> {
                 NavUtils.gotoMakeMoneyActivity(activity)
+            }
+            explore_fabu_ll ->{
+                NavUtils.gotoSendTaskManagerActivity(activity)
             }
             else ->  DqToast.showCenterShort("")
         }

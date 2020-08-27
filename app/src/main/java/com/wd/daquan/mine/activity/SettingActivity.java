@@ -1,12 +1,13 @@
 package com.wd.daquan.mine.activity;
 
 import android.app.Dialog;
-import androidx.lifecycle.ViewModelProviders;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dq.im.viewmodel.ApplicationViewModel;
 import com.wd.daquan.R;
@@ -178,10 +179,10 @@ public class SettingActivity extends DqBaseActivity<MinePresenter, DataBean> imp
         super.onSuccess(url, code, entity);
         if (DqUrl.url_logout.equals(url)) {//退出登陆
             LogoutHelper.logout(this);
-            ViewModelProviders.of(this).get(ApplicationViewModel.class).closeRoomDataBase();
+            new ViewModelProvider(this).get(ApplicationViewModel.class).closeRoomDataBase();
         }else if (DqUrl.url_user_cancellation.equals(url)){//注销账号
             LogoutHelper.logoff(this);
-            ViewModelProviders.of(this).get(ApplicationViewModel.class).closeRoomDataBase();
+            new ViewModelProvider(this).get(ApplicationViewModel.class).closeRoomDataBase();
         }
     }
 

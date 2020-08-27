@@ -1,10 +1,11 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.net.Uri;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.text.TextUtils;
 
 import com.dq.im.bean.im.MessageVideoBean;
@@ -46,7 +47,7 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
     }
 
     private void setP2PRightVideoData(RightVideoViewHolder rightVideoViewHolder, P2PMessageBaseModel p2PMessageBaseModel){
-        p2PMessageViewModel  = ViewModelProviders.of(activity).get(P2PMessageViewModel.class);
+        p2PMessageViewModel  = new ViewModelProvider(activity).get(P2PMessageViewModel.class);
         String content = p2PMessageBaseModel.getSourceContent();
 
         MessageVideoBean messageVideoBean = gson.fromJson(content,MessageVideoBean.class);
@@ -76,7 +77,7 @@ public class RightVideoViewHolderBind extends BaseRightViewHolderBind<RightVideo
     }
 
     private void setTeamRightVideoData(RightVideoViewHolder rightVideoViewHolder, TeamMessageBaseModel teamMessageBaseModel){
-        teamMessageViewModel = ViewModelProviders.of(activity).get(TeamMessageViewModel.class);
+        teamMessageViewModel = new ViewModelProvider(activity).get(TeamMessageViewModel.class);
         String content = teamMessageBaseModel.getSourceContent();
         MessageVideoBean messageVideoBean = gson.fromJson(content,MessageVideoBean.class);
         Uri photoUri = Uri.parse(messageVideoBean.getThumbLocalPath());

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.dialog_explore_comment.*
 /**
  * 朋友圈操作对话框
  */
-class DialogExploreComment : AppCompatDialogFragment(){
+class DialogExploreComment : BaseFragmentDialog(){
 
     private var commentId  = ""//评论Id
     var dynamicId  = ""//动态Id

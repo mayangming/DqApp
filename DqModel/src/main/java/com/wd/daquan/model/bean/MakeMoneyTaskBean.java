@@ -20,6 +20,8 @@ public class MakeMoneyTaskBean implements Serializable {
     private String reviewtime = "";//审核时间
     private String taskname = "支付宝下载任务";
     private String taskpic = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596195164793&di=e8024d595a842c080cf5a0a07c1c0e14&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170615%2F1TH010Z-7.jpg";
+    private String typePic = "";//平台头像
+    private String classPic = "";//任务分类头像
     private long taskmoney = 100;//赏金
     private int classnum =100;
     private int lastnum = 3;
@@ -151,5 +153,21 @@ public class MakeMoneyTaskBean implements Serializable {
 
     public void setReviewtime(String reviewtime) {
         this.reviewtime = reviewtime;
+    }
+
+    public String getTypePic() {
+        return typePic;
+    }
+
+    public void setTypePic(String typePic) {
+        this.typePic = typePic;
+    }
+
+    public String getClassPic() {
+        return classPic;
+    }
+
+    public void setClassPic(String classPic) {
+        this.classPic = classPic;
     }
 }

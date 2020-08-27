@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 任务详情实体类
  */
 public class TaskDetailsBean implements Serializable {
-    private int id = 0;
+    private String id = "";
     private String userId;
     private String getTime;//接任务时间
     private String taskpic = "";
@@ -20,16 +20,17 @@ public class TaskDetailsBean implements Serializable {
     private String reviewtime = "";//审核时间
     private String taskexplain = "";//任务说明
     private String teachingVideoUrl = "https://dq-oss.oss-cn-beijing.aliyuncs.com/jxsp/1596695847655706.mp4";//演示视频
+    private String typePic = "https://dq-oss.oss-cn-beijing.aliyuncs.com/jxsp/1596695847655706.mp4";//演示视频
     private int taskStatus = 0;//任务状态 0:未接取 1:已接取 2:待审核 3:审核通过结算成功 4:审核通过结算失败 5:审核失败重新提交
     private String taskPicNew;//任务凭证
     private String reviewUser;//审核人
     private int payStatus;//结算状态 0:结算成功 1:结算失败
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -167,5 +168,13 @@ public class TaskDetailsBean implements Serializable {
 
     public void setExtime(long extime) {
         this.extime = extime;
+    }
+
+    public String getTypePic() {
+        return typePic;
+    }
+
+    public void setTypePic(String typePic) {
+        this.typePic = typePic;
     }
 }

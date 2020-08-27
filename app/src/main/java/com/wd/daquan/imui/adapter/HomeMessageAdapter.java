@@ -1,8 +1,9 @@
 package com.wd.daquan.imui.adapter;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,9 @@ public class HomeMessageAdapter extends RecycleBaseAdapter<HomeMessageAdapter.Ho
     private Gson gson = new Gson();
     public HomeMessageAdapter(Fragment fragment) {
         this.fragment = fragment;
-        userViewModel = ViewModelProviders.of(fragment).get(UserViewModel.class);
-        teamViewModel = ViewModelProviders.of(fragment).get(TeamViewModel.class);
-        homeMessageViewModel = ViewModelProviders.of(fragment).get(HomeMessageViewModel.class);
+        userViewModel = new ViewModelProvider(fragment).get(UserViewModel.class);
+        teamViewModel = new ViewModelProvider(fragment).get(TeamViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(fragment).get(HomeMessageViewModel.class);
     }
 
     public HomeMessageAdapter(List<HomeImBaseMode> homeImBaseModes) {

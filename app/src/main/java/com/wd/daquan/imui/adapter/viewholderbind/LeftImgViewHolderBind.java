@@ -1,10 +1,11 @@
 package com.wd.daquan.imui.adapter.viewholderbind;
 
 import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Build;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.util.Log;
 
 import com.dq.im.bean.im.MessagePhotoBean;
@@ -49,7 +50,7 @@ public class LeftImgViewHolderBind extends BaseLeftViewHolderBind<LeftImgViewHol
     }
 
     private void setP2PLeftImgData(LeftImgViewHolder leftImgViewHolder, P2PMessageBaseModel p2PMessageBaseModel){
-        p2PMessageViewModel  = ViewModelProviders.of(activity).get(P2PMessageViewModel.class);
+        p2PMessageViewModel  = new ViewModelProvider(activity).get(P2PMessageViewModel.class);
         String content = p2PMessageBaseModel.getSourceContent();
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);
         boolean fileExists = FileUtils.fileExists(messagePhotoBean.getLocalUriString());
@@ -117,7 +118,7 @@ public class LeftImgViewHolderBind extends BaseLeftViewHolderBind<LeftImgViewHol
     }
 
     private void setTeamLeftImgData(LeftImgViewHolder leftImgViewHolder, TeamMessageBaseModel teamMessageBaseModel){
-        teamMessageViewModel = ViewModelProviders.of(activity).get(TeamMessageViewModel.class);
+        teamMessageViewModel = new ViewModelProvider(activity).get(TeamMessageViewModel.class);
         String content = teamMessageBaseModel.getSourceContent();
         Log.e("YM","获取的图片json数据:"+content);
         MessagePhotoBean messagePhotoBean = gson.fromJson(content,MessagePhotoBean.class);

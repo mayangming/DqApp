@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //    json解析库
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.4'
     //okHttp不要升级，因为网络请求代码需要更新
 //    implementation "com.squareup.okhttp:okhttp:2.7.0"
 //    implementation "com.squareup.okio:okio:1.6.0"
@@ -71,7 +71,7 @@ dependencies {
     androidTestImplementation "androidx.room:room-testing:2.2.5"
     // Lifecycle components
 //    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
@@ -82,11 +82,11 @@ dependencies {
 //    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 //  github地址：  https://github.com/WhiteDG/EasySP
-    api 'com.white:easysp:1.0.0'
+    implementation 'com.white:easysp:1.0.0'
 
     //  阿里云oss云端文件存储
 //  配置参考  https://blog.csdn.net/bencheng06/article/details/88244171
-    api 'com.aliyun.dpa:oss-android-sdk:2.9.3'
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.3'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'

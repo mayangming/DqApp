@@ -240,4 +240,13 @@ public class MsgType {
     public static final String TASK_OBJ = "taskObj";//任务刷新标志
 
     public static final String CLEAR_UNREAD_AREA = "clearUnReadDynamic";//清空朋友圈内容
+
+    /**
+     * 创建任务后的事件监听
+     */
+    public static final String TASK_PAY_RESULT = "createTaskPayResult";
+    /**
+     * 退款后进行页面刷新
+     */
+    public static final String TASK_REFUND = "taskRefund";
 }

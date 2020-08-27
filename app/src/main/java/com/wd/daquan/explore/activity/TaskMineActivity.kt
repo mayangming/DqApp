@@ -2,7 +2,7 @@ package com.wd.daquan.explore.activity
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dq.im.viewmodel.TeamMessageViewModel
 import com.google.android.material.tabs.TabLayout
@@ -28,7 +28,7 @@ class TaskMineActivity : DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
     }
 
     override fun initView() {
-        fragmentViewModel = ViewModelProviders.of(this)[FragmentItemViewModel::class.java]
+        fragmentViewModel = ViewModelProvider(this).get(FragmentItemViewModel::class.java)
         initTitle()
         initViewViewPager()
         initTabAndPagerListener(make_money_content_tab,make_money_content_vp)

@@ -21,6 +21,7 @@ public class DateUtil {
 
     public static final long ONE_DATY_TMIE = 24 * 60 * 60 * 1000;
     public static final String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
+    public static final String yyyy_MM_dd = "yyyy-MM-dd";
     private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final SimpleDateFormat dateHourMinuteFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat dateHourFormat = new SimpleDateFormat("yyyyMMddHH");

@@ -508,4 +508,14 @@ public class CenterMgr implements ModuleBase, QCObserver{
         return getKDPreferenceUserInfo().getString(EBSharedPrefUser.httpProxy,"");
     }
 
+    public void saveLastTaskSendDraft(String lastTaskSendDraft){
+        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.lastTaskSendDraft, lastTaskSendDraft);
+    }
+
+    public String getLastTaskSendDraft(){
+        return getKDPreferenceUserInfo().getString(EBSharedPrefUser.lastTaskSendDraft,"");
+    }
+
+
+
 }

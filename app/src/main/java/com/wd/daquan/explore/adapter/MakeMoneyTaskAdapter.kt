@@ -36,7 +36,7 @@ class MakeMoneyTaskAdapter() : RecycleBaseAdapter<MakeMoneyTaskViewHolder>(){
     override fun onBindViewHolder(holder: MakeMoneyTaskViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
         val bean = makeMoneyTaskBeanList[position]
-        GlideUtils.load(context,bean.taskpic,holder.appIcon)
+        GlideUtils.load(context,bean.typePic,holder.appIcon)
         holder.taskName.text = bean.taskname
         holder.taskPriceTv.text = "￥${getPrice(bean.taskmoney)}"
         holder.taskCountTv.text = "共${bean.classnum}/余${bean.lastnum}"

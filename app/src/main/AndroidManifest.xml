@@ -773,21 +773,23 @@
         <activity android:name=".explore.activity.UnReadMsgActivity"
             android:screenOrientation="portrait"/>
 
-        <!-- ======穿山甲广告 start========= -->
-        <provider
-            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
-            android:authorities="${applicationId}.TTFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-        <provider
-            android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
-            android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
-        <!-- =======穿山甲广告 end======== -->
+        <activity android:name=".explore.activity.SendTaskManagerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.SendTaskActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.ReleaseTaskCompleteActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.RefundDetailsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.ApplyRefundActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".explore.activity.RefundResultActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

@@ -2,9 +2,10 @@ package com.wd.daquan.chat.group.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.Button;
@@ -193,8 +194,8 @@ public class GroupDetailsActivity extends DqBaseActivity<ChatPresenter, DataBean
 //        }
 
         requestData(true);
-        teamMessageViewModel = ViewModelProviders.of(this).get(TeamMessageViewModel.class);
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
+        teamMessageViewModel = new ViewModelProvider(this).get(TeamMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
     }
 
     private void requestData(boolean b) {

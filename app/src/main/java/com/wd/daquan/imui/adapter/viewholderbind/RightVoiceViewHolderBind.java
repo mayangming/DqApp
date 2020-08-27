@@ -3,11 +3,12 @@ package com.wd.daquan.imui.adapter.viewholderbind;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
-import androidx.lifecycle.ViewModelProviders;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.util.Log;
 import android.view.View;
 
@@ -62,7 +63,7 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
     }
 
     private void setP2PRightVoiceData(RightVoiceViewHolder rightVoiceViewHolder, P2PMessageBaseModel p2PMessageBaseModel){
-        p2PMessageViewModel  = ViewModelProviders.of(activity).get(P2PMessageViewModel.class);
+        p2PMessageViewModel  = new ViewModelProvider(activity).get(P2PMessageViewModel.class);
         String content = p2PMessageBaseModel.getSourceContent();
         MessageVoiceBean messageVoiceBean = gson.fromJson(content,MessageVoiceBean.class);
         Log.e("YM","音频文件地址:"+messageVoiceBean.toString());
@@ -114,7 +115,7 @@ public class RightVoiceViewHolderBind extends BaseRightViewHolderBind<RightVoice
     }
 
     private void setTeamRightVoiceData(RightVoiceViewHolder rightVoiceViewHolder, TeamMessageBaseModel teamMessageBaseModel){
-        teamMessageViewModel = ViewModelProviders.of(activity).get(TeamMessageViewModel.class);
+        teamMessageViewModel = new ViewModelProvider(activity).get(TeamMessageViewModel.class);
         String content = teamMessageBaseModel.getSourceContent();
         MessageVoiceBean messageVoiceBean = gson.fromJson(content,MessageVoiceBean.class);
         long second = messageVoiceBean.getDuration() / 1000;

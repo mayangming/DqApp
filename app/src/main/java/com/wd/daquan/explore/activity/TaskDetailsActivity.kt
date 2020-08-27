@@ -128,7 +128,7 @@ class TaskDetailsActivity : DqBaseActivity<MakeMoneyPresenter, DataBean<TaskDeta
 
     private fun updateUi(taskDetailBean: TaskDetailsBean){
         taskId = taskDetailBean.id.toString()
-        GlideUtils.load(this,taskDetailBean.taskpic,task_icon)
+        GlideUtils.load(this,taskDetailBean.typePic,task_icon)
         task_id.text = "任务ID: ${taskId}"
         task_price.text = "奖金: ￥${getPrice(taskDetailBean.taskmoney)}"
         task_total.text = taskDetailBean.classnum.toString()

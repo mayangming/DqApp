@@ -3,6 +3,8 @@ package com.wd.daquan.model.api;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.MakeMoneyTaskBean;
 import com.wd.daquan.model.bean.MakeMoneyTaskMineBean;
+import com.wd.daquan.model.bean.ReleaseCompleteDetailsBean;
+import com.wd.daquan.model.bean.SendTaskBean;
 import com.wd.daquan.model.bean.TaskClassificationBean;
 import com.wd.daquan.model.bean.TaskDetailsBean;
 import com.wd.daquan.model.bean.TaskTypeBean;
@@ -73,4 +75,55 @@ public interface TaskApi {
 //     */
 //    @POST
 //    Call<DataBean<List<MakeMoneyTaskBean>>> findTaskList(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 获取发布任务列表
+     */
+    @POST
+    Call<DataBean<List<SendTaskBean>>> getSendTaskBeanList(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 发布任务
+     */
+    @POST
+    Call<DataBean<SendTaskBean>> getCreateTask(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 根据任务ID获取任务详情
+     */
+    @POST
+    Call<DataBean<SendTaskBean>> getUserTaskByTaskId(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 检查任务完成情况
+     */
+    @POST
+    Call<DataBean<ReleaseCompleteDetailsBean>> checkTask(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 更改任务状态
+     */
+    @POST
+    Call<DataBean<SendTaskBean>> changeStatus(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 更改任务内容
+     */
+    @POST
+    Call<DataBean<SendTaskBean>> changeTask(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 更改任务时间
+     */
+    @POST
+    Call<DataBean<SendTaskBean>> changeTime(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 申请退款
+     */
+    @POST
+    Call<DataBean> drawback(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 申请退款
+     */
+    @POST
+    Call<DataBean<String>> refundMoney(@Url String url, @Body RequestBody requestBody);
+
 }

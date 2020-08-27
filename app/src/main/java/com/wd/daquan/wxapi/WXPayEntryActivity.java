@@ -53,6 +53,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 if ("redPackage".equals(extData)){
                     Log.e("YM", "微信支付成功后的拓展信息--->红包信息改动： " + extData);
 //                    MsgMgr.getInstance().sendMsg(MsgType.RED_PACKAGE_PAY, "");
+                }else if ("taskType".equals(extData)){//创建任务后的事件监听
+                    MsgMgr.getInstance().sendMsg(MsgType.TASK_PAY_RESULT, "");
                 }else {
                     MsgMgr.getInstance().sendMsg(MsgType.VIP_EXCHANGE_CHANGE, "");
                 }

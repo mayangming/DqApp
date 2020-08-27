@@ -1,7 +1,8 @@
 package com.wd.daquan.imui.adapter;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +36,7 @@ public abstract class ChatBaseAdapter<VH extends RecycleBaseViewHolder> extends 
 
     public ChatBaseAdapter(Fragment fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
-        userViewModel = ViewModelProviders.of(fragmentActivity).get(UserViewModel.class);
+        userViewModel = new ViewModelProvider(fragmentActivity).get(UserViewModel.class);
     }
 
     /**

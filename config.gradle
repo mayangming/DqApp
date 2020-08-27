@@ -92,7 +92,7 @@ ext {
             overscroll                  : 'me.everything:overscroll-decor-android:1.0.4',
             ShortcutBadger              : 'me.leolin:ShortcutBadger:1.1.17@aar',
 
-            converter_gson              : 'com.squareup.retrofit2:converter-gson:2.4.0',
+            converter_gson              : 'com.squareup.retrofit2:converter-gson:2.8.1',
             retrofit                    : 'com.squareup.retrofit2:retrofit:2.6.1',
 //          retrofit切换基础url:  https://github.com/JessYanCoding/RetrofitUrlManager
             retrofit_url_manager        : 'me.jessyan:retrofit-url-manager:1.4.0',
@@ -141,8 +141,8 @@ ext {
 //            "server_sdk"            : '"http://192.168.72.96:8086/"',
 //            "server"            : '"http://192.168.72.228:9010/"',
 //            "server"            : '"http://192.168.72.197:9010/"',
-//            "server_sdk"            : '"http://192.168.72.197:8086/"',
-//            "server"            : '"http://192.168.72.44:9010/"',
+//            "server_sdk"        : '"http://192.168.72.148:8086/"',
+//            "server"            : '"http://192.168.72.148:9010/"',
             "umeng_key"         : '"5d7effde570df3464b000635"',
             "umeng_channel"     : '"daquan"',
             "yx_appkey"         : '"973afbbc6c0c0a9c95740d929f1c6953"',

@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -51,7 +51,7 @@ class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
     }
 
     override fun initView() {
-        fragmentViewModel = ViewModelProviders.of(this)[FragmentItemViewModel::class.java]
+        fragmentViewModel = ViewModelProvider(this)[FragmentItemViewModel::class.java]
         initTitle()
         initViewViewPager()
         initTabAndPagerListener(make_money_content_tab,make_money_content_vp)

@@ -3,7 +3,6 @@ package com.netease.nim.uikit.business.session.fragment;
 import android.app.Activity;
 
 import androidx.documentfile.provider.DocumentFile;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +14,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -433,8 +433,8 @@ public class MessageFragment extends BaseChatMessageFragment implements ModulePr
     private void initData(){
         Log.e("YM","好友的sessionId:"+sessionId);
         Log.e("YM","自己的sessionId:"+ModuleMgr.getCenterMgr().getUID());
-        p2PMessageViewModel = ViewModelProviders.of(this).get(P2PMessageViewModel.class);
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
+        p2PMessageViewModel = new ViewModelProvider(this).get(P2PMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
         homeMessageViewModel.updateTeFriendUnReadNumber(sessionId,0);
     }
 

@@ -1,11 +1,11 @@
 package com.wd.daquan.third.fragment;
 
 import android.app.Activity;
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -159,7 +159,7 @@ public class ConversationListFragment extends Fragment implements QCObserver {
     }
 
     private void initViewModel(){
-        homeMessageViewModel = ViewModelProviders.of(this).get(HomeMessageViewModel.class);
+        homeMessageViewModel = new ViewModelProvider(this).get(HomeMessageViewModel.class);
     }
 
     private void queryHomeMessage(){

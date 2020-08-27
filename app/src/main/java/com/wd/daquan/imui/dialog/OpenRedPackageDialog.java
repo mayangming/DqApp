@@ -29,12 +29,12 @@ import com.wd.daquan.imui.type.RedPackageStatus;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.OpenRedPackageResultBean;
 import com.wd.daquan.model.interfaces.DqCallBack;
+import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.retrofit.RetrofitHelp;
 import com.wd.daquan.third.helper.UserInfoHelper;
 import com.wd.daquan.util.GlideUtil;
 import com.wd.daquan.util.IntentUtils;
 import com.wd.daquan.util.TToast;
-import com.white.easysp.EasySP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +82,7 @@ public  class OpenRedPackageDialog extends BaseDialog {
 
     private void openRedPackage(){
         if (ImType.P2P.getValue().equals(messageRedPackageBean.getRedMsgType())){//个人模式
-            String userId = EasySP.init(getContext()).getString(UserSpConstants.USER_ID);
+            String userId = ModuleMgr.getCenterMgr().getUID();
             if (userId.equals(imMessageBaseModel.getFromUserId())){//自己发的
                 requestRedPackageDetails(redPackageId);
             }else {//好友发的

@@ -14,6 +14,21 @@ public class BigDecimalUtils{
         BigDecimal bigDecimal = new BigDecimal(value);
         return bigDecimal;
     }
+    /**
+     * 将int类型转为BigDecimal
+     */
+    public static BigDecimal int2BigDecimal(int value){
+        BigDecimal bigDecimal = new BigDecimal(value);
+        return bigDecimal;
+    }
+
+    /**
+     * 将String类型转为BigDecimal
+     */
+    public static BigDecimal str2BigDecimal(String value){
+        BigDecimal bigDecimal = new BigDecimal(value);
+        return bigDecimal;
+    }
 
     /**
      * 将分转为元

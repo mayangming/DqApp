@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.dialog_task_description.*
 /**
  * 任务功能介绍对话框
  */
-class TaskDescriptionDialog: AppCompatDialogFragment() {
+class TaskDescriptionDialog: BaseFragmentDialog() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))//需要这一行来解决对话框背景有白色的问题(颜色随主题变动)
