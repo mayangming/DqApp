@@ -306,6 +306,10 @@ public class DqUrl {
      */
     public static String url_new_user_tip = SERVER_OFFICIAL + "dq_xrxz.html";
     /**
+     * 发布规则 https://www.meetsn.com/wap/protocol/service
+     */
+    public static String url_fbgz = SERVER_OFFICIAL + "dq_fbgz.html";
+    /**
      * 生产环境联系我们
      */
     public static String uri_contact_us = SERVER_OFFICIAL + "wap/help/page?catid=32";

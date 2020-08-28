@@ -25,10 +25,7 @@ import com.wd.daquan.explore.bean.SendTaskDraftBean
 import com.wd.daquan.explore.dialog.TaskTypeDialog
 import com.wd.daquan.explore.presenter.SendTaskPresenter
 import com.wd.daquan.mine.listener.PayDetailListener
-import com.wd.daquan.model.bean.DataBean
-import com.wd.daquan.model.bean.SendTaskBean
-import com.wd.daquan.model.bean.UserCloudWallet
-import com.wd.daquan.model.bean.WxPayBody
+import com.wd.daquan.model.bean.*
 import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
@@ -94,6 +91,8 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             classificationTypeBean = sendTaskDraftBean.classificationTypeBean
             updateUIForDraft()
         }
+        getTaskCompanyList()
+        getClassificationList()
     }
 
 
@@ -102,6 +101,21 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         task_send_title.leftIv.setOnClickListener { finish() }
     }
 
+    /**
+     * 获取厂商类型
+     */
+    private fun getTaskCompanyList(){
+        val params = hashMapOf<String,Any>()
+        mPresenter.getTaskCompanyList(DqUrl.url_task_type,params)
+    }
+
+    /**
+     * 获取任务累心
+     */
+    private fun getClassificationList(){
+        val params = hashMapOf<String,Any>()
+        mPresenter.getClassificationList(DqUrl.url_task_classification,params)
+    }
 
     /**
      * 根据草稿更新UI
@@ -722,6 +736,22 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                 classificationTypeBean.typeName = sendTaskBean.className
                 classificationTypeBean.typeId = sendTaskBean.classification
             }
+            DqUrl.url_task_type -> {//厂商类型
+                val taskTypeBean = entity.data as List<TaskTypeBean>
+                val customerTaskBean = taskTypeBean.map {
+                    CustomTaskTypeBean(it.id.toString(),it.typePic,it.typeName)
+                }
+                companyTypeBean = customerTaskBean[0]
+                task_company_name.text = companyTypeBean.typeName
+            }
+            DqUrl.url_task_classification ->{//任务类型
+                val taskTypeBean = entity.data as List<TaskClassificationBean>
+                val customerTaskBean = taskTypeBean.map {
+                    CustomTaskTypeBean(it.id.toString(),it.classPic,it.className)
+                }
+                classificationTypeBean = customerTaskBean[0]
+                task_classification_name.text = classificationTypeBean.typeName
+            }
             DqUrl.url_task_createTaskOrder -> {//付款状态
                 //订单创建完毕后清空内容
                 ModuleMgr.getCenterMgr().saveLastTaskSendDraft("")
@@ -754,7 +784,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 
         override fun onClick(widget: View) {
 //            NavUtils.playVideo(widget.context,taskDetailBean.teachingVideoUrl)
-            NavUtils.gotoWebviewActivity(widget.context, DqUrl.url_new_user_tip, getString(R.string.release_guide))
+            NavUtils.gotoWebviewActivity(widget.context, DqUrl.url_fbgz, getString(R.string.release_guide))
         }
 
 

@@ -7,6 +7,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.wd.daquan.BuildConfig
 import com.wd.daquan.common.presenter.BasePresenter
 import com.wd.daquan.common.presenter.Presenter
+import com.wd.daquan.explore.bean.CustomTaskTypeBean
 import com.wd.daquan.model.bean.*
 import com.wd.daquan.model.interfaces.DqCallBack
 import com.wd.daquan.model.log.DqLog
@@ -223,6 +224,41 @@ class SendTaskPresenter: BasePresenter<Presenter.IView<DataBean<Any>>>() {
             }
         })
     }
+
+    /**
+     * 获取任务厂商类型列表
+     */
+     public fun getTaskCompanyList(url :String, hashMap :Map<String, Any>){
+        RetrofitHelp.getTaskApi().findTaskType(url, RetrofitHelp.getRequestBodyByObject(hashMap)).enqueue(object : DqCallBack<DataBean<List<TaskTypeBean>>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<List<TaskTypeBean>>) {
+                hideLoading()
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<List<TaskTypeBean>>) {
+                hideLoading()
+                failed(url, code, entity)
+            }
+        })
+    }
+
+    /**
+     * 获取任务类型列表
+     */
+    public fun getClassificationList(url :String, hashMap :Map<String, Any>){
+        RetrofitHelp.getTaskApi().findTaskClassification(url, RetrofitHelp.getRequestBodyByObject(hashMap)).enqueue(object : DqCallBack<DataBean<List<TaskClassificationBean>>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<List<TaskClassificationBean>>) {
+                hideLoading()
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<List<TaskClassificationBean>>) {
+                hideLoading()
+                failed(url, code, entity)
+            }
+        })
+    }
+
 
     /**
      * 微信支付
