@@ -23,7 +23,6 @@ import com.wd.daquan.model.mgr.ModuleMgr
 import com.wd.daquan.model.rxbus.MsgMgr
 import com.wd.daquan.model.rxbus.MsgType
 import com.wd.daquan.model.rxbus.QCObserver
-import kotlinx.android.synthetic.main.activity_friend_area.*
 import kotlinx.android.synthetic.main.explore_fragment.*
 import q.rorbin.badgeview.Badge
 import q.rorbin.badgeview.QBadgeView
@@ -150,6 +149,7 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
             }
             DqUrl.url_dynamic_findUserDynamicMsgSum -> {
                 val bean = entity.data as AreaUnReadSimpleBean
+                DqLog.e("YM----------未读消息的数量:${bean.count}")
                 if (bean.count <= 0){
                     badgeView.hide(true)
                     return

@@ -7,7 +7,7 @@ import java.util.List;
 public class MakeMoneyTaskMineBean implements Serializable {
     private String id = "1";
     private String taskId = "1";
-    private String taskPlatformIcon = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596195164793&di=e8024d595a842c080cf5a0a07c1c0e14&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170615%2F1TH010Z-7.jpg";//平台图标
+    private String typePic = "";//平台图标
     private String taskName = "下载应用";//任务名称
     private long taskmoney = 100;//任务价格
     private long getTime = 1L;//任务报名时间
@@ -32,12 +32,12 @@ public class MakeMoneyTaskMineBean implements Serializable {
         this.taskId = taskId;
     }
 
-    public String getTaskPlatformIcon() {
-        return taskPlatformIcon;
+    public String getTypePic() {
+        return typePic;
     }
 
-    public void setTaskPlatformIcon(String taskPlatformIcon) {
-        this.taskPlatformIcon = taskPlatformIcon;
+    public void setTypePic(String typePic) {
+        this.typePic = typePic;
     }
 
     public String getTaskName() {
