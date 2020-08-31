@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+<!--    <color name="titlecolor">#60b284</color>  -->
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+<!--    <color name="divider_color">#e0e0e0</color>-->
+<!--    <color name="color_e1e1e1">#e1e1e1</color>-->
+<!--    <color name="colormain_565864">#565864</color>-->
+<!--    <color name="orderline_e1e1e1">#e1e1e1</color>-->
+<!--    <color name="colormain_565656">#565656</color>-->
+
+    <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="color_98a9bc">#98A9BC</color>
+    <color name="color_1296DB">#1296DB</color>
+    <color name="color_f8f8f8">#f8f8f8</color>
+</resources>

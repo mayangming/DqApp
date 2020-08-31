@@ -8,6 +8,9 @@ import androidx.multidex.MultiDex;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import com.ad.libary.AdSdkManager;
+import com.ad.libary.config.SDKAdBuild;
+import com.ad.libary.type.AdType;
 import com.da.library.DqLibConfig;
 import com.da.library.constant.IConstant;
 import com.dq.im.util.oss.AliOssUtil;
@@ -123,8 +126,11 @@ public class DqApp extends Application {
     }
     private void initAd(){
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常,穿山甲的广告需要在所有进程中初始化
-        TTAdManagerHolder.init(this);
-
+//        TTAdManagerHolder.init(this);
+        SDKAdBuild sdkAdBuild = new SDKAdBuild();
+        sdkAdBuild.mAppName = IConstant.AD.APP_NAME;
+        sdkAdBuild.type = AdType.AD_DQ;
+        AdSdkManager.getInstance(this).initSDKAd(sdkAdBuild);
     }
 
     public  WebView getWebView(){

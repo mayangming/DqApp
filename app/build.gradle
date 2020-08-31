@@ -191,6 +191,7 @@ dependencies {
     implementation project(':dqimsdk')
     implementation project(':matisse')
     implementation project(':recorderlib')
+    implementation project(':adlibary')
     api rootProject.ext.dependencies.kotlin_config
     api rootProject.ext.dependencies.banner
 //    implementation files('libs/pinyin4j-2.5.0.jar')

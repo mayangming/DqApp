@@ -8,9 +8,6 @@ include ':uikit'
 include ':CNCarema'
 include ':CNImagePicker'
 include ':QCPickerView'
-//include ':jrmfwalletlib'
-//include ':jrmfbaselib'
-//include ':jrmfrplib'
 include ':turntableview'//抽奖转盘
 include ':passlibrary'//支付密码对话框
 include ':redlibary'//红包雨
@@ -18,3 +15,5 @@ include ':httplibary'//网络请求包
 include ':dqimsdk'//斗圈自主开发的聊天SDK
 include ':matisse'//知乎图片选择，适配10.0
 include ':recorderlib'//音频录制mp3的libary
+include ':dqAdSdk'//斗圈广告SDK
+include ':adlibary'//多广告集成平台

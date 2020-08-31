@@ -170,4 +170,14 @@ public interface IConstant {
         String KEY = "Dq2019Text606KEY";
         String VALUE = "Dq2019Text6VALUE";
     }
+
+    /**
+     * 广告
+     */
+    interface AD{
+        String APP_ID = "1";
+        String APP_NAME = "1";
+        String REWARD_ID = "1";
+    }
+
 }

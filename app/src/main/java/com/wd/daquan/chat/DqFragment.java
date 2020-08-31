@@ -15,15 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.bytedance.sdk.openadsdk.AdSlot;
-//import com.bytedance.sdk.openadsdk.TTAdConstant;
-//import com.bytedance.sdk.openadsdk.TTAdManager;
-//import com.bytedance.sdk.openadsdk.TTAdNative;
-//import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
-//import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
-//import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
-//import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
-
+import com.ad.libary.AdSdkCompact;
+import com.ad.libary.bean.AdCodeInfoBean;
+import com.ad.libary.compat.RewardVideoAdCompat;
+import com.ad.libary.config.SDKAdBuild;
+import com.ad.libary.simple_iml.RewardVideoListenerIpc;
+import com.ad.libary.type.AdType;
+import com.da.library.constant.IConstant;
 import com.da.library.utils.BigDecimalUtils;
 import com.da.library.utils.DateUtil;
 import com.dq.im.config.HttpConfig;
@@ -46,6 +44,7 @@ import com.wd.daquan.mine.dialog.VipExchangeResultDialog;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.RedEnvelopBean;
 import com.wd.daquan.model.interfaces.DqCallBack;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ConfigManager;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -101,10 +100,11 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     private boolean isFont;//是否在前台
     private String countdownContent = "倒计时";
     private CountdownView countdownView;
-//    private TTAdNative mTTAdNative;
+    //    private TTAdNative mTTAdNative;
 //    private TTRewardVideoAd mttRewardVideoAd;
     private boolean isStopRedRain = true;//是否手动停掉红包雨
     private ConversationListFragment fragment;
+    private RewardVideoAdCompat rewardVideoAdCompat;
     @Override
     public void setContentView() {
         setContentView(R.layout.qc_qingchat_fragment);
@@ -585,6 +585,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    loadExpressAd(AdConfig.expressAdCode);
 //                    renderExpressAd();
 //                    showRewardAdCode();
+                    switchAd(IConstant.AD.REWARD_ID);
                     return;
                 }
                 if (0 == redEnvelopBean.getAmount()){
@@ -592,6 +593,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    loadExpressAd(AdConfig.expressAdCode);
 //                    renderExpressAd();
 //                    showRewardAdCode();
+                    switchAd(IConstant.AD.REWARD_ID);
                     return;
                 }
                 showOpenGift(amount,redEnvelopBean.isFlag());
@@ -609,7 +611,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //    private void initExpressAd(){
 //        mTTAdNative = TTAdManagerHolder.get().createAdNative(getContext());
 //    }
-//
+
 //    private void loadExpressAd(String codeId) {
 //        float expressViewWidth = 350;
 //        float expressViewHeight = 350;
@@ -657,7 +659,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
     private long startTime = 0;
     private boolean mHasShowDownloadActive = false;
-//    private TTNativeExpressAd mTTAd;
+    //    private TTNativeExpressAd mTTAd;
 //    private void bindAdListener(TTNativeExpressAd ad) {
 //        ad.setExpressInteractionListener(new TTNativeExpressAd.AdInteractionListener() {
 //            @Override
@@ -932,5 +934,65 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //            }
 //        });
 //    }
+    private void switchAd(String codeId) {
+        SDKAdBuild sdkAdBuild = new SDKAdBuild();
+        sdkAdBuild.mAppId = IConstant.AD.APP_ID;
+        sdkAdBuild.mAppName = IConstant.AD.APP_NAME;
+        sdkAdBuild.codeId = codeId;
+        AdSdkCompact.getInstance().switchAd(sdkAdBuild,new AdSdkCompact.AdSwitchResultIpc(){
+            @Override
+            public void switchSuccess(AdCodeInfoBean adCodeInfoBean, AdType type) {
+                Log.e("YM","切换成功type:"+type.type);
+                Log.e("YM","切换成功adName:"+type.adName);
+                SDKAdBuild.rewardAdCode = String.valueOf(adCodeInfoBean.getCodeId());
+                rewardVideoAd(String.valueOf(adCodeInfoBean.getCodeId()));
+//                switch (type){
+//                    case AD_DQ:
+//                        rewardVideoAd(String.valueOf(adCodeInfoBean.getCodeId()));
+//                        break;
+//                    case AD_TT:
+//                        break;
+//                    case AD_GDT:
+//                        break;
+//                }
 
+            }
+
+            @Override
+            public void switchFail() {
+
+            }
+        });
+    }
+    private void rewardVideoAd(String codeId){
+        rewardVideoAdCompat = new RewardVideoAdCompat(getContext());
+//        rewardVideoAdCompat.loadAd(SDKAdBuild.rewardAdCode, RewardVideoAdCompat.VERTICAL,new RewardVideoListenerIpc(){
+        rewardVideoAdCompat.loadAd(codeId, RewardVideoAdCompat.VERTICAL,new RewardVideoListenerIpc(){
+            @Override
+            public void rewardVideoOnError(int i, String s) {
+                Log.e("YM","加载失败:"+s);
+            }
+
+            @Override
+            public void rewardVideoOnRewardVideoAdLoad() {
+
+            }
+
+            @Override
+            public void rewardVideoOnRewardVideoAdLoad(View view) {
+                Log.e("YM--------->","广告请求结束");
+                rewardVideoAdCompat.showAd(getActivity());
+            }
+
+            @Override
+            public void rewardVideoOnRewardVideoCached() {
+
+            }
+
+            @Override
+            public void rewardVideoComplete() {
+                Log.e("YM--------->","广告关闭");
+            }
+        });
+    }
 }

@@ -1,0 +1,102 @@
+if (Boolean.valueOf(isDebug)){
+    apply plugin: 'com.android.application'
+    android{
+        defaultConfig{
+            applicationId "com.dq.sdk.ad"
+        }
+        /*
+        * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，
+        * 可以指定哪些源文件（或文件夹下的源文件）要被编译，
+        * 哪些源文件要被排除。
+        * */
+        sourceSets {
+            main {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+}else {
+    apply plugin: 'com.android.library'
+    android{
+        /*
+        * java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，
+        * 可以指定哪些源文件（或文件夹下的源文件）要被编译，
+        * 哪些源文件要被排除。
+        * */
+        sourceSets {
+            main {
+                manifest.srcFile 'src/main/AndroidManifestV2.xml'
+            }
+        }
+    }
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("boolean", "DQ_AD_IS_DEBUG",isDebug)
+        buildConfigField("String", "SERVER", rootProject.ext.third.server)
+        buildConfigField("String", "SERVER_SDK", rootProject.ext.third.server_sdk)
+        buildConfigField("String", "SERVER_OPEN", rootProject.ext.third.server_open)
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //kotlin 默认使用1.6编译 这里修改为使用1.8编译
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.2.0'
+//    implementation files('libs/pinyin4j-2.5.0.jar')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+
+    implementation project(path: ':httplibary')
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation "com.squareup.okhttp3:okhttp:4.4.0"
+    implementation "com.squareup.okio:okio:2.4.3"
+    //    json解析库
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+}
