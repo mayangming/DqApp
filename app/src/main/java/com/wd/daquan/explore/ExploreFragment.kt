@@ -73,11 +73,8 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
 
     private fun getNewDynamicNews(){
         val params = hashMapOf<String, String>()
-        params["searchUserId"] = ModuleMgr.getCenterMgr().uid
         params["searchType"] = SearchType.ALL.searchType
-        params["pageNum"] = "1"
-        params["pageSize"] = "1"
-        presenter.getNewDynamicMessage(DqUrl.url_dynamic_findUserDynamicDesc,params)
+        presenter.readDynamic(DqUrl.url_dynamic_getUnreadDynamic,params)
     }
 
     /**
@@ -92,7 +89,6 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         when (v){
             explore_my_area_ll -> {
                 dynamic_unread_container.visibility = View.GONE
-                ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.READED.status)
                 NavUtils.gotoFriendAreaActivity(activity,ModuleMgr.getCenterMgr().uid,SearchType.ALL)
             }
             explore_scan_ll ->
@@ -121,35 +117,17 @@ class ExploreFragment : BaseFragment<ExplorePresenter, DataBean<Any>>(), View.On
         super.onSuccess(url, code, entity)
         if (entity == null) return
         when(url){
-            DqUrl.url_dynamic_findUserDynamicDesc -> {
+            DqUrl.url_dynamic_getUnreadDynamic -> {
                 val userDynamicList = entity.data as List<FindUserDynamicDescBean>
                 if(userDynamicList.isNotEmpty()){
                     val userDynamic = userDynamicList[0]
-                    if (ModuleMgr.getCenterMgr().lastDynamicUid == ModuleMgr.getCenterMgr().uid){
-                        dynamic_unread_container.visibility = View.GONE
-                        return
-                    }
-
-                    if (ModuleMgr.getCenterMgr().lastDynamicTime > userDynamic.createTime){
-                        dynamic_unread_container.visibility = View.GONE
-                        return
-                    }
-
-                    if(ModuleMgr.getCenterMgr().lastDynamicReadStatus == DynamicReadStatus.READED.status){
-                        dynamic_unread_container.visibility = View.GONE
-                        return
-                    }
 
                     dynamic_unread_container.visibility = View.VISIBLE
                     GlideUtils.loadRound(context, userDynamic.userHeadPic, dynamic_unread, 5)
-                    ModuleMgr.getCenterMgr().saveLastDynamicUid(userDynamic.userId)
-                    ModuleMgr.getCenterMgr().saveLastDynamicTime(userDynamic.createTime)
-                    ModuleMgr.getCenterMgr().saveLastDynamicReadStatus(DynamicReadStatus.UNREAD.status)
                 }
             }
             DqUrl.url_dynamic_findUserDynamicMsgSum -> {
                 val bean = entity.data as AreaUnReadSimpleBean
-                DqLog.e("YM----------未读消息的数量:${bean.count}")
                 if (bean.count <= 0){
                     badgeView.hide(true)
                     return

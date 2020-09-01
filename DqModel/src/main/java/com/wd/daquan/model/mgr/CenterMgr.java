@@ -73,33 +73,6 @@ public class CenterMgr implements ModuleBase, QCObserver{
         }
         return uid;
     }
-    /**
-     * 获取上次动态的朋友圈Id
-     * @return
-     */
-    public String getLastDynamicUid() {
-        if (TextUtils.isEmpty(lastDynamicUid)) {
-            lastDynamicUid = getKDPreferenceUserInfo().getString(EBSharedPrefUser.lastDynamicUid, "");
-        }
-        return lastDynamicUid;
-    }
-
-    /**
-     * 获取上次动态的朋友圈动态阅读状态
-     * @return
-     */
-    public int getLastDynamicReadStatus() {
-        return getKDPreferenceUserInfo().getInt(EBSharedPrefUser.lastDynamicReadStatus, 0);
-    }
-
-    /**
-     * 获取上次朋友圈动态的时间
-     * @return
-     */
-    public long getLastDynamicTime() {
-        lastDynamicTime = getKDPreferenceUserInfo().getLong(EBSharedPrefUser.lastDynamicTime, 0);
-        return lastDynamicTime;
-    }
 
     /**
      * 获取云信运行token
@@ -220,30 +193,6 @@ public class CenterMgr implements ModuleBase, QCObserver{
 
     public void saveTeamInvite(String value) {
         getKDPreferenceUserInfo().saveString(getUID() + EBSharedPrefUser.TEAM_INVITE, value);
-    }
-
-    /**
-     * 上次动态的朋友圈用户Id
-     * @param value
-     */
-    public void saveLastDynamicUid(String value) {
-        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.lastDynamicUid, value);
-    }
-
-    /**
-     * 保存上一次朋友圈动态的时间
-     * @param value
-     */
-    public void saveLastDynamicTime(Long value) {
-        getKDPreferenceUserInfo().saveLong(EBSharedPrefUser.lastDynamicTime, value);
-    }
-
-    /**
-     * 上次朋友圈的阅读状态
-     * @param value
-     */
-    public void saveLastDynamicReadStatus(int value) {
-        getKDPreferenceUserInfo().saveInt(EBSharedPrefUser.lastDynamicReadStatus, value);
     }
 
     public boolean enableTeamInvite() {

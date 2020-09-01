@@ -153,6 +153,7 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>(),
         getDynamicMessageList()
         findUserDynamic()
         findUserDynamicMsgSum()
+        clearReadDynamic()
         area_user_name.text = UserInfoHelper.getUserDisplayName(friendId)
 //        GlideUtils.loadRound(this, ModuleMgr.getCenterMgr().avatar, area_user_head,5)
         DqLog.e("YM","头像连接:${UserInfoHelper.getHeadPic(friendId)}")
@@ -278,6 +279,13 @@ class FriendAreaActivity : DqBaseActivity<FriendAreaPresenter, DataBean<Any>>(),
     private fun findUserDynamicMsgSum(){
         val params = hashMapOf<String, String>()
         mPresenter.findUserDynamicMsgSum(DqUrl.url_dynamic_findUserDynamicMsgSum,params)
+    }
+    /**
+     * 获取朋友圈未读的好友消息数据
+     */
+    private fun clearReadDynamic(){
+        val params = hashMapOf<String, String>()
+        mPresenter.clearReadDynamic(DqUrl.url_dynamic_readDynamic,params)
     }
     /**
      * 阿里云上传文件

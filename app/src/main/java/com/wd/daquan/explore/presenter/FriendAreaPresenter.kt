@@ -125,4 +125,22 @@ class FriendAreaPresenter : BasePresenter<Presenter.IView<DataBean<Any>>>(){
             }
         })
     }
+    /**
+     * 清空朋友圈关于未读好友消息数据
+     */
+    fun clearReadDynamic(url :String, hashMap :Map<String, String>){
+        RetrofitHelp.getDynamicApi().clearReadDynamic(url, getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<Any>>(){
+            override fun onSuccess(url: String?, code: Int, entity: DataBean<Any>) {
+
+//                        hideLoading();
+                success(url, code, entity)
+            }
+
+            override fun onFailed(url: String?, code: Int, entity: DataBean<Any>) {
+
+//                        hideLoading();
+                failed(url, code, entity)
+            }
+        })
+    }
 }

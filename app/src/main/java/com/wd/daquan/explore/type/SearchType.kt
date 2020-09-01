@@ -8,4 +8,5 @@ import java.io.Serializable
 enum class SearchType (val searchType :String): Serializable{
     ALL("0"),//所有人
     PERSON("1")//指定某个人
+
 }

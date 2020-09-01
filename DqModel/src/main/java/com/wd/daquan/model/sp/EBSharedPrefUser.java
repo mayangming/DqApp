@@ -46,9 +46,6 @@ public class EBSharedPrefUser extends BaseSharedPreference {
     public static final String UPDATE_STATUS = "update_status";//是否需要升级
     public static final String IS_AGREE_PROTOCOL = "isAgreeProtocol";//是否同意服务协议
     public static final String RED_RAIN_CONTENT = "redRainContent";//红包雨内容
-    public static final String lastDynamicUid = "lastDynamicUid";//上次动态的朋友圈用户Id
-    public static final String lastDynamicTime = "lastDynamicTime";//上次动态的时间
-    public static final String lastDynamicReadStatus = "lastDynamicReadStatus";//上次动态阅读状态 0 未读 1已读
     public static final String isShowMakeMoneyTip = "isShowMakeMoneyTip";//是否显示赚钱的新手须知
 
     public static final String lastTaskSendDraft = "lastTaskSendDraft";//上次发布内容的草稿

@@ -44,10 +44,15 @@ public interface DynamicApi {
     @POST
     Call<DataBean<SaveUserDynamicDescBean>> updateUserDynamicDesc(@Url String url, @Body RequestBody requestBody);
     /**
-     * 获取友圈列表
+     * 获取朋友圈列表
      */
     @POST
     Call<DataBean<ArrayList<FindUserDynamicDescBean>>> findUserDynamicDesc(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 获取朋友圈未读消息的列表
+     */
+    @POST
+    Call<DataBean<ArrayList<FindUserDynamicDescBean>>> readDynamic(@Url String url, @Body RequestBody requestBody);
     /**
      * 点赞朋友圈
      */
@@ -97,8 +102,13 @@ public interface DynamicApi {
     Call<DataBean<AreaUnReadSimpleBean>> findUserDynamicMsgSum(@Url String url, @Body RequestBody requestBody);
 
     /**
-     * 清空朋友圈未读消息
+     * 清空朋友圈关于自己的未读消息
      */
     @POST
     Call<DataBean> delUserDynamicMsg(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 清空朋友圈未读的好友朋友圈动态消息
+     */
+    @POST
+    Call<DataBean> clearReadDynamic(@Url String url, @Body RequestBody requestBody);
 }

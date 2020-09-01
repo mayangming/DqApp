@@ -333,7 +333,7 @@ public class DateUtil {
     public static List<String> getWheelDateList(Context context,int years,int month) {
         List<String> listDate = new ArrayList<>();
         int dayOfMonth = getDayOfMonth(years, month);
-        listDate.add("无");
+//        listDate.add("无");
         for (int i = 1; i < dayOfMonth + 1; i++) {
             listDate.add(String.valueOf(i)+context.getString(R.string.date));
         }
@@ -383,7 +383,20 @@ public class DateUtil {
         int month = mCalendar.get(Calendar.MONTH) + 1;
         List<String> listDate = new ArrayList<>();
         int dayOfMonth = getDayOfMonth(years, month);
-        listDate.add("无");
+//        listDate.add("无");
+        for (int i = 1; i <= dayOfMonth; i++) {
+            listDate.add(String.valueOf(i) + context.getString(R.string.date));
+        }
+        return listDate;
+    }
+    /**
+     * 获取某日
+     */
+    public static List<String> getWheelDateNotNull(Context context) {
+        int years = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH) + 1;
+        List<String> listDate = new ArrayList<>();
+        int dayOfMonth = getDayOfMonth(years, month);
         for (int i = 1; i <= dayOfMonth; i++) {
             listDate.add(String.valueOf(i) + context.getString(R.string.date));
         }

@@ -30,7 +30,7 @@ class MakeMoneyTaskMineAdapter(): RecycleBaseAdapter<MakeMoneyTaskMineViewHolder
         super.onBindViewHolder(holder, position)
         val bean = makeMoneyTaskMineList[position]
         GlideUtils.load(context,bean.typePic,holder.taskPlatformIcon)
-        holder.taskName.text = bean.taskName
+        holder.taskName.text = bean.taskname
         holder.taskPrice.text = "￥${getPrice(bean.taskmoney)}"
 
         holder.taskSignTime.text = "报名时间:  ${DateUtil.timeToString(bean.getTime,DateUtil.yyyy_MM_dd_HH_mm_ss)}"

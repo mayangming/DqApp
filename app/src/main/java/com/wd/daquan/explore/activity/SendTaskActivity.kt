@@ -51,7 +51,9 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private var lastTaskSendDraft = ""//上次内容发布的草稿
     private var sendTaskDraftBean = SendTaskDraftBean()//任务草稿
     private var taskId = ""//任务ID
-
+    private var yearIndex = 0//年的索引值
+    private var monthIndex = 0//月的索引值
+    private var dayIndex = 0//日的索引值
     companion object{
         const val KEY_TASK_ID = "keyTaskId"
     }
@@ -71,7 +73,6 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         task_status_content_container.setOnClickListener(this)
         update_task_status.setOnClickListener(this)
         send_task_unit_price_edt.filters = arrayOf(CashierInputFilter())
-
     }
 
     override fun initData() {
@@ -142,40 +143,47 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             task_status_content.text = "申请发布"
             update_task_status.text = "保存"
             update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
+            task_status_content_container.setBackgroundColor(resources.getColor(R.color.color_EF5B40))
         }else if(sendTaskBean.isPass == 1){//审核中
             task_status_content.text = "审核中"
             update_task_status.text = "撤回"
             update_task_status.setTextColor(resources.getColor(R.color.app_txt_999999))
+            task_status_content_container.setBackgroundColor(resources.getColor(R.color.color_EF5B40))
         }else if (sendTaskBean.isPass == 2){
             task_status_content.text = "发布成功"
             update_task_status.text = "查看详情"
             update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
+            task_status_content_container.setBackgroundColor(resources.getColor(R.color.color_EF5B40))
         }else if(sendTaskBean.isPass == 3){
-            if(sendTaskBean.isPay == 1){
-                task_status_content.text = "重新编辑"
-                update_task_status.text = "申请退款"
-                update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
-            }else if(sendTaskBean.isPay == 2){//2:申请退款 3:退款成功 4:退款拒绝 5:退款失败
-                task_status_content.text = "未通过"
-                update_task_status.text = "退款中"
-                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
-            }else if (sendTaskBean.isPay == 3){//退款成功
-                task_status_content.text = "未通过"
-                update_task_status.text = "退款成功"
-                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
-            }else if(sendTaskBean.isPay == 4){
-                task_status_content.text = "未通过"
-                update_task_status.text = "退款拒绝"
-                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
-            }else if(sendTaskBean.isPay == 5){
-                task_status_content.text = "未通过"
-                update_task_status.text = "退款失败"
-                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
-            }else{
-                task_status_content.text = "重新编辑"
-                update_task_status.text = "申请退款"
-                update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
-            }
+            task_status_content.text = "未通过"
+            update_task_status.text = "重新编辑"
+            update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
+            task_status_content_container.setBackgroundColor(resources.getColor(R.color.color_E4E4E4))
+//            if(sendTaskBean.isPay == 1){
+//                task_status_content.text = "重新编辑"
+//                update_task_status.text = "申请退款"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
+//            }else if(sendTaskBean.isPay == 2){//2:申请退款 3:退款成功 4:退款拒绝 5:退款失败
+//                task_status_content.text = "未通过"
+//                update_task_status.text = "重新编辑"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
+//            }else if (sendTaskBean.isPay == 3){//退款成功
+//                task_status_content.text = "未通过"
+//                update_task_status.text = "重新编辑"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
+//            }else if(sendTaskBean.isPay == 4){
+//                task_status_content.text = "未通过"
+//                update_task_status.text = "重新编辑"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
+//            }else if(sendTaskBean.isPay == 5){
+//                task_status_content.text = "未通过"
+//                update_task_status.text = "重新编辑"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_E4E4E4))
+//            }else{
+//                task_status_content.text = "重新编辑"
+//                update_task_status.text = "申请退款"
+//                update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
+//            }
         }
         if (sendTaskBean.expires == 1){//已经下架
             task_status_content.text = "已下架"
@@ -244,6 +252,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     }
 
     private fun createTask(){
+        DqLog.e("YM--------检测参数是否合法")
         val isPass = checkParams()
         if (!isPass) return
         val params =createParams()
@@ -304,6 +313,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         }
 
         val taskUnitPriceStr = send_task_unit_price_edt.text.toString()
+        DqLog.e("YM------>读取的广告单个信息:${taskUnitPriceStr}")
         if (TextUtils.isEmpty(taskUnitPriceStr)){
             DqToast.showCenterShort("任务单价不能小于0.2元!")
             return false
@@ -333,8 +343,8 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             return false
         }
 
-        if (taskNum > 100){
-            DqToast.showCenterShort("任务数量不大于100个!")
+        if (taskNum > 100000){
+            DqToast.showCenterShort("任务数量不能大于十万个!")
             return false
         }
 
@@ -365,9 +375,11 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         when(key){
             MsgType.TASK_PAY_RESULT -> {//微信支付后的订单信息
                 getUserTaskByTaskId()
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")//微信支付后发送页面刷新信息
             }
-            MsgType.TASK_REFUND -> {//微信支付后的订单信息
+            MsgType.TASK_REFUND -> {//微信退款后的订单信息
                 getUserTaskByTaskId()
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")//微信支付后发送页面刷新信息
             }
         }
     }
@@ -455,26 +467,32 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 
                 updateTaskStatus2()
             }
-            update_task_status ->{
+            update_task_status -> {
                 updateTaskStatus()
             }
         }
     }
 
     private fun updateTaskStatus2(){
-        if (!TextUtils.isEmpty(taskId)){
+
+        DqLog.e("YM------->任务ID:${taskId} isPay:${sendTaskBean.isPay} isPass:${sendTaskBean.isPass}")
+
+        if (!TextUtils.isEmpty(taskId) && sendTaskBean.isPay == 1 && sendTaskBean.isPass == 0){//假如id不为空,且已经付款了，但是没有处于待提交，则为更改任务
+            val isPass = checkParams()
+            if (!isPass) return
             updateTaskContent()
             return
         }
         if (sendTaskBean.isPay == 0){
             createTask()
-        }else if(sendTaskBean.isPay == 1){
-            if(sendTaskBean.isPass == 0){
-                createTask()
-            }else if(sendTaskBean.isPass == 3){
-                changeTaskStatus("0")//改为未提交状态
-            }
         }
+//        else if(sendTaskBean.isPay == 1){
+//            if(sendTaskBean.isPass == 0){
+//                createTask()
+//            }else if(sendTaskBean.isPass == 3){
+////                changeTaskStatus("0")//改为未提交状态
+//            }
+//        }
     }
 
     /**
@@ -507,23 +525,26 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             //查看详情
             NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
         }else if (sendTaskBean.isPass == 3){//拒绝
-            if(sendTaskBean.isPay == 1){//已经付款
-                //申请退款
-                NavUtils.gotoApplyRefundActivity(this,sendTaskBean.id)
-            }else if (sendTaskBean.isPay == 3){//退款成功
-//                changeTaskStatus("0")//改为未提交状态
-                //查看退款状态
-                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
-            }else if (sendTaskBean.isPay == 2){//申请退款中
-                //申请退款
-                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
-            }else if(sendTaskBean.isPay == 4){
-                //退款拒绝
-                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
-            }else if(sendTaskBean.isPay == 5){
-                //退款失败
-                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
-            }
+            sendTaskBean.isPass = 0
+            updateUIForDetails()
+            DqToast.showCenterShort("解除编辑限制,请重新编辑!")
+//            if(sendTaskBean.isPay == 1){//已经付款
+//                //申请退款
+//                NavUtils.gotoApplyRefundActivity(this,sendTaskBean.id)
+//            }else if (sendTaskBean.isPay == 3){//退款成功
+////                changeTaskStatus("0")//改为未提交状态
+//                //查看退款状态
+//                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
+//            }else if (sendTaskBean.isPay == 2){//申请退款中
+//                //申请退款
+//                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
+//            }else if(sendTaskBean.isPay == 4){
+//                //退款拒绝
+//                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
+//            }else if(sendTaskBean.isPay == 5){
+//                //退款失败
+//                NavUtils.gotoRefundDetailsActivity(this,sendTaskBean.id)
+//            }
         }
 
     }
@@ -531,12 +552,37 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private fun initDateDialog(){
         val now = Calendar.getInstance()
         val years = now[Calendar.YEAR]
-        val date = now[Calendar.MONTH] + 1
+        val month = now[Calendar.MONTH] + 1
+        val day = now[Calendar.DAY_OF_MONTH]
         val listYear = com.da.library.tools.DateUtil.getWheelYearLayer(this, now)
         val listMonth = com.da.library.tools.DateUtil.getWheelMonth(this)
         val listDate = com.da.library.tools.DateUtil.getWheelDate(this)
+        yearIndex = listYear.indexOf("${years}年")
+        monthIndex = listMonth.indexOf("${month}月")
+        dayIndex = listDate.indexOf("${day}日")
         mPvOptions = DialogUtils.showYearToDate(this, listYear, listMonth
-                , listDate, date, this)
+                , listDate, month, this)
+//        mPvOptions?.setSelectOptions(yearIndex,monthIndex,dayIndex)
+        initSelectIndex(now)
+        val monthString = String.format("%02d", month)
+        val dayString = String.format("%02d", day)
+        send_task_end_time.text = "${years}-${monthString}-${dayString}"
+    }
+
+    /**
+     * 重新锁定当前日期的索引位置
+     */
+    private fun initSelectIndex(now :Calendar){
+        val years = now[Calendar.YEAR]
+        val month = now[Calendar.MONTH] + 1
+        val day = now[Calendar.DAY_OF_MONTH]
+        val listYear = com.da.library.tools.DateUtil.getWheelYearLayer(this, now)
+        val listMonth = com.da.library.tools.DateUtil.getWheelMonth(this)
+        val listDate = com.da.library.tools.DateUtil.getWheelDateNotNull(this)
+        yearIndex = listYear.indexOf("${years}年")
+        monthIndex = listMonth.indexOf("${month}月")
+        dayIndex = listDate.indexOf("${day}日")
+        mPvOptions?.setSelectOptions(yearIndex,monthIndex,dayIndex)
     }
 
     /**
@@ -631,6 +677,10 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     override fun payDetailClick(mYear: String?, mMonth: String?, date: String?) {
         val endTime = "$mYear-$mMonth-$date"
         send_task_end_time.text = endTime
+        val timeInMillis = DateUtil.getStringToCalendar(send_task_end_time.text.toString(),DateUtil.YMD).timeInMillis
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = timeInMillis
+        initSelectIndex(calendar)
     }
 
 
@@ -759,6 +809,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                 if (MessageRedPackageBean.RED_PACKAGE_CHANGE == payType) {
 //                    finish()
                     getUserTaskByTaskId()
+                    MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")
                 } else {
                     mPresenter.startWeChatPay(this, wxPayBody)
                 }

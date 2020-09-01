@@ -16,11 +16,13 @@ import com.wd.daquan.explore.adapter.SendTaskAdapter
 import com.wd.daquan.explore.presenter.SendTaskPresenter
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.SendTaskBean
-import com.wd.daquan.view.RecycleViewDivider
-import kotlinx.android.synthetic.main.fragment_make_money_task_mine.*
+import com.wd.daquan.model.log.DqLog
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
+import com.wd.daquan.model.rxbus.QCObserver
 import kotlinx.android.synthetic.main.fragment_send_task.*
 
-class SendTaskManagerFragment: BaseFragment<SendTaskPresenter, DataBean<List<SendTaskBean>>>(), View.OnClickListener{
+class SendTaskManagerFragment: BaseFragment<SendTaskPresenter, DataBean<List<SendTaskBean>>>(), View.OnClickListener, QCObserver{
     private var pageNum = 1 //当前页码
     private var pageSize = 10 //每页显示的条数
     private val taskAdapter = SendTaskAdapter()
@@ -53,10 +55,23 @@ class SendTaskManagerFragment: BaseFragment<SendTaskPresenter, DataBean<List<Sen
 
     override fun initData() {
         listType = arguments?.getInt(MakeMoneyTaskFragment.KEY_LIST_TYPE,1) ?: 1
+        MsgMgr.getInstance().attach(this)
         getTaskList()
     }
 
+    override fun onMessage(key: String?, value: Any?) {
+        when(key){
+            MsgType.TASK_PAY_RESULT -> {
+                getTaskList()
+            }
+        }
+    }
+
     override fun onClick(v: View?) {
+    }
+
+    fun refreshList(){
+        pageNum = 1
     }
 
     private fun getTaskList(){
@@ -123,6 +138,7 @@ class SendTaskManagerFragment: BaseFragment<SendTaskPresenter, DataBean<List<Sen
 
     override fun onDestroy() {
         super.onDestroy()
+        MsgMgr.getInstance().detach(this)
     }
 
     override fun onResume() {

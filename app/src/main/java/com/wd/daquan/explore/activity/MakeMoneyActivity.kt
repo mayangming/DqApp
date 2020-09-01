@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.ActionMode
 import android.view.View
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -27,23 +25,29 @@ import com.wd.daquan.explore.viewmodel.FragmentItemViewModel
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.TaskClassificationBean
 import com.wd.daquan.model.bean.TaskTypeBean
+import com.wd.daquan.model.log.DqLog
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
+import com.wd.daquan.model.rxbus.QCObserver
 import kotlinx.android.synthetic.main.activity_make_money.*
 
 /**
  * 赚钱页面
  */
-class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
+class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(), QCObserver {
     private var makeMoneyTaskTypeAdapter = MakeMoneyTaskTypeAdapter()
     private var makeMoneyTaskClassificationAdapter = MakeMoneyTaskClassificationAdapter()
     private var taskFragment1 = MakeMoneyTaskFragment()
     private var taskFragment2 = MakeMoneyTaskFragment()
     private var taskFragment3 = MakeMoneyTaskFragment()
+    private var taskFragment4 = MakeMoneyTaskMineTaskFragment()
     private var lastFirst = false //是初次进入
     private lateinit var fragmentViewModel : FragmentItemViewModel
     override fun createPresenter() = MakeMoneyPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MsgMgr.getInstance().attach(this)
     }
 
     override fun setContentView() {
@@ -66,6 +70,22 @@ class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
         getTaskClassification()
     }
 
+    override fun onMessage(key: String?, value: Any?) {
+        DqLog.e("YM-------->接了新任务，开始刷新:${key}")
+        when(key){
+            MsgType.TASK_MAKE_MONEY_REFRESH -> {
+                refreshList()
+            }
+        }
+    }
+
+
+    private fun refreshList(){
+        taskFragment1.refreshList()
+        taskFragment2.refreshList()
+        taskFragment3.refreshList()
+        taskFragment4.refreshList()
+    }
 
     private fun getTaskType(){
         val params = hashMapOf<String,String>()
@@ -116,7 +136,7 @@ class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
         fragmentViewModel.addNewAt(taskFragment1)
         fragmentViewModel.addNewAt(taskFragment2)
         fragmentViewModel.addNewAt(taskFragment3)
-        fragmentViewModel.addNewAt(MakeMoneyTaskMineTaskFragment())
+        fragmentViewModel.addNewAt(taskFragment4)
         val pagerAdapter = MakeMoneyPagerAdapter(this)
         pagerAdapter.fragmentViewModel = fragmentViewModel
         make_money_content_vp.adapter = pagerAdapter
@@ -257,4 +277,10 @@ class MakeMoneyActivity: DqBaseActivity<MakeMoneyPresenter, DataBean<Any>>(){
     override fun onActionModeFinished(mode: ActionMode?) {
         super.onActionModeFinished(mode)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MsgMgr.getInstance().detach(this)
+    }
+
 }

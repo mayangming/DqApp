@@ -8,7 +8,7 @@ public class MakeMoneyTaskMineBean implements Serializable {
     private String id = "1";
     private String taskId = "1";
     private String typePic = "";//平台图标
-    private String taskName = "下载应用";//任务名称
+    private String taskname = "下载应用";//任务名称
     private long taskmoney = 100;//任务价格
     private long getTime = 1L;//任务报名时间
     private int taskStatus = 1;//任务状态 0:未接取 1:已接取 2:待审核 3:审核通过结算成功 4:审核通过结算失败 5:审核失败重新提交
@@ -40,12 +40,12 @@ public class MakeMoneyTaskMineBean implements Serializable {
         this.typePic = typePic;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getTaskname() {
+        return taskname;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setTaskname(String taskname) {
+        this.taskname = taskname;
     }
 
     public long getTaskmoney() {

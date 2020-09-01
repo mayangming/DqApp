@@ -67,6 +67,11 @@ class MakeMoneyTaskFragment : BaseFragment<MakeMoneyPresenter, DataBean<List<Mak
 //        }
 //    }
 
+    fun refreshList(){
+        pageNum = 1
+        getTaskList()
+    }
+
     private fun getTaskList(){
         val taskType = taskObj?.taskTypeBeans?.map {
             it.id

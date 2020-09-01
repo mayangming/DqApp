@@ -16,12 +16,10 @@ import com.wd.daquan.explore.adapter.MakeMoneyTaskMineAdapter
 import com.wd.daquan.explore.presenter.MakeMoneyPresenter
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.MakeMoneyTaskMineBean
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.rxbus.QCObserver
-import com.wd.daquan.view.RecycleViewDivider
-import kotlinx.android.synthetic.main.fragment_make_money_task.*
 import kotlinx.android.synthetic.main.fragment_make_money_task.make_money_refreshLayout
 import kotlinx.android.synthetic.main.fragment_make_money_task_mine.*
-import kotlinx.android.synthetic.main.layout_empty_view.view.*
 
 /**
  * 赚钱任务功能的我的功能
@@ -61,7 +59,13 @@ class MakeMoneyTaskMineTaskFragment():  BaseFragment<MakeMoneyPresenter, DataBea
     override fun onMessage(key: String?, value: Any?) {
     }
 
+    fun refreshList(){
+        pageNum = 1
+        getTaskList()
+    }
+
     private fun getTaskList(){
+        DqLog.e("YM------->我的页面进行刷新")
         val params = hashMapOf<String,String>()
         params["pageNum"] = pageNum.toString()
         params["pageSize"] = pageSize.toString()

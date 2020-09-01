@@ -249,4 +249,14 @@ public class MsgType {
      * 退款后进行页面刷新
      */
     public static final String TASK_REFUND = "taskRefund";
+
+    /**
+     * 支付后进行页面刷新
+     */
+    public static final String TASK_SEND_MANAGER_REFRESH = "refreshSendTaskManager";
+
+    /**
+     * 赚钱功能中 任务状态修改时候刷新
+     */
+    public static final String TASK_MAKE_MONEY_REFRESH = "makeMoneyTaskRefresh";
 }

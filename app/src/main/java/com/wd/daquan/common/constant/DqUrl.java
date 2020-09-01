@@ -1036,6 +1036,7 @@ public class DqUrl {
     public static String url_dynamic_saveUserDynamicDesc = "dynamic/saveUserDynamicDesc";//保存朋友圈内容
     public static String url_dynamic_updateUserDynamicDesc = "dynamic/updateUserDynamicDesc";//更新朋友圈内容
     public static String url_dynamic_findUserDynamicDesc = "dynamic/findUserDynamicDesc";//获取朋友圈列表
+    public static String url_dynamic_getUnreadDynamic = "dynamic/getUnreadDynamic";//获取朋友圈未读新消息
     public static String url_dynamic_saveUserDynamicLike = "dynamic/saveUserDynamicLike";//点赞朋友圈
     public static String url_dynamic_delUserDynamicLike = "dynamic/delUserDynamicLike";//取消点赞朋友圈
     public static String url_dynamic_saveUserDynamicComment = "dynamic/saveUserDynamicComment";//评论朋友圈
@@ -1045,7 +1046,8 @@ public class DqUrl {
     public static String url_dynamic_findUserDynamicMsg = "dynamic/findUserDynamicMsg";//获取朋友圈未读消息列表
     public static String url_dynamic_findUserDynamicMsgSum = "dynamic/findUserDynamicMsgSum";//获取朋友圈未读消息数
     public static String url_dynamic_delUserDynamicMsg = "dynamic/delUserDynamicMsg";//清空朋友圈未读消息
-    public static String url_dynamic_userDynamicMsgMongoDao = "dynamic/userDynamicMsgMongoDao";//标记朋友圈未读消息
+    public static String url_dynamic_userDynamicMsgMongoDao = "dynamic/userDynamicMsgMongoDao";//标记朋友圈未读的关于自己的动态消息
+    public static String url_dynamic_readDynamic = "dynamic/readDynamic";//标记朋友圈未读的好友消息
 
     /******************************** 朋友圈 end ****************************************/
 

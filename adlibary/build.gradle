@@ -12,7 +12,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-
         buildConfigField("String", "SERVER", rootProject.ext.third.server)
         buildConfigField("String", "SERVER_SDK", rootProject.ext.third.server_sdk)
         buildConfigField("String", "SERVER_OPEN", rootProject.ext.third.server_open)

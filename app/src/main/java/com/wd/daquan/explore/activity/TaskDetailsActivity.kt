@@ -37,6 +37,8 @@ import com.wd.daquan.model.bean.TaskDetailsBean
 import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
 import com.wd.daquan.model.mgr.ModuleMgr
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
 import com.wd.daquan.util.FileUtils
 import com.zhihu.matisse.Matisse
 import kotlinx.android.synthetic.main.activity_task_details.*
@@ -368,6 +370,7 @@ class TaskDetailsActivity : DqBaseActivity<MakeMoneyPresenter, DataBean<TaskDeta
                 }
                 taskDetailBean = data
                 updateUi(data)
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_MAKE_MONEY_REFRESH, "")
             }
             DqUrl.url_task_refresh -> {
                 val data = entity.data

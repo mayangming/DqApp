@@ -22,6 +22,6 @@ class SendTaskManagerPagerAdapter : FragmentStateAdapter {
 
     override fun createFragment(position: Int) = fragmentViewModel!!.getFragment(position)
 
-    override fun getItemId(position: Int): Long = fragmentViewModel?.itemId(position) ?: 0
+    override fun getItemId(position: Int): Long = fragmentViewModel?.itemId(position).hashCode().toLong() ?: 0
     override fun containsItem(itemId: Long): Boolean = fragmentViewModel?.contains(itemId) ?: false
 }

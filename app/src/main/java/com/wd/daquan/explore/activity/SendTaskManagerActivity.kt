@@ -15,16 +15,26 @@ import com.wd.daquan.explore.presenter.SendTaskPresenter
 import com.wd.daquan.explore.viewmodel.FragmentItemViewModel
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.TaskDetailsBean
+import com.wd.daquan.model.log.DqLog
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
+import com.wd.daquan.model.rxbus.QCObserver
 import kotlinx.android.synthetic.main.activity_task_manager.*
 
 /**
  * 任务管理页面
  */
-class SendTaskManagerActivity : DqBaseActivity<SendTaskPresenter, DataBean<TaskDetailsBean>>(){
+class SendTaskManagerActivity : DqBaseActivity<SendTaskPresenter, DataBean<TaskDetailsBean>>(), QCObserver {
     private lateinit var fragmentViewModel : FragmentItemViewModel
+    private var taskMineFragmentAll:SendTaskManagerFragment ?= null
+    private var taskMineFragmentReviewing:SendTaskManagerFragment ?= null
+    private var taskMineFragmentShangJia:SendTaskManagerFragment ?= null
+    private var taskMineFragmentNoPass:SendTaskManagerFragment ?= null
+    private var taskMineFragmentOffSelf:SendTaskManagerFragment ?= null
     override fun createPresenter() = SendTaskPresenter()
 
     override fun setContentView() {
+        MsgMgr.getInstance().attach(this)
         setContentView(R.layout.activity_task_manager)
     }
 
@@ -47,38 +57,54 @@ class SendTaskManagerActivity : DqBaseActivity<SendTaskPresenter, DataBean<TaskD
         task_manager_title.leftIv.setOnClickListener { finish() }
     }
 
+    override fun onMessage(key: String?, value: Any?) {
+        when(key){
+            MsgType.TASK_SEND_MANAGER_REFRESH -> {
+                refreshList()
+            }
+        }
+    }
+
+    private fun refreshList(){
+        taskMineFragmentAll?.refreshList()
+        taskMineFragmentReviewing?.refreshList()
+        taskMineFragmentShangJia?.refreshList()
+        taskMineFragmentNoPass?.refreshList()
+        taskMineFragmentOffSelf?.refreshList()
+    }
+
     private fun initViewViewPager(){
-        val taskMineFragmentAll = SendTaskManagerFragment().apply {
+        taskMineFragmentAll = SendTaskManagerFragment().apply {
             val bundle = Bundle()
             bundle.putInt(SendTaskManagerFragment.KEY_LIST_TYPE,SendTaskManagerFragment.SEND_TASK_ALL)
             arguments = bundle
         }
-        val taskMineFragmentReviewing = SendTaskManagerFragment().apply {
+        taskMineFragmentReviewing = SendTaskManagerFragment().apply {
             val bundle = Bundle()
             bundle.putInt(SendTaskManagerFragment.KEY_LIST_TYPE,SendTaskManagerFragment.SEND_TASK_REVIEWING)
             arguments = bundle
         }
-        val taskMineFragmentShangJia = SendTaskManagerFragment().apply {
+        taskMineFragmentShangJia = SendTaskManagerFragment().apply {
             val bundle = Bundle()
             bundle.putInt(SendTaskManagerFragment.KEY_LIST_TYPE,SendTaskManagerFragment.SEND_TASK_SHANGJIA)
             arguments = bundle
         }
-        val taskMineFragmentNoPass = SendTaskManagerFragment().apply {
+        taskMineFragmentNoPass = SendTaskManagerFragment().apply {
             val bundle = Bundle()
             bundle.putInt(SendTaskManagerFragment.KEY_LIST_TYPE,SendTaskManagerFragment.SEND_TASK_NO_PASS)
             arguments = bundle
         }
-        val taskMineFragmentOffSelf = SendTaskManagerFragment().apply {
+        taskMineFragmentOffSelf = SendTaskManagerFragment().apply {
             val bundle = Bundle()
             bundle.putInt(SendTaskManagerFragment.KEY_LIST_TYPE,SendTaskManagerFragment.SEND_TASK_OFF_SELF)
             arguments = bundle
         }
 
-        fragmentViewModel.addNewAt(taskMineFragmentAll)
-        fragmentViewModel.addNewAt(taskMineFragmentReviewing)
-        fragmentViewModel.addNewAt(taskMineFragmentShangJia)
-        fragmentViewModel.addNewAt(taskMineFragmentNoPass)
-        fragmentViewModel.addNewAt(taskMineFragmentOffSelf)
+        fragmentViewModel.addNewAt(taskMineFragmentAll!!)
+        fragmentViewModel.addNewAt(taskMineFragmentReviewing!!)
+        fragmentViewModel.addNewAt(taskMineFragmentShangJia!!)
+        fragmentViewModel.addNewAt(taskMineFragmentNoPass!!)
+        fragmentViewModel.addNewAt(taskMineFragmentOffSelf!!)
         val pagerAdapter = SendTaskManagerPagerAdapter(this)
         pagerAdapter.fragmentViewModel = fragmentViewModel
         task_manager_content_vp.adapter = pagerAdapter
@@ -137,4 +163,8 @@ class SendTaskManagerActivity : DqBaseActivity<SendTaskPresenter, DataBean<TaskD
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        MsgMgr.getInstance().detach(this)
+    }
 }
