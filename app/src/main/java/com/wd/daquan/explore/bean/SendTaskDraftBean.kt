@@ -4,6 +4,7 @@ package com.wd.daquan.explore.bean
  * 保存发布任务的草稿内容
  */
 class SendTaskDraftBean {
+    var id: String = "" //任务ID
     var companyTypeBean :CustomTaskTypeBean = CustomTaskTypeBean() //任务类型
     var classificationTypeBean :CustomTaskTypeBean = CustomTaskTypeBean() //厂商类型
     var taskname = ""//任务名称

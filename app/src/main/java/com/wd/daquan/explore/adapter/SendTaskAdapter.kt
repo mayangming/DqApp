@@ -41,7 +41,7 @@ class SendTaskAdapter() : RecycleBaseAdapter<SendTaskViewHolder>(){
         val bean = makeMoneyTaskBeanList[position]
         GlideUtils.load(context,bean.typePic,holder.appIcon)
         holder.taskName.text = bean.taskname
-        holder.taskSignTime.text = "报名时间:  ${DateUtil.timeToString(bean.createtime, DateUtil.yyyy_MM_dd_HH_mm_ss)}"
+        holder.taskSignTime.text = "发布时间:  ${DateUtil.timeToString(bean.createtime, DateUtil.yyyy_MM_dd_HH_mm_ss)}"
         updateStatus(bean,holder.taskStatus)
         initRecycleView(holder.taskLabelRv)
         val labelList = arrayListOf<String>(bean.typeName,bean.className)

@@ -63,7 +63,6 @@ public class MinePresenter<V extends Presenter.IView<DataBean>> extends BasePres
      * 微信授权登陆：获取聊得来用户的微信绑定状态
      */
     public void getBindWeixinStatus(String url, LinkedHashMap<String, String> linkedHashMap){
-        showLoading();
         RetrofitHelp.getUserApi().getWxBindStatus(url, getRequestBody(linkedHashMap)).enqueue(
                 new DqCallBack<DataBean<WXLoginEntity>>() {
                     @Override

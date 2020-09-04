@@ -48,7 +48,7 @@ class UrlConfig{
             return getServer() + url
         }
 
-        private fun getServer(): String = BuildConfig.SERVER
+        private fun getServer(): String = BuildConfig.SERVER_SDK
 //        private fun getServer(): String = when(SERVER_TYPE){
 //            0 -> LOCAL_SERVER
 //            1 -> TEST_SERVER

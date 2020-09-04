@@ -16,7 +16,11 @@ import com.wd.daquan.mine.listener.PayDetailListener
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.ReleaseCompleteDetailsBean
 import com.wd.daquan.model.bean.SendTaskBean
+import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
+import com.wd.daquan.model.rxbus.MsgMgr
+import com.wd.daquan.model.rxbus.MsgType
+import com.wd.daquan.model.rxbus.QCObserver
 import kotlinx.android.synthetic.main.activity_release_task_details.*
 import kotlinx.android.synthetic.main.activity_unread.*
 import java.util.*
@@ -24,7 +28,7 @@ import java.util.*
 /**
  * 发布任务完成详情页
  */
-class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), PayDetailListener {
+class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), PayDetailListener, QCObserver {
     private var taskBean = SendTaskBean()
     private var taskCompleteAdapter = TaskCompleteAdapter()
     private var completeDetailsBean = ReleaseCompleteDetailsBean()
@@ -38,6 +42,7 @@ class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<A
     override fun createPresenter() = SendTaskPresenter()
 
     override fun setContentView() {
+        MsgMgr.getInstance().attach(this)
         setContentView(R.layout.activity_release_task_details)
     }
 
@@ -127,20 +132,28 @@ class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<A
             apply_extension.visibility = View.GONE
         }
 
-        if(taskBean.isPay == 2 || taskBean.isPay == 3 || taskBean.isPay == 4 || taskBean.isPay == 5){
-            refund_details.visibility = View.VISIBLE
-        }else{
-            refund_details.visibility = View.GONE
-        }
-
-
         if (apply_refund.visibility == View.GONE && apply_extension.visibility == View.GONE &&  refund_details.visibility == View.GONE){
             task_details_label_container.visibility = View.GONE
         }else{
             task_details_label_container.visibility = View.VISIBLE
         }
 
+        if(taskBean.isPay == 2 || taskBean.isPay == 3 || taskBean.isPay == 4 || taskBean.isPay == 5){
+            refund_details.visibility = View.VISIBLE
+            apply_refund.visibility = View.GONE
+            apply_extension.visibility = View.GONE
+        }else{
+            refund_details.visibility = View.GONE
+        }
 
+    }
+
+    override fun onMessage(key: String?, value: Any?) {
+        when(key){
+            MsgType.TASK_REFUND -> {//退款后结束该页面
+                finish()
+            }
+        }
     }
 
     override fun onSuccess(url: String?, code: Int, entity: DataBean<Any>?) {
@@ -156,13 +169,35 @@ class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<A
             }
             DqUrl.url_task_changeTime -> {
                 DqToast.showCenterShort("延期成功!")
+                apply_extension.visibility = View.GONE
             }
         }
     }
 
     override fun payDetailClick(mYear: String?, mMonth: String?, date: String?) {
         val endTime = "$mYear-$mMonth-$date"
-        val time = com.da.library.utils.DateUtil.getStringToCalendar(endTime, com.da.library.utils.DateUtil.YMD).timeInMillis.toString()
-        changeTask(time)
+        val time = com.da.library.utils.DateUtil.getStringToCalendar(endTime, com.da.library.utils.DateUtil.YMD).timeInMillis
+        if (time <= taskBean.extime){
+            DqToast.showCenterShort("延期时间不能小于当前的截止时间!")
+            return
+        }
+        val calender = Calendar.getInstance(Locale.CHINESE)
+        calender.add(Calendar.DATE,1);//把日期往后增加两天.整数往后推,负数往前移动
+        calender.set(Calendar.HOUR_OF_DAY, 0)//时
+        calender.set(Calendar.MINUTE, 0)//分
+        calender.set(Calendar.SECOND, 0)//秒
+        val timeAfter2 = calender.timeInMillis
+        if (time <= timeAfter2){
+            DqToast.showCenterShort("延期时间不能小于两天后的时间!")
+            return
+        }
+        task_complete_end_time.text = endTime
+        changeTask(time.toString())
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MsgMgr.getInstance().detach(this)
+    }
+
 }

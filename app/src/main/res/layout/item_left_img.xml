@@ -6,10 +6,17 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/item_left_img_iv"
-        android:layout_width="@dimen/dd_dp100"
-        android:layout_height="@dimen/dd_dp150"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/dd_dp100"
+        android:maxHeight="@dimen/dd_dp150"
+        android:minWidth="@dimen/dd_dp80"
+        android:minHeight="@dimen/dd_dp100"
+        android:adjustViewBounds="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher"
-        android:scaleType="fitStart"
-        android:gravity="start"/>
+        android:scaleType="fitCenter"
+        android:gravity="start"
+        android:padding="@dimen/dp_2"
+        android:background="@drawable/bg_corner_5_e8e8e8"/>
 </RelativeLayout>

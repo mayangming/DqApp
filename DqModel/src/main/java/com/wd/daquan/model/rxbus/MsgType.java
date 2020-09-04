@@ -259,4 +259,9 @@ public class MsgType {
      * 赚钱功能中 任务状态修改时候刷新
      */
     public static final String TASK_MAKE_MONEY_REFRESH = "makeMoneyTaskRefresh";
+
+    /**
+     * 赚钱功能中 任务状态修改时候刷新
+     */
+    public static final String TASK_MONEY_REFUND_SUCCESS = "taskMoneyRefundSuccess";
 }

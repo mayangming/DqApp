@@ -39,6 +39,7 @@ public class LeftTextViewHolderBind extends BaseLeftViewHolderBind<LeftTextViewH
         MessageTextBean messageTextBean = gson.fromJson(content,MessageTextBean.class);
 //        String text = AESHelper.decryptString(messageTextBean.getDescription());
         String text = AESUtil.decode(messageTextBean.getDescription());
+
         Log.e("YM","接收的消息:"+text);
 //        text = "你[0x1f600]好啊[0x1f60a]";
         text = StringUtils.matcherContent(text);

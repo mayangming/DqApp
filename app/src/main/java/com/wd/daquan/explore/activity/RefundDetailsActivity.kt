@@ -8,6 +8,7 @@ import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.SendTaskBean
 import com.wd.daquan.model.log.DqToast
 import kotlinx.android.synthetic.main.activity_refund_details.*
+import kotlinx.android.synthetic.main.activity_send_task.*
 import java.math.BigDecimal
 
 /**
@@ -27,6 +28,7 @@ class RefundDetailsActivity : DqBaseActivity<SendTaskPresenter, DataBean<Any>>()
     }
 
     override fun initView() {
+        initTitle()
     }
 
     override fun initData() {
@@ -34,6 +36,12 @@ class RefundDetailsActivity : DqBaseActivity<SendTaskPresenter, DataBean<Any>>()
         refund_task_id.text = "任务ID: $taskId"
         refundMoney()
         getUserTaskByTaskId()
+    }
+
+
+    private fun initTitle(){
+        refund_details_title.title = "退款详情"
+        refund_details_title.leftIv.setOnClickListener { finish() }
     }
 
     /**

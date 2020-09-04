@@ -1,11 +1,6 @@
 package com.wd.daquan.chat;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ad.libary.AdSdkCompact;
 import com.ad.libary.bean.AdCodeInfoBean;
@@ -57,11 +58,7 @@ import com.wd.daquan.model.sp.QCSharedPrefManager;
 import com.wd.daquan.third.fragment.ConversationListFragment;
 import com.wd.daquan.third.fragment.MainTabFragment;
 import com.wd.daquan.third.session.extension.RedRainSystemAttachment;
-import com.wd.daquan.util.AdConfig;
-import com.wd.daquan.util.TTAdManagerHolder;
-import com.wd.daquan.util.TToast;
-
-import java.util.List;
+import com.wd.daquan.util.DobbleClickUtils;
 
 import cn.iwgang.countdownview.CountdownView;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
@@ -975,7 +972,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
             @Override
             public void rewardVideoOnRewardVideoAdLoad() {
-
+                Log.e("YM--------->","rewardVideoOnRewardVideoAdLoad");
             }
 
             @Override
@@ -985,8 +982,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             }
 
             @Override
-            public void rewardVideoOnRewardVideoCached() {
-
+            public void rewardVideoOnRewardVideoCached() {//使用缓存加载
+                Log.e("YM--------->","rewardVideoOnRewardVideoCached");
+                rewardVideoAdCompat.showAd(getActivity());
             }
 
             @Override

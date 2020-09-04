@@ -44,7 +44,6 @@ class TestActivity : BaseActivity(){
             }
 
             override fun downloadListener(downLoadListener: DqAppDownloadListener) {
-                TODO("Not yet implemented")
             }
         })
     }

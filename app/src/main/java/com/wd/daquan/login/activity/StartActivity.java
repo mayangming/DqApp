@@ -77,6 +77,7 @@ public class StartActivity extends AppCompatActivity {
             return;
         }
         String httpUrl = "http://".concat(httpProxy).concat(":9010/");
+        DqUrl.SERVER = "http://".concat(httpProxy).concat(":8086/");
         DqUrl.SERVER_OPEN = "http://".concat(httpProxy).concat(":8086/");
         // 全局 BaseUrl 的优先级低于 Domain-Name header 中单独配置的,其他未配置的接口将受全局 BaseUrl 的影响
         RetrofitUrlManager.getInstance().setGlobalDomain(httpUrl);

@@ -31,6 +31,7 @@ import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.presenter.Presenter;
 import com.wd.daquan.imui.constant.IntentCode;
+import com.wd.daquan.util.DobbleClickUtils;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -78,7 +79,6 @@ public abstract class DqBaseActivity<P extends Presenter.IPresenter, T> extends 
     protected void onStart() {
         super.onStart();
     }
-
 
     protected void initStatusBar() {
 

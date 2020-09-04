@@ -61,4 +61,5 @@ class MakeMoneyTaskMineAdapter(): RecycleBaseAdapter<MakeMoneyTaskMineViewHolder
         recycleView.layoutManager = LinearLayoutManager(recycleView.context, RecyclerView.HORIZONTAL,false)
     }
 
+
 }

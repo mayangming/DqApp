@@ -1,6 +1,7 @@
 package com.ad.libary;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -33,6 +34,7 @@ public class AdSdkManager {
         this.sdkAdBuild = sdkAdBuild;
         switch (sdkAdBuild.type){
             case AD_TT:
+                Log.e("YM------>","初始化穿山甲----------");
                 TTAdManagerHolder.init(mContext,sdkAdBuild);
                 break;
             case AD_GDT:

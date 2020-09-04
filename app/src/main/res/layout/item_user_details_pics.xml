@@ -6,8 +6,9 @@
 
     <ImageView
         android:id="@+id/user_info_details_pics"
-        android:layout_width="@dimen/dd_dp56"
-        android:layout_height="@dimen/dd_dp56"
-        android:layout_marginEnd="@dimen/dd_dp9"/>
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/dd_dp9"
+        android:scaleType="matrix"/>
 
 </LinearLayout>

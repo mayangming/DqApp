@@ -2,6 +2,7 @@ package com.ad.libary.compat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.ad.libary.AdSdkManager;
 import com.ad.libary.kind.AdRewardVideoIpc;
@@ -26,6 +27,7 @@ public class RewardVideoAdCompat implements AdRewardCompatIpc {
         this.adType = AdSdkManager.getInstance(context).getAdType();
         switch (adType){
             case AD_TT:
+                Log.e("YM","------初始化穿山甲--->");
                 adRewardVideoIpc = new TTRewardVideoAd(context);
                 break;
             case AD_GDT:

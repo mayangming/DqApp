@@ -127,7 +127,7 @@ public class CaptchaImgDialog extends BaseDialog {
         paramsRetrofit.put("phone", phone);
         paramsRetrofit.put("userId",phone);
         RetrofitHelp.getUserApi().captchaImg(DqUrl.url_get_getImageVerifyCode,RetrofitHelp.getRequestBodyByFromData(paramsRetrofit)).enqueue(new DqCallBack<DataBean<CaptchaBean>>(){
-            @Override
+                @Override
             public void onSuccess(String url, int code, DataBean<CaptchaBean> entity) {
                 Log.e("YM","获取的数据结果"+entity.toString());
                 if (0 != entity.result){

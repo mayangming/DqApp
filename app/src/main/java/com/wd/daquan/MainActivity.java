@@ -1233,6 +1233,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
         MessageSystemBean messageSystemBean = GsonUtils.fromJson(imMessageBaseModel.getSourceContent(),MessageSystemBean.class);
         String content = "";
         switch (messageType){
+            case TEXT:
+                content = messageSystemBean.getDescription();
+                break;
             case FRIEND_ADD://添加好友
                 ModuleMgr.getAppManager().addFriendUnread(messageSystemBean.getFromUserId());
                 MsgMgr.getInstance().sendMsg(MsgType.MT_CONTACT_NOTIFY, null);

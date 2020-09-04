@@ -37,7 +37,7 @@ public class UrlConfig {
         return getServer() + url;
     }
     private static String getServer(){
-        return BuildConfig.SERVER;
+        return BuildConfig.SERVER_SDK;
     }
 
 //    private static String getServer(){

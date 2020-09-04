@@ -1,5 +1,6 @@
 package com.wd.daquan;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -111,9 +112,21 @@ public class DqApp extends Application {
             initFile();
             RecordManager.getInstance().init(this, false);
             RecordManager.getInstance().changeFormat(RecordConfig.RecordFormat.MP3);
+        }else {
+            WebView.setDataDirectorySuffix(getProcessName(this));
         }
 
         initAd();
+    }
+    public  String getProcessName(Context context) {
+        if (context == null) return null;
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
+            if (processInfo.pid == android.os.Process.myPid()) {
+                return processInfo.processName;
+            }
+        }
+        return null;
     }
     /**
      * 初始化文件夹

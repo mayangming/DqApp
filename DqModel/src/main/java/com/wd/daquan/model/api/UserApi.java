@@ -49,14 +49,14 @@ public interface UserApi{
      * 获取好友列表
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<List<Friend>>> getFriendList(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 获取好友信息
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<Friend>> getFriend(@Url String url, @Body RequestBody requestBody);
 
     /**
@@ -70,7 +70,7 @@ public interface UserApi{
      * 获取好友请求列表
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<List<NewFriendBean>>> getFriendRequestList(@Url String url, @Body RequestBody requestBody);
 
     /**
@@ -155,28 +155,28 @@ public interface UserApi{
      * 好友请求应答策略
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<CommRespEntity>> getFriendInvite(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 设置好友备注
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean> setRemarkName(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 删除好友
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean> delFriend(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 聊天开关相关接口
      */
     @POST
-//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean> userSwitch(@Url String url, @Body RequestBody requestBody);
 
     /**

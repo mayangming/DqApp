@@ -21,6 +21,7 @@ public class SendTaskBean implements Serializable {
     private String taskname = "支付宝下载任务";
     private String taskpic = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596195164793&di=e8024d595a842c080cf5a0a07c1c0e14&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170615%2F1TH010Z-7.jpg";
     private String typePic = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596195164793&di=e8024d595a842c080cf5a0a07c1c0e14&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170615%2F1TH010Z-7.jpg";
+    private String classPic = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596195164793&di=e8024d595a842c080cf5a0a07c1c0e14&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170615%2F1TH010Z-7.jpg";
     private String typeName = "";//平台名字
     private String className = "";//任务类型名字
     private long taskmoney = 100;//赏金
@@ -29,6 +30,12 @@ public class SendTaskBean implements Serializable {
     private int isPass = 0;//审核状态 0:待提交审核 1:审核中 2:通过 3:拒绝
     private int isPay = 0;//是否付款  0:未付款 1:付款 2:申请退款 3:退款成功 4:退款拒绝 5:退款失败
     private String reason = "审核结果";//审核结果
+
+    private String extimeStr = "";//任务结束的截止时间
+    private String advancePayment = "";//预付赏金内容
+    private String taskmoneyStr = "";//赏金文本内容
+    private String classnumStr = "";//任务数量内容
+
     private List<String> taskLabelList = new ArrayList<>();
 
     public String getId() {
@@ -205,5 +212,45 @@ public class SendTaskBean implements Serializable {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getClassPic() {
+        return classPic;
+    }
+
+    public void setClassPic(String classPic) {
+        this.classPic = classPic;
+    }
+
+    public String getExtimeStr() {
+        return extimeStr;
+    }
+
+    public void setExtimeStr(String extimeStr) {
+        this.extimeStr = extimeStr;
+    }
+
+    public String getAdvancePayment() {
+        return advancePayment;
+    }
+
+    public void setAdvancePayment(String advancePayment) {
+        this.advancePayment = advancePayment;
+    }
+
+    public String getTaskmoneyStr() {
+        return taskmoneyStr;
+    }
+
+    public void setTaskmoneyStr(String taskmoneyStr) {
+        this.taskmoneyStr = taskmoneyStr;
+    }
+
+    public String getClassnumStr() {
+        return classnumStr;
+    }
+
+    public void setClassnumStr(String classnumStr) {
+        this.classnumStr = classnumStr;
     }
 }

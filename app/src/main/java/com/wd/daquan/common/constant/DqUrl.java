@@ -27,7 +27,7 @@ public class DqUrl {
     /**
      * App内部使用域名
      */
-    public static final String SERVER = BuildConfig.SERVER;
+    public static String SERVER = BuildConfig.SERVER;
 
 //    /**
 //     * FILE生产服务器文件地址

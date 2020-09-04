@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_ff999999"
             android:textSize="@dimen/sp12"
-            tools:text="报名时间：2020-0727" />
+            tools:text="发布时间：2020-0727" />
 
         <TextView
             android:id="@+id/task_status"

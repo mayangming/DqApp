@@ -1,7 +1,9 @@
 package com.wd.daquan.mine.activity;
 
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import com.wd.daquan.mine.presenter.WalletCloudPresenter;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.WXLoginEntity;
 import com.wd.daquan.model.log.DqToast;
+import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.QCObserver;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
@@ -39,12 +42,16 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
     private long balance = 0;
     private View withdrawNext;
     private EditText payNumberEdt;
+    private TextView handlingFee;//手续费
+    private TextView actualAmount;//实际到账金额
     private View balanceAll;//全部提现
     private TextView bindWeChatStatus;//绑定状态
     private View bindWechatRl;//绑定状态布局
     private String uid;
     private WXLoginEntity mWxLoginEntity;
-//    private int amountLimit = BuildConfig.IS_DUBUG ? 1 : 100;//提现金额限制
+    private View handlingFeeLl;//手续费布局
+    private TextView vipTip;//会员手续费提示
+    //    private int amountLimit = BuildConfig.IS_DUBUG ? 1 : 100;//提现金额限制
     private int amountLimit = 100;//提现金额限制
     @Override
     protected WalletCloudPresenter createPresenter() {
@@ -64,6 +71,10 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         balanceAll = findViewById(R.id.withdraw_balance_all);
         bindWeChatStatus = findViewById(R.id.bind_wechat_status);
         bindWechatRl = findViewById(R.id.bind_wechat_rl);
+        handlingFee = findViewById(R.id.handlingFee);
+        actualAmount = findViewById(R.id.actualAmount);
+        handlingFeeLl = findViewById(R.id.handlingFeeLl);
+        vipTip = findViewById(R.id.vip_tip);
         withdrawNext.setOnClickListener(this);
         balanceAll.setOnClickListener(this);
         bindWechatRl.setOnClickListener(this);
@@ -77,14 +88,89 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         QCSharedPrefManager mSharedPrefManager = QCSharedPrefManager.getInstance();
         EBSharedPrefUser mEBSharedPrefUser = mSharedPrefManager.getKDPreferenceUserInfo();
         uid = mEBSharedPrefUser.getString(EBSharedPrefUser.uid, "");
+        refreshWxStatus();
+    }
+
+    /**
+     * 刷新微信绑定状态
+     */
+    private void refreshWxStatus(){
 
         if(mPresenter != null){
             LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
             linkedHashMap.put("uid", uid);
             mPresenter.getBindWeixinStatus(DqUrl.url_oauth_bindWeixinStatus, linkedHashMap);
         }
+
+        if(ModuleMgr.getCenterMgr().isVip()){//是会员的话进行隐藏
+            handlingFeeLl.setVisibility(View.GONE);
+            vipTip.setVisibility(View.VISIBLE);
+        }else {
+            handlingFeeLl.setVisibility(View.VISIBLE);
+            vipTip.setVisibility(View.GONE);
+        }
     }
 
+    @Override
+    protected void initListener() {
+        super.initListener();
+        payNumberEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                calculationHandlingFee();
+            }
+        });
+    }
+
+    /**
+     * 计算手续费
+     */
+    private void calculationHandlingFee(){
+        String withdrawString = payNumberEdt.getText().toString();//提现金额
+        if (TextUtils.isEmpty(withdrawString)){
+            handlingFee.setText("￥0.00");
+            actualAmount.setText("￥0.00");
+            return;
+        }
+        BigDecimal cacluatRate = BigDecimalUtils.str2BigDecimal("0.01");//10%的提现
+        BigDecimal withdrawBigDecimal = BigDecimalUtils.str2BigDecimal(withdrawString);//提现金额
+        BigDecimal handlingFeeDecimal = withdrawBigDecimal.multiply(cacluatRate).setScale(2, BigDecimal.ROUND_UP);//保留两位小数,直接进位处理
+        BigDecimal actualBigDecimal = withdrawBigDecimal.subtract(handlingFeeDecimal).setScale(2, BigDecimal.ROUND_UP);//实际金额
+        handlingFee.setText("￥"+handlingFeeDecimal.toPlainString());
+        actualAmount.setText("￥"+actualBigDecimal.toPlainString());
+    }
+
+    //    /**
+//     * 计算预付金
+//     */
+//    private fun calculationAdvancePayment(){
+//        if (TextUtils.isEmpty(send_task_unit_price_edt.text.toString()) || TextUtils.isEmpty(send_task_count_edt.text.toString())){
+//            send_task_advance_payment_edt.text = "成交额10%为服务费"
+//            return
+//        }
+//        val cacluatRate = BigDecimalUtils.str2BigDecimal("0.1")//10%的预付金比例
+//        val unitPriceStr = send_task_unit_price_edt.text.toString()
+//        val countStr = send_task_count_edt.text.toString()
+//
+//        val unitPrice = BigDecimalUtils.str2BigDecimal(unitPriceStr)
+//        val count = BigDecimalUtils.str2BigDecimal(countStr)
+//        val countPrice = unitPrice.multiply(count).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
+//        val calculationAdvancePayment = countPrice.multiply(cacluatRate).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
+////        send_task_advance_payment_edt.text = calculationAdvancePayment.toPlainString() + "￥"
+//        countPriceInt = countPrice.multiply(BigDecimalUtils.int2BigDecimal(100)).setScale(2, BigDecimal.ROUND_UP).toDouble()
+//
+//        send_task_advance_payment_edt.text = countPrice.add(calculationAdvancePayment).toPlainString() + "￥"
+//
+//    }
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -107,6 +193,7 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         Integer status = (Integer) value;
         Log.e("YM","接收状态:"+status);
         status(status);
+        refreshWxStatus();
     }
 
     //状态
@@ -214,6 +301,7 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
     @Override
     public void onFailed(String url, int code, DataBean entity) {
         super.onFailed(url, code, entity);
+        dismissLoading();
         if (DqUrl.url_user_cash_withdrawal.equals(url)){
             NavUtils.gotoWithdrawResultActivity(this,entity.result,entity.content);
         }

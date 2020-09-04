@@ -12,10 +12,12 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.red.libary.R;
 import com.red.libary.animation.FallingPathAnimation;
 import com.red.libary.ipc.FallingOnClickIpc;
+import com.red.libary.utils.DobbleClickUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.Random;
@@ -153,6 +155,10 @@ public class FallingLayout extends RelativeLayout {
             @Override
             public void onClick(View v) {
 //                showDailog();
+                if (DobbleClickUtils.isFastClick()){//禁止红包快速点击
+                    Toast.makeText(getContext(),"不允许快速点击!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (null != fallingOnClickIpc){
                     fallingOnClickIpc.onClickFalling();
                 }

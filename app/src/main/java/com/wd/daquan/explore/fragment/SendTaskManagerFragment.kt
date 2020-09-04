@@ -72,6 +72,7 @@ class SendTaskManagerFragment: BaseFragment<SendTaskPresenter, DataBean<List<Sen
 
     fun refreshList(){
         pageNum = 1
+        getTaskList()
     }
 
     private fun getTaskList(){

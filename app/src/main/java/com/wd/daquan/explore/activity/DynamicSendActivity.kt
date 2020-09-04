@@ -89,21 +89,24 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         }
         when(v){
             dynamic_send_title.rightIv ->{
-                isSending = true
-                dynamic_send_title.rightIv.isEnabled = false
-                showLoading("正在发布动态...")
                 pics = dynamicSendAdapter?.photos?.filter {
                     it.dynamicSendPhotoType == DynamicSendPhotoType.NORMAL
                 }?.map {
                     it.uri
                 } as ArrayList<Uri>
-
+                val dynamicDesc = dynamic_send_content.text.toString()
+                if (dynamicDesc.isEmpty()){
+                    DqToast.showCenterShort("动态不能为空!")
+                    return
+                }
+                isSending = true
+                dynamic_send_title.rightIv.isEnabled = false
+                showLoading("正在发布动态...")
                 if (pics.isNullOrEmpty()){
                     sendDynamic(arrayListOf())
-                }else{
-                    createUploadPhotos()
+                    return
                 }
-
+                createUploadPhotos()
             }
         }
     }
@@ -131,7 +134,6 @@ class DynamicSendActivity: DqBaseActivity<DynamicSendPresenter, DataBean<Any>>()
         dynamic_send_rv.adapter = dynamicSendAdapter
         dynamic_send_rv.addItemDecoration(SpacesItemDecoration(20))
     }
-
 
     /**
      * 创建上传集合

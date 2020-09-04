@@ -21,7 +21,6 @@ import com.wd.daquan.common.utils.CashierInputFilter
 import com.wd.daquan.common.utils.DialogUtils
 import com.wd.daquan.common.utils.NavUtils
 import com.wd.daquan.explore.bean.CustomTaskTypeBean
-import com.wd.daquan.explore.bean.SendTaskDraftBean
 import com.wd.daquan.explore.dialog.TaskTypeDialog
 import com.wd.daquan.explore.presenter.SendTaskPresenter
 import com.wd.daquan.mine.listener.PayDetailListener
@@ -49,7 +48,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private var countPriceInt = 0.0 //待支付的总金额
     private var payType = MessageRedPackageBean.RED_PACKAGE_CHANGE//支付类型
     private var lastTaskSendDraft = ""//上次内容发布的草稿
-    private var sendTaskDraftBean = SendTaskDraftBean()//任务草稿
+    private var sendTaskDraftBean = SendTaskBean()//任务草稿
     private var taskId = ""//任务ID
     private var yearIndex = 0//年的索引值
     private var monthIndex = 0//月的索引值
@@ -87,9 +86,11 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         }
         lastTaskSendDraft = ModuleMgr.getCenterMgr().lastTaskSendDraft
         if (!TextUtils.isEmpty(lastTaskSendDraft)){
-            sendTaskDraftBean = GsonUtils.fromJson(lastTaskSendDraft,SendTaskDraftBean::class.java)
-            companyTypeBean = sendTaskDraftBean.companyTypeBean
-            classificationTypeBean = sendTaskDraftBean.classificationTypeBean
+            sendTaskDraftBean = GsonUtils.fromJson(lastTaskSendDraft,SendTaskBean::class.java)
+            companyTypeBean = CustomTaskTypeBean(sendTaskDraftBean.type,sendTaskDraftBean.typePic,sendTaskDraftBean.typeName)
+            classificationTypeBean = CustomTaskTypeBean(sendTaskDraftBean.classification,sendTaskDraftBean.classPic,sendTaskDraftBean.className)
+            taskId = sendTaskDraftBean.id
+            sendTaskBean = sendTaskDraftBean
             updateUIForDraft()
         }
         getTaskCompanyList()
@@ -125,9 +126,9 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         task_company_name.text = companyTypeBean.typeName
         task_classification_name.text = classificationTypeBean.typeName
         send_task_title_edt.text.append(sendTaskDraftBean.taskname)
-        send_task_end_time.text = sendTaskDraftBean.extime
-        send_task_unit_price_edt.text.append(sendTaskDraftBean.taskmoney)
-        send_task_count_edt.text.append(sendTaskDraftBean.classnum)
+        send_task_end_time.text = sendTaskDraftBean.extimeStr
+        send_task_unit_price_edt.text.append(sendTaskDraftBean.taskmoneyStr)
+        send_task_count_edt.text.append(sendTaskDraftBean.classnumStr)
         send_task_description_edt.text.append(sendTaskDraftBean.taskexplain)
         send_task_advance_payment_edt.text = sendTaskDraftBean.advancePayment
         send_task_description_count.text = "${sendTaskDraftBean.taskexplain.length}/40"
@@ -186,6 +187,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 //            }
         }
         if (sendTaskBean.expires == 1){//已经下架
+            switchEdt(false)
             task_status_content.text = "已下架"
             update_task_status.text = "查看详情"
             update_task_status.setTextColor(resources.getColor(R.color.color_EF5B40))
@@ -242,6 +244,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         send_task_unit_price_edt.isEnabled = isEdt
         send_task_count_edt.isEnabled = isEdt
         send_task_description_edt.isEnabled = isEdt
+        task_release_guide.isEnabled = isEdt
     }
 
     /**
@@ -442,12 +445,13 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 
         val unitPrice = BigDecimalUtils.str2BigDecimal(unitPriceStr)
         val count = BigDecimalUtils.str2BigDecimal(countStr)
-        val countPrice = unitPrice.multiply(count).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
-        val calculationAdvancePayment = countPrice.multiply(cacluatRate).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
+        val countPrice = unitPrice.multiply(count).setScale(2, BigDecimal.ROUND_UP)//当前的价格，保留两位小数,直接进位处理
+        val calculationAdvancePayment = countPrice.multiply(cacluatRate).setScale(2, BigDecimal.ROUND_UP)//手续费，保留两位小数,直接进位处理
 //        send_task_advance_payment_edt.text = calculationAdvancePayment.toPlainString() + "￥"
-        countPriceInt = countPrice.multiply(BigDecimalUtils.int2BigDecimal(100)).setScale(2, BigDecimal.ROUND_UP).toDouble()
-
-        send_task_advance_payment_edt.text = countPrice.add(calculationAdvancePayment).toPlainString() + "￥"
+//        countPriceInt = countPrice.multiply(BigDecimalUtils.int2BigDecimal(100)).setScale(2, BigDecimal.ROUND_UP).toDouble()
+        val sumPrice = countPrice.add(calculationAdvancePayment).setScale(2, BigDecimal.ROUND_UP)//当前价格 + 手续费
+        countPriceInt = sumPrice.multiply(BigDecimalUtils.int2BigDecimal(100)).setScale(2, BigDecimal.ROUND_UP).toDouble()
+        send_task_advance_payment_edt.text = sumPrice.toPlainString() + "￥"
 
     }
 
@@ -476,8 +480,11 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private fun updateTaskStatus2(){
 
         DqLog.e("YM------->任务ID:${taskId} isPay:${sendTaskBean.isPay} isPass:${sendTaskBean.isPass}")
-
-        if (!TextUtils.isEmpty(taskId) && sendTaskBean.isPay == 1 && sendTaskBean.isPass == 0){//假如id不为空,且已经付款了，但是没有处于待提交，则为更改任务
+        if(sendTaskBean.expires == 1){//任务已过期则不能继续点击
+            return
+        }
+//        if (!TextUtils.isEmpty(taskId) && (sendTaskBean.isPay == 1 || sendTaskBean.isPay == 3) && sendTaskBean.isPass == 0){//假如id不为空,且已经付款了，但是没有处于待提交，则为更改任务
+        if (!TextUtils.isEmpty(taskId) && sendTaskBean.isPass == 0){//假如id不为空,且已经付款了，但是没有处于待提交，则为更改任务
             val isPass = checkParams()
             if (!isPass) return
             updateTaskContent()
@@ -509,6 +516,11 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
      * 根据不同状态对任务进行更改
      */
     private fun updateTaskStatus(){
+        if(sendTaskBean.expires == 1){//任务已过期则不能继续点击
+            //查看详情
+            NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
+            return
+        }
         if (sendTaskBean.isPass == 0){
             DqToast.showCenterShort("保存草稿成功~")
             createTaskDraft()
@@ -526,6 +538,10 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
         }else if (sendTaskBean.isPass == 3){//拒绝
             sendTaskBean.isPass = 0
+            sendTaskBean.isPay = 3
+//            if (sendTaskBean.isPay == 3 || sendTaskBean.isPay == 2 || sendTaskBean.isPay == 4 ){//退款成功的话改成未付款状态
+//                sendTaskBean.isPay = 0
+//            }
             updateUIForDetails()
             DqToast.showCenterShort("解除编辑限制,请重新编辑!")
 //            if(sendTaskBean.isPay == 1){//已经付款
@@ -551,6 +567,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 
     private fun initDateDialog(){
         val now = Calendar.getInstance()
+        now.add(Calendar.DAY_OF_MONTH,2)
         val years = now[Calendar.YEAR]
         val month = now[Calendar.MONTH] + 1
         val day = now[Calendar.DAY_OF_MONTH]
@@ -631,7 +648,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
      * 检查支付类型
      */
     private fun checkPayType() {
-        if (countPriceInt < userWallet.getBalance()) { //当支付金额小于零钱余额时候，直接发送出去，后台收到这条消息时候会直接根据红包消息去扣除零钱余额
+        if (countPriceInt < userWallet.balance) { //当支付金额小于零钱余额时候，直接发送出去，后台收到这条消息时候会直接根据红包消息去扣除零钱余额
             payType = MessageRedPackageBean.RED_PACKAGE_CHANGE
             //                    MsgMgr.getInstance().sendMsg(MsgType.CHAT_RED_PACKAGE, messageRedPackageBean);
 //                    finish();
@@ -702,14 +719,21 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
      * 创建任务草稿
      */
     private fun createTaskDraft(){
+        sendTaskDraftBean = sendTaskBean
         val unitPrice = send_task_unit_price_edt.text.toString()
-        sendTaskDraftBean.classificationTypeBean = classificationTypeBean
-        sendTaskDraftBean.companyTypeBean = companyTypeBean
+        sendTaskDraftBean.id = taskId
+        sendTaskDraftBean.classification = classificationTypeBean.typeId
+        sendTaskDraftBean.className = classificationTypeBean.typeName
+        sendTaskDraftBean.classPic = classificationTypeBean.typeName
+        sendTaskDraftBean.type = companyTypeBean.typeId
+        sendTaskDraftBean.typeName = companyTypeBean.typeName
+        sendTaskDraftBean.typePic = companyTypeBean.typePic
+
         sendTaskDraftBean.taskname = send_task_title_edt.text.toString()
-        sendTaskDraftBean.classnum = send_task_count_edt.text.toString()
-        sendTaskDraftBean.taskmoney = unitPrice
+        sendTaskDraftBean.classnumStr = send_task_count_edt.text.toString()
+        sendTaskDraftBean.taskmoneyStr = unitPrice
         sendTaskDraftBean.taskexplain = send_task_description_edt.text.toString()
-        sendTaskDraftBean.extime = send_task_end_time.text.toString()
+        sendTaskDraftBean.extimeStr = send_task_end_time.text.toString()
         sendTaskDraftBean.advancePayment = send_task_advance_payment_edt.text.toString()
         lastTaskSendDraft = GsonUtils.toJson(sendTaskDraftBean)
         DqLog.e("YM","任务草稿内容:$lastTaskSendDraft")
@@ -785,6 +809,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                 companyTypeBean.typeId = sendTaskBean.type
                 classificationTypeBean.typeName = sendTaskBean.className
                 classificationTypeBean.typeId = sendTaskBean.classification
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")
             }
             DqUrl.url_task_type -> {//厂商类型
                 val taskTypeBean = entity.data as List<TaskTypeBean>

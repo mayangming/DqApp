@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/color_F8F8F8">
     <com.da.library.widget.CommTitle
-        android:id="@+id/task_send_details_title"
+        android:id="@+id/refund_details_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dd_dp44" />
     <androidx.constraintlayout.widget.ConstraintLayout
