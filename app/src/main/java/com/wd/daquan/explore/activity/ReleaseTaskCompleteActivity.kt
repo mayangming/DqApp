@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.da.library.tools.DateUtil
 import com.meetqs.qingchat.pickerview.view.OptionsPickerView
+import com.netease.nim.uikit.common.ui.recyclerview.decoration.SpacingDecoration
 import com.wd.daquan.R
 import com.wd.daquan.common.activity.DqBaseActivity
 import com.wd.daquan.common.constant.DqUrl
@@ -23,6 +24,7 @@ import com.wd.daquan.model.rxbus.MsgType
 import com.wd.daquan.model.rxbus.QCObserver
 import kotlinx.android.synthetic.main.activity_release_task_details.*
 import kotlinx.android.synthetic.main.activity_unread.*
+import kotlinx.android.synthetic.main.fragment_make_money_task_mine.*
 import java.util.*
 
 /**
@@ -90,15 +92,16 @@ class ReleaseTaskCompleteActivity : DqBaseActivity<SendTaskPresenter, DataBean<A
         val linearManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
         task_complete_list.layoutManager = linearManager
         task_complete_list.emptyView = layoutInflater.inflate(R.layout.layout_empty_view,friend_unread_refreshLayout,false)
+        task_complete_list.addItemDecoration(SpacingDecoration(30,20,false))
         task_complete_list.adapter = taskCompleteAdapter
     }
     private fun initDateDialog(){
         val now = Calendar.getInstance()
         val years = now[Calendar.YEAR]
         val date = now[Calendar.MONTH] + 1
-        val listYear = com.da.library.tools.DateUtil.getWheelYearLayer(this, now)
-        val listMonth = com.da.library.tools.DateUtil.getWheelMonth(this)
-        val listDate = com.da.library.tools.DateUtil.getWheelDate(this)
+        val listYear = DateUtil.getWheelYearLayer(this, now)
+        val listMonth = DateUtil.getWheelMonth(this)
+        val listDate = DateUtil.getWheelDate(this)
         mPvOptions = DialogUtils.showYearToDate(this, listYear, listMonth
                 , listDate, date, this)
     }

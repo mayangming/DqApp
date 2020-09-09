@@ -164,6 +164,7 @@
     </LinearLayout>
     <com.wd.daquan.view.BaseRecycleView
         android:id="@+id/task_complete_list"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

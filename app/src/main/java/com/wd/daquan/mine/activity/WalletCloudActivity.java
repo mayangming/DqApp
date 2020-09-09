@@ -12,13 +12,16 @@ import com.wd.daquan.mine.presenter.WalletCloudPresenter;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.UserCloudWallet;
 import com.wd.daquan.model.log.DqToast;
+import com.wd.daquan.model.rxbus.MsgMgr;
+import com.wd.daquan.model.rxbus.MsgType;
+import com.wd.daquan.model.rxbus.QCObserver;
 
 import java.util.HashMap;
 
 /**
  * 零钱页面
  */
-public class WalletCloudActivity extends DqBaseActivity<WalletCloudPresenter, DataBean> {
+public class WalletCloudActivity extends DqBaseActivity<WalletCloudPresenter, DataBean> implements QCObserver {
 
     private View walletContainer;//斗圈零钱外布局
     private View withdraw;//提现
@@ -61,10 +64,25 @@ public class WalletCloudActivity extends DqBaseActivity<WalletCloudPresenter, Da
     }
 
     @Override
+    public void onMessage(String key, Object value) {
+        switch (key){
+            case MsgType.WITHDRAW_PWD_RESULT:{
+                refreshUserCloudWallet();
+                break;
+            }
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        refreshUserCloudWallet();
+    }
+
+    private void refreshUserCloudWallet(){
         mPresenter.getUserCloudWallet(DqUrl.url_user_cloud_wallet,new HashMap<>());
     }
+
 
     public void onClick(View view){
         super.onClick(view);
@@ -77,6 +95,8 @@ public class WalletCloudActivity extends DqBaseActivity<WalletCloudPresenter, Da
 
                 if (!userCloudWallet.isPwdIsSet()){
                     DqToast.showShort("请先设置密码才可以提现！");
+                    //提现密码
+                    NavUtils.gotoPayPasswordActivityActivity(this);
                     break;
                 }
 

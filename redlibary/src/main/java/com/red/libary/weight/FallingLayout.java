@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -48,6 +49,8 @@ public class FallingLayout extends RelativeLayout {
     private FallingThread  mFallingThread;
     private FallingOnClickIpc fallingOnClickIpc;
     private volatile boolean isStopRedRain;//是否结束红包雨，默认为false
+    private boolean isEnableClickRedRain = true;//是否允许点击红包雨
+    private String enableClickTip = "";//当触发不能点击红包雨时候如果存在提示，则显示提示，如果提示内容为空，则不进行提示
     public FallingLayout(Context context) {
         this(context,null);
     }
@@ -77,6 +80,22 @@ public class FallingLayout extends RelativeLayout {
      */
     public void setFallingOnClickIpc(FallingOnClickIpc fallingOnClickIpc) {
         this.fallingOnClickIpc = fallingOnClickIpc;
+    }
+
+    public boolean isEnableClickRedRain() {
+        return isEnableClickRedRain;
+    }
+
+    public void setEnableClickRedRain(boolean enableClickRedRain) {
+        isEnableClickRedRain = enableClickRedRain;
+    }
+
+    public String getEnableClickTip() {
+        return enableClickTip;
+    }
+
+    public void setEnableClickTip(String enableClickTip) {
+        this.enableClickTip = enableClickTip;
     }
 
     public void setRedPackageCoundSpeed(int speed){
@@ -144,6 +163,13 @@ public class FallingLayout extends RelativeLayout {
             R.mipmap.img_red_packet_10
     };
 
+    private boolean showEnableTip(){
+        if (!TextUtils.isEmpty(enableClickTip) && !isEnableClickRedRain){
+            Toast.makeText(getContext(),enableClickTip,Toast.LENGTH_SHORT).show();
+        }
+        return isEnableClickRedRain;
+    }
+
     /**
      *  添加单个漂移物
      */
@@ -155,6 +181,9 @@ public class FallingLayout extends RelativeLayout {
             @Override
             public void onClick(View v) {
 //                showDailog();
+                if (!showEnableTip()){
+                    return;
+                }
                 if (DobbleClickUtils.isFastClick()){//禁止红包快速点击
                     Toast.makeText(getContext(),"不允许快速点击!",Toast.LENGTH_SHORT).show();
                     return;

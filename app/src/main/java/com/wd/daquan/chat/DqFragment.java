@@ -1,5 +1,6 @@
 package com.wd.daquan.chat;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +46,6 @@ import com.wd.daquan.mine.dialog.VipExchangeResultDialog;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.RedEnvelopBean;
 import com.wd.daquan.model.interfaces.DqCallBack;
-import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ConfigManager;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -58,7 +58,6 @@ import com.wd.daquan.model.sp.QCSharedPrefManager;
 import com.wd.daquan.third.fragment.ConversationListFragment;
 import com.wd.daquan.third.fragment.MainTabFragment;
 import com.wd.daquan.third.session.extension.RedRainSystemAttachment;
-import com.wd.daquan.util.DobbleClickUtils;
 
 import cn.iwgang.countdownview.CountdownView;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
@@ -86,6 +85,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     private FallingLayout mFallingLayout;
     private View mFallingContent;
     private View mFallingClose;
+    private TextView redPackageCountTv;
     private ViewGroup rootView;
     private OpenGiftDialog openGiftDialog;
     private RedPackageTipDialog redPackageTipDialog;
@@ -102,14 +102,16 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     private boolean isStopRedRain = true;//是否手动停掉红包雨
     private ConversationListFragment fragment;
     private RewardVideoAdCompat rewardVideoAdCompat;
+    private Typeface iconfont;
+    private boolean adLoading = false;//广告是否在加载中
     @Override
     public void setContentView() {
         setContentView(R.layout.qc_qingchat_fragment);
-
     }
 
     @Override
     protected void onInit() {
+        iconfont = Typeface.createFromAsset(getActivity().getAssets(), "HYYakuHei-75W.ttf");
         initView();
         initListener();
 
@@ -249,6 +251,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         mFallingLayout.refreshSpeed(5000);
         mFallingContent.setVisibility(View.VISIBLE);
         mFallingLayout.startRedRain();
+        mFallingLayout.setEnableClickTip("广告加载中,不能进行点击红包!");
         redRainTv.setText("进行中");
     }
     @Override
@@ -288,6 +291,8 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         mFallingContent = getLayoutInflater().inflate(R.layout.falling_layout,rootView,false);
         mFallingLayout = mFallingContent.findViewById(R.id.red_package_falling);
         mFallingClose = mFallingContent.findViewById(R.id.red_package_falling_close);
+        redPackageCountTv = mFallingContent.findViewById(R.id.red_package_count_tv);
+        redPackageCountTv.setTypeface(iconfont);
         mFallingLayout.setdWidth(200);
         mFallingLayout.setdHeight(400);
 
@@ -372,8 +377,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    showRedPackageTip();
 //                    return;
 //                }
-                isStopRedRain = false;
-                startRain2();
+                NavUtils.gotoWebviewActivity(getContext(), "http://h.4399.com/play/215163.htm", getString(R.string.serviceUser));
+//                isStopRedRain = false;
+//                startRain2();
                 break;
             case R.id.main_turntable_lottery:
 //                showVipExchangeResultDialog();
@@ -571,6 +577,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         RetrofitHelp.getUserApi().getUserRedEnvelope(DqUrl.url_user_open_red_envelope,RetrofitHelp.getRequestBody(null)).enqueue(new DqCallBack<DataBean<RedEnvelopBean>>() {
             @Override
             public void onSuccess(String url, int code, DataBean<RedEnvelopBean> entity) {
+                redPackageEncourageTip();
                 openRedPackageIng = false;
                 RedEnvelopBean redEnvelopBean = entity.data;
                 String amount;
@@ -594,13 +601,30 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
                     return;
                 }
                 showOpenGift(amount,redEnvelopBean.isFlag());
-
             }
 
             @Override
             public void onFailed(String url, int code, DataBean<RedEnvelopBean> entity) {
                 Toast.makeText(getContext(),entity.content,Toast.LENGTH_LONG).show();
                 openRedPackageIng = false;
+            }
+        });
+    }
+
+    /**
+     * 红包鼓励提示
+     */
+    private void redPackageEncourageTip(){
+        RetrofitHelp.getUserApi().getUserRed(DqUrl.url_get_user_red,RetrofitHelp.getRequestBody(null)).enqueue(new DqCallBack<DataBean>() {
+            @Override
+            public void onSuccess(String url, int code, DataBean entity) {
+                if (entity.result == 0){
+                    String content = entity.data.toString();
+                    redPackageCountTv.setText(content);
+                }
+            }
+            @Override
+            public void onFailed(String url, int code, DataBean entity) {
             }
         });
     }
@@ -932,6 +956,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //        });
 //    }
     private void switchAd(String codeId) {
+        mFallingLayout.setEnableClickRedRain(false);
         SDKAdBuild sdkAdBuild = new SDKAdBuild();
         sdkAdBuild.mAppId = IConstant.AD.APP_ID;
         sdkAdBuild.mAppName = IConstant.AD.APP_NAME;
@@ -957,7 +982,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
             @Override
             public void switchFail() {
-
+                mFallingLayout.setEnableClickRedRain(true);
             }
         });
     }
@@ -967,6 +992,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         rewardVideoAdCompat.loadAd(codeId, RewardVideoAdCompat.VERTICAL,new RewardVideoListenerIpc(){
             @Override
             public void rewardVideoOnError(int i, String s) {
+                mFallingLayout.setEnableClickRedRain(true);
                 Log.e("YM","加载失败:"+s);
             }
 
@@ -989,7 +1015,14 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
             @Override
             public void rewardVideoComplete() {
+                mFallingLayout.setEnableClickRedRain(true);
+                Log.e("YM--------->","视频播放结束");
+            }
+
+            @Override
+            public void rewardAdClose() {
                 Log.e("YM--------->","广告关闭");
+                mFallingLayout.setEnableClickRedRain(true);
             }
         });
     }

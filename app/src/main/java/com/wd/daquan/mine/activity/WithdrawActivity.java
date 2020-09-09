@@ -20,6 +20,7 @@ import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.mine.presenter.WalletCloudPresenter;
 import com.wd.daquan.model.bean.DataBean;
+import com.wd.daquan.model.bean.UserCloudWallet;
 import com.wd.daquan.model.bean.WXLoginEntity;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -31,6 +32,7 @@ import com.wd.daquan.model.sp.QCSharedPrefManager;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -51,8 +53,10 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
     private WXLoginEntity mWxLoginEntity;
     private View handlingFeeLl;//手续费布局
     private TextView vipTip;//会员手续费提示
+    private TextView rateTip;//手续费比例
     //    private int amountLimit = BuildConfig.IS_DUBUG ? 1 : 100;//提现金额限制
     private int amountLimit = 100;//提现金额限制
+    private UserCloudWallet userCloudWallet = new UserCloudWallet();
     @Override
     protected WalletCloudPresenter createPresenter() {
         return new WalletCloudPresenter();
@@ -75,6 +79,7 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         actualAmount = findViewById(R.id.actualAmount);
         handlingFeeLl = findViewById(R.id.handlingFeeLl);
         vipTip = findViewById(R.id.vip_tip);
+        rateTip = findViewById(R.id.rate_tip);
         withdrawNext.setOnClickListener(this);
         balanceAll.setOnClickListener(this);
         bindWechatRl.setOnClickListener(this);
@@ -89,6 +94,10 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         EBSharedPrefUser mEBSharedPrefUser = mSharedPrefManager.getKDPreferenceUserInfo();
         uid = mEBSharedPrefUser.getString(EBSharedPrefUser.uid, "");
         refreshWxStatus();
+        refreshUserCloudWallet();
+    }
+    private void refreshUserCloudWallet(){
+        mPresenter.getUserCloudWallet(DqUrl.url_user_cloud_wallet,new HashMap<>());
     }
 
     /**
@@ -141,7 +150,7 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
             actualAmount.setText("￥0.00");
             return;
         }
-        BigDecimal cacluatRate = BigDecimalUtils.str2BigDecimal("0.01");//10%的提现
+        BigDecimal cacluatRate = BigDecimalUtils.double2BigDecimal(userCloudWallet.getWithdrawalRate());//10%的提现
         BigDecimal withdrawBigDecimal = BigDecimalUtils.str2BigDecimal(withdrawString);//提现金额
         BigDecimal handlingFeeDecimal = withdrawBigDecimal.multiply(cacluatRate).setScale(2, BigDecimal.ROUND_UP);//保留两位小数,直接进位处理
         BigDecimal actualBigDecimal = withdrawBigDecimal.subtract(handlingFeeDecimal).setScale(2, BigDecimal.ROUND_UP);//实际金额
@@ -196,6 +205,18 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         refreshWxStatus();
     }
 
+    /**
+     * 刷新支付比例
+     */
+    private void updateRate(UserCloudWallet userCloudWallet){
+        String format = "提现手续费为%s,会员免手续费总额度%d元,现在剩余额度%s元";
+        int total = userCloudWallet.getVip_total_amount()/100;
+        int amount = 0;
+        amount = userCloudWallet.getVip_amount()/100;//剩余额度
+        vipTip.setText(String.format(Locale.getDefault(),format,userCloudWallet.rate(),total,amount));
+        rateTip.setText(String.format("手续费(%s)",userCloudWallet.rate()));
+    }
+
     //状态
     private void status(int status){
         switch (status) {
@@ -227,6 +248,7 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         }
         if (0 == mWxLoginEntity.status){
             DqToast.showShort("请先绑定微信后才可以提现！");
+            NavUtils.gotoBindWxActivity(this);
             return;
         }
         final PayPassDialog dialog=new PayPassDialog(this);
@@ -295,6 +317,9 @@ public class WithdrawActivity extends DqBaseActivity<WalletCloudPresenter, DataB
         }else if (DqUrl.url_oauth_bindWeixinStatus.equals(url)) {
             mWxLoginEntity = (WXLoginEntity) entity.data;
             status(mWxLoginEntity.status);
+        } else if (DqUrl.url_user_cloud_wallet.equals(url)){
+            userCloudWallet = (UserCloudWallet)entity.data;
+            updateRate(userCloudWallet);
         }
     }
 

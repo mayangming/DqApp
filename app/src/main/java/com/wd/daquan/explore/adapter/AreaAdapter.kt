@@ -1,11 +1,11 @@
 package com.wd.daquan.explore.adapter
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import com.dq.im.type.ImType
 import com.netease.nim.uikit.common.util.sys.TimeUtil
 import com.wd.daquan.R
@@ -20,10 +20,8 @@ import com.wd.daquan.glide.GlideUtils
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
 import com.wd.daquan.model.bean.DataBean
 import com.wd.daquan.model.bean.FindUserDynamicDescBean
-import com.wd.daquan.model.bean.UserDynamicCommentDataListBean
 import com.wd.daquan.model.bean.UserDynamicLikeDataListBean
 import com.wd.daquan.model.interfaces.DqCallBack
-import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.mgr.ModuleMgr
 import com.wd.daquan.model.retrofit.RetrofitHelp
 import com.wd.daquan.model.retrofit.RetrofitHelp.getRequestBody

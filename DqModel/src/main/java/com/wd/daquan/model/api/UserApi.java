@@ -137,6 +137,12 @@ public interface UserApi{
      * 请求红包是否中奖
      */
     @POST
+    Call<DataBean> getUserRed(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 请求红包是否中奖
+     */
+    @POST
     Call<DataBean<RedEnvelopBean>> getUserRedEnvelope(@Url String url, @Body RequestBody requestBody);
 
     /**

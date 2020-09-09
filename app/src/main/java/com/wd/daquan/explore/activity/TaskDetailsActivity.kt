@@ -253,13 +253,13 @@ class TaskDetailsActivity : DqBaseActivity<MakeMoneyPresenter, DataBean<TaskDeta
                 saveImg()
             }
             task_step1 -> {
-                showImgDetailsDialog(R.mipmap.step1)
+                showImgDetailsDialog(R.mipmap.step1,"step1.png")
             }
             task_step2 -> {
-                showImgDetailsDialog(R.mipmap.step2)
+                showImgDetailsDialog(R.mipmap.step2,"step2.png")
             }
             task_step3 -> {
-                showImgDetailsDialog(R.mipmap.step2)
+                showImgDetailsDialog(R.mipmap.step2,"step2.png")
             }
             screenshot_result -> {
                 when {
@@ -281,11 +281,12 @@ class TaskDetailsActivity : DqBaseActivity<MakeMoneyPresenter, DataBean<TaskDeta
         }
     }
 
-    private fun showImgDetailsDialog(@DrawableRes resId: Int){
+    private fun showImgDetailsDialog(@DrawableRes resId: Int, photoName :String = ""){
         val dialog = ImageDetailsDialog()
         val imgBean = ImgDetailsBean()
         imgBean.imgType = ImgMakeMoneyType.ImgRes("")
         imgBean.imgRes = resId
+        imgBean.imageName = photoName
         val bundle = Bundle()
         bundle.putSerializable(ImageDetailsDialog.KEY_IMG,imgBean)
         dialog.arguments = bundle

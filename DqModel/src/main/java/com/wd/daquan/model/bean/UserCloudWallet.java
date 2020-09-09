@@ -1,6 +1,7 @@
 package com.wd.daquan.model.bean;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 /**
  * 用户零钱信息
@@ -20,6 +21,9 @@ public class UserCloudWallet implements Serializable {
     private int frozenBalance;
     private int accumulatedIncome;
     private boolean pwdIsSet;
+    private int vip_amount;// 免手续费额度
+    private int vip_total_amount;//免手续费总额度
+    private double withdrawalRate;//提现手续费率
 
     public String getUid() {
         return uid;
@@ -59,6 +63,41 @@ public class UserCloudWallet implements Serializable {
 
     public void setPwdIsSet(boolean pwdIsSet) {
         this.pwdIsSet = pwdIsSet;
+    }
+
+    public int getVip_amount() {
+        return vip_amount;
+    }
+
+    public void setVip_amount(int vip_amount) {
+        this.vip_amount = vip_amount;
+    }
+
+    public double getWithdrawalRate() {
+        return withdrawalRate;
+    }
+
+    public void setWithdrawalRate(double withdrawalRate) {
+        this.withdrawalRate = withdrawalRate;
+    }
+
+    public int getVip_total_amount() {
+        return vip_total_amount;
+    }
+
+    public void setVip_total_amount(int vip_total_amount) {
+        this.vip_total_amount = vip_total_amount;
+    }
+
+    /**
+     * 显示百分比
+     * @return
+     */
+    public String rate(){
+        NumberFormat percentInstance = NumberFormat.getPercentInstance();
+        percentInstance.setMaximumFractionDigits(2); // 保留小数两位
+        String format = percentInstance.format(withdrawalRate); // 结果是81.25% ，最后一们四舍五入了
+        return format;
     }
 
     @Override

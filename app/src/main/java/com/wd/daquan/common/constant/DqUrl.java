@@ -1017,6 +1017,7 @@ public class DqUrl {
 
     /**************************** 红包 ********************/
     public static String url_user_open_red_envelope = "active/cloud_red_envelope";//请求红包内容
+    public static String url_get_user_red = "active/get_user_red";//获取红包提示内容
 
     /**************************** 注销账号 ********************/
     public static String url_user_cancellation = "user/user_cancellation";//注销账号

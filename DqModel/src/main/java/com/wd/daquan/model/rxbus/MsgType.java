@@ -264,4 +264,9 @@ public class MsgType {
      * 赚钱功能中 任务状态修改时候刷新
      */
     public static final String TASK_MONEY_REFUND_SUCCESS = "taskMoneyRefundSuccess";
+
+    /**
+     * 设置提现密码结果
+     */
+    public static final String WITHDRAW_PWD_RESULT = "taskMoneyRefundSuccess";
 }

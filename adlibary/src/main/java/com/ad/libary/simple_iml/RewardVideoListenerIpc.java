@@ -28,10 +28,13 @@ public abstract class RewardVideoListenerIpc {
     public abstract void rewardVideoOnRewardVideoAdLoad(View view);
     public abstract void rewardVideoOnRewardVideoCached();
     public abstract void rewardVideoComplete();//视频播放结束
+    public abstract void rewardAdClose();//广告关闭
     public RewardVideoListenerIpc(){
         rewardVideoAdListener = new TTAdNative.RewardVideoAdListener() {
             @Override
             public void onError(int i, String s) {
+                Log.e("YM","穿山甲加载错误code:"+i);
+                Log.e("YM","穿山甲加载错误message:"+s);
                 rewardVideoOnError(i,s);
             }
 
@@ -89,6 +92,7 @@ public abstract class RewardVideoListenerIpc {
             @Override
             public void onADClose() {
                 Log.e("YM","onADClose");
+                rewardAdClose();
             }
 
             @Override
@@ -109,7 +113,7 @@ public abstract class RewardVideoListenerIpc {
 
             @Override
             public void onComplete() {
-
+                rewardVideoComplete();
             }
 
             @Override
@@ -119,7 +123,7 @@ public abstract class RewardVideoListenerIpc {
 
             @Override
             public void adClose() {
-                rewardVideoComplete();
+                rewardAdClose();
             }
 
             @Override
@@ -166,12 +170,14 @@ public abstract class RewardVideoListenerIpc {
             @Override
             public void onAdClose() {
                 Log.e("YM","rewardVideoAd close");
+                rewardAdClose();
             }
 
             //视频播放完成回调
             @Override
             public void onVideoComplete() {
                 Log.e("YM","rewardVideoAd complete");
+                rewardVideoComplete();
             }
 
             @Override

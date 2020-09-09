@@ -58,7 +58,7 @@ class DynamicMediaPhotoDetailsFragment : BaseFragment(){
             photo_details -> {
                 val photoOperatorDialog = PhotoOperatorDialog()
                 val bundle = Bundle()
-                bundle.putString(PhotoOperatorDialog.ACTION_PHOTO,photoUrl)
+                bundle.putString(PhotoOperatorDialog.PHOTO_ACTION,photoUrl)
                 photoOperatorDialog.arguments = bundle
                 fragmentManager?.let { photoOperatorDialog.show(it,"operatorDialog") }
             }

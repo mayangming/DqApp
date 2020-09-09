@@ -86,9 +86,9 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         }
         lastTaskSendDraft = ModuleMgr.getCenterMgr().lastTaskSendDraft
         if (!TextUtils.isEmpty(lastTaskSendDraft)){
-            sendTaskDraftBean = GsonUtils.fromJson(lastTaskSendDraft,SendTaskBean::class.java)
-            companyTypeBean = CustomTaskTypeBean(sendTaskDraftBean.type,sendTaskDraftBean.typePic,sendTaskDraftBean.typeName)
-            classificationTypeBean = CustomTaskTypeBean(sendTaskDraftBean.classification,sendTaskDraftBean.classPic,sendTaskDraftBean.className)
+            sendTaskDraftBean = GsonUtils.fromJson(lastTaskSendDraft, SendTaskBean::class.java)
+            companyTypeBean = CustomTaskTypeBean(sendTaskDraftBean.type, sendTaskDraftBean.typePic, sendTaskDraftBean.typeName)
+            classificationTypeBean = CustomTaskTypeBean(sendTaskDraftBean.classification, sendTaskDraftBean.classPic, sendTaskDraftBean.className)
             taskId = sendTaskDraftBean.id
             sendTaskBean = sendTaskDraftBean
             updateUIForDraft()
@@ -107,16 +107,16 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
      * 获取厂商类型
      */
     private fun getTaskCompanyList(){
-        val params = hashMapOf<String,Any>()
-        mPresenter.getTaskCompanyList(DqUrl.url_task_type,params)
+        val params = hashMapOf<String, Any>()
+        mPresenter.getTaskCompanyList(DqUrl.url_task_type, params)
     }
 
     /**
      * 获取任务累心
      */
     private fun getClassificationList(){
-        val params = hashMapOf<String,Any>()
-        mPresenter.getClassificationList(DqUrl.url_task_classification,params)
+        val params = hashMapOf<String, Any>()
+        mPresenter.getClassificationList(DqUrl.url_task_classification, params)
     }
 
     /**
@@ -210,7 +210,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private fun updateUIForTaskBean(){
         val taskmoneyBigDecimal = sendTaskBean.taskmoney.toBigDecimal()
         val division = 100.toBigDecimal()
-        val price = taskmoneyBigDecimal.divide(division,2,BigDecimal.ROUND_UP).toPlainString()
+        val price = taskmoneyBigDecimal.divide(division, 2, BigDecimal.ROUND_UP).toPlainString()
         task_company_name.text = sendTaskBean.className
         task_classification_name.text = sendTaskBean.typeName
         send_task_title_edt.text.clear()
@@ -236,7 +236,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     /**
      * 切换页面编辑状态
      */
-    private fun switchEdt(isEdt :Boolean){
+    private fun switchEdt(isEdt: Boolean){
         send_task_company_type_ll.isEnabled = isEdt
         send_task_classification_ll.isEnabled = isEdt
         send_task_title_edt.isEnabled = isEdt
@@ -260,17 +260,17 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         if (!isPass) return
         val params =createParams()
         if (null == mPresenter) return
-        mPresenter.getCreateTask(DqUrl.url_task_createTask,params)
+        mPresenter.getCreateTask(DqUrl.url_task_createTask, params)
     }
 
     /**
      * 根据任务ID获取任务详情
      */
     private fun getUserTaskByTaskId(){
-        val params = hashMapOf<String,String>()
+        val params = hashMapOf<String, String>()
         params["taskId"] = taskId
         if (null == mPresenter) return
-        mPresenter.getCreateTask(DqUrl.url_task_userTaskSelect,params)
+        mPresenter.getCreateTask(DqUrl.url_task_userTaskSelect, params)
     }
 
     /**
@@ -304,12 +304,12 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         }
 
         val calender = Calendar.getInstance(Locale.CHINESE)
-        calender.add(Calendar.DATE,1);//把日期往后增加两天.整数往后推,负数往前移动
+        calender.add(Calendar.DATE, 1);//把日期往后增加两天.整数往后推,负数往前移动
         calender.set(Calendar.HOUR_OF_DAY, 0)//时
         calender.set(Calendar.MINUTE, 0)//分
         calender.set(Calendar.SECOND, 0)//秒
         val timeAfter2 = calender.timeInMillis
-        val currentTime = DateUtil.getStringToCalendar(send_task_end_time.text.toString(),DateUtil.YMD).timeInMillis
+        val currentTime = DateUtil.getStringToCalendar(send_task_end_time.text.toString(), DateUtil.YMD).timeInMillis
         if(currentTime < timeAfter2){
             DqToast.showCenterShort("截止日期需要设置在两天后!")
             return false
@@ -359,8 +359,8 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         return true
     }
 
-    private fun createParams(): Map<String,String>{
-        val params = hashMapOf<String,String>()
+    private fun createParams(): Map<String, String>{
+        val params = hashMapOf<String, String>()
         val taskMoneyStr = send_task_unit_price_edt.text.toString().toBigDecimal()
         val taskMoney = BigDecimalUtils.int2BigDecimal(100).multiply(taskMoneyStr).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
         params["createuserid"] = ModuleMgr.getCenterMgr().uid
@@ -370,7 +370,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         params["classnum"] = send_task_count_edt.text.toString()
         params["taskmoney"] = taskMoney.longValueExact().toString()
         params["taskexplain"] = send_task_description_edt.text.toString()
-        params["extime"] = DateUtil.getStringToCalendar(send_task_end_time.text.toString(),DateUtil.YMD).timeInMillis.toString()
+        params["extime"] = DateUtil.getStringToCalendar(send_task_end_time.text.toString(), DateUtil.YMD).timeInMillis.toString()
         return params
     }
 
@@ -378,11 +378,14 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         when(key){
             MsgType.TASK_PAY_RESULT -> {//微信支付后的订单信息
                 getUserTaskByTaskId()
-                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")//微信支付后发送页面刷新信息
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH, "")//微信支付后发送页面刷新信息
             }
             MsgType.TASK_REFUND -> {//微信退款后的订单信息
                 getUserTaskByTaskId()
-                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")//微信支付后发送页面刷新信息
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH, "")//微信支付后发送页面刷新信息
+            }
+            MsgType.WITHDRAW_PWD_RESULT -> {
+                getUserCloudWallet()
             }
         }
     }
@@ -392,7 +395,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
      */
     override fun initListener() {
         super.initListener()
-        send_task_unit_price_edt.addTextChangedListener(object :TextWatcher{
+        send_task_unit_price_edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //内容输入结束
                 calculationAdvancePayment()
@@ -404,7 +407,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-        send_task_count_edt.addTextChangedListener(object :TextWatcher{
+        send_task_count_edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //内容输入结束
                 calculationAdvancePayment()
@@ -416,7 +419,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
-        send_task_description_edt.addTextChangedListener(object :TextWatcher{
+        send_task_description_edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val wordCount = s?.length ?: 0
                 send_task_description_count.text = "$wordCount/40"
@@ -505,11 +508,11 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     /**
      * 更改任务状态
      */
-    private fun changeTaskStatus(status :String){
-        val params = hashMapOf<String,String>()
+    private fun changeTaskStatus(status: String){
+        val params = hashMapOf<String, String>()
         params["status"] = status
         params["taskId"] = sendTaskBean.id
-        mPresenter.changeStatus(DqUrl.url_task_changeStatus,params)
+        mPresenter.changeStatus(DqUrl.url_task_changeStatus, params)
     }
 
     /**
@@ -518,7 +521,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     private fun updateTaskStatus(){
         if(sendTaskBean.expires == 1){//任务已过期则不能继续点击
             //查看详情
-            NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
+            NavUtils.gotoReleaseTaskCompleteActivity(this, sendTaskBean.id)
             return
         }
         if (sendTaskBean.isPass == 0){
@@ -528,14 +531,14 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         }
         if (sendTaskBean.expires == 1){//已经下架
             //查看详情
-            NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
+            NavUtils.gotoReleaseTaskCompleteActivity(this, sendTaskBean.id)
             return
         }
         if(sendTaskBean.isPass == 1){//审核中
             changeTaskStatus("0")//改为未提交状态
         }else if (sendTaskBean.isPass == 2){//发布成功
             //查看详情
-            NavUtils.gotoReleaseTaskCompleteActivity(this,sendTaskBean.id)
+            NavUtils.gotoReleaseTaskCompleteActivity(this, sendTaskBean.id)
         }else if (sendTaskBean.isPass == 3){//拒绝
             sendTaskBean.isPass = 0
             sendTaskBean.isPay = 3
@@ -567,7 +570,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
 
     private fun initDateDialog(){
         val now = Calendar.getInstance()
-        now.add(Calendar.DAY_OF_MONTH,2)
+        now.add(Calendar.DAY_OF_MONTH, 2)
         val years = now[Calendar.YEAR]
         val month = now[Calendar.MONTH] + 1
         val day = now[Calendar.DAY_OF_MONTH]
@@ -577,8 +580,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         yearIndex = listYear.indexOf("${years}年")
         monthIndex = listMonth.indexOf("${month}月")
         dayIndex = listDate.indexOf("${day}日")
-        mPvOptions = DialogUtils.showYearToDate(this, listYear, listMonth
-                , listDate, month, this)
+        mPvOptions = DialogUtils.showYearToDate(this, listYear, listMonth, listDate, month, this)
 //        mPvOptions?.setSelectOptions(yearIndex,monthIndex,dayIndex)
         initSelectIndex(now)
         val monthString = String.format("%02d", month)
@@ -589,7 +591,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     /**
      * 重新锁定当前日期的索引位置
      */
-    private fun initSelectIndex(now :Calendar){
+    private fun initSelectIndex(now: Calendar){
         val years = now[Calendar.YEAR]
         val month = now[Calendar.MONTH] + 1
         val day = now[Calendar.DAY_OF_MONTH]
@@ -599,7 +601,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         yearIndex = listYear.indexOf("${years}年")
         monthIndex = listMonth.indexOf("${month}月")
         dayIndex = listDate.indexOf("${day}日")
-        mPvOptions?.setSelectOptions(yearIndex,monthIndex,dayIndex)
+        mPvOptions?.setSelectOptions(yearIndex, monthIndex, dayIndex)
     }
 
     /**
@@ -613,7 +615,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         val spannable = SpannableStringBuilder(content)
 //        val foreGroundColor = ForegroundColorSpan(Color.parseColor("#EF5B40"))
 //        spannable.setSpan(foreGroundColor,startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(CustomClickAble(),startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannable.setSpan(CustomClickAble(), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         send_task_release_guide.text = spannable
         send_task_release_guide.movementMethod = LinkMovementMethod.getInstance() //加上这句话才有效果
 //        read_demo_video.highlightColor = ContextCompat.getColor(read_demo_video.context,R.color.transparent) //去掉点击后的背景颜色为透明
@@ -622,15 +624,15 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     /**
      * 显示平台选择对话框
      */
-    private fun showTypeDialog(type :Int){
+    private fun showTypeDialog(type: Int){
         val taskTypeDialog = TaskTypeDialog()
         val bundle = Bundle()
-        bundle.putInt(TaskTypeDialog.TYPE,type)
+        bundle.putInt(TaskTypeDialog.TYPE, type)
         taskTypeDialog.arguments = bundle
-        taskTypeDialog.show(supportFragmentManager,"")
-        taskTypeDialog.setOnResultCallBack(object : TaskTypeDialog.ResultCallBack{
+        taskTypeDialog.show(supportFragmentManager, "")
+        taskTypeDialog.setOnResultCallBack(object : TaskTypeDialog.ResultCallBack {
             override fun onResult(taskTypeBean: CustomTaskTypeBean, type: Int) {
-                when(type){
+                when (type) {
                     TaskTypeDialog.TYPE_COMPANY -> {//厂商渠道类型
                         companyTypeBean = taskTypeBean
                         task_company_name.text = taskTypeBean.typeName
@@ -652,6 +654,12 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
             payType = MessageRedPackageBean.RED_PACKAGE_CHANGE
             //                    MsgMgr.getInstance().sendMsg(MsgType.CHAT_RED_PACKAGE, messageRedPackageBean);
 //                    finish();
+            if (!userWallet.isPwdIsSet){
+                DqToast.showCenterShort("请先设置提现密码密码!")
+                //提现密码
+                NavUtils.gotoPayPasswordActivityActivity(this)
+                return
+            }
             smallChangePay()
         } else {
             payType = MessageRedPackageBean.RED_PACKAGE_WX
@@ -674,7 +682,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
-                        createTaskOrder(pwd?:"")
+                        createTaskOrder(pwd ?: "")
                         dialog.dismiss()
                     }
 
@@ -694,14 +702,14 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
     override fun payDetailClick(mYear: String?, mMonth: String?, date: String?) {
         val endTime = "$mYear-$mMonth-$date"
         send_task_end_time.text = endTime
-        val timeInMillis = DateUtil.getStringToCalendar(send_task_end_time.text.toString(),DateUtil.YMD).timeInMillis
+        val timeInMillis = DateUtil.getStringToCalendar(send_task_end_time.text.toString(), DateUtil.YMD).timeInMillis
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = timeInMillis
         initSelectIndex(calendar)
     }
 
 
-    private fun createTaskOrder(pwd :String){
+    private fun createTaskOrder(pwd: String){
         val params: MutableMap<String?, String?> = HashMap()
         params["userId"] = ModuleMgr.getCenterMgr().uid
         params["taskId"] = sendTaskBean.id
@@ -736,7 +744,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         sendTaskDraftBean.extimeStr = send_task_end_time.text.toString()
         sendTaskDraftBean.advancePayment = send_task_advance_payment_edt.text.toString()
         lastTaskSendDraft = GsonUtils.toJson(sendTaskDraftBean)
-        DqLog.e("YM","任务草稿内容:$lastTaskSendDraft")
+        DqLog.e("YM", "任务草稿内容:$lastTaskSendDraft")
         ModuleMgr.getCenterMgr().saveLastTaskSendDraft(lastTaskSendDraft)
     }
 
@@ -747,7 +755,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         val taskMoneyStr = send_task_unit_price_edt.text.toString().toBigDecimal()
         val taskMoney = BigDecimalUtils.int2BigDecimal(100).multiply(taskMoneyStr).setScale(2, BigDecimal.ROUND_UP)//保留两位小数,直接进位处理
 
-        val params = hashMapOf<String,String>()
+        val params = hashMapOf<String, String>()
         params["id"] = sendTaskBean.id
         params["taskname"] = send_task_title_edt.text.toString()
         params["createuserid"] = sendTaskBean.createuserid
@@ -758,7 +766,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         params["taskpic"] = ""
         params["priority"] = sendTaskBean.priority.toString()
         params["createtime"] = sendTaskBean.createtime.toString()
-        params["extime"] = DateUtil.getStringToCalendar(send_task_end_time.text.toString(),DateUtil.YMD).timeInMillis.toString()
+        params["extime"] = DateUtil.getStringToCalendar(send_task_end_time.text.toString(), DateUtil.YMD).timeInMillis.toString()
         params["expires"] = sendTaskBean.expires.toString()
         params["taskexplain"] = send_task_description_edt.text.toString()
         params["reviewtime"] = sendTaskBean.reviewtime
@@ -766,7 +774,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
         params["isPass"] = sendTaskBean.isPass.toString()
         params["isPay"] = sendTaskBean.isPay.toString()
         params["reason"] = sendTaskBean.reason ?: ""
-        mPresenter.changeTask(DqUrl.url_task_changeTask,params)
+        mPresenter.changeTask(DqUrl.url_task_changeTask, params)
     }
 
 
@@ -809,20 +817,20 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                 companyTypeBean.typeId = sendTaskBean.type
                 classificationTypeBean.typeName = sendTaskBean.className
                 classificationTypeBean.typeId = sendTaskBean.classification
-                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")
+                MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH, "")
             }
             DqUrl.url_task_type -> {//厂商类型
                 val taskTypeBean = entity.data as List<TaskTypeBean>
                 val customerTaskBean = taskTypeBean.map {
-                    CustomTaskTypeBean(it.id.toString(),it.typePic,it.typeName)
+                    CustomTaskTypeBean(it.id.toString(), it.typePic, it.typeName)
                 }
                 companyTypeBean = customerTaskBean[0]
                 task_company_name.text = companyTypeBean.typeName
             }
-            DqUrl.url_task_classification ->{//任务类型
+            DqUrl.url_task_classification -> {//任务类型
                 val taskTypeBean = entity.data as List<TaskClassificationBean>
                 val customerTaskBean = taskTypeBean.map {
-                    CustomTaskTypeBean(it.id.toString(),it.classPic,it.className)
+                    CustomTaskTypeBean(it.id.toString(), it.classPic, it.className)
                 }
                 classificationTypeBean = customerTaskBean[0]
                 task_classification_name.text = classificationTypeBean.typeName
@@ -834,7 +842,7 @@ class SendTaskActivity  : DqBaseActivity<SendTaskPresenter, DataBean<Any>>(), Pa
                 if (MessageRedPackageBean.RED_PACKAGE_CHANGE == payType) {
 //                    finish()
                     getUserTaskByTaskId()
-                    MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH,"")
+                    MsgMgr.getInstance().sendMsg(MsgType.TASK_SEND_MANAGER_REFRESH, "")
                 } else {
                     mPresenter.startWeChatPay(this, wxPayBody)
                 }

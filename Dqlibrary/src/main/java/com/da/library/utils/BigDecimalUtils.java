@@ -31,6 +31,14 @@ public class BigDecimalUtils{
     }
 
     /**
+     * 将Double类型转为BigDecimal
+     */
+    public static BigDecimal double2BigDecimal(Double value){
+        BigDecimal bigDecimal = new BigDecimal(value);
+        return bigDecimal;
+    }
+
+    /**
      * 将分转为元
      */
     public static BigDecimal penny2Dollar(long value){

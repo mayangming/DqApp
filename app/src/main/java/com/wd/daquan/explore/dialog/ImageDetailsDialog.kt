@@ -51,6 +51,7 @@ class ImageDetailsDialog : BaseFragmentDialog(){
                 GlideUtils.load(context, imgBean.imgAny, dialog_photo_details)
             }
         }
+        dialog_photo_details.setOnLongClickListener(this::onLongClick)
     }
 
     private fun onClick(view: View){
@@ -59,5 +60,15 @@ class ImageDetailsDialog : BaseFragmentDialog(){
                 dismiss()
             }
         }
+    }
+
+    private fun onLongClick(view :View): Boolean{
+        val photoOperatorDialog = PhotoOperatorDialog()
+        val bundle = Bundle()
+        bundle.putString(PhotoOperatorDialog.PHOTO_ACTION,imgBean.imageName)
+        bundle.putInt(PhotoOperatorDialog.PHOTO_TYPE,0)
+        photoOperatorDialog.arguments = bundle
+        fragmentManager?.let { photoOperatorDialog.show(it,"operatorDialog") }
+        return true
     }
 }

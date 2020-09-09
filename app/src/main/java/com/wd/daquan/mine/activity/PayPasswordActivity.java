@@ -20,6 +20,8 @@ import com.wd.daquan.mine.presenter.WalletCloudPresenter;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
+import com.wd.daquan.model.rxbus.MsgMgr;
+import com.wd.daquan.model.rxbus.MsgType;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -155,6 +157,7 @@ public class PayPasswordActivity extends DqBaseActivity<WalletCloudPresenter, Da
         if (DqUrl.url_user_transaction_password.equals(url)){
             if (entity.result == 0){
                 DqToast.showShort("密码设置成功!");
+                MsgMgr.getInstance().sendMsg(MsgType.WITHDRAW_PWD_RESULT, "");
                 finish();
             }
         }else if (DqUrl.url_get_phone_msg.equals(url)){
