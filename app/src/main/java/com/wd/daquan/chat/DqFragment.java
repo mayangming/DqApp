@@ -365,6 +365,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
                 //电脑端在线
                 //MultiportActivity.startActivity(getActivity(), onlineClients);
                 NavUtils.gotoMultiportActivity(getActivity(), null, Constants.Web.Logout);
+
                 break;
             case R.id.main_red_package_rain:
 
