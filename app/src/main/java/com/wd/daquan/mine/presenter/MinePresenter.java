@@ -13,6 +13,7 @@ import com.wd.daquan.mine.wallet.bean.WalletSatausBean;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupInfoBean;
+import com.wd.daquan.model.bean.SignUpEntity;
 import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.bean.UserBean;
 import com.wd.daquan.model.bean.WXLoginEntity;
@@ -996,6 +997,26 @@ public class MinePresenter<V extends Presenter.IView<DataBean>> extends BasePres
 
             @Override
             public void onFailed(String url, int code, DataBean entity) {
+                failed(url, code, entity);
+            }
+        });
+    }
+
+    /**
+     * 签到页面
+     * @param url
+     * @param hashMap
+     */
+    public void requestSign(String url, Map<String, String> hashMap){
+
+        RetrofitHelp.getUserApi().sign(url,getRequestBody(hashMap)).enqueue(new DqCallBack<DataBean<SignUpEntity>>() {
+            @Override
+            public void onSuccess(String url, int code, DataBean<SignUpEntity> entity) {
+                success(url, code, entity);
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean<SignUpEntity> entity) {
                 failed(url, code, entity);
             }
         });

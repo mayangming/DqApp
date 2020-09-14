@@ -73,6 +73,7 @@
         android:layout_height="match_parent"
         app:srlAccentColor="#00000000"
         app:srlPrimaryColor="#00000000"
+        android:visibility="gone"
         app:srlEnablePreviewInEditMode="true">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -88,7 +89,7 @@
         android:id="@+id/withdraw_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/wallet_empty_bg"

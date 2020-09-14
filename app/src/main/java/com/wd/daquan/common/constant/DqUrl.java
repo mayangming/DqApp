@@ -272,7 +272,7 @@ public class DqUrl {
      * 我的群组
      * lumgw/hhsvl
      */
-    public static String url_my_groups = "user/my_groups";
+    public static String url_my_groups = "user/get_saved_groups";
 
     /**
      * 获取群组指定用户信息
@@ -1077,4 +1077,13 @@ public class DqUrl {
     public static String url_task_drawback = "task/drawback";//退款
     public static String url_task_refundMoney = "task/refundMoney";//获取退款的金额信息
     /**************************** 发布任务功能 end **********************************/
+
+
+    /************************** 积分商城功能 start ***********************************/
+    public static String url_dbsign_sign = "dbsign/sign";//签到接口
+    public static String url_dbsign_userDBMoney = "dbsign/userDBMoney";//积分内容
+    public static String url_dbsign_changeDBCommodities = "dbsign/changeDBCommodities";//开始兑换
+    public static String url_dbsign_getMoneyHistory = "dbsign/getMoneyHistory";//斗币明细
+    public static String url_dbsign_getChangeHistory = "dbsign/getChangeHistory";//兑换记录的表
+    /************************** 积分商城功能 end ***********************************/
 }

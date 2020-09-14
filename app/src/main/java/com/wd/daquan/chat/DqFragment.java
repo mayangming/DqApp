@@ -251,7 +251,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         mFallingLayout.refreshSpeed(5000);
         mFallingContent.setVisibility(View.VISIBLE);
         mFallingLayout.startRedRain();
-        mFallingLayout.setEnableClickTip("广告加载中,不能进行点击红包!");
+        mFallingLayout.setEnableClickTip("网络较慢，请稍后再试!");
         redRainTv.setText("进行中");
     }
     @Override
@@ -378,9 +378,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    showRedPackageTip();
 //                    return;
 //                }
-                NavUtils.gotoWebviewActivity(getContext(), "http://h.4399.com/play/215163.htm", getString(R.string.serviceUser));
-//                isStopRedRain = false;
-//                startRain2();
+//                NavUtils.gotoWebviewActivity(getContext(), "http://h.4399.com/play/215163.htm", getString(R.string.serviceUser));
+                isStopRedRain = false;
+                startRain2();
                 break;
             case R.id.main_turntable_lottery:
 //                showVipExchangeResultDialog();
@@ -608,6 +608,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             public void onFailed(String url, int code, DataBean<RedEnvelopBean> entity) {
                 Toast.makeText(getContext(),entity.content,Toast.LENGTH_LONG).show();
                 openRedPackageIng = false;
+                DqToast.showShort(entity.content);
             }
         });
     }
@@ -984,6 +985,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             @Override
             public void switchFail() {
                 mFallingLayout.setEnableClickRedRain(true);
+                DqToast.showShort("网络不佳,请稍后再试");
             }
         });
     }
@@ -995,6 +997,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             public void rewardVideoOnError(int i, String s) {
                 mFallingLayout.setEnableClickRedRain(true);
                 Log.e("YM","加载失败:"+s);
+                DqToast.showShort("网络不佳,请稍后再试");
             }
 
             @Override

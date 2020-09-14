@@ -76,6 +76,7 @@ public class WxBindBean {
     private String vipEndTime;//vip结束时间
     private int shareTotalNum;//分享总人数
     private String redEnvelopedRainRemind;//红包雨活动介绍
+    private String dbMoney;//斗币数量
     public int getId() {
         return id;
     }
@@ -326,5 +327,13 @@ public class WxBindBean {
 
     public void setRedEnvelopedRainRemind(String redEnvelopedRainRemind) {
         this.redEnvelopedRainRemind = redEnvelopedRainRemind;
+    }
+
+    public String getDbMoney() {
+        return dbMoney;
+    }
+
+    public void setDbMoney(String dbMoney) {
+        this.dbMoney = dbMoney;
     }
 }

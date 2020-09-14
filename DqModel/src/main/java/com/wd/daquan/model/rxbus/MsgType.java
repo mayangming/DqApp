@@ -212,7 +212,7 @@ public class MsgType {
 
     /** --------------------- 定制消息 ------------------------------- **/
 
-    public static final String CHAT_RED_PACKAGE = "chatRedPackageMsg";//聊天红包消息
+    public static final String CHAT_RED_PACKAGE = "chat RedPackageMsg";//聊天红包消息
 
     public static final String CHAT_PICTURE = "chatPictureMsg";//聊天图片消息
 
@@ -269,4 +269,9 @@ public class MsgType {
      * 设置提现密码结果
      */
     public static final String WITHDRAW_PWD_RESULT = "taskMoneyRefundSuccess";
+
+    /**
+     * 积分变动
+     */
+    public static final String INTEGRAL_CHANGE = "taskMoneyRefundSuccess";
 }

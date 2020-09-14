@@ -714,6 +714,29 @@
             android:name=".mine.wallet.activity.RedTransationListActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait" />
+
+        <!-- 积分商城 -->
+        <activity
+            android:name=".mine.activity.IntegralMallActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 积分交易记录 -->
+        <activity
+            android:name=".mine.activity.IntegralExchangeRecordActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 积分明细记录 -->
+        <activity
+            android:name=".mine.activity.IntegralExchangeDetailActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
+        <!-- 签到详情记录 -->
+        <activity
+            android:name=".mine.activity.SignUpDetailActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
         <!-- 接收红包 -->
         <activity
             android:name=".chat.redpacket.RedPacketReceiveAct"

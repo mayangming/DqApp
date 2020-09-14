@@ -34,11 +34,6 @@ public class ContactsListHeaderHolder extends RecyclerView.ViewHolder implements
     private RelativeLayout mMobileContact;
     private RelativeLayout mSaveGroup;
 
-    // 手机权限
-    private final String[] mPermission = new String[]{
-            Manifest.permission.READ_CONTACTS
-    };
-
     public ContactsListHeaderHolder(View itemView) {
         super(itemView);
         mNewFriend = itemView.findViewById(R.id.rl_new_friends);
