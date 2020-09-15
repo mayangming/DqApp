@@ -40,6 +40,7 @@
         android:background="@mipmap/sign_bg_2"
         android:layout_marginTop="@dimen/dp_20"
         android:padding="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_name">
@@ -86,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="今日已签到~"/>
 
-    <com.wd.daquan.view.BaseRecycleView
+    <LinearLayout
         android:id="@+id/sign_rule_brl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -94,7 +95,14 @@
         android:layout_marginTop="@dimen/dp_40"
         android:paddingHorizontal="@dimen/dp_16"
         android:paddingVertical="@dimen/dd_dp23"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_bg"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/sign_bg">
+        <TextView
+            android:id="@+id/sign_rule_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/color_333333"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,6 +54,7 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
     private View mineWallet;
     private View signGiftLl;
     private View dqShop;//dq商城
+    private View mInviteFriend;
     private TextView dqCurrency;//斗圈斗币积分
     protected String[] needPermissions = {Manifest.permission.CAMERA};
 
@@ -74,6 +75,7 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         mHeadIv = view.findViewById(R.id.main_title_left_head_iv);
         mNameTv = view.findViewById(R.id.main_title_left_name_tv);
         mDqNumTv = view.findViewById(R.id.main_title_left_dq_num_tv);
+        mInviteFriend = view.findViewById(R.id.mine_invite_friend);
         vipDate = view.findViewById(R.id.mine_vip_date);
         vipRenew = view.findViewById(R.id.mine_vip_renew);
         mineWalletCloud = view.findViewById(R.id.mine_wallet_cloud);
@@ -100,6 +102,7 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         mHelp.setOnClickListener(this);
         mVip.setOnClickListener(this);
         mShare.setOnClickListener(this);
+        mInviteFriend.setOnClickListener(this);
         vipRenew.setOnClickListener(this);
         mineWalletCloud.setOnClickListener(this);
         mineWallet.setOnClickListener(this);
@@ -174,7 +177,9 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
                     NavUtils.gotoScanQRCodeActivity(getActivity());
                 }
                 break;
-
+            case R.id.mine_invite_friend:
+                NavUtils.gotoInviteFriendActivity(getContext());
+                break;
             case R.id.main_title_left_help://帮助
                 DqToast.showShort(DqApp.getStringById(R.string.no_this_function));
                 //NavUtils.gotoWebviewActivity(mActivity, DqUrl.url_help, DqApp.getStringById(R.string.mine_help));

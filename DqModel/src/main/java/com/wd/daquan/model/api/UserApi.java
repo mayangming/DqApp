@@ -6,6 +6,7 @@ import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.DqChangeHistoryEntity;
 import com.wd.daquan.model.bean.DqGoodDetails;
+import com.wd.daquan.model.bean.DqIntviteRewardEntity;
 import com.wd.daquan.model.bean.DqMoneyDetailEntity;
 import com.wd.daquan.model.bean.DqMoneyHistoryEntity;
 import com.wd.daquan.model.bean.ExchangeRecordBean;
@@ -158,10 +159,16 @@ public interface UserApi{
     Call<DataBean<VipExchangeResultBean>> getVipExchangeResult(@Url String url, @Body RequestBody requestBody);
 
     /**
-     * 通用请求
+     * 通用请求,返回结果为String
      */
     @POST
     Call<DataBean<String>> getCommonRequest(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 通用请求，没有返回体
+     */
+    @POST
+    Call<DataBean> getCommonRequestNoBody(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 好友请求应答策略
@@ -234,4 +241,10 @@ public interface UserApi{
      */
     @POST
     Call<DataBean<ArrayList<DqChangeHistoryEntity>>> getChangeHistory(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 获取邀请的好友时候的奖励
+     */
+    @POST
+    Call<DataBean<DqIntviteRewardEntity>> getIntviteReward(@Url String url, @Body RequestBody requestBody);
 }

@@ -117,6 +117,7 @@ import com.wd.daquan.mine.activity.FeedbackActivity;
 import com.wd.daquan.mine.activity.IntegralExchangeDetailActivity;
 import com.wd.daquan.mine.activity.IntegralExchangeRecordActivity;
 import com.wd.daquan.mine.activity.IntegralMallActivity;
+import com.wd.daquan.mine.activity.InviteFriendActivity;
 import com.wd.daquan.mine.activity.LoginPwdModifyActivity;
 import com.wd.daquan.mine.activity.LoginPwdSettingActivity;
 import com.wd.daquan.mine.activity.NewMsgNotifyActivity;
@@ -1853,6 +1854,17 @@ public class NavUtils {
     public static void gotoSignUpDetailActivity(Context context, SignUpEntity signUpEntity){
         Intent intent = new Intent(context, SignUpDetailActivity.class);
         intent.putExtra(SignUpDetailActivity.KEY_ACTION,signUpEntity);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+
+    /**
+     * 邀请好友页面
+     * @param context
+     */
+    public static void gotoInviteFriendActivity(Context context){
+        Intent intent = new Intent(context, InviteFriendActivity.class);
         context.startActivity(intent);
         AnimUtils.enterAnimForActivity(context);
     }

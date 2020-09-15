@@ -20,7 +20,8 @@ public class SignUpEntity implements Serializable {
     /**
      * 签到规则
      */
-   private List<SignRuleEntity> dbRule = new ArrayList<>();
+//   private List<SignRuleEntity> dbRule = new ArrayList<>();
+    private String dbRule;
     /**
      * 是不是第一次签到
      */
@@ -41,11 +42,11 @@ public class SignUpEntity implements Serializable {
         this.list = list;
     }
 
-    public List<SignRuleEntity> getDbRule() {
+    public String getDbRule() {
         return dbRule;
     }
 
-    public void setDbRule(List<SignRuleEntity> dbRule) {
+    public void setDbRule(String dbRule) {
         this.dbRule = dbRule;
     }
 

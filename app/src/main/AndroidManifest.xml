@@ -737,6 +737,12 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait" />
 
+        <!-- 邀请好友的界面 -->
+        <activity
+            android:name=".mine.activity.InviteFriendActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
         <!-- 接收红包 -->
         <activity
             android:name=".chat.redpacket.RedPacketReceiveAct"

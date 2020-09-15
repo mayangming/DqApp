@@ -177,6 +177,7 @@ public interface IConstant {
     interface AD{
         String APP_ID = "1";
         String APP_NAME = "斗圈";
+        //激励视频的ID
         String REWARD_ID = "1";
     }
 

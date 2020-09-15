@@ -1018,6 +1018,7 @@ public class DqUrl {
     /**************************** 红包 ********************/
     public static String url_user_open_red_envelope = "active/cloud_red_envelope";//请求红包内容
     public static String url_get_user_red = "active/get_user_red";//获取红包提示内容
+    public static String url_get_norRedTime = "active/norRedTime";//获取红包提示内容
 
     /**************************** 注销账号 ********************/
     public static String url_user_cancellation = "user/user_cancellation";//注销账号
@@ -1085,5 +1086,6 @@ public class DqUrl {
     public static String url_dbsign_changeDBCommodities = "dbsign/changeDBCommodities";//开始兑换
     public static String url_dbsign_getMoneyHistory = "dbsign/getMoneyHistory";//斗币明细
     public static String url_dbsign_getChangeHistory = "dbsign/getChangeHistory";//兑换记录的表
+    public static String url_get_intviteReward = "dbsign/intviteReward";//获取邀请好友获取的奖励信息
     /************************** 积分商城功能 end ***********************************/
 }

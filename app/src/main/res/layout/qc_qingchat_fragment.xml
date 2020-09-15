@@ -15,7 +15,7 @@
             android:id="@+id/red_package_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dd_dp5"
+            android:layout_marginBottom="@dimen/dp_10"
             android:layout_centerInParent="true">
             <LinearLayout
                 android:id="@+id/main_red_package_rain"
@@ -47,6 +47,7 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone"
                         android:layout_marginTop="@dimen/dd_dp2"
+                        android:paddingBottom="@dimen/dp_2"
                         app:isHideTimeBackground="true"
                         app:isShowDay="false"
                         app:isShowHour="false"

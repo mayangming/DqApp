@@ -1,13 +1,11 @@
 package com.wd.daquan.mine.activity
 
 import android.os.Bundle
+import android.text.Html
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.netease.nim.uikit.common.ui.recyclerview.decoration.SpacingDecoration
 import com.wd.daquan.R
 import com.wd.daquan.common.activity.DqBaseActivity
-import com.wd.daquan.mine.adapter.SignRuleAdapter
 import com.wd.daquan.mine.adapter.SignUpAdapter
 import com.wd.daquan.mine.dialog.SignDialog
 import com.wd.daquan.mine.presenter.IntegralMallPresenter
@@ -20,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_sign_detail.*
  */
 class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>>(){
     private var signAdapter = SignUpAdapter()
-    private var signRuleAdapter = SignRuleAdapter()
     private var signUpEntity = SignUpEntity()
     companion object{
         const val KEY_ACTION = "signUpEntity"
@@ -63,19 +60,13 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
             layoutManager = GridLayoutManager(this@SignUpDetailActivity, 7)
             adapter = signAdapter
         }
-        sign_record_brv.addItemDecoration(SpacingDecoration(15,20,false))
-
-        sign_rule_brl.apply {
-            layoutManager = LinearLayoutManager(this@SignUpDetailActivity, RecyclerView.VERTICAL,false)
-            adapter = signRuleAdapter
-        }
-        sign_rule_brl.addItemDecoration(SpacingDecoration(30,20,false))
+        sign_record_brv.addItemDecoration(SpacingDecoration(15,10,false))
     }
 
     private fun updateUi(){
         sign_record.text = "已签${signUpEntity.dbUserSign.signNum}/${signUpEntity.list.size}次"
         signAdapter.signUpEntity = signUpEntity
-        signRuleAdapter.signRuleList = signUpEntity.dbRule
+        sign_rule_content.text =  Html.fromHtml(signUpEntity.dbRule)
     }
 
     /**

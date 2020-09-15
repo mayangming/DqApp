@@ -14,7 +14,6 @@ import com.wd.daquan.mine.adapter.IntegralMallGoodsAdapter
 import com.wd.daquan.mine.dialog.ExchangeBottomDialog
 import com.wd.daquan.mine.presenter.IntegralMallPresenter
 import com.wd.daquan.model.bean.DataBean
-import com.wd.daquan.model.bean.DqGoodChangeEntity
 import com.wd.daquan.model.bean.DqGoodDetails
 import com.wd.daquan.model.bean.DqGoodsEntity
 import com.wd.daquan.model.rxbus.MsgMgr
@@ -75,7 +74,9 @@ class IntegralMallActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
     private fun updateUI(entity: DqGoodDetails){
         mall_count.text = entity.dbMoney.toString()
         goodsAdapter.dqGoodDetails = entity.list
-        val list = arrayListOf<DqGoodChangeEntity>()
+        if (entity.changeList.isNullOrEmpty()){
+            return
+        }
         scroll_tv.list = entity.changeList
         scroll_tv.startScroll()
     }
@@ -115,4 +116,8 @@ class IntegralMallActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
         super.onFailed(url, code, entity)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        scroll_tv.stopScroll()
+    }
 }

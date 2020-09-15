@@ -14,6 +14,7 @@ public class RedEnvelopBean implements Serializable{
 
     private boolean flag;//是否成功
     private int amount;//红包金额，单位分
+    private int isBoom;// 是否暴击 0不是 1是
 
     public boolean isFlag() {
         return flag;
@@ -29,5 +30,13 @@ public class RedEnvelopBean implements Serializable{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public boolean getIsBoom() {
+        return isBoom == 1;
+    }
+
+    public void setIsBoom(int isBoom) {
+        this.isBoom = isBoom;
     }
 }
