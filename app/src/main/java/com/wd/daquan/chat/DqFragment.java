@@ -43,9 +43,11 @@ import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.login.helper.LogoutHelper;
 import com.wd.daquan.mine.dialog.GuideOpenVipDialog;
 import com.wd.daquan.mine.dialog.RedPackageTipDialog;
+import com.wd.daquan.mine.dialog.SignDialog;
 import com.wd.daquan.mine.dialog.VipExchangeResultDialog;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.RedEnvelopBean;
+import com.wd.daquan.model.bean.VipVideoDBEntity;
 import com.wd.daquan.model.interfaces.DqCallBack;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
@@ -140,12 +142,13 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         debugRoot = getView().findViewById(R.id.debug_root);
         debugHttpInput = getView().findViewById(R.id.debug_http_input);
         TextView title = getView().findViewById(R.id.toolbar_title);
-        String titleContent = DqApp.getStringById(R.string.app_name).concat("内测版");
+        String titleContent = DqApp.getStringById(R.string.app_name);
         if (BuildConfig.IS_DUBUG){
             titleContent =  titleContent.concat("测试版");
             debugRoot.setVisibility(View.VISIBLE);
         }else {
             debugRoot.setVisibility(View.GONE);
+            titleContent = titleContent.concat("内测版");
         }
         title.setText(titleContent);
         mTitleLeftExtra = getView().findViewById(R.id.toolbar_left_extra);
@@ -641,7 +644,6 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
             @Override
             public void onFailed(String url, int code, DataBean<RedEnvelopBean> entity) {
-                Toast.makeText(getContext(),entity.content,Toast.LENGTH_LONG).show();
                 openRedPackageIng = false;
                 DqToast.showShort(entity.content);
             }
@@ -685,6 +687,34 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         });
     }
 
+    /**
+     * 观看视频结束后获得斗币
+     */
+    private void getVipVideoDB(){
+        Map<String,String> params = new HashMap<>();
+        RetrofitHelp.getUserApi().getVipVideoDB(DqUrl.url_get_vipVideoDB,RetrofitHelp.getRequestBody(params)).enqueue(new DqCallBack<DataBean<VipVideoDBEntity>>(){
+            @Override
+            public void onSuccess(String url, int code, DataBean<VipVideoDBEntity> entity) {
+                VipVideoDBEntity vipVideoDBEntity = entity.data;
+                showSignDialog(""+vipVideoDBEntity.getTradeMoney());
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean<VipVideoDBEntity> entity) {
+                DqToast.showShort(entity.content);
+            }
+        });
+    }
+    /**
+     * 显示签到兑换
+     */
+    private void showSignDialog(String content){
+        Bundle arguments = new Bundle();
+        arguments.putString(SignDialog.KEY_ACTION, content);
+        SignDialog taskTypeDialog = new SignDialog();
+        taskTypeDialog.setArguments(arguments);
+        taskTypeDialog.show(getParentFragmentManager(), "");
+    }
     /**
      * 红包鼓励提示
      */
@@ -1103,6 +1133,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             public void rewardAdClose() {
                 Log.e("YM--------->","广告关闭");
                 mFallingLayout.setEnableClickRedRain(true);
+                getVipVideoDB();
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.wd.daquan.mine.dialog
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class CommonTipDialog : BaseFragmentDialog(){
 
     private fun initView(){
         dialogContent = arguments?.getString(KEY_CONTENT,"") ?: ""
-        tip_content.text = dialogContent
+        tip_content.text = Html.fromHtml(dialogContent)
     }
 
 }

@@ -73,9 +73,7 @@ class InviteFriendActivity: DqBaseActivity<MineChildCommentPresenter, DataBean<A
     }
 
     private fun updateUI(){
-        val min = data.min.toDouble() / 100
-        val max = data.max.toDouble() / 100
-        invite_price.text = "${min}~${max}"
+        invite_price.text = "${data.min}"
     }
 
     override fun onSuccess(url: String?, code: Int, entity: DataBean<Any>?) {

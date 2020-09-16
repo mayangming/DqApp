@@ -27,6 +27,11 @@ public class SignUserEntity implements Serializable{
      */
     private int dbMoney;
 
+    /**
+     * 可以领几次红包
+     */
+    private int canRedCount;
+
     public long getId() {
         return id;
     }
@@ -65,5 +70,13 @@ public class SignUserEntity implements Serializable{
 
     public void setDbMoney(int dbMoney) {
         this.dbMoney = dbMoney;
+    }
+
+    public int getCanRedCount() {
+        return canRedCount;
+    }
+
+    public void setCanRedCount(int canRedCount) {
+        this.canRedCount = canRedCount;
     }
 }

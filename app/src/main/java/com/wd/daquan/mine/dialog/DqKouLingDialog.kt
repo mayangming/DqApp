@@ -41,10 +41,10 @@ class DqKouLingDialog : BaseFragmentDialog(){
      * 复制分享链接
      */
     private fun copyLink() {
-        var link = ""
+        var link = "【斗圈】下载就能领红包(内测版只适用于安卓手机)\n 点击下方下载连接 \n"
         try {
             val params = AESUtil.encrypt(ModuleMgr.getCenterMgr().uid)
-            link = BuildConfig.SERVER + DqUrl.url_vip_share_link + params
+            link = link + BuildConfig.SERVER + DqUrl.url_vip_share_link + params
         } catch (e: Exception) {
             e.printStackTrace()
         }

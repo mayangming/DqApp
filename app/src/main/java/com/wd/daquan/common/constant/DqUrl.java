@@ -1087,5 +1087,8 @@ public class DqUrl {
     public static String url_dbsign_getMoneyHistory = "dbsign/getMoneyHistory";//斗币明细
     public static String url_dbsign_getChangeHistory = "dbsign/getChangeHistory";//兑换记录的表
     public static String url_get_intviteReward = "dbsign/intviteReward";//获取邀请好友获取的奖励信息
+    public static String url_get_vipVideoDB = "dbsign/vipVideoDB";//会员抢红包不中获得斗币
+    public static String url_get_signRed = "dbsign/signRed";//签到红包
+    public static String url_get_getUserRedCount = "dbsign/getUserRedCount";//获取当前签到红包的数量还有多少
     /************************** 积分商城功能 end ***********************************/
 }

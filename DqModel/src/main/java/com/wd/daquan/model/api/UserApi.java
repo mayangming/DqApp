@@ -22,6 +22,7 @@ import com.wd.daquan.model.bean.UserBean;
 import com.wd.daquan.model.bean.UserCloudWallet;
 import com.wd.daquan.model.bean.VipCommodityEntity;
 import com.wd.daquan.model.bean.VipExchangeResultBean;
+import com.wd.daquan.model.bean.VipVideoDBEntity;
 import com.wd.daquan.model.bean.WXLoginEntity;
 import com.wd.daquan.model.bean.WxBindBean;
 import com.wd.daquan.model.bean.WxPayBody;
@@ -247,4 +248,16 @@ public interface UserApi{
      */
     @POST
     Call<DataBean<DqIntviteRewardEntity>> getIntviteReward(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 会员抢红包不中获得斗币
+     */
+    @POST
+    Call<DataBean<VipVideoDBEntity>> getVipVideoDB(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 签到红包
+     */
+    @POST
+    Call<DataBean<RedEnvelopBean>> getSignRed(@Url String url, @Body RequestBody requestBody);
 }

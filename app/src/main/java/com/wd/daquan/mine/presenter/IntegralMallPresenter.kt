@@ -1,9 +1,10 @@
 package com.wd.daquan.mine.presenter
 
+import com.wd.daquan.common.constant.DqUrl
 import com.wd.daquan.model.bean.*
 import com.wd.daquan.model.interfaces.DqCallBack
 import com.wd.daquan.model.retrofit.RetrofitHelp
-import java.util.ArrayList
+import java.util.*
 
 /**
  * 积分商城解析层
@@ -62,5 +63,32 @@ class IntegralMallPresenter : MinePresenter<VipIView<DataBean<Any>>>(){
             }
         })
     }
-}
 
+    /**
+     * 签到红包
+     */
+     fun getSignRed(url: String, hashMap: Map<String, String>) {
+        RetrofitHelp.getUserApi().getSignRed(url, RetrofitHelp.getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<RedEnvelopBean>>() {
+            override fun onSuccess(url: String, code: Int, entity: DataBean<RedEnvelopBean>) {
+                success(url, code, entity)
+            }
+            override fun onFailed(url: String, code: Int, entity: DataBean<RedEnvelopBean>) {
+                failed(url, code, entity)
+            }
+        })
+    }
+
+    /**
+     * 获取签到数量
+     */
+     fun getUserRedCount(url: String, hashMap: Map<String, String>) {
+        RetrofitHelp.getUserApi().getCommonRequestNoBody(url, RetrofitHelp.getRequestBody(hashMap)).enqueue(object : DqCallBack<DataBean<Any>>() {
+            override fun onSuccess(url: String, code: Int, entity: DataBean<Any>) {
+                success(url, code, entity)
+            }
+            override fun onFailed(url: String, code: Int, entity: DataBean<Any>) {
+                failed(url, code, entity)
+            }
+        })
+    }
+}

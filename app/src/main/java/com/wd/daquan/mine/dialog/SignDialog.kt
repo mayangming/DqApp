@@ -41,7 +41,7 @@ class SignDialog : BaseFragmentDialog(){
 
     private fun initData(){
         content = arguments?.getString(KEY_ACTION,"") ?: ""
-        sign_content.text = "签到成功+${content}斗币"
+        sign_content.text = "获得斗币+${content}"
     }
 
 }

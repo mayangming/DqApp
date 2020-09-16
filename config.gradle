@@ -12,8 +12,8 @@ ext {
             applicationId    : "com.wd.daquan",
             minSdkVersion    : 19,
             targetSdkVersion : 29,
-            versionCode      : 102024,
-            versionName      : "1.02.24",
+            versionCode      : 102025,
+            versionName      : "1.02.25",
 
             /**
              * JDK版本
@@ -141,8 +141,8 @@ ext {
 //            "server_sdk"            : '"http://192.168.72.96:8086/"',
 //            "server"            : '"http://192.168.72.228:9010/"',
 //            "server"            : '"http://192.168.72.197:9010/"',
-//            "server_sdk"        : '"http://172.17.10.152:8086/"',
-//            "server"            : '"http://172.17.10.152:9010/"',
+//            "server_sdk"        : '"http://172.17.10.90:8086/"',
+//            "server"            : '"http://172.17.10.90:9010/"',
             "umeng_key"         : '"5d7effde570df3464b000635"',
             "umeng_channel"     : '"daquan"',
             "yx_appkey"         : '"973afbbc6c0c0a9c95740d929f1c6953"',
