@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.common.constant.KeyValue;
+import com.wd.daquan.mine.viewholder.AlipayRedDetailsHeaderHolder;
+import com.wd.daquan.mine.viewholder.AlipayRedDetailsHolder;
 import com.wd.daquan.model.sp.EBSharedPrefUser;
 import com.wd.daquan.model.sp.QCSharedPrefManager;
 import com.wd.daquan.glide.GlideUtils;

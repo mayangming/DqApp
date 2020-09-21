@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.R;
+import com.wd.daquan.mine.viewholder.VipCardHolder;
 import com.wd.daquan.model.bean.VipCommodityEntity;
 
 public class VipCardAdapter extends CommRecyclerViewAdapter<VipCommodityEntity, VipCardHolder> {

@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import com.da.library.tools.DateUtil
 import com.wd.daquan.R
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
+import com.wd.daquan.mine.viewholder.IntegralExchangeRecordHolder
 import com.wd.daquan.model.bean.DqMoneyHistoryEntity
 
 /**

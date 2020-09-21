@@ -3,6 +3,7 @@ package com.wd.daquan.mine.dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +17,10 @@ import kotlinx.android.synthetic.main.dialog_sign.*
  */
 class SignDialog : BaseFragmentDialog(){
     private var content = ""
+    private var type = 0// 0:签到类型 1: 看视频得斗币类型
     companion object{
-        const val KEY_ACTION = ""
+        const val KEY_ACTION = "content"
+        const val KEY_TYPE = "type"
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,7 +44,16 @@ class SignDialog : BaseFragmentDialog(){
 
     private fun initData(){
         content = arguments?.getString(KEY_ACTION,"") ?: ""
-        sign_content.text = "获得斗币+${content}"
+        type = arguments?.getInt(KEY_TYPE,0) ?: 0
+        if (type == 0){
+            sign_label.visibility = View.VISIBLE
+            sign_content.text = content
+            sign_content.setTextSize(TypedValue.COMPLEX_UNIT_SP,9f)
+        }else{
+            sign_label.visibility = View.GONE
+            sign_content.text = "获得斗币+${content}"
+            sign_content.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f)
+        }
     }
 
 }

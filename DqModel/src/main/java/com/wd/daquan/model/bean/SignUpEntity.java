@@ -57,4 +57,14 @@ public class SignUpEntity implements Serializable {
     public void setIsSign(int isSign) {
         this.isSign = isSign;
     }
+
+    @Override
+    public String toString() {
+        return "SignUpEntity{" +
+                "dbUserSign=" + dbUserSign +
+                ", list=" + list +
+                ", dbRule='" + dbRule + '\'' +
+                ", isSign=" + isSign +
+                '}';
+    }
 }

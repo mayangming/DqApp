@@ -184,6 +184,8 @@
     <color name="color_fff1e4">#fff1e4</color>
     <color name="color_fd6c30">#FD6C30</color>
     <color name="color_FFE982">#FFE982</color>
+    <color name="color_4DFFFFFF">#4DFFFFFF</color>
+    <color name="color_99FFFFFF">#99FFFFFF</color>
 
     <color name="color_ababab">#ababab</color>
     <color name="color_C0000000">#C0000000</color>
@@ -198,6 +200,7 @@
     <color name="color_B49808">#B49808</color>
     <color name="color_1DC121">#1DC121</color>
     <color name="color_EDEDED">#EDEDED</color>
+    <color name="color_F9582A">#F9582A</color>
 
     <color name="app_txt_333333">#333333</color>
     <color name="app_txt_666666">#666666</color>

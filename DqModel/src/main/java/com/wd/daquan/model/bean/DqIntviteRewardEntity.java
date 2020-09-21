@@ -15,7 +15,7 @@ public class DqIntviteRewardEntity implements Serializable {
     private String result;
     private String min;
     private String max;
-
+    private InviteFriendEntity personInviteAward;
     public String getResult() {
         return result;
     }
@@ -38,5 +38,13 @@ public class DqIntviteRewardEntity implements Serializable {
 
     public void setMax(String max) {
         this.max = max;
+    }
+
+    public InviteFriendEntity getPersonInviteAward() {
+        return personInviteAward;
+    }
+
+    public void setPersonInviteAward(InviteFriendEntity personInviteAward) {
+        this.personInviteAward = personInviteAward;
     }
 }

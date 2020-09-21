@@ -1,4 +1,4 @@
-package com.wd.daquan.mine.adapter;
+package com.wd.daquan.mine.viewholder;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;

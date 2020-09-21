@@ -4,504 +4,511 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/main_title_left_head_ll"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="@dimen/dd_dp20"
-        android:paddingHorizontal="@dimen/dp_12"
-        android:gravity="center_vertical"
-        android:paddingTop="@dimen/dd_dp20"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/sign_gift_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:background="@mipmap/bg_aa1900"
-            android:layout_gravity="end"
-            android:paddingVertical="@dimen/dp_8"
-            android:paddingHorizontal="@dimen/dp_8">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/gift_icon_white"
-                android:layout_marginHorizontal="@dimen/dp_5"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="签到有礼"
-                android:textColor="@color/white"
-                android:layout_marginEnd="@dimen/dp_5"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dd_dp10">
-                <FrameLayout
-                    android:id="@+id/head_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dd_dp10">
-                    <ImageView
-                        android:id="@+id/main_title_left_head_iv"
-                        android:layout_width="@dimen/dd_dp56"
-                        android:layout_height="@dimen/dd_dp56"
-                        android:src="@drawable/user_avatar"
-                        android:scaleType="centerCrop"/>
-                </FrameLayout>
-                <ImageView
-                    android:id="@+id/main_title_left_head_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/head_container"
-                    android:layout_alignBottom="@+id/head_container"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/icon_vip"/>
-            </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/main_title_left_head_ll"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dd_dp8"
-                android:layout_marginRight="@dimen/dd_dp8"
+                android:background="@color/white"
+                android:paddingHorizontal="@dimen/dp_12"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dd_dp20"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/main_title_left_name_tv"
-                    style="@style/mine_item_text"
-                    android:textColor="@color/color_333333"
-                    android:textStyle="bold"
+                <LinearLayout
+                    android:id="@+id/sign_gift_ll"
                     android:layout_width="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLength="16"
-                    android:maxLines="1"
-                    android:textSize="@dimen/sp16"
-                    tools:text="@string/app_name"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@mipmap/bg_aa1900"
+                    android:layout_gravity="end"
+                    android:paddingVertical="@dimen/dp_8"
+                    android:paddingHorizontal="@dimen/dp_8">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/gift_icon_white"
+                        android:layout_marginHorizontal="@dimen/dp_5"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="签到有礼"
+                        android:textColor="@color/white"
+                        android:layout_marginEnd="@dimen/dp_5"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dd_dp10">
+                        <FrameLayout
+                            android:id="@+id/head_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dd_dp10">
+                            <ImageView
+                                android:id="@+id/main_title_left_head_iv"
+                                android:layout_width="@dimen/dd_dp56"
+                                android:layout_height="@dimen/dd_dp56"
+                                android:src="@drawable/user_avatar"
+                                android:scaleType="centerCrop"/>
+                        </FrameLayout>
+                        <ImageView
+                            android:id="@+id/main_title_left_head_bg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/head_container"
+                            android:layout_alignBottom="@+id/head_container"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/icon_vip"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dd_dp8"
+                        android:layout_marginRight="@dimen/dd_dp8"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/main_title_left_dq_num_tv"
-                    style="@style/comm_sub_small_txt"
-                    android:layout_marginTop="@dimen/dd_dp8"
-                    android:ellipsize="end"
-                    android:maxLength="20"
-                    android:maxLines="1"
-                    android:visibility="visible"
-                    android:textColor="@color/color_333333"
-                    android:textSize="@dimen/sp16"
-                    tools:text="dq0000000"/>
+                        <TextView
+                            android:id="@+id/main_title_left_name_tv"
+                            style="@style/mine_item_text"
+                            android:textColor="@color/color_333333"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLength="16"
+                            android:maxLines="1"
+                            android:textSize="@dimen/sp16"
+                            tools:text="@string/app_name"/>
+
+                        <TextView
+                            android:id="@+id/main_title_left_dq_num_tv"
+                            style="@style/comm_sub_small_txt"
+                            android:layout_marginTop="@dimen/dd_dp8"
+                            android:ellipsize="end"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:visibility="visible"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/sp16"
+                            tools:text="dq0000000"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="@dimen/dp_20">
+                        <ImageView
+                            android:layout_marginRight="@dimen/dd_dp10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/main_title_left_qrcode_gray"/>
+                        <ImageView
+                            android:layout_marginRight="@dimen/dd_dp10"
+                            style="@style/comm_arrow_right"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/dq_shop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingVertical="@dimen/dd_dp10"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:src="@mipmap/red_money_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_000000"
+                        android:textSize="@dimen/sp14"
+                        android:layout_marginHorizontal="@dimen/dp_10"
+                        android:text="斗币:"/>
+                    <TextView
+                        android:id="@+id/dq_currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp14"
+                        android:textColor="@color/color_F39825"
+                        tools:text="2000"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="@color/color_E4E4E4"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:src="@mipmap/red_shop_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_000000"
+                        android:textSize="@dimen/sp14"
+                        android:layout_marginHorizontal="@dimen/dp_10"
+                        android:text="斗币商城"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="@dimen/dp_20">
-                <ImageView
-                    android:layout_marginRight="@dimen/dd_dp10"
+                android:background="@color/white"
+                android:paddingEnd="@dimen/dd_dp30"
+                android:paddingStart="@dimen/dd_dp30"
+                android:paddingBottom="@dimen/dd_dp20"
+                android:visibility="gone"
+                android:gravity="center_horizontal">
+                <!--        <LinearLayout-->
+                <!--            android:id="@+id/mine_wallet_cloud"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:gravity="center"-->
+                <!--            android:layout_marginEnd="@dimen/dd_dp30"-->
+                <!--            android:layout_marginRight="@dimen/dd_dp30"-->
+                <!--            android:background="@mipmap/mine_wallet_cloud">-->
+                <!--            <ImageView-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:src="@mipmap/mine_wallet_cloud_icon"-->
+                <!--                android:layout_marginEnd="@dimen/dd_dp10"-->
+                <!--                android:layout_marginRight="@dimen/dd_dp10"/>-->
+                <!--            <TextView-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="斗圈零钱"-->
+                <!--                android:textColor="@color/white"-->
+                <!--                android:textSize="@dimen/sp_16"-->
+                <!--                android:gravity="center"/>-->
+                <!--        </LinearLayout>-->
+                <LinearLayout
+                    android:id="@+id/mine_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/main_title_left_qrcode_gray"/>
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:background="@mipmap/mine_wallet">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/mine_wallet_icon"
+                        android:layout_marginEnd="@dimen/dd_dp10"
+                        android:layout_marginRight="@dimen/dd_dp10"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        android:text="我的钱包"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mine_invite_friend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dd_dp5"
+                android:background="@color/white">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:background="@mipmap/invite_banner"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_wallet_cloud"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/mine_wallet_cloud_icon" />
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="斗圈零钱" />
+
+                <ImageView
+                    style="@style/comm_arrow_right"
+                    android:layout_marginRight="@dimen/dd_dp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp10"
+                android:id="@+id/main_title_left_scan"
+                style="@style/mine_item_layout"
+                android:visibility="gone"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/mine_scan_icon"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/mine_scan"
+                    android:layout_marginStart="20dp" />
+                <ImageView
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    style="@style/comm_arrow_right"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:id="@+id/main_title_left_vip"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/mine_vip_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dd_dp16"
+                    android:layout_marginEnd="@dimen/dd_dp16"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/mine_vip"
+                    android:layout_marginStart="20dp" />
+
+                <TextView
+                    android:id="@+id/mine_vip_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/sp11"
+                    android:textColor="@color/text_title_black"
+                    tools:text="2019年12月30号到期"/>
+                <TextView
+                    android:id="@+id/mine_vip_renew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginEnd="@dimen/dd_dp10"
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:text="续费开通"/>
+                <ImageView
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:layout_gravity="center"
+                    style="@style/comm_arrow_right"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:id="@+id/main_title_left_share"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/mine_share_icon"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/dd_dp16"
+                    android:layout_marginEnd="@dimen/dd_dp16"
+                    android:textColor="@color/text_title_black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/mine_share"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginEnd="@dimen/dd_dp10"
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:text="兑换VIP"/>
+                <ImageView
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:layout_gravity="center"
+                    style="@style/comm_arrow_right"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/main_title_left_qrcode"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_qrcode"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/mine_qr" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mineJRMFLayout"
+                style="@style/mine_item_layout"
+                android:visibility="gone"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_alipay"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/mine_jrmf_wallet"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_title_left_alipay"
+                android:visibility="gone"
+                style="@style/mine_item_layout">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_alipay"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/mine_alipay_red"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/dd_dp20"
+                android:id="@+id/main_title_left_collection"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_collection"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/collection"/>
+
+                <ImageView
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    style="@style/comm_arrow_right"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dd_dp5"
+                android:id="@+id/main_title_left_setting"
+                style="@style/mine_item_layout">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_setting"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/setting"/>
+
+                <ImageView
+                    android:id="@+id/mineSettingImgRedDot"
+                    android:layout_width="@dimen/dd_dp8"
+                    android:layout_height="@dimen/dd_dp8"
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    android:src="@mipmap/icon_red_dot"
+                    android:visibility="gone"/>
+
                 <ImageView
                     android:layout_marginRight="@dimen/dd_dp10"
                     style="@style/comm_arrow_right"/>
             </LinearLayout>
+
+            <View
+                style="@style/item_line_marin_left_right_10dp"/>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/main_title_left_help"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_help"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/mine_help"/>
+
+                <ImageView
+                    android:layout_marginRight="@dimen/dd_dp10"
+                    style="@style/comm_arrow_right"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/main_title_left_feedback"
+                style="@style/mine_item_layout"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/mine_item_icon"
+                    android:src="@mipmap/main_title_left_feedback"/>
+
+                <TextView
+                    style="@style/mine_item_text"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/mine_feedback"/>
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/dq_shop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingVertical="@dimen/dd_dp10"
-        android:gravity="center_vertical">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
-                android:src="@mipmap/red_money_icon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_000000"
-                android:textSize="@dimen/sp14"
-                android:layout_marginHorizontal="@dimen/dp_10"
-                android:text="斗币:"/>
-            <TextView
-                android:id="@+id/dq_currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sp14"
-                android:textColor="@color/color_F39825"
-                tools:text="2000"/>
-        </LinearLayout>
-        <View
-            android:layout_width="@dimen/dp_1"
-            android:layout_height="@dimen/dp_40"
-            android:background="@color/color_E4E4E4"/>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
-                android:src="@mipmap/red_shop_icon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_000000"
-                android:textSize="@dimen/sp14"
-                android:layout_marginHorizontal="@dimen/dp_10"
-                android:text="斗币商城"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingEnd="@dimen/dd_dp30"
-        android:paddingStart="@dimen/dd_dp30"
-        android:paddingBottom="@dimen/dd_dp20"
-        android:visibility="gone"
-        android:gravity="center_horizontal">
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/mine_wallet_cloud"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:gravity="center"-->
-        <!--            android:layout_marginEnd="@dimen/dd_dp30"-->
-        <!--            android:layout_marginRight="@dimen/dd_dp30"-->
-        <!--            android:background="@mipmap/mine_wallet_cloud">-->
-        <!--            <ImageView-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:src="@mipmap/mine_wallet_cloud_icon"-->
-        <!--                android:layout_marginEnd="@dimen/dd_dp10"-->
-        <!--                android:layout_marginRight="@dimen/dd_dp10"/>-->
-        <!--            <TextView-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:text="斗圈零钱"-->
-        <!--                android:textColor="@color/white"-->
-        <!--                android:textSize="@dimen/sp_16"-->
-        <!--                android:gravity="center"/>-->
-        <!--        </LinearLayout>-->
-        <LinearLayout
-            android:id="@+id/mine_wallet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:visibility="gone"
-            android:background="@mipmap/mine_wallet">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/mine_wallet_icon"
-                android:layout_marginEnd="@dimen/dd_dp10"
-                android:layout_marginRight="@dimen/dd_dp10"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_16"
-                android:text="我的钱包"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/mine_invite_friend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/dd_dp5"
-        android:background="@color/white">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_5"
-            android:layout_marginEnd="@dimen/dp_5"
-            android:background="@mipmap/invite_banner"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mine_wallet_cloud"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/mine_wallet_cloud_icon" />
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="斗圈零钱" />
-
-        <ImageView
-            style="@style/comm_arrow_right"
-            android:layout_marginRight="@dimen/dd_dp10" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/dd_dp10"
-        android:id="@+id/main_title_left_scan"
-        style="@style/mine_item_layout"
-        android:visibility="gone"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/mine_scan_icon"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:text="@string/mine_scan"
-            android:layout_marginStart="20dp" />
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            style="@style/comm_arrow_right"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/dd_dp5"
-        android:id="@+id/main_title_left_vip"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/mine_vip_icon"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dd_dp16"
-            android:layout_marginEnd="@dimen/dd_dp16"
-            android:textColor="@color/text_title_black"
-            android:textSize="@dimen/sp_16"
-            android:layout_marginLeft="20dp"
-            android:text="@string/mine_vip"
-            android:layout_marginStart="20dp" />
-
-        <TextView
-            android:id="@+id/mine_vip_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/sp11"
-            android:textColor="@color/text_title_black"
-            tools:text="2019年12月30号到期"/>
-        <TextView
-            android:id="@+id/mine_vip_renew"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/sp_12"
-            android:layout_marginEnd="@dimen/dd_dp10"
-            android:layout_marginRight="@dimen/dd_dp10"
-            android:text="续费开通"/>
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            android:layout_gravity="center"
-            style="@style/comm_arrow_right"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/dd_dp5"
-        android:id="@+id/main_title_left_share"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/mine_share_icon"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="@dimen/dd_dp16"
-            android:layout_marginEnd="@dimen/dd_dp16"
-            android:textColor="@color/text_title_black"
-            android:textSize="@dimen/sp_16"
-            android:layout_marginLeft="20dp"
-            android:text="@string/mine_share"
-            android:layout_marginStart="20dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/sp_12"
-            android:layout_marginEnd="@dimen/dd_dp10"
-            android:layout_marginRight="@dimen/dd_dp10"
-            android:text="兑换VIP"/>
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            android:layout_gravity="center"
-            style="@style/comm_arrow_right"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/main_title_left_qrcode"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_qrcode"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/mine_qr" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mineJRMFLayout"
-        style="@style/mine_item_layout"
-        android:visibility="gone"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_alipay"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/mine_jrmf_wallet"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/main_title_left_alipay"
-        android:visibility="gone"
-        style="@style/mine_item_layout">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_alipay"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/mine_alipay_red"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/dd_dp20"
-        android:id="@+id/main_title_left_collection"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_collection"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/collection"/>
-
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            style="@style/comm_arrow_right"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/dd_dp5"
-        android:id="@+id/main_title_left_setting"
-        style="@style/mine_item_layout">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_setting"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/setting"/>
-
-        <ImageView
-            android:id="@+id/mineSettingImgRedDot"
-            android:layout_width="@dimen/dd_dp8"
-            android:layout_height="@dimen/dd_dp8"
-            android:layout_marginRight="@dimen/dd_dp10"
-            android:src="@mipmap/icon_red_dot"
-            android:visibility="gone"/>
-
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            style="@style/comm_arrow_right"/>
-    </LinearLayout>
-
-    <View
-        style="@style/item_line_marin_left_right_10dp"/>
-
-
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/main_title_left_help"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_help"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/mine_help"/>
-
-        <ImageView
-            android:layout_marginRight="@dimen/dd_dp10"
-            style="@style/comm_arrow_right"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/main_title_left_feedback"
-        style="@style/mine_item_layout"
-        android:gravity="center_vertical">
-
-        <ImageView
-            style="@style/mine_item_icon"
-            android:src="@mipmap/main_title_left_feedback"/>
-
-        <TextView
-            style="@style/mine_item_text"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/mine_feedback"/>
-
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

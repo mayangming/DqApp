@@ -1,4 +1,4 @@
-package com.wd.daquan.mine.adapter
+package com.wd.daquan.mine.viewholder
 
 import android.view.View
 import android.widget.TextView

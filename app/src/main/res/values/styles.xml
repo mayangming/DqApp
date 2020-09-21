@@ -15,6 +15,21 @@
         <!-- windowBackground可以设置为一张图片，也可以是能解析出图片的XML文件-->
         <item name="android:windowBackground">@drawable/layer_launcher</item>
     </style>
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+<!--    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/app_page_bg</item>-->
+<!--        <item name="colorPrimaryDark">@color/app_page_bg</item>-->
+<!--        <item name="colorAccent">@color/text_blue</item>-->
+<!--        <item name="android:textColorPrimary">@color/text_title_black</item>-->
+<!--        <item name="android:windowFullscreen">false</item>-->
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowBackground">@color/app_page_bg</item>-->
+<!--    </style>-->
 
     <style name="LoginRegisterTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/white</item>

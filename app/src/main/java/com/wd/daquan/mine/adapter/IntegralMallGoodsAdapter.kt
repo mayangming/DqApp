@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import com.wd.daquan.R
 import com.wd.daquan.glide.GlideUtils
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
+import com.wd.daquan.mine.viewholder.IntegralMallGoodsHolder
 import com.wd.daquan.model.bean.DqGoodsEntity
-import com.wd.daquan.model.bean.IntegralMallEntity
 
 /**
  * 商城适配器

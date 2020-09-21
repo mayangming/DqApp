@@ -28,6 +28,7 @@ import com.wd.daquan.model.bean.RedEnvelopBean
 import com.wd.daquan.model.bean.SignUpEntity
 import com.wd.daquan.model.log.DqLog
 import com.wd.daquan.model.log.DqToast
+import com.wd.daquan.util.DobbleClickUtils
 import kotlinx.android.synthetic.main.activity_sign_detail.*
 
 /**
@@ -68,6 +69,14 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
     override fun initListener() {
         super.initListener()
         open_red_package.setOnClickListener {
+            val redCount = sign_red_package_count.text
+            if(redCount == "0"){
+               DqToast.showCenterShort("已经没有剩余次数了,请明天签到后再来观看~")
+                return@setOnClickListener
+            }
+            if (DobbleClickUtils.isFastClick()){
+                return@setOnClickListener
+            }
             switchAd(IConstant.AD.REWARD_ID)
             rewardVideoAdCompat!!.showAd(activity)
         }
@@ -75,11 +84,6 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
 
     override fun onStart() {
         super.onStart()
-        if (signUpEntity.isSign){
-            val currentDay = signUpEntity.dbUserSign.signNum//当前次数
-            val money = signUpEntity.list[currentDay - 1].dbaward.toString()
-            showSignDialog(money)
-        }
     }
 
     private fun initRecycleView() {
@@ -91,10 +95,18 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
     }
 
     private fun updateUi(){
+        DqLog.e("YM---------->签到规则",signUpEntity.dbRule)
         sign_record.text = "已签${signUpEntity.dbUserSign.signNum}/${signUpEntity.list.size}次"
         signAdapter.signUpEntity = signUpEntity
         sign_rule_content.text =  Html.fromHtml(signUpEntity.dbRule)
         sign_red_package_count.text = "${signUpEntity.dbUserSign.canRedCount}"
+        if (signUpEntity.isSign){
+            val currentDay = signUpEntity.dbUserSign.signNum//当前次数
+            val money = signUpEntity.list[currentDay - 1].dbaward.toString()
+//            val content = "斗币+${money}，看视频得红包+${signUpEntity.dbUserSign.canRedCount}"
+            val content = "斗币+${money}，看视频得红包+3"
+            showSignDialog(content)
+        }
     }
 
     /**
@@ -103,6 +115,7 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
     private fun showSignDialog(content: String){
         val arguments = Bundle()
         arguments.putString(SignDialog.KEY_ACTION, content)
+        arguments.putInt(SignDialog.KEY_TYPE, 0)
         val taskTypeDialog = SignDialog()
         taskTypeDialog.arguments = arguments
         taskTypeDialog.show(supportFragmentManager, "")
@@ -165,9 +178,7 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
             }
 
             override fun rewardAdClose() {
-                val params1 = hashMapOf<String, String>()
                 val params2 = hashMapOf<String, String>()
-                mPresenter.getUserRedCount(DqUrl.url_get_getUserRedCount, params1)
                 mPresenter.getSignRed(DqUrl.url_get_signRed, params2)
             }
         })
@@ -209,6 +220,8 @@ class SignUpDetailActivity : DqBaseActivity<IntegralMallPresenter, DataBean<Any>
             val redEnvelopBean = entity.data as RedEnvelopBean
             val amount = BigDecimalUtils.penny2Dollar(redEnvelopBean.amount.toLong()).toPlainString()
             showOpenGift(amount, redEnvelopBean.isFlag)
+            val params1 = hashMapOf<String, String>()
+            mPresenter.getUserRedCount(DqUrl.url_get_getUserRedCount, params1)
         }
 
 

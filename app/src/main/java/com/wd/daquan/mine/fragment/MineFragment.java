@@ -21,7 +21,6 @@ import com.wd.daquan.mine.presenter.MinePresenter;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.SignUpEntity;
 import com.wd.daquan.model.bean.WxBindBean;
-import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgMgr;

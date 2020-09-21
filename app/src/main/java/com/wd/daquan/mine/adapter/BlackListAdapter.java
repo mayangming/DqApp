@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.glide.GlideUtils;
+import com.wd.daquan.mine.viewholder.BlackListHolder;
 import com.wd.daquan.model.bean.Friend;
 
 import org.jetbrains.annotations.NotNull;

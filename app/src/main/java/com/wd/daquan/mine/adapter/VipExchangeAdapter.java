@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.R;
+import com.wd.daquan.mine.viewholder.VipExchangeHolder;
 import com.wd.daquan.model.bean.ExchangeVipListBean;
 
 /**

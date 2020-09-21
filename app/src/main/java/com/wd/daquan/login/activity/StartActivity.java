@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.da.library.constant.IConstant;
+import com.da.library.listener.DialogListener;
 import com.da.library.tools.FileUtils;
 import com.dq.im.config.HttpConfig;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
@@ -24,8 +25,12 @@ import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.bean.ShareBean;
 import com.wd.daquan.common.constant.DqUrl;
+import com.wd.daquan.common.helper.UpdateHelper;
+import com.wd.daquan.common.helper.UpdateListener;
+import com.wd.daquan.common.utils.DialogUtils;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.login.helper.LoginHelper;
+import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -53,9 +58,15 @@ public class StartActivity extends AppCompatActivity {
                     return;
                 }
                 initOtherAppData();
-                finish();
+//                finish();
             }
         }, 2000);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 
@@ -278,5 +289,4 @@ public class StartActivity extends AppCompatActivity {
             }
         }
     }
-
 }

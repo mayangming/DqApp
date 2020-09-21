@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.da.library.utils.BigDecimalUtils;
 import com.wd.daquan.R;
+import com.wd.daquan.mine.viewholder.WithdrawRecordHolder;
 import com.wd.daquan.model.bean.WithdrawRecordBean;
 import com.wd.daquan.model.bean.WithrawCountEntity;
 

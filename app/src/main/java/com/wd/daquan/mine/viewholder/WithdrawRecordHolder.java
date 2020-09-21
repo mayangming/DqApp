@@ -1,4 +1,4 @@
-package com.wd.daquan.mine.adapter;
+package com.wd.daquan.mine.viewholder;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -10,11 +10,11 @@ import com.wd.daquan.R;
  * 交易记录的列表
  */
 public class WithdrawRecordHolder extends RecyclerView.ViewHolder{
-    View withdrawDateLayout;
-    TextView withdrawDate;
-    TextView withdrawExpenditureAmount;
-    TextView withdrawIncomeAmount;
-    RecyclerView withdrawSub;
+    public View withdrawDateLayout;
+    public TextView withdrawDate;
+    public TextView withdrawExpenditureAmount;
+    public TextView withdrawIncomeAmount;
+    public RecyclerView withdrawSub;
     public WithdrawRecordHolder(View itemView) {
         super(itemView);
         withdrawDateLayout = itemView.findViewById(R.id.withdraw_date_layout);

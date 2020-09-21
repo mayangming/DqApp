@@ -184,13 +184,11 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
             @Override
             public void onEnd(CountdownView cv) {//倒计时结束
                 Log.e("YM","倒计时结束");
-                if (isFont){
-                    isDownTime = false;
-                    countdownView.setVisibility(View.GONE);
-                    redRainTv.setVisibility(View.VISIBLE);
-                    redRainTv.setText("进行中");
+                isDownTime = false;
+                countdownView.setVisibility(View.GONE);
+                redRainTv.setVisibility(View.VISIBLE);
+                redRainTv.setText("每日红包雨");
 //                    startRain();
-                }
             }
         });
     }
@@ -209,6 +207,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //        MsgMgr.getInstance().sendMsg(MsgType.APPLICATION_RED_RAIN_START, redRainSystemAttachment);
 //        startRain();
         checkRedRainContent();
+        getRedPackageDownTime2();
     }
 
     public void goChatUnReadMessage(){
@@ -227,6 +226,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //        if(TextUtils.isEmpty(content)){
 //            return;
 //        }
+        DqLog.e("YM------>是否是手动停止红包雨"+isStopRedRain);
         if (isStopRedRain){
             return;
         }
@@ -267,7 +267,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
         mFallingContent.setVisibility(View.VISIBLE);
         mFallingLayout.startRedRain();
         mFallingLayout.setEnableClickTip("网络较慢，请稍后再试!");
-        redRainTv.setText("进行中");
+        redRainTv.setText("每日红包雨");
     }
     @Override
     public void onStop() {
@@ -688,6 +688,41 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     }
 
     /**
+     * 获取倒计时时间
+     */
+    private void getRedPackageDownTime2(){
+        if (isDownTime){
+            return;
+        }
+        Map<String,String> params = new HashMap<>();
+        RetrofitHelp.getUserApi().getCommonRequestNoBody(DqUrl.url_get_norRedTime,RetrofitHelp.getRequestBody(params)).enqueue(new DqCallBack<DataBean>(){
+            @Override
+            public void onSuccess(String url, int code, DataBean entity) {
+                if (entity.result != 0){
+                    DqToast.showShort(entity.content);
+                    return;
+                }
+                double timeDouble = (Double) entity.data;
+                long time = new Double(timeDouble).longValue() * 1000;
+                if (time == -2000){//可以抢红包
+                    redRainTv.setVisibility(View.VISIBLE);
+                    countdownView.setVisibility(View.GONE);
+                }else {//倒计时开始
+                    isDownTime = true;
+                    redRainTv.setVisibility(View.GONE);
+                    countdownView.setVisibility(View.VISIBLE);
+                    countdownView.start(time); // 毫秒
+                }
+            }
+
+            @Override
+            public void onFailed(String url, int code, DataBean entity) {
+                DqToast.showShort(entity.content);
+            }
+        });
+    }
+
+    /**
      * 观看视频结束后获得斗币
      */
     private void getVipVideoDB(){
@@ -711,6 +746,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
     private void showSignDialog(String content){
         Bundle arguments = new Bundle();
         arguments.putString(SignDialog.KEY_ACTION, content);
+        arguments.putInt(SignDialog.KEY_TYPE, 1);
         SignDialog taskTypeDialog = new SignDialog();
         taskTypeDialog.setArguments(arguments);
         taskTypeDialog.show(getParentFragmentManager(), "");

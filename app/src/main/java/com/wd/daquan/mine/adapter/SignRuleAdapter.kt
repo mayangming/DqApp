@@ -3,6 +3,7 @@ package com.wd.daquan.mine.adapter
 import android.view.ViewGroup
 import com.wd.daquan.R
 import com.wd.daquan.imui.adapter.RecycleBaseAdapter
+import com.wd.daquan.mine.viewholder.SignRuleHolder
 import com.wd.daquan.model.bean.SignRuleEntity
 
 /**

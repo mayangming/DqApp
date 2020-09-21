@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/invite_avatar"
+        android:layout_width="@dimen/dd_dp48"
+        android:layout_height="@dimen/dd_dp48"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/invite_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/invite_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/invite_user_content"
+        tools:text ="闫志峰"/>
+    <TextView
+        android:id="@+id/invite_user_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+        app:layout_constraintStart_toStartOf="@+id/invite_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/invite_user_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text ="再签到一天+1元，提现10元+0.5元"/>
+    <TextView
+        android:id="@+id/invite_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/invite_user_name"
+        tools:text="+12"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

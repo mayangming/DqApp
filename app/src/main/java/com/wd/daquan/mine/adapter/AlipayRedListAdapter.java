@@ -8,6 +8,7 @@ import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.common.constant.KeyValue;
 import com.wd.daquan.mine.bean.AlipayRedListEntity;
+import com.wd.daquan.mine.viewholder.AlipayRedListHolder;
 
 import org.jetbrains.annotations.NotNull;
 
