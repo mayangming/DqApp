@@ -17,6 +17,10 @@ import com.da.library.constant.IConstant;
 import com.da.library.listener.DialogListener;
 import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.netease.nim.uikit.support.permission.MPermission;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.helper.UpdateHelper;
@@ -227,7 +231,7 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     @Override
     public void loginWX(Map<String, String> map) {
         String openId = map.get(IConstant.WX.OPENID);
-        String accessToken = map.get(IConstant.WX.ACCESSTOKEN);
+        String accessToken = map.get(IConstant.WX.ACCESS_TOKEN);
         mWxMap.clear();
         mWxMap.putAll(map);
         Map<String, String> hashMap = new HashMap<>();

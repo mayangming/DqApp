@@ -69,6 +69,9 @@ public class EBSharedPrefUser extends BaseSharedPreference {
     // 通知消息列表, 添加好友／是否允许被
     public static final String NOTIFY_LIST = "notify_list";
 
+    // 通知消息列表, 添加好友／是否允许被
+    public static final String WX_REFRESH_TOKEN = "wxRefreshToken";
+
     public EBSharedPrefUser(String fileName) {
         super(fileName);
     }

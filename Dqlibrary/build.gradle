@@ -38,4 +38,5 @@ dependencies {
     api rootProject.ext.dependencies.zxing_android_core
     api project(':DqModel')
     api project(':DqGlide')
+
 }

@@ -477,6 +477,15 @@ public class DqUrl {
     public static String url_oauth_bindWeixinStatus = "wechat/getWechatBindStatus";
 
     /**
+     * 微信获取accesToken接口
+     */
+    public static String url_oauth_wx_access_token = "/user/weixin_login";
+    /**
+     * 微信获取用户信息
+     */
+    public static String url_oauth_wx_user_info = "/user/weixin_userinfo";
+
+    /**
      * 判断是否在禁止名单内
      * tzaed/ijvwg
      */

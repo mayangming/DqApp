@@ -13,6 +13,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.wd.daquan.BuildConfig;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 
@@ -27,6 +28,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DqLog.e("YM----------->回调登录");
         api = WXAPIFactory.createWXAPI(this, BuildConfig.WX_PAY_APPID);
         api.handleIntent(getIntent(), this);
     }
@@ -40,11 +42,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
+        Log.e("YM", "onPayFinish, errCode = onReq");
     }
 
     @Override
     public void onResp(BaseResp resp) {
         Log.e("YM", "onPayFinish, errCode = " + resp.errCode);
+        Log.e("YM", "type = " + resp.getType());
         PayResp payResp = (PayResp) resp;
         if (ConstantsAPI.COMMAND_PAY_BY_WX == resp.getType()){
             if (0 == resp.errCode){
@@ -61,5 +65,11 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             }
         }
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

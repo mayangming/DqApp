@@ -159,8 +159,8 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
      * 基本权限管理
      */
     protected String[] needPermissions = {
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,//存储卡写入权限
-            android.Manifest.permission.READ_EXTERNAL_STORAGE,//存储卡读取权限
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,//存储卡写入权限
+            Manifest.permission.READ_EXTERNAL_STORAGE,//存储卡读取权限
             Manifest.permission.READ_PHONE_STATE,//手机状态
     };
 
@@ -398,11 +398,9 @@ public class MainActivity extends DqBaseActivity<ChatPresenter, DataBean> implem
     private final String[] BASIC_PERMISSIONS = new String[]{
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
-            android.Manifest.permission.CAMERA,
-            android.Manifest.permission.READ_PHONE_STATE,
-            android.Manifest.permission.RECORD_AUDIO,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+//            android.Manifest.permission.CAMERA,
+//            android.Manifest.permission.READ_PHONE_STATE,
+//            android.Manifest.permission.RECORD_AUDIO,
     };
 
     private static final int BASIC_PERMISSION_REQUEST_CODE = 100;

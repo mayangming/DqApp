@@ -147,7 +147,8 @@ public class AddFriendActivity extends DqBaseActivity<ContactPresenter, DataBean
                 break;
             case CAMERA_REQUEST_CODE:
                 if (DqUtils.verifyPermissions(grantResults)) {
-                    NavUtils.gotoRegisterActivity(this);
+//                    NavUtils.gotoRegisterActivity(this);
+                    NavUtils.gotoScanQRCodeActivity(this);
                 }
                 break;
         }

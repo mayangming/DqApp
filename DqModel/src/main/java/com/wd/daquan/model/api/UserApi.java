@@ -64,7 +64,7 @@ public interface UserApi{
      * 获取好友信息
      */
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<Friend>> getFriend(@Url String url, @Body RequestBody requestBody);
 
     /**

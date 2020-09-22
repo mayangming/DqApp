@@ -274,4 +274,9 @@ public class MsgType {
      * 积分变动
      */
     public static final String INTEGRAL_CHANGE = "taskMoneyRefundSuccess";
+
+    /**
+     * 微信登录结果
+     */
+    public static final String WX_LOGIN_RESULT = "wxLoginResult";
 }

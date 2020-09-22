@@ -37,7 +37,10 @@ class SignDialog : BaseFragmentDialog(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
-        sign_close.setOnClickListener {
+//        sign_close.setOnClickListener {
+//            dismiss()
+//        }
+        sign_bg.setOnClickListener {
             dismiss()
         }
     }
