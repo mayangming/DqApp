@@ -1,7 +1,6 @@
 package com.wd.daquan.login.helper;
 
 import android.app.Activity;
-import android.text.TextUtils;
 
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -10,7 +9,6 @@ import com.wd.daquan.BuildConfig;
 import com.wd.daquan.login.listener.WXLoginListener;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
-import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.util.CallBackUtils;
 

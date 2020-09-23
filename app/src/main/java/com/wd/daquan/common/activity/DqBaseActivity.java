@@ -26,7 +26,6 @@ import com.da.library.widget.AnimUtils;
 import com.da.library.widget.CommTitle;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
 import com.netease.nim.uikit.common.fragment.TFragment;
-import com.umeng.analytics.MobclickAgent;
 import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.presenter.Presenter;
@@ -119,14 +118,14 @@ public abstract class DqBaseActivity<P extends Presenter.IPresenter, T> extends 
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
 //        Utils.cancelNotify();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
 
     }
 

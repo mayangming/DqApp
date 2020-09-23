@@ -8,35 +8,31 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.da.library.constant.IConstant;
-import com.da.library.listener.DialogListener;
 import com.da.library.tools.FileUtils;
 import com.dq.im.config.HttpConfig;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
+import com.snail.antifake.jni.EmulatorDetectUtil;
 import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.bean.ShareBean;
 import com.wd.daquan.common.constant.DqUrl;
-import com.wd.daquan.common.helper.UpdateHelper;
-import com.wd.daquan.common.helper.UpdateListener;
-import com.wd.daquan.common.utils.DialogUtils;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.login.helper.LoginHelper;
-import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.model.utils.GsonUtils;
 import com.wd.daquan.sdk.bean.SdkShareBean;
-import com.wd.daquan.util.system.SystemUtils;
 
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
@@ -53,7 +49,11 @@ public class StartActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!SystemUtils.isEmulator(StartActivity.this)){
+//                if (!SystemUtils.isEmulator(StartActivity.this)){
+//                    DqToast.showShort("检查到您的设备违规,将限制您的所有功能使用!");
+////                    return;
+//                }
+                if (EmulatorDetectUtil.isEmulator(StartActivity.this)){
                     DqToast.showShort("检查到您的设备违规,将限制您的所有功能使用!");
                     return;
                 }

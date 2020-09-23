@@ -328,7 +328,7 @@ public class QRCodeActivity extends DqBaseActivity implements View.OnClickListen
     /**
      * 分享斗圈
      *
-     * @param file
+     * @param uri
      *  分享文件
      */
     private void shareQingChat(Uri uri) {
@@ -350,7 +350,7 @@ public class QRCodeActivity extends DqBaseActivity implements View.OnClickListen
         if (null == mShareBitmap) {
             mShareBitmap = GetImageUtils.convertViewToBitmap(mShareView);
         }
-        ShareUtil.shareWx(this, mShareBitmap);
+//        ShareUtil.shareWx(this, mShareBitmap);
     }
 
     @Override

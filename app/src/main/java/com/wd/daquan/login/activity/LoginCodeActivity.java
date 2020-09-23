@@ -15,12 +15,7 @@ import android.widget.TextView;
 
 import com.da.library.constant.IConstant;
 import com.da.library.listener.DialogListener;
-import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.netease.nim.uikit.support.permission.MPermission;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.wd.daquan.BuildConfig;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.helper.UpdateHelper;
@@ -35,14 +30,13 @@ import com.wd.daquan.login.listener.WXLoginListener;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.LoginBean;
 import com.wd.daquan.model.bean.UpdateEntity;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.util.PhoneUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.da.library.constant.IConstant.Login.LOGIN_TYPE;
 
 
 /**
@@ -63,6 +57,7 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     private UpdateHelper mUpdateHelper = null;
     @Override
     protected void setContentView() {
+        DqLog.e("进入登录页面");
         setContentView(R.layout.activity_login_code);
     }
 
@@ -257,6 +252,7 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
                     LoginHelper.gotoMain(this);
                     finish();
                 }
+
             }
         }
     }
