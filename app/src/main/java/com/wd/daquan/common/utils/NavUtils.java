@@ -114,12 +114,17 @@ import com.wd.daquan.mine.activity.ChatBGSettingDetailsActivity;
 import com.wd.daquan.mine.activity.ChatBGSettingInActivity;
 import com.wd.daquan.mine.activity.ComplaintActivity;
 import com.wd.daquan.mine.activity.FeedbackActivity;
+import com.wd.daquan.mine.activity.IntegralExchangeDetailActivity;
+import com.wd.daquan.mine.activity.IntegralExchangeRecordActivity;
+import com.wd.daquan.mine.activity.IntegralMallActivity;
+import com.wd.daquan.mine.activity.InviteFriendActivity;
 import com.wd.daquan.mine.activity.LoginPwdModifyActivity;
 import com.wd.daquan.mine.activity.LoginPwdSettingActivity;
 import com.wd.daquan.mine.activity.NewMsgNotifyActivity;
 import com.wd.daquan.mine.activity.PayPasswordActivity;
 import com.wd.daquan.mine.activity.SafeActivity;
 import com.wd.daquan.mine.activity.SettingActivity;
+import com.wd.daquan.mine.activity.SignUpDetailActivity;
 import com.wd.daquan.mine.activity.TextSizeActivity;
 import com.wd.daquan.mine.activity.VipActivity;
 import com.wd.daquan.mine.activity.VipExchangeActivity;
@@ -165,6 +170,7 @@ import com.wd.daquan.mine.wallet.bean.BankCardBean;
 import com.wd.daquan.model.bean.Friend;
 import com.wd.daquan.model.bean.GroupInfoBean;
 import com.wd.daquan.model.bean.NewFriendBean;
+import com.wd.daquan.model.bean.SignUpEntity;
 import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.sdk.DqSdkLoginActivity;
@@ -1808,6 +1814,57 @@ public class NavUtils {
      */
     public static void gotoRefundActivity(Context context){
         Intent intent = new Intent(context, RefundResultActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 跳转到积分商城页面
+     * @param context
+     */
+    public static void gotoIntegralMallActivity(Context context){
+        Intent intent = new Intent(context, IntegralMallActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+    /**
+     * 跳转到积分兑换记录页面
+     * @param context
+     */
+    public static void gotoIntegralExchangeRecordActivity(Context context){
+        Intent intent = new Intent(context, IntegralExchangeRecordActivity.class);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+    /**
+     * 跳转到积分明细记录页面
+     * @param context
+     */
+    public static void gotoIntegralExchangeDetailActivity(Context context,int money){
+        Intent intent = new Intent(context, IntegralExchangeDetailActivity.class);
+        intent.putExtra(IntegralExchangeDetailActivity.KEY_MONEY,money);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+    /**
+     * 积分详情
+     * @param context
+     */
+    public static void gotoSignUpDetailActivity(Context context, SignUpEntity signUpEntity){
+        Intent intent = new Intent(context, SignUpDetailActivity.class);
+        intent.putExtra(SignUpDetailActivity.KEY_ACTION,signUpEntity);
+        context.startActivity(intent);
+        AnimUtils.enterAnimForActivity(context);
+    }
+
+
+    /**
+     * 邀请好友页面
+     * @param context
+     */
+    public static void gotoInviteFriendActivity(Context context){
+        Intent intent = new Intent(context, InviteFriendActivity.class);
         context.startActivity(intent);
         AnimUtils.enterAnimForActivity(context);
     }

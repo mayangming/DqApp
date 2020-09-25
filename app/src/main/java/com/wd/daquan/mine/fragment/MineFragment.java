@@ -19,6 +19,7 @@ import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.mine.presenter.MinePresenter;
 import com.wd.daquan.model.bean.DataBean;
+import com.wd.daquan.model.bean.SignUpEntity;
 import com.wd.daquan.model.bean.WxBindBean;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
@@ -27,6 +28,7 @@ import com.wd.daquan.model.rxbus.MsgType;
 import com.wd.daquan.model.rxbus.QCObserver;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author: dukangkang
@@ -49,6 +51,10 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
     private LinearLayout mShare;
     private View mineWalletCloud;
     private View mineWallet;
+    private View signGiftLl;
+    private View dqShop;//dq商城
+    private View mInviteFriend;
+    private TextView dqCurrency;//斗圈斗币积分
     protected String[] needPermissions = {Manifest.permission.CAMERA};
 
     @Override
@@ -68,6 +74,7 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         mHeadIv = view.findViewById(R.id.main_title_left_head_iv);
         mNameTv = view.findViewById(R.id.main_title_left_name_tv);
         mDqNumTv = view.findViewById(R.id.main_title_left_dq_num_tv);
+        mInviteFriend = view.findViewById(R.id.mine_invite_friend);
         vipDate = view.findViewById(R.id.mine_vip_date);
         vipRenew = view.findViewById(R.id.mine_vip_renew);
         mineWalletCloud = view.findViewById(R.id.mine_wallet_cloud);
@@ -79,6 +86,9 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         mHelp = view.findViewById(R.id.main_title_left_help);
         mVip = view.findViewById(R.id.main_title_left_vip);
         mShare = view.findViewById(R.id.main_title_left_share);
+        signGiftLl = view.findViewById(R.id.sign_gift_ll);
+        dqShop = view.findViewById(R.id.dq_shop);
+        dqCurrency = view.findViewById(R.id.dq_currency);
     }
 
     @Override
@@ -91,9 +101,12 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         mHelp.setOnClickListener(this);
         mVip.setOnClickListener(this);
         mShare.setOnClickListener(this);
+        mInviteFriend.setOnClickListener(this);
         vipRenew.setOnClickListener(this);
         mineWalletCloud.setOnClickListener(this);
         mineWallet.setOnClickListener(this);
+        signGiftLl.setOnClickListener(this);
+        dqShop.setOnClickListener(this);
     }
 
     @Override
@@ -102,6 +115,11 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         updateUserInfo();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.requestUserInfo(DqUrl.url_oauth_useWeixinInfo,new HashMap<>());
+    }
 
     private void updateUserInfo() {
         String nickName = ModuleMgr.getCenterMgr().getNickName();
@@ -110,7 +128,7 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
         String vipEndDate = ModuleMgr.getCenterMgr().getVipEndTime();
         boolean isVip = ModuleMgr.getCenterMgr().isVip();
         if (!TextUtils.isEmpty(nickName)) {
-            mNameTv.setText(nickName);
+            mNameTv.setText("昵称:".concat(nickName));
         }
         if (!TextUtils.isEmpty(headPic)) {
             GlideUtils.loadHeader(DqApp.sContext, headPic + DqUrl.url_avatar_suffix, mHeadIv);
@@ -158,7 +176,9 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
                     NavUtils.gotoScanQRCodeActivity(getActivity());
                 }
                 break;
-
+            case R.id.mine_invite_friend:
+                NavUtils.gotoInviteFriendActivity(getContext());
+                break;
             case R.id.main_title_left_help://帮助
                 DqToast.showShort(DqApp.getStringById(R.string.no_this_function));
                 //NavUtils.gotoWebviewActivity(mActivity, DqUrl.url_help, DqApp.getStringById(R.string.mine_help));
@@ -187,11 +207,21 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
 //                NIMRedPacketClient.startWalletActivity(getActivity());
                 Toast.makeText(v.getContext(),"我的钱包依赖云信，暂不可用",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.sign_gift_ll:
+                requestSign();
+                break;
+            case R.id.dq_shop:
+                NavUtils.gotoIntegralMallActivity(getContext());
+                break;
             default:
                 break;
         }
     }
 
+    private void requestSign(){
+        Map<String,String> params = new HashMap<>();
+        mPresenter.requestSign(DqUrl.url_dbsign_sign,params);
+    }
 
     @Override
     public void onMessage(String key, Object value) {
@@ -208,9 +238,12 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
 //                    DqLog.e("jrmf updateMyInfo : onFail" + s.toString());
 //                }
 //            });
-        }  else if (MsgType.VIP_EXCHANGE_CHANGE.equals(key)){//兑换成功后数据进行变动
+        } else if (MsgType.VIP_EXCHANGE_CHANGE.equals(key)){//兑换成功后数据进行变动
             mPresenter.requestUserInfo(DqUrl.url_oauth_useWeixinInfo,new HashMap<>());
         }
+//        else if(MsgType.INTEGRAL_CHANGE.equals(key)){
+//            mPresenter.requestUserInfo(DqUrl.url_oauth_useWeixinInfo,new HashMap<>());
+//        }
     }
 
     @Override
@@ -230,6 +263,13 @@ public class MineFragment extends BaseFragment<MinePresenter, DataBean> implemen
             ModuleMgr.getCenterMgr().putShareTotalNum(bindBean.getShareTotalNum());
             ModuleMgr.getCenterMgr().putRedEnvelopedRainRemind(bindBean.getRedEnvelopedRainRemind());
             updateUserInfo();
+            dqCurrency.setText(bindBean.getDbMoney());
         }
+
+        if (DqUrl.url_dbsign_sign.equals(url)){
+            SignUpEntity signUpEntity = (SignUpEntity) entity.data;
+            NavUtils.gotoSignUpDetailActivity(getContext(),signUpEntity);
+        }
+
     }
 }

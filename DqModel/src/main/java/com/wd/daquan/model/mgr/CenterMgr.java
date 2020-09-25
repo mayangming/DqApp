@@ -465,6 +465,14 @@ public class CenterMgr implements ModuleBase, QCObserver{
         return getKDPreferenceUserInfo().getString(EBSharedPrefUser.lastTaskSendDraft,"");
     }
 
+    public void saveWxRefreshToken(String refreshToken){
+        getKDPreferenceUserInfo().saveString(EBSharedPrefUser.WX_REFRESH_TOKEN, refreshToken);
+    }
+
+    public String getWxRefreshToken(){
+        return getKDPreferenceUserInfo().getString(EBSharedPrefUser.WX_REFRESH_TOKEN,"");
+    }
+
 
 
 }

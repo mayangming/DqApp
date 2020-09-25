@@ -4,6 +4,11 @@ import com.wd.daquan.model.bean.CaptchaBean;
 import com.wd.daquan.model.bean.CloudWithdrawRecordEntity;
 import com.wd.daquan.model.bean.CommRespEntity;
 import com.wd.daquan.model.bean.DataBean;
+import com.wd.daquan.model.bean.DqChangeHistoryEntity;
+import com.wd.daquan.model.bean.DqGoodDetails;
+import com.wd.daquan.model.bean.DqIntviteRewardEntity;
+import com.wd.daquan.model.bean.DqMoneyDetailEntity;
+import com.wd.daquan.model.bean.DqMoneyHistoryEntity;
 import com.wd.daquan.model.bean.ExchangeRecordBean;
 import com.wd.daquan.model.bean.ExchangeVipListBean;
 import com.wd.daquan.model.bean.Friend;
@@ -11,15 +16,18 @@ import com.wd.daquan.model.bean.LoginBean;
 import com.wd.daquan.model.bean.NewFriendBean;
 import com.wd.daquan.model.bean.OpenRedPackageResultBean;
 import com.wd.daquan.model.bean.RedEnvelopBean;
+import com.wd.daquan.model.bean.SignUpEntity;
 import com.wd.daquan.model.bean.UpdateEntity;
 import com.wd.daquan.model.bean.UserBean;
 import com.wd.daquan.model.bean.UserCloudWallet;
 import com.wd.daquan.model.bean.VipCommodityEntity;
 import com.wd.daquan.model.bean.VipExchangeResultBean;
+import com.wd.daquan.model.bean.VipVideoDBEntity;
 import com.wd.daquan.model.bean.WXLoginEntity;
 import com.wd.daquan.model.bean.WxBindBean;
 import com.wd.daquan.model.bean.WxPayBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +64,7 @@ public interface UserApi{
      * 获取好友信息
      */
     @POST
-    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
+//    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean<Friend>> getFriend(@Url String url, @Body RequestBody requestBody);
 
     /**
@@ -152,10 +160,16 @@ public interface UserApi{
     Call<DataBean<VipExchangeResultBean>> getVipExchangeResult(@Url String url, @Body RequestBody requestBody);
 
     /**
-     * 通用请求
+     * 通用请求,返回结果为String
      */
     @POST
     Call<DataBean<String>> getCommonRequest(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 通用请求，没有返回体
+     */
+    @POST
+    Call<DataBean> getCommonRequestNoBody(@Url String url, @Body RequestBody requestBody);
 
     /**
      * 好友请求应答策略
@@ -198,4 +212,52 @@ public interface UserApi{
     @POST
 //    @Headers({"Domain-Name: DqSdk"}) // Add the Domain-Name header
     Call<DataBean> verifyImageCode(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 签到页面
+     */
+    @POST
+    Call<DataBean<SignUpEntity>> sign(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 商城页面
+     */
+    @POST
+    Call<DataBean<DqGoodDetails>> userDBMoney(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 兑换商品
+     */
+    @POST
+    Call<DataBean> changeDBCommodities(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 斗币明细
+     */
+    @POST
+    Call<DataBean<DqMoneyDetailEntity>> getMoneyHistory(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 积分兑换记录
+     */
+    @POST
+    Call<DataBean<ArrayList<DqChangeHistoryEntity>>> getChangeHistory(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 获取邀请的好友时候的奖励
+     */
+    @POST
+    Call<DataBean<DqIntviteRewardEntity>> getIntviteReward(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 会员抢红包不中获得斗币
+     */
+    @POST
+    Call<DataBean<VipVideoDBEntity>> getVipVideoDB(@Url String url, @Body RequestBody requestBody);
+
+    /**
+     * 签到红包
+     */
+    @POST
+    Call<DataBean<RedEnvelopBean>> getSignRed(@Url String url, @Body RequestBody requestBody);
 }

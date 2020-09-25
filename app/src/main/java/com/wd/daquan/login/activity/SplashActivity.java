@@ -8,9 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -19,14 +16,21 @@ import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.da.library.constant.IConstant;
+import com.da.library.listener.DialogListener;
 import com.da.library.tools.FileUtils;
 import com.meetqs.qingchat.imagepicker.immersive.ImmersiveManage;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.R;
 import com.wd.daquan.common.activity.DqBaseActivity;
 import com.wd.daquan.common.bean.ShareBean;
+import com.wd.daquan.common.helper.UpdateHelper;
 import com.wd.daquan.common.helper.UpdateListener;
+import com.wd.daquan.common.utils.DialogUtils;
 import com.wd.daquan.common.utils.DqUtils;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.login.helper.CommDialogHelper;
@@ -65,11 +69,11 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
     };
     private List<Integer> mImages;
     private int mFlag = 0;
-    //    private Banner mBanner;
-//    private View mSkip;
     private ViewPager viewPager;//引导图轮播
     private SplashAdapter splashAdapter;//引导图轮播适配器
     private RadioGroup splashIndicator;
+    private UpdateHelper mUpdateHelper = null;
+    private UpdateEntity mUpdateEntity = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        if (!this.isTaskRoot()){
@@ -103,12 +107,12 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
     }
 
     @Override
-    protected void init() {}
+    protected void init() {
+        initUpdate();
+    }
 
     @Override
     protected void initView() {
-//        mBanner = findViewById(R.id.splash_banner);
-//        mSkip = findViewById(R.id.splash_btn_skip);
         viewPager = findViewById(R.id.splash_vp);
         splashIndicator = findViewById(R.id.splash_indicator);
         if (ModuleMgr.getCenterMgr().getAgreeProtocolStatus()){
@@ -118,11 +122,19 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
         }
     }
 
+    private void initUpdate(){
+        mUpdateHelper = new UpdateHelper(this);
+        mUpdateHelper.setUpdateListener(this);
+        mUpdateHelper.setShowDialog(false);
+    }
     private void initCheck(){
         DqLog.e("YM","版本权限检测开始");
         if (DqUtils.checkPermissions(this, needPermissions)) {
             DqLog.e("YM","版本权限检测结束");
-            initSplashData();
+            if (null != mUpdateHelper) {
+                mUpdateHelper.checkVersion();
+            }
+//            initSplashData();
         }
     }
 
@@ -154,7 +166,6 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
 
     @Override
     protected void initData() {
-
     }
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusBarColor(int statusColor, Activity activity) {
@@ -225,10 +236,10 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
             if (!DqUtils.verifyPermissions(grantResults)) {
                 CommDialogHelper.getInstance().showPermissionDialog(this);
             } else {
-//                if (null != mUpdateHelper) {
-//                    mUpdateHelper.checkVersion();
-//                }
-                initSplashData();
+                if (null != mUpdateHelper) {
+                    mUpdateHelper.checkVersion();
+                }
+//                initSplashData();
             }
         }
     }
@@ -238,10 +249,10 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IConstant.PERMISSION_REQUEST_CODE) {
             if (DqUtils.checkPermissions(this, needPermissions)) {
-//                if (null != mUpdateHelper) {
-//                    mUpdateHelper.checkVersion();
-//                }
-                initSplashData();
+                if (null != mUpdateHelper) {
+                    mUpdateHelper.checkVersion();
+                }
+//                initSplashData();
             }
         }
     }
@@ -267,8 +278,32 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
 
     @Override
     public void updateSucceed(UpdateEntity entity) {
+        DqLog.e("YM---->更新结果");
+        mUpdateEntity = entity;
+        if (mUpdateEntity != null) {
+            if ("1".equals(mUpdateEntity.update_status)) {
+                initSplashData();
+                DialogUtils.showCheckDialogs(new DialogListener() {
+                                                 @Override
+                                                 public void onCancel() {
+
+                                                 }
+                                                 @Override
+                                                 public void onOk() {
+
+
+                                                 }}, this, mUpdateEntity.appVersion, mUpdateEntity.versionName,
+                        mUpdateEntity.content, mUpdateEntity.upgradeType, mUpdateEntity.url).show();
+            } else if ("0".equals(mUpdateEntity.update_status)) { // 最新版本
+//                doOption();
+                initSplashData();
+            }else {
+                initSplashData();
+            }
+        }else {
+            initSplashData();
+        }
         ConfigManager.getInstance().saveRedEnvelopedRainSwitch(entity.redEnvelopedRainSwitch);
-        doOption();
     }
 
 

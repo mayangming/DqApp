@@ -246,7 +246,7 @@ public class RegisterActivity extends BaseLoginActivity implements WXLoginListen
     @Override
     public void loginWX(Map<String, String> map) {
         String openId = map.get(IConstant.WX.OPENID);
-        String accessToken = map.get(IConstant.WX.ACCESSTOKEN);
+        String accessToken = map.get(IConstant.WX.ACCESS_TOKEN);
         mWxMap.clear();
         mWxMap.putAll(map);
         Map<String, String> hashMap = new HashMap<>();

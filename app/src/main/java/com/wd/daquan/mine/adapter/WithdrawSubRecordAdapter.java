@@ -7,6 +7,7 @@ import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.da.library.utils.BigDecimalUtils;
 import com.da.library.utils.DateUtil;
 import com.wd.daquan.R;
+import com.wd.daquan.mine.viewholder.WithdrawSubRecordHolder;
 import com.wd.daquan.model.bean.WithdrawRecordBean;
 
 /**

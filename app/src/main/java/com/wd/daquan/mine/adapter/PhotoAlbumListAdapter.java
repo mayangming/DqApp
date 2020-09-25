@@ -8,6 +8,7 @@ import com.wd.daquan.R;
 import com.da.library.adapter.CommRecyclerViewAdapter;
 import com.wd.daquan.glide.GlideUtils;
 import com.wd.daquan.mine.bean.PhotoAlbumEntity;
+import com.wd.daquan.mine.viewholder.PhotoAlbumListHolder;
 
 import org.jetbrains.annotations.NotNull;
 

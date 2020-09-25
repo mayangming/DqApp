@@ -5,7 +5,7 @@ include ':DqGlide'
 include ':Dqlibrary'
 include ':DqModel'
 include ':uikit'
-include ':CNCarema'
+//include ':CNCarema'
 include ':CNImagePicker'
 include ':QCPickerView'
 include ':turntableview'//抽奖转盘
@@ -17,3 +17,5 @@ include ':matisse'//知乎图片选择，适配10.0
 include ':recorderlib'//音频录制mp3的libary
 include ':dqAdSdk'//斗圈广告SDK
 include ':adlibary'//多广告集成平台
+
+include ':RetrofitUrlManager'//Retrofit的URL切换

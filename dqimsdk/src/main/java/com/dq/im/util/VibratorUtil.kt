@@ -29,10 +29,12 @@ class VibratorUtil(private val mVibrator: Vibrator) {
     var isVibrate: Boolean = false
         private set
 
-    private val mAudioAttributes = AudioAttributes.Builder()
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setUsage(AudioAttributes.USAGE_ALARM) //key
-            .build()
+    private val mAudioAttributes:AudioAttributes by lazy {
+         AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_ALARM) //key
+                .build()
+    }
 
     fun setDuration(duration: Long) {
         mDuration = duration

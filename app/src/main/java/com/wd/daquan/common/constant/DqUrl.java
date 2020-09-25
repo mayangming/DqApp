@@ -272,7 +272,7 @@ public class DqUrl {
      * 我的群组
      * lumgw/hhsvl
      */
-    public static String url_my_groups = "user/my_groups";
+    public static String url_my_groups = "user/get_saved_groups";
 
     /**
      * 获取群组指定用户信息
@@ -475,6 +475,15 @@ public class DqUrl {
      * weixinOauth/zynic/esbpf
      */
     public static String url_oauth_bindWeixinStatus = "wechat/getWechatBindStatus";
+
+    /**
+     * 微信获取accesToken接口
+     */
+    public static String url_oauth_wx_access_token = "/user/weixin_login";
+    /**
+     * 微信获取用户信息
+     */
+    public static String url_oauth_wx_user_info = "/user/weixin_userinfo";
 
     /**
      * 判断是否在禁止名单内
@@ -1018,6 +1027,7 @@ public class DqUrl {
     /**************************** 红包 ********************/
     public static String url_user_open_red_envelope = "active/cloud_red_envelope";//请求红包内容
     public static String url_get_user_red = "active/get_user_red";//获取红包提示内容
+    public static String url_get_norRedTime = "active/norRedTime";//获取红包提示内容
 
     /**************************** 注销账号 ********************/
     public static String url_user_cancellation = "user/user_cancellation";//注销账号
@@ -1077,4 +1087,17 @@ public class DqUrl {
     public static String url_task_drawback = "task/drawback";//退款
     public static String url_task_refundMoney = "task/refundMoney";//获取退款的金额信息
     /**************************** 发布任务功能 end **********************************/
+
+
+    /************************** 积分商城功能 start ***********************************/
+    public static String url_dbsign_sign = "dbsign/sign";//签到接口
+    public static String url_dbsign_userDBMoney = "dbsign/userDBMoney";//积分内容
+    public static String url_dbsign_changeDBCommodities = "dbsign/changeDBCommodities";//开始兑换
+    public static String url_dbsign_getMoneyHistory = "dbsign/getMoneyHistory";//斗币明细
+    public static String url_dbsign_getChangeHistory = "dbsign/getChangeHistory";//兑换记录的表
+    public static String url_get_intviteReward = "dbsign/intviteReward";//获取邀请好友获取的奖励信息
+    public static String url_get_vipVideoDB = "dbsign/vipVideoDB";//会员抢红包不中获得斗币
+    public static String url_get_signRed = "dbsign/signRed";//签到红包
+    public static String url_get_getUserRedCount = "dbsign/getUserRedCount";//获取当前签到红包的数量还有多少
+    /************************** 积分商城功能 end ***********************************/
 }

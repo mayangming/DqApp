@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/sign_bg"
+        android:layout_width="344dp"
+        android:layout_height="344dp"
+        android:background="@mipmap/sign_success_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_35"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="90dp"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/sign_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="签到成功"
+                android:textSize="9sp"
+                android:visibility="visible"
+                android:textColor="@color/color_FFE982"/>
+            <TextView
+                android:id="@+id/sign_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:text="签到成功~ 斗币+288，看视频得红包+3"
+                android:textSize="9sp"
+                android:textColor="@color/color_FFE982"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/sign_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/sign_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/red_close"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

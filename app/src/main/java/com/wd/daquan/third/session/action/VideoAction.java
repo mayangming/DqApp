@@ -6,16 +6,17 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.da.library.tools.Utils;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.netease.nim.uikit.business.session.actions.BaseAction;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wd.daquan.R;
 import com.wd.daquan.common.alioss.AliOssHelper;
 import com.wd.daquan.imui.constant.IntentCode;
 import com.wd.daquan.model.rxbus.MsgMgr;
 import com.wd.daquan.model.rxbus.MsgType;
 
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import java.util.List;
 
 /**
  * @author: dukangkang
@@ -88,13 +89,35 @@ public class VideoAction extends BaseAction {
 
     /** 检查权限 */
     private void checkPermissions(){
-        RxPermissions rxPermissions = new RxPermissions(getActivity());
-        Disposable disposable = rxPermissions.request(Manifest.permission.CAMERA)
-                .subscribe(new Consumer<Boolean>() {
+//        RxPermissions rxPermissions = new RxPermissions(getActivity());
+//        Disposable disposable = rxPermissions.request(Manifest.permission.CAMERA)
+//                .subscribe(new Consumer<Boolean>() {
+//                    @Override
+//                    public void accept(Boolean aBoolean) throws Exception {
+//                        if (aBoolean){
+//                            dispatchTakeVideoIntent();
+//                        }
+//                    }
+//                });
+        XXPermissions.with(getActivity())
+                // 不适配 Android 11 可以这样写
+                //.permission(Permission.Group.STORAGE)
+                // 适配 Android 11 需要这样写，这里无需再写 Permission.Group.STORAGE
+                .permission(Permission.CAMERA)
+                .request(new OnPermission() {
+
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean){
+                    public void hasPermission(List<String> granted, boolean all) {
+                        if (all) {
                             dispatchTakeVideoIntent();
+                        }
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean never) {
+                        if (never) {
+                            // 如果是被永久拒绝就跳转到应用权限系统设置页面
+                            XXPermissions.startPermissionActivity(getActivity(), denied);
                         }
                     }
                 });

@@ -26,13 +26,38 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/red_close"/>
-        <ImageView
-            android:id="@+id/red_package_count_iv"
+        <RelativeLayout
+            android:id="@+id/red_package_bg_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/red_package_falling_close"
-            android:layout_marginTop="@dimen/dd_dp50"
-            android:src="@mipmap/red_package_tip"/>
+            android:layout_marginTop="@dimen/dd_dp20">
+            <ImageView
+                android:id="@+id/red_package_count_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/red_package_tip"/>
+            <LinearLayout
+                android:id="@+id/red_package_gif_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/red_package_gif_top_iv"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:src="@mipmap/red_package_bomb"
+                    android:layout_marginTop="-80dp"
+                    android:layout_marginBottom="-180dp"/>
+                <ImageView
+                    android:layout_width="@dimen/dd_dp200"
+                    android:layout_height="@dimen/dd_dp200"
+                    android:src="@mipmap/red_package_money_bag"/>
+            </LinearLayout>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/red_package_count_tv"
             android:layout_width="wrap_content"
@@ -40,12 +65,13 @@
             android:textColor="#FED83B"
             android:textSize="@dimen/sp10"
             android:gravity="center"
+            android:visibility="visible"
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_alignStart="@+id/red_package_count_iv"
-            android:layout_alignEnd="@+id/red_package_count_iv"
-            android:layout_alignTop="@+id/red_package_count_iv"
+            android:layout_alignStart="@+id/red_package_bg_iv"
+            android:layout_alignEnd="@+id/red_package_bg_iv"
+            android:layout_alignTop="@+id/red_package_bg_iv"
             android:text="加油呀!好运马上来~"/>
     </RelativeLayout>
 </RelativeLayout>

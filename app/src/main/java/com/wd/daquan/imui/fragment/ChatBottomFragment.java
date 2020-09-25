@@ -1,15 +1,11 @@
 package com.wd.daquan.imui.fragment;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,8 +17,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dq.im.bean.im.MessageRedPackageBean;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.wd.daquan.R;
 import com.wd.daquan.bean.ChatBottomMoreBean;
 import com.wd.daquan.imui.activity.RedPackageSendActivity;
@@ -37,9 +39,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * 聊天底部操作Fragment
@@ -344,13 +343,35 @@ public class ChatBottomFragment extends BaseFragment{
     }
     /** 检查权限 */
     private void checkPermissions(){
-        RxPermissions rxPermissions = new RxPermissions(getActivity());
-        Disposable disposable = rxPermissions.request(Manifest.permission.CAMERA)
-                .subscribe(new Consumer<Boolean>() {
+//        RxPermissions rxPermissions = new RxPermissions(getActivity());
+//        Disposable disposable = rxPermissions.request(Manifest.permission.CAMERA)
+//                .subscribe(new Consumer<Boolean>() {
+//                    @Override
+//                    public void accept(Boolean aBoolean) throws Exception {
+//                        if (aBoolean){
+//                            dispatchTakeVideoIntent();
+//                        }
+//                    }
+//                });
+        XXPermissions.with(getActivity())
+                // 不适配 Android 11 可以这样写
+                //.permission(Permission.Group.STORAGE)
+                // 适配 Android 11 需要这样写，这里无需再写 Permission.Group.STORAGE
+                .permission(Permission.CAMERA)
+                .request(new OnPermission() {
+
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean){
+                    public void hasPermission(List<String> granted, boolean all) {
+                        if (all) {
                             dispatchTakeVideoIntent();
+                        }
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean never) {
+                        if (never) {
+                            // 如果是被永久拒绝就跳转到应用权限系统设置页面
+                            XXPermissions.startPermissionActivity(getActivity(), denied);
                         }
                     }
                 });

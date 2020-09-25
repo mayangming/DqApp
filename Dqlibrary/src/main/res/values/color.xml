@@ -51,6 +51,8 @@
     <color name="color_EF5B40">#EF5B40</color>
     <color name="color_F39825">#F39825</color>
     <color name="color_E53636">#E53636</color>
+    <color name="color_707070">#707070</color>
+    <color name="color_1A707070">#1A707070</color>
 
 
     <color name="transparent">@android:color/transparent</color>

@@ -34,11 +34,6 @@ public class ContactsListHeaderHolder extends RecyclerView.ViewHolder implements
     private RelativeLayout mMobileContact;
     private RelativeLayout mSaveGroup;
 
-    // 手机权限
-    private final String[] mPermission = new String[]{
-            Manifest.permission.READ_CONTACTS
-    };
-
     public ContactsListHeaderHolder(View itemView) {
         super(itemView);
         mNewFriend = itemView.findViewById(R.id.rl_new_friends);
@@ -78,8 +73,8 @@ public class ContactsListHeaderHolder extends RecyclerView.ViewHolder implements
             case R.id.ll_invite_wei_xin_contact:
                 //Toast.makeText(context, "邀请微信联系人", Toast.LENGTH_SHORT).show();
                 DqToast.showShort(DqApp.getStringById(R.string.no_this_function));
-                ShareUtil.openWEIXINShare((Activity) context, DqUrl.url_weChat_share, DqApp.getStringById(R.string.app_name),
-                        context.getString(R.string.we_chat_share), DqUrl.url_CN_logo);
+//                ShareUtil.openWEIXINShare((Activity) context, DqUrl.url_weChat_share, DqApp.getStringById(R.string.app_name),
+//                        context.getString(R.string.we_chat_share), DqUrl.url_CN_logo);
                 break;
             case R.id.rl_mobile_contact:
                 //Toast.makeText(context, "邀请手机联系人", Toast.LENGTH_SHORT).show();

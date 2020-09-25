@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.umeng.socialize.ShareAction;
 import com.wd.daquan.R;
 import com.wd.daquan.common.activity.DqBaseActivity;
 import com.wd.daquan.common.utils.DqUtils;
@@ -32,7 +31,7 @@ public class AddFriendActivity extends DqBaseActivity<ContactPresenter, DataBean
     private LinearLayout mScanLl;
 //    private LinearLayout mWXLl;
     private LinearLayout mPhoneLl;
-    private ShareAction mShareAction;
+//    private ShareAction mShareAction;
 
     /**
      * 相机权限
@@ -130,10 +129,10 @@ public class AddFriendActivity extends DqBaseActivity<ContactPresenter, DataBean
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(null != mShareAction) {
-            mShareAction.close();
-            mShareAction = null;
-        }
+//        if(null != mShareAction) {
+//            mShareAction.close();
+//            mShareAction = null;
+//        }
     }
 
     @Override
@@ -147,7 +146,8 @@ public class AddFriendActivity extends DqBaseActivity<ContactPresenter, DataBean
                 break;
             case CAMERA_REQUEST_CODE:
                 if (DqUtils.verifyPermissions(grantResults)) {
-                    NavUtils.gotoRegisterActivity(this);
+//                    NavUtils.gotoRegisterActivity(this);
+                    NavUtils.gotoScanQRCodeActivity(this);
                 }
                 break;
         }

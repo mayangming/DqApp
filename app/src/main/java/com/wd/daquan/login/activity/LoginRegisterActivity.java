@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.da.library.constant.IConstant;
-import com.umeng.socialize.UMShareAPI;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
 import com.wd.daquan.common.constant.KeyValue;
@@ -74,7 +73,7 @@ public class LoginRegisterActivity extends BaseLoginActivity implements WXLoginL
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        UMShareAPI.get(this).release();
+//        UMShareAPI.get(this).release();
     }
 
     @Override
@@ -114,7 +113,7 @@ public class LoginRegisterActivity extends BaseLoginActivity implements WXLoginL
     @Override
     public void loginWX(Map<String, String> map) {
         String openId = map.get(IConstant.WX.OPENID);
-        String accessToken = map.get(IConstant.WX.ACCESSTOKEN);
+        String accessToken = map.get(IConstant.WX.ACCESS_TOKEN);
         mWxMap = map;
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put(IConstant.WX.ACCESS_TOKEN, accessToken);

@@ -21,9 +21,6 @@ import com.netease.nim.uikit.business.session.emoji.AndroidEmoji;
 import com.netease.nim.uikit.common.util.notification.FrontNotificationFilter;
 import com.netease.nim.uikit.common.util.notification.NotificationFilter;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.commonsdk.UMConfigure;
-import com.umeng.socialize.PlatformConfig;
 import com.wd.daquan.common.constant.Config;
 import com.wd.daquan.common.constant.KeyValue;
 import com.wd.daquan.imui.constant.Constant;
@@ -83,10 +80,10 @@ public class DqApp extends Application {
             //云信
             initNimiSDK(this);
             //友盟 正式key 5b8f7e07f43e483ba60000c0
-            UMConfigure.init(this, BuildConfig.UMENG_KEY, BuildConfig.UMENG_CHANNEL, UMConfigure.DEVICE_TYPE_PHONE, "");
-            MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
-            //微信登录
-            PlatformConfig.setWeixin(IConstant.WX.APP_ID, IConstant.WX.WXAPPSECRET);
+//            UMConfigure.init(this, BuildConfig.UMENG_KEY, BuildConfig.UMENG_CHANNEL, UMConfigure.DEVICE_TYPE_PHONE, "");
+//            MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+//            //微信登录
+//            PlatformConfig.setWeixin(IConstant.WX.APP_ID, IConstant.WX.WXAPPSECRET);
             //okhttp
             OkHttpHelper.setCertificate(this, Config.CERTIFICATE_NAME);
 

@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 安装未知来源的应用 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-feature
@@ -214,9 +214,6 @@
         <activity
             android:name=".login.activity.ForgetLoginPasswordActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".chat.carema.CaremaActivity"
-            android:screenOrientation="portrait" />
         <!-- webview -->
         <activity
             android:name=".common.activity.WebViewActivity"
@@ -341,13 +338,13 @@
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <!-- 微信支付结果回调 -->
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <!-- 微信绑定手机号 -->
         <activity
             android:name=".login.activity.BindPhoneActivity"
@@ -714,6 +711,35 @@
             android:name=".mine.wallet.activity.RedTransationListActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait" />
+
+        <!-- 积分商城 -->
+        <activity
+            android:name=".mine.activity.IntegralMallActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 积分交易记录 -->
+        <activity
+            android:name=".mine.activity.IntegralExchangeRecordActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+        <!-- 积分明细记录 -->
+        <activity
+            android:name=".mine.activity.IntegralExchangeDetailActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
+        <!-- 签到详情记录 -->
+        <activity
+            android:name=".mine.activity.SignUpDetailActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
+        <!-- 邀请好友的界面 -->
+        <activity
+            android:name=".mine.activity.InviteFriendActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait" />
+
         <!-- 接收红包 -->
         <activity
             android:name=".chat.redpacket.RedPacketReceiveAct"

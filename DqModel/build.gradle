@@ -36,7 +36,6 @@ android {
 //        targetGenDir 'src/main/java' //自动生成的greendao代码存放路径，默认为entity所在的包名
 
     }
-
 }
 
 dependencies {
@@ -56,15 +55,13 @@ dependencies {
     api rootProject.ext.dependencies.converter_gson
     api rootProject.ext.dependencies.retrofit
     api rootProject.ext.dependencies.adapter_rxjava
-    api rootProject.ext.dependencies.retrofit_url_manager
-    api 'org.greenrobot:greendao:3.2.2'
+    api rootProject.ext.dependencies.green_dao
+    api rootProject.ext.dependencies.GreenDaoUpgradeHelper
+    api rootProject.ext.dependencies.sqlcipher
     // add library
-    //git地址：https://github.com/yuweiguocn/GreenDaoUpgradeHelper
-    api 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
-    //greenDao数据库升级
-    api 'net.zetetic:android-database-sqlcipher:4.2.0@aar'
     implementation(rootProject.ext.dependencies.logging_intercept) {//网络日志库
         exclude group: 'org.json', module: 'json'
     }
+    api project(path: ':RetrofitUrlManager')
     testImplementation 'junit:junit:4.12'
 }

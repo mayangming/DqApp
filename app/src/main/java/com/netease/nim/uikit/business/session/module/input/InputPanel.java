@@ -40,6 +40,7 @@ import com.netease.nim.uikit.business.session.module.Container;
 import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.netease.nim.uikit.impl.NimUIKitImpl;
+import com.wd.daquan.common.utils.DqUtils;
 import com.wd.daquan.imui.bean.VoiceBean;
 import com.wd.daquan.imui.constant.Constant;
 import com.wd.daquan.imui.type.RecordAudioStatus;
@@ -57,6 +58,7 @@ import com.wd.daquan.util.TToast;
 import com.wd.daquan.util.audiorecord.AudioRecoderDialog;
 import com.zlw.main.recorderlib.RecordManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -426,7 +428,10 @@ public class InputPanel implements IEmoticonSelectedListener,
             } else if (v == sendMessageButtonInInputBar) {
                 onTextMessageSendButtonPressed();
             } else if (v == switchToAudioButtonInInputBar) {
-                switchToAudioLayout();
+                if (DqUtils.checkPermissions(container.getActivity(),android.Manifest.permission.RECORD_AUDIO)) {
+                    switchToAudioLayout();
+                }
+
             } else if (v == moreFuntionButtonInInputBar) {
                 toggleActionPanelLayout();
             } else if (v == emojiButtonInInputBar) {

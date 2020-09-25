@@ -206,6 +206,7 @@ public class VipActivity extends DqBaseActivity<ViPPresenter, DataBean> implemen
         }else if (DqUrl.url_vip_commodity_list.equals(url)){
             List<VipCommodityEntity> vipCommodityEntities = (List<VipCommodityEntity>) entity.data;
             vipCommodityEntities.get(0).setSelected(true);
+            lastSelectIndex = 0;
             vipCardEntities.addAll(vipCommodityEntities);
             vipCardEntity = vipCardEntities.get(0);
             vipCardAdapter.addLists(vipCommodityEntities);

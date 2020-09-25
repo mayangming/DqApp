@@ -14,10 +14,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.da.library.constant.IConstant;
-import com.netease.nim.uikit.common.util.string.StringUtil;
+import com.da.library.listener.DialogListener;
 import com.netease.nim.uikit.support.permission.MPermission;
 import com.wd.daquan.R;
 import com.wd.daquan.common.constant.DqUrl;
+import com.wd.daquan.common.helper.UpdateHelper;
+import com.wd.daquan.common.helper.UpdateListener;
+import com.wd.daquan.common.utils.DialogUtils;
 import com.wd.daquan.common.utils.NavUtils;
 import com.wd.daquan.common.utils.SpannableStringUtils;
 import com.wd.daquan.imui.dialog.CaptchaImgDialog;
@@ -26,6 +29,8 @@ import com.wd.daquan.login.helper.WXLoginHelper;
 import com.wd.daquan.login.listener.WXLoginListener;
 import com.wd.daquan.model.bean.DataBean;
 import com.wd.daquan.model.bean.LoginBean;
+import com.wd.daquan.model.bean.UpdateEntity;
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 import com.wd.daquan.model.mgr.ModuleMgr;
 import com.wd.daquan.util.PhoneUtils;
@@ -33,15 +38,13 @@ import com.wd.daquan.util.PhoneUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.da.library.constant.IConstant.Login.LOGIN_TYPE;
-
 
 /**
  * @Author: 方志
  * @Time: 2018/9/11 15:36
  * @Description: 验证码登录
  */
-public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListener, CaptchaImgDialog.Operator {
+public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListener, CaptchaImgDialog.Operator, UpdateListener {
 
     private View mLoginPasswordTv;
     private String mSdkLogin;
@@ -50,8 +53,11 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     private View weChatLoginIv;
     private Map<String, String> mWxMap = new HashMap<>();
     private CaptchaImgDialog captchaImgDialog;
+    private UpdateEntity mUpdateEntity = null;
+    private UpdateHelper mUpdateHelper = null;
     @Override
     protected void setContentView() {
+        DqLog.e("进入登录页面");
         setContentView(R.layout.activity_login_code);
     }
 
@@ -101,12 +107,19 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
             mPhoneNumberEt.setText(target);
             mPhoneNumberEt.setSelection(target.length());
         }
+        initUpdate();
+        mUpdateHelper.checkVersion();
     }
 
     private void initDialog(){
         captchaImgDialog = new CaptchaImgDialog();
     }
 
+    private void initUpdate(){
+        mUpdateHelper = new UpdateHelper(this);
+        mUpdateHelper.setUpdateListener(this);
+        mUpdateHelper.setShowDialog(false);
+    }
     @Override
     protected void initListener() {
         super.initListener();
@@ -213,7 +226,7 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     @Override
     public void loginWX(Map<String, String> map) {
         String openId = map.get(IConstant.WX.OPENID);
-        String accessToken = map.get(IConstant.WX.ACCESSTOKEN);
+        String accessToken = map.get(IConstant.WX.ACCESS_TOKEN);
         mWxMap.clear();
         mWxMap.putAll(map);
         Map<String, String> hashMap = new HashMap<>();
@@ -239,6 +252,7 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
                     LoginHelper.gotoMain(this);
                     finish();
                 }
+
             }
         }
     }
@@ -252,5 +266,36 @@ public class LoginCodeActivity extends BaseLoginActivity implements WXLoginListe
     public void sure() {
         //获取验证码
         startCountDownTimer();
+    }
+
+    @Override
+    public void updateError() {
+
+    }
+
+    @Override
+    public void updateFailed(String msg) {
+        DqToast.showShort(msg);
+    }
+
+    @Override
+    public void updateSucceed(UpdateEntity updateEntity) {
+        this.mUpdateEntity = updateEntity;
+        if (mUpdateEntity != null) {
+            if ("1".equals(mUpdateEntity.update_status)) {
+                DialogUtils.showCheckDialogs(new DialogListener() {
+                                                 @Override
+                                                 public void onCancel() {}
+                                                 @Override
+                                                 public void onOk() {}}, this, mUpdateEntity.appVersion, mUpdateEntity.versionName,
+                        mUpdateEntity.content, mUpdateEntity.upgradeType, mUpdateEntity.url).show();
+            } else if ("0".equals(mUpdateEntity.update_status)) { // 最新版本
+            }
+        }
+    }
+
+    @Override
+    public void updateUI(String status) {
+
     }
 }

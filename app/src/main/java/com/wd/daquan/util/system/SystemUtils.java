@@ -4,7 +4,9 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.wd.daquan.model.log.DqLog;
 import com.wd.daquan.model.log.DqToast;
 
 import java.io.BufferedReader;
@@ -185,6 +187,12 @@ public class SystemUtils {
             result=sb.toString().toLowerCase();
         } catch(IOException ex){
         }
-        return (!result.contains("arm")) || (result.contains("intel")) || (result.contains("amd"));
+        Log.e("YM--------->设备型号:",result);
+        String devicePlatform = "processor\t: armv7 processor rev 3 (v7l)processor\t: 0bogomips\t: 38.40processor\t: 1bogomips\t: 38.40processor\t: 2bogomips\t: 38.40processor\t: 3bogomips\t: 38.40features\t: swp half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt cpu implementer\t: 0x41cpu architecture: 7cpu variant\t: 0x0cpu part\t: 0xc07cpu revision\t: 3hardware\t: qualcomm msm 8226 (flattened device tree)revision\t: 0000serial\t\t: 0000000000000000";
+        boolean isContainArm = devicePlatform.contains("arm");
+        boolean isContainResult = (!result.contains("arm")) || (result.contains("intel")) || (result.contains("amd"));
+        Log.e("YM--------->是否包含ARM:",isContainArm+"");
+        Log.e("YM--------->最终判断结果:",isContainResult+"");
+        return isContainResult;
     }
 }
