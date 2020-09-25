@@ -5,7 +5,7 @@ include ':DqGlide'
 include ':Dqlibrary'
 include ':DqModel'
 include ':uikit'
-include ':CNCarema'
+//include ':CNCarema'
 include ':CNImagePicker'
 include ':QCPickerView'
 include ':turntableview'//抽奖转盘

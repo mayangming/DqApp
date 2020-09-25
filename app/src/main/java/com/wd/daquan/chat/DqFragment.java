@@ -1,5 +1,6 @@
 package com.wd.daquan.chat;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -626,7 +627,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    renderExpressAd();
 //                    showRewardAdCode();
                     switchAd(IConstant.AD.REWARD_ID);
-                    rewardVideoAdCompat.showAd(getActivity());
+                    if (null != rewardVideoAdCompat){
+                        rewardVideoAdCompat.showAd(getActivity());
+                    }
                     return;
                 }
                 if (0 == redEnvelopBean.getAmount()){
@@ -635,7 +638,9 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 //                    renderExpressAd();
 //                    showRewardAdCode();
                     switchAd(IConstant.AD.REWARD_ID);
-                    rewardVideoAdCompat.showAd(getActivity());
+                    if (null != rewardVideoAdCompat) {
+                        rewardVideoAdCompat.showAd(getActivity());
+                    }
                     return;
                 }
                 switchBombStatus(redEnvelopBean.getIsBoom());
@@ -1122,6 +1127,7 @@ public class DqFragment extends MainTabFragment implements View.OnClickListener,
 
             @Override
             public void switchFail() {
+                Log.e("YM","切换失败:");
                 mFallingLayout.setEnableClickRedRain(true);
                 DqToast.showShort("网络不佳,请稍后再试");
             }

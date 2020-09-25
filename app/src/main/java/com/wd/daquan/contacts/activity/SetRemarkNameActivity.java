@@ -44,7 +44,7 @@ import java.util.Map;
  * @Description: 设置好友备注
  */
 public class SetRemarkNameActivity extends DqBaseActivity<ContactPresenter, DataBean>
-        implements View.OnClickListener, CustomButtomDialog.OnItemListener {
+        implements View.OnClickListener{
 
     private EditText mNameEt;
     private ImageView mNameClearIv;
@@ -191,99 +191,9 @@ public class SetRemarkNameActivity extends DqBaseActivity<ContactPresenter, Data
                 mNameEt.setText("");
                 mNameClearIv.setVisibility(View.GONE);
                 break;
-//            case R.id.remark_phone_clear_iv:
-//                //清空手机号码
-//                remarkPhoneEt.setText("");
-//                mPhoneClearIv.setVisibility(View.GONE);
-//                break;
-////            case R.id.remark_desc_clear_iv:
-////                //清空描述
-////                mDescEt.setText("");
-////                mDescClearIv.setVisibility(View.GONE);
-////                break;
-//            case R.id.set_remark_lin:
-//                CustomButtomDialog customButtomDialog = new CustomButtomDialog();
-//
-//                List<CustomButtom> buttoms = new ArrayList<>();
-//                buttoms.add(new CustomButtom(0, "拍照"));
-//                buttoms.add(new CustomButtom(1, "从手机相册选择"));
-//                customButtomDialog.setData(buttoms, true);
-//                customButtomDialog.setOnItemListener(this);
-//                customButtomDialog.showDialog((FragmentActivity) getActivity());
-//                break;
-//            case R.id.set_remark_img:
-//                if ((TextUtils.isEmpty(localUrl) && TextUtils.isEmpty(webHttpUrl))) {
-//                    return;
-//                }
-//
-//                NavUtils.gotoRemarksImgZoomAct(this, mUserId, TextUtils.isEmpty(localUrl) ? webHttpUrl : localUrl);
-//                break;
         }
     }
 
-    @Override
-    public void onDialogItemClick(AdapterView<?> parent, View view, int position, long id) {
-        CustomButtom customButtom = (CustomButtom) parent.getAdapter().getItem(position);
-        switch (customButtom.id) {
-            case 0:
-                ImgSelectUtil.getInstance().openCameraAct(this, ModuleMgr.getCenterMgr().getUID());
-                break;
-            case 1:
-                ImgSelectUtil.getInstance().openPicture(this);
-                break;
-        }
-    }
-
-    @Override
-    public void onDialogClick(View v) {
-
-    }
-
-    /**
-     * 上传图片
-     */
-    private void uploadImg() {
-        LoadingDialog.show(this, "");
-        AliOssHelper mAliOssHelper = new AliOssHelper();
-        mAliOssHelper.setPath(localUrl);
-        mAliOssHelper.setCallback(new AliOSS.AliOssCallback() {
-            @Override
-            public void onProgress(long curSize, long totalSize) {
-
-            }
-
-            @Override
-            public void onSuccess(long totalSize, File file, CNOSSFileBean bean) {
-                MsgMgr.getInstance().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        LoadingDialog.closeLoadingDialog();
-//                        LoadingHelper.getInstance(SetRemarkNameActivity.this).destroy();
-                        if (!TextUtils.isEmpty(bean.fileName)) {
-                            localUrl = null;
-                            webHttpUrl = bean.host + bean.fileName;
-                            saveRemarkData();
-                        } else {
-                            DqToast.showShort("保存失败，请重试！");
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure() {
-                MsgMgr.getInstance().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        LoadingDialog.closeLoadingDialog();
-                        DqToast.showShort("保存失败，请重试！");
-                    }
-                });
-
-            }
-        });
-        mAliOssHelper.uploadFile();
-    }
 
     private void saveRemarkData() {
         mRemarkName = mNameEt.getText().toString().trim();

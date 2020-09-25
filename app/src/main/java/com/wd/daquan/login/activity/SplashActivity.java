@@ -69,8 +69,6 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
     };
     private List<Integer> mImages;
     private int mFlag = 0;
-    //    private Banner mBanner;
-//    private View mSkip;
     private ViewPager viewPager;//引导图轮播
     private SplashAdapter splashAdapter;//引导图轮播适配器
     private RadioGroup splashIndicator;
@@ -115,8 +113,6 @@ public class SplashActivity extends DqBaseActivity<SplashPresenter, DataBean> im
 
     @Override
     protected void initView() {
-//        mBanner = findViewById(R.id.splash_banner);
-//        mSkip = findViewById(R.id.splash_btn_skip);
         viewPager = findViewById(R.id.splash_vp);
         splashIndicator = findViewById(R.id.splash_indicator);
         if (ModuleMgr.getCenterMgr().getAgreeProtocolStatus()){

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class CaptchaImgDialog extends BaseDialog {
     private AppCompatSeekBar captchaSeek;
     private String phone;
     private String captchaValue;//获取的验证码
+    private double scaleRate = 0.7;//缩放比例,小屏幕为0.7
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -61,6 +63,7 @@ public class CaptchaImgDialog extends BaseDialog {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         initData();
+        calculationScaleRate();
         getCaptchaImg();
     }
 
@@ -91,10 +94,32 @@ public class CaptchaImgDialog extends BaseDialog {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 DqLog.e("YM--->停止滑动:停留位置:"+seekBar.getProgress());
-                verifyImageCode(seekBar.getProgress());
+                DqLog.e("YM--->停止滑动:停留位置(放大后):"+seekBar.getProgress() / scaleRate);
+//                verifyImageCode(seekBar.getProgress());
+                int scale = (int) (seekBar.getProgress() / scaleRate);
+                verifyImageCode(scale);
             }
         });
 
+    }
+
+    /**
+     * 计算缩放比例
+     * 小手机:720 * 1280
+     * 大手机:1080 * 2029
+     */
+    private void calculationScaleRate(){
+        DisplayMetrics metrics = new DisplayMetrics();
+        metrics = getContext().getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        DqLog.e("YM----------->分辨率W:",width+"");
+        DqLog.e("YM----------->分辨率H:",height+"");
+        if (width < 1080){
+            scaleRate = 0.7;
+        }else {
+            scaleRate = 1;
+        }
     }
 
     private void onClick(View view){
@@ -193,21 +218,26 @@ public class CaptchaImgDialog extends BaseDialog {
 
     private void updateUI(CaptchaBean captchaBean){
 //        GlideUtil.loadNormalImgByNet(getContext(),imgUrl,captchaImg);
-
+        int oriImageHeightScale = (int) (captchaBean.getOriImageHeight() * scaleRate);
+        int oriImageWidthScale = (int) (captchaBean.getOriImageWidth() * scaleRate);
+        int templateHeightScale = (int) (captchaBean.getTemplateHeight() * scaleRate);
+        int templateWidthScale = (int) (captchaBean.getTemplateWidth() * scaleRate);
+        int captchaHeightScale = (int) (captchaBean.getyHeight() * scaleRate);
         ViewGroup.MarginLayoutParams oriLayoutParams = (ViewGroup.MarginLayoutParams) captchaBg.getLayoutParams();
-        oriLayoutParams.height = captchaBean.getOriImageHeight();
-        oriLayoutParams.width = captchaBean.getOriImageWidth();
+        oriLayoutParams.height = oriImageHeightScale;
+        oriLayoutParams.width = oriImageWidthScale;
         captchaBg.setLayoutParams(oriLayoutParams);
 
         ViewGroup.MarginLayoutParams tempLayoutParams = (ViewGroup.MarginLayoutParams) captchaMask.getLayoutParams();
-        tempLayoutParams.height = captchaBean.getTemplateHeight();
-        tempLayoutParams.width = captchaBean.getTemplateWidth();
-        tempLayoutParams.topMargin = captchaBean.getyHeight();
+        tempLayoutParams.height = templateHeightScale;
+        tempLayoutParams.width = templateWidthScale;
+        tempLayoutParams.topMargin = captchaHeightScale;
         captchaMask.setLayoutParams(tempLayoutParams);
 
         ViewGroup.MarginLayoutParams seekLayoutParams = (ViewGroup.MarginLayoutParams) captchaSeek.getLayoutParams();
-        seekLayoutParams.width = captchaBean.getOriImageWidth();
+        seekLayoutParams.width = oriImageWidthScale;
         captchaSeek.setLayoutParams(seekLayoutParams);
+
         captchaSeek.setMax(captchaBean.getOriImageWidth() - captchaBean.getTemplateWidth());
 
         GlideUtils.load(getContext(),captchaBean.getBigImage(),captchaBg);

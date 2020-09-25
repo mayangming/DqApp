@@ -12,7 +12,6 @@ import androidx.core.content.FileProvider;
 import com.wd.daquan.DqApp;
 import com.wd.daquan.common.constant.KeyValue;
 import com.wd.daquan.model.log.DqToast;
-import com.wd.daquan.third.camera.CameraAct;
 import com.da.library.tools.FileUtils;
 import com.da.library.widget.AnimUtils;
 
@@ -43,24 +42,6 @@ public class ImgSelectUtil {
             imgSelectUtil = new ImgSelectUtil();
         }
         return imgSelectUtil;
-    }
-
-
-    /**
-     * 拍照+裁剪
-     *
-     * @param activity
-     * @param id
-     */
-    public void openCameraAct(Activity activity, String id) {
-        if (!DqUtils.checkPermissions(activity, needPermissions)) {
-            return;
-        }
-
-        Intent intent = new Intent(activity, CameraAct.class);
-        intent.putExtra(KeyValue.ID, id);
-        activity.startActivityForResult(intent, TYPE_CAMERA);
-        AnimUtils.enterAnimForActivity(activity);
     }
 
     /**
@@ -115,30 +96,6 @@ public class ImgSelectUtil {
                     break;
                 }
                 crop(activity, intent.getData(), Uri.fromFile(mTmpFile));
-                break;
-            }
-            case TYPE_CAMERA: {// 拍照
-                Uri originalUri;
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        //通过FileProvider创建一个content类型的Uri ,和清单文件保持一致
-                        originalUri = FileProvider.getUriForFile(activity, "com.aides.brother.brotheraides.myprovider",
-                                new File(CameraAct.parseResult(intent)));
-                    } else {
-                        originalUri = Uri.fromFile(new File(CameraAct.parseResult(intent)));
-                    }
-                } catch (Exception e) {
-                    DqToast.showShort("拍照出错，请重拍！");
-                    break;
-                }
-
-                if (!isCrop) {
-                    if (completeListener != null && originalUri != null) {
-                        completeListener.onComplete(requestCode, originalUri.toString());
-                    }
-                    break;
-                }
-                crop(activity, originalUri, Uri.fromFile(mTmpFile));
                 break;
             }
             case TYPE_CROP: {// 裁剪

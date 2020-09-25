@@ -83,8 +83,9 @@ public class RetrofitClient {
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .connectionPool(new ConnectionPool(4, 10, TimeUnit.SECONDS));
         // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里4个，和每个保持时间为10s
-        OkHttpClient okHttpClient = RetrofitUrlManager.getInstance().with(builder)
-                .build();
+//        OkHttpClient okHttpClient = RetrofitUrlManager.getInstance().with(builder)
+//                .build();
+        OkHttpClient okHttpClient = builder.build();
         // You can change BaseUrl at any time while App is running (The interface that declared the Domain-Name header)
         RetrofitUrlManager.getInstance().putDomain("DqSdk", BuildConfig.SERVER_SDK);
         return new Retrofit.Builder()
